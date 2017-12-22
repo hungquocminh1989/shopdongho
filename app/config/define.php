@@ -1,2 +1,3 @@
 <?php 
-define('AKAGANE_TITLE11', '商品情報管理システム');
+define('SYSTEM_ROOT_DIR', SYSTEM_PUBLIC_DIR);
+define('SYSTEM_PUBLIC_UPLOAD', SYSTEM_ROOT_DIR.'/public/upload');

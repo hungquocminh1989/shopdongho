@@ -1,4 +1,4 @@
 <?php 
-define('DATABASE_DNS', 'mysql:dbname=fbtest;host=127.0.0.1');
+define('DATABASE_DNS', 'mysql:dbname=test;host=45.76.180.116');
 define('DATABASE_USER', 'root');
-define('DATABASE_PASS', '123456');
+define('DATABASE_PASS', 'pass5510453');

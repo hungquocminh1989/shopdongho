@@ -16,8 +16,9 @@ class Initialize {
         // Initialize Controller
         $controller = new CommonController();
         Flight::route('/(index)', array($controller, 'index'));
-        Flight::route('/product', array($controller, 'product'));
-        Flight::route('/category', array($controller, 'category'));
+        Flight::route('/main', array($controller, 'main'));
+        Flight::route('/main/category/add', array($controller, 'addcategory'));
+        Flight::route('/main/product/add', array($controller, 'addproduct'));
         
         // Membership Controller
         /*$membership = new MembershipController();

@@ -1,68 +1,10 @@
 <!DOCTYPE html>
 <html >
-<head>
-  <!-- Site made with Mobirise Website Builder v4.5.2, https://mobirise.com -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Mobirise v4.5.2, mobirise.com">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="public/assets/images/logo2.png" type="image/x-icon">
-  <meta name="description" content="">
-  <title>Home</title>
-  <link rel="stylesheet" href="public/assets/web/assets/mobirise-icons/mobirise-icons.css">
-  <link rel="stylesheet" href="public/assets/tether/tether.min.css">
-  <link rel="stylesheet" href="public/assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="public/assets/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="public/assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="public/assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="public/assets/animatecss/animate.min.css">
-  <link rel="stylesheet" href="public/assets/socicon/css/styles.css">
-  <link rel="stylesheet" href="public/assets/theme/css/style.css">
-  <link rel="stylesheet" href="public/assets/gallery/style.css">
-  <link rel="stylesheet" href="public/assets/mobirise/css/mbr-additional.css" type="text/css">
-  
-  
-  
-</head>
+<?php include 'app/views/header.php'?>
 <body>
-<section class="menu cid-qE27RH1vCu" once="menu" id="menu2-0" data-rv-view="523">
+<?php include 'app/views/menu.php'?>
 
-    
-
-    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </button>
-        <div class="menu-logo">
-            <div class="navbar-brand">
-                <span class="navbar-logo">
-                    <a href="index.html">
-                        <img src="public/assets/images/logo2.png" alt="Webdongho" title="Webdongho" media-simple="true" style="height: 3.8rem;">
-                    </a>
-                </span>
-                
-            </div>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="index.html">Trang Chủ</a>
-                </li><li class="nav-item"><a class="nav-link link text-white display-4" href="https://mobirise.com">Giới Thiệu</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#content5-s">Đồng Hồ Nam</a></li>
-                <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="index.html#content5-t">Đồng Hồ Nữ</a>
-                </li></ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-secondary display-4" href="tel:0902660153">
-                    <span class="btn-icon mbri-mobile mbr-iconfont mbr-iconfont-btn">
-                    </span>0902660153</a></div>
-        </div>
-    </nav>
-</section>
-
-<section class="engine"><a href="https://mobirise.co/h">make a website</a></section><section class="header1 cid-qE28GIrVO8 mbr-parallax-background" id="header1-3" data-rv-view="525">
+<section class="engine"><a href="https://mobirise.co/q">bootstrap slider</a></section><section class="header1 cid-qE28GIrVO8 mbr-parallax-background" id="header1-3" data-rv-view="644">
 
     
 
@@ -84,7 +26,7 @@
 
 </section>
 
-<section class="features10 cid-qE2dcnrpIL" id="features10-f" data-rv-view="528">
+<section class="features10 cid-qE2dcnrpIL" id="features10-f" data-rv-view="647">
 
     
 
@@ -132,7 +74,7 @@
     </div>
 </section>
 
-<section class="timeline2 cid-qE2eIDnaX2" id="timeline2-k" data-rv-view="531">
+<section class="timeline2 cid-qE2eIDnaX2" id="timeline2-k" data-rv-view="650">
 
     
 
@@ -201,7 +143,7 @@
     </div>
 </section>
 
-<section class="mbr-section content5 cid-qE4IagvCta mbr-parallax-background" id="content5-x" data-rv-view="534">
+<section class="mbr-section content5 cid-qE4IagvCta mbr-parallax-background" id="content5-x" data-rv-view="653">
 
     
 
@@ -219,7 +161,7 @@
     </div>
 </section>
 
-<section class="mbr-gallery mbr-slider-carousel cid-qE28ZZgWOm" id="gallery3-4" data-rv-view="537">
+<section class="mbr-gallery mbr-slider-carousel cid-qE28ZZgWOm" id="gallery3-4" data-rv-view="656">
 
     
 
@@ -229,7 +171,7 @@
 
 </section>
 
-<section class="mbr-section content5 cid-qE4H5PnFh6 mbr-parallax-background" id="content5-s" data-rv-view="572">
+<section class="mbr-section content5 cid-qE4H5PnFh6 mbr-parallax-background" id="content5-s" data-rv-view="691">
 
     
 
@@ -247,7 +189,7 @@
     </div>
 </section>
 
-<section class="features3 cid-qE29H88mj9" id="features3-6" data-rv-view="575">
+<section class="features3 cid-qE29H88mj9" id="features3-6" data-rv-view="694">
 
     
 
@@ -298,7 +240,7 @@
     </div>
 </section>
 
-<section class="mbr-section content5 cid-qE4HlrxOXp mbr-parallax-background" id="content5-t" data-rv-view="578">
+<section class="mbr-section content5 cid-qE4HlrxOXp mbr-parallax-background" id="content5-t" data-rv-view="697">
 
     
 
@@ -316,7 +258,7 @@
     </div>
 </section>
 
-<section class="features3 cid-qE4HuyTyP0" id="features3-u" data-rv-view="581">
+<section class="features3 cid-qE4HuyTyP0" id="features3-u" data-rv-view="700">
 
     
 
@@ -339,7 +281,7 @@
             <div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper">
                     <div class="card-img">
-                        <img src="public/assets/images/0212.jpg" alt="Mobirise" media-simple="true">
+                        <img src="public/assets/images/0216.jpg" alt="Mobirise" media-simple="true">
                     </div>
                     <div class="card-box">
                         <h4 class="card-title mbr-fonts-style display-7">Mobile Friendly</h4>
@@ -352,7 +294,7 @@
             <div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper">
                     <div class="card-img">
-                        <img src="public/assets/images/0313.jpg" alt="Mobirise" media-simple="true">
+                        <img src="public/assets/images/0317.jpg" alt="Mobirise" media-simple="true">
                     </div>
                     <div class="card-box">
                         <h4 class="card-title mbr-fonts-style display-7">Unique Styles</h4>
@@ -367,7 +309,7 @@
     </div>
 </section>
 
-<section class="mbr-section article content1 cid-qE4fqWgeYB" id="content2-n" data-rv-view="584">
+<section class="mbr-section article content1 cid-qE4fqWgeYB" id="content2-n" data-rv-view="703">
 
      
 
@@ -379,85 +321,6 @@
         </div>
     </div>
 </section>
-
-<section class="cid-qE4lLOMQ71" id="footer1-o" data-rv-view="585">
-
-    
-
-    
-
-    <div class="container">
-        <div class="media-container-row content text-white">
-            <div class="col-12 col-md-3">
-                <div class="media-wrap">
-                    <a href="https://mobirise.com/">
-                        <img src="public/assets/images/logo214.png" alt="Mobirise" media-simple="true">
-                    </a>
-                </div>
-            </div>
-            <div class="col-12 col-md-3 mbr-fonts-style display-7">
-                <h5 class="pb-3">Địa Chỉ</h5>
-                <p class="mbr-text">364 Bùi Hữu Nghĩa<br>Phường 2 , Quận Bình Thạnh<br>TP.HCM</p>
-            </div>
-            <div class="col-12 col-md-3 mbr-fonts-style display-7">
-                <h5 class="pb-3">Liên Hệ</h5>
-                <p class="mbr-text">Facebook:&nbsp;<br>Phone: 0902660153<br>Zalo : 0902660153</p>
-            </div>
-            <div class="col-12 col-md-3 mbr-fonts-style display-7">
-                <h5 class="pb-3">Đối Tác</h5>
-                <p class="mbr-text">Google.com<br>Facebook.com<br><a class="text-white" href="https://mobirise.com/mobirise-free-mac.zip">Z</a>alo.com</p>
-            </div>
-        </div>
-        <div class="footer-lower">
-            <div class="media-container-row">
-                <div class="col-sm-12">
-                    <hr>
-                </div>
-            </div>
-            <div class="media-container-row mbr-white">
-                <div class="col-sm-6 copyright">
-                    <p class="mbr-text mbr-fonts-style display-7">© Copyright 2017 - MintyShop</p>
-                </div>
-                <div class="col-md-6">
-                    <div class="social-list align-right">
-                        <div class="soc-item">
-                            <a href="https://twitter.com/mobirise" target="_blank">
-                                <span class="mbr-iconfont mbr-iconfont-social socicon-facebook socicon" media-simple="true"></span>
-                            </a>
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-  <script src="public/assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="public/assets/popper/popper.min.js"></script>
-  <script src="public/assets/tether/tether.min.js"></script>
-  <script src="public/assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="public/assets/smoothscroll/smooth-scroll.js"></script>
-  <script src="public/assets/dropdown/js/script.min.js"></script>
-  <script src="public/assets/touchswipe/jquery.touch-swipe.min.js"></script>
-  <script src="public/assets/parallax/jarallax.min.js"></script>
-  <script src="public/assets/masonry/masonry.pkgd.min.js"></script>
-  <script src="public/assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="public/assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
-  <script src="public/assets/vimeoplayer/jquery.mb.vimeo_player.js"></script>
-  <script src="public/assets/viewportchecker/jquery.viewportchecker.js"></script>
-  <script src="public/assets/theme/js/script.js"></script>
-  <script src="public/assets/gallery/player.min.js"></script>
-  <script src="public/assets/gallery/script.js"></script>
-  <script src="public/assets/slidervideo/script.js"></script>
-  
-  
- <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i></i></a></div>
-    <input name="animation" type="hidden">
+<?php include 'app/views/footer.php'?>
   </body>
 </html>

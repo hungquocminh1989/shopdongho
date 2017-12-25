@@ -17,7 +17,7 @@
                         <div class="form-group row">
                             <label for="ctg1" class="col-sm-2 form-control-label">Danh Mục</label>
                             <div class="col-sm-5">
-                                <input name="category_name" type="text" class="form-control" id="ctg1" placeholder="Nhập Danh Mục">
+                                <input value="<?php echo (isset($rowCategory)) ? $rowCategory[0]['category_name']:'';?>" required name="category_name" type="text" class="form-control" id="ctg1" placeholder="Nhập Danh Mục">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -46,7 +46,10 @@
 												<tr>
 				                                    <th scope="row">'.$index.'</th>
 				                                    <td>'.$value['category_name'].'</td>
-				                                    <td><button formaction="main/category/delete" name="m_category_id" value="'.$value['m_category_id'].'" type="submit" class="btn btn-danger">Xóa</button></td>
+				                                    <td>
+				                                    <button formaction="main/category/edit" name="m_category_id" value="'.$value['m_category_id'].'" type="submit" class="btn btn-info">Sửa</button>
+				                                    <button formaction="main/category/delete" name="m_category_id" value="'.$value['m_category_id'].'" type="submit" class="btn btn-danger">Xóa</button>
+				                                    </td>
 				                                </tr>
 											';
 										}
@@ -66,7 +69,7 @@
                     	<div class="form-group row">
                             <label class="col-sm-2 form-control-label">Chọn Danh Mục</label>
                             <div class="col-sm-5">
-                            	<select class="form-control" name="m_category_id">
+                            	<select required class="form-control" name="m_category_id">
                             	<option value=""></option>
                             	<?php 
                             		if($listCategory != NULL && count($listCategory) > 0){
@@ -84,25 +87,25 @@
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Nhập Tên Sản Phẩm</label>
                             <div class="col-sm-5">
-                                <input name="product_name" type="text" class="form-control" placeholder="Nhập Tên Sản Phẩm">
+                                <input required name="product_name" type="text" class="form-control" placeholder="Nhập Tên Sản Phẩm">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Nhập Mã Sản Phẩm</label>
                             <div class="col-sm-5">
-                                <input name="product_no" type="text" class="form-control" placeholder="Nhập Mã Sản Phẩm">
+                                <input required name="product_no" type="text" class="form-control" placeholder="Nhập Mã Sản Phẩm">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Nhập Giá</label>
                             <div class="col-sm-5">
-                                <input name="product_price" type="text" class="form-control" placeholder="Nhập Giá">
+                                <input required name="product_price" type="text" class="form-control" placeholder="Nhập Giá">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Nhập Thông Tin</label>
                             <div class="col-sm-5">
-                                <input name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">
+                                <input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">
                             </div>
                         </div>
                         <div class="form-group row">

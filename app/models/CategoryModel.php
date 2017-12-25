@@ -9,6 +9,17 @@ class CategoryModel extends BasicModel {
 		return $result;
 	}
 	
+	public function listCategoryById($m_category_id){
+		$arr_sql = array();
+		$arr_sql['m_category_id'] = $m_category_id;
+    	$result = $this->query("
+    		SELECT * FROM m_category 
+    		WHERE del_flg = 0 AND m_category_id = :m_category_id"
+    	,$arr_sql
+    	);
+		return $result;
+	}
+	
 	public function insertCategory($category_name){
 		$arr_sql = array();
 		$arr_sql['category_name'] = $category_name;

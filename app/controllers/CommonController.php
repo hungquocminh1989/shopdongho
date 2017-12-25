@@ -37,6 +37,19 @@ class CommonController extends BasicController {
 	    return;
 	}
 	
+	public static function editcategory()
+	{
+		$CategoryModel = new \app\models\CategoryModel();
+		$ProductModel = new \app\models\ProductModel();
+		
+		$arr_return = array();
+		$arr_return['rowCategory'] = $CategoryModel->listCategoryById($_POST['m_category_id']);
+		$arr_return['listCategory'] = $CategoryModel->listCategory();
+		$arr_return['listProduct'] = $ProductModel->listProduct();
+		parent::flight('main',$arr_return);
+	    return;
+	}
+	
 	public static function deletecategory()
 	{
 		$model = new \app\models\CategoryModel();

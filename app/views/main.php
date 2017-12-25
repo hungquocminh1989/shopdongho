@@ -47,7 +47,7 @@
 				                                    <th scope="row">'.$index.'</th>
 				                                    <td>'.$value['category_name'].'</td>
 				                                    <td>
-				                                    <button formaction="main/category/edit" name="m_category_id" value="'.$value['m_category_id'].'" type="submit" class="btn btn-info">Sửa</button>
+				                                    <!--<button formaction="main/category/edit" name="m_category_id" value="'.$value['m_category_id'].'" type="submit" class="btn btn-info">Sửa</button>-->
 				                                    <button formaction="main/category/delete" name="m_category_id" value="'.$value['m_category_id'].'" type="submit" class="btn btn-danger">Xóa</button>
 				                                    </td>
 				                                </tr>

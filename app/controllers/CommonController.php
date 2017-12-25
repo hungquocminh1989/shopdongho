@@ -7,6 +7,9 @@ class CommonController extends BasicController {
 
 	public static function index()
 	{
+		$arr_return = array();
+		$ProductModel = new \app\models\ProductModel();
+		$arr_return['listProduct'] = $ProductModel->listProductImage();
 	    parent::flight(__FUNCTION__,$arr_return);
 	    return;
 	}
@@ -89,14 +92,19 @@ class CommonController extends BasicController {
 					$filename = uniqid().'_'.$_FILES['upload']['name'][$i];
 					$file_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$m_product_id.'/'.$filename;
 					copy($file_src,$file_dest);
-					$arr_images[] = '/public/upload/'.$m_product_id.'/'.$filename;
+					$arr_images[] = 'public/upload/'.$m_product_id.'/'.$filename;
 				}
 			}
 			
 			$ImageModel = new \app\models\ImageModel();
 			if(count($arr_images) > 0){
-				foreach($arr_images as $image){
-					$ImageModel->insertImage($m_product_id, $image);
+				foreach($arr_images as $k => $image){
+					if($k == 0){
+						$ImageModel->insertImage($m_product_id, $image,1);
+					}
+					else{
+						$ImageModel->insertImage($m_product_id, $image);
+					}
 				}
 			}
 		}

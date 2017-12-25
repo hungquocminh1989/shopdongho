@@ -15,6 +15,18 @@ class ProductModel extends BasicModel {
 		return $result;
 	}
 	
+	public function listProductImage(){
+    	$result = $this->query(
+    	"
+    	SELECT * FROM m_product mp
+    	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
+    	INNER JOIN m_image im ON im.m_product_id = mp.m_product_id AND default_flg =1
+    	WHERE mp.del_flg = 0 AND mc.del_flg = 0 AND im.del_flg = 0
+    	"
+    	);
+		return $result;
+	}
+	
 	public function insertProduct($arr_product){
     	$this->execute("
     		INSERT INTO m_product(m_category_id,product_name,product_no,product_price,product_info)

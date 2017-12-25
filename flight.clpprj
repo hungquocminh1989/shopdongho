@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="C:\Program Files (x86)\Ampps\www\shopdongho\flight.clpprj">
 	<settings><PM_URL><![CDATA[http://localhost/flight/]]></PM_URL><PM_HOME_URL><![CDATA[http://localhost/flight/]]></PM_HOME_URL><PM_LIBS><![CDATA[]]></PM_LIBS><PM_FTP_CONNECTION><![CDATA[]]></PM_FTP_CONNECTION><PM_FTP_DIR><![CDATA[]]></PM_FTP_DIR><PM_FTP_UPLOAD_ON_SAVE><![CDATA[INT:0]]></PM_FTP_UPLOAD_ON_SAVE></settings><removed value=";"/><added value=""/><lastopfiles>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\controllers\CommonController.php"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\main.php"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\controllers\Initialize.php"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\controllers\BasicController.php"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\index.php"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\footer.php"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\header.php"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\menu.php"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\models\ProductModel.php"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\models\ImageModel.php"/>
 	</lastopfiles>
 	<errors version="5.11">
 		<errfile name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\menu.php">
-			<error val="99;17;119;17;2002;1;"/>
+			<error val="91;14;111;14;2002;1;"/>
 			<error val="36;0;48;0;2002;1;"/>
 		</errfile>
 		<errfile name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\footer.php">
-			<error val="82;12;102;12;2002;1;"/>
-			<error val="103;43;123;43;2002;1;"/>
+			<error val="78;6;98;6;2002;1;"/>
+			<error val="99;37;119;37;2002;1;"/>
 		</errfile>
 		<errfile name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\index.php">
-			<error val="64;38;84;38;2002;1;"/>
-			<error val="60;50;80;50;2002;1;"/>
-			<error val="66;62;86;62;2002;1;"/>
-			<error val="50;87;68;87;2002;1;"/>
-			<error val="57;90;77;90;2002;1;"/>
-			<error val="57;102;77;102;2002;1;"/>
-			<error val="60;114;80;114;2002;1;"/>
-			<error val="223;168;245;168;2002;1;"/>
-			<error val="484;168;506;168;2002;1;"/>
-			<error val="743;168;765;168;2002;1;"/>
-			<error val="1002;168;1024;168;2002;1;"/>
-			<error val="1260;168;1282;168;2002;1;"/>
-			<error val="1518;168;1540;168;2002;1;"/>
-			<error val="1779;168;1801;168;2002;1;"/>
-			<error val="2038;168;2060;168;2002;1;"/>
-			<error val="135;201;155;201;2002;1;"/>
-			<error val="77;214;97;214;2002;1;"/>
-			<error val="77;227;97;227;2002;1;"/>
-			<error val="77;270;97;270;2002;1;"/>
-			<error val="79;283;99;283;2002;1;"/>
-			<error val="79;296;99;296;2002;1;"/>
+			<error val="72;28;92;28;2002;1;"/>
+			<error val="68;39;88;39;2002;1;"/>
+			<error val="74;50;94;50;2002;1;"/>
+			<error val="58;67;76;67;2002;1;"/>
+			<error val="61;70;81;70;2002;1;"/>
+			<error val="61;81;81;81;2002;1;"/>
+			<error val="64;92;84;92;2002;1;"/>
+			<error val="44;123;66;123;2002;1;"/>
+			<error val="44;126;66;126;2002;1;"/>
+			<error val="44;129;66;129;2002;1;"/>
+			<error val="44;132;66;132;2002;1;"/>
+			<error val="44;135;66;135;2002;1;"/>
+			<error val="44;138;66;138;2002;1;"/>
+			<error val="44;141;66;141;2002;1;"/>
+			<error val="44;144;66;144;2002;1;"/>
+			<error val="85;239;105;239;2002;1;"/>
+			<error val="87;250;107;250;2002;1;"/>
+			<error val="87;261;107;261;2002;1;"/>
 		</errfile>
 		<errfile name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\detail.php">
 			<error val="99;44;119;44;2002;1;"/>
@@ -56,8 +63,6 @@
 	</yiidata>
 	<todoblock>
 	</todoblock>
-	<dbgurls>
-	</dbgurls>
 	<filescache>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\js\wizard\modernizr-2.6.2.min.js" crc="1512054990"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\js\wizard\jquery.steps.js" crc="1512054990"/>
@@ -84,36 +89,36 @@
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\css\bootstrap-fileupload.min.css" crc="1512054990"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\css\basic.css" crc="1512054990"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\ytplayer\jquery.mb.ytplayer.min.js" crc="1513871389"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\web\assets\mobirise-icons\mobirise-icons.css" crc="1514129029"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\web\assets\jquery\jquery.min.js" crc="1514129025"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\vimeoplayer\jquery.mb.vimeo_player.js" crc="1514129029"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\viewportchecker\jquery.viewportchecker.js" crc="1514129028"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\theme\js\script.js" crc="1514129026"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\theme\css\style.css" crc="1514129026"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\touchswipe\jquery.touch-swipe.min.js" crc="1514129027"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\tether\tether.min.js" crc="1514129026"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\tether\tether.min.css" crc="1514129025"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\socicon\css\styles.css" crc="1514129029"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\smoothscroll\smooth-scroll.js" crc="1514129027"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\slidervideo\script.js" crc="1514129029"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\popper\popper.min.js" crc="1514129025"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\web\assets\mobirise-icons\mobirise-icons.css" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\web\assets\jquery\jquery.min.js" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\vimeoplayer\jquery.mb.vimeo_player.js" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\viewportchecker\jquery.viewportchecker.js" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\theme\js\script.js" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\theme\css\style.css" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\touchswipe\jquery.touch-swipe.min.js" crc="1514129126"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\tether\tether.min.js" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\tether\tether.min.css" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\socicon\css\styles.css" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\smoothscroll\smooth-scroll.js" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\slidervideo\script.js" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\popper\popper.min.js" crc="1514129125"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\playervimeo\vimeo_player.js" crc="1513871389"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\parallax\jarallax.min.js" crc="1514129028"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\mobirise\css\mbr-additional.css" crc="1514129025"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\masonry\masonry.pkgd.min.js" crc="1514129028"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\imagesloaded\imagesloaded.pkgd.min.js" crc="1514129028"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\gallery\style.css" crc="1514129028"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\gallery\script.js" crc="1514129028"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\gallery\player.min.js" crc="1514129028"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\formoid\formoid.min.js" crc="1514129029"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\dropdown\js\script.min.js" crc="1514129027"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\dropdown\css\style.css" crc="1514129027"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\bootstrapcarouselswipe\bootstrap-carousel-swipe.js" crc="1514129028"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\bootstrap\js\bootstrap.min.js" crc="1514129025"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\bootstrap\css\bootstrap.min.css" crc="1514129025"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\bootstrap\css\bootstrap-reboot.min.css" crc="1514129025"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\bootstrap\css\bootstrap-grid.min.css" crc="1514129025"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\animatecss\animate.min.css" crc="1514129027"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\parallax\jarallax.min.js" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\mobirise\css\mbr-additional.css" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\masonry\masonry.pkgd.min.js" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\imagesloaded\imagesloaded.pkgd.min.js" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\gallery\style.css" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\gallery\script.js" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\gallery\player.min.js" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\formoid\formoid.min.js" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\dropdown\js\script.min.js" crc="1514129126"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\dropdown\css\style.css" crc="1514129126"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\bootstrapcarouselswipe\bootstrap-carousel-swipe.js" crc="1514129127"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\bootstrap\js\bootstrap.min.js" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\bootstrap\css\bootstrap.min.css" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\bootstrap\css\bootstrap-reboot.min.css" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\bootstrap\css\bootstrap-grid.min.css" crc="1514129125"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\public\assets\animatecss\animate.min.css" crc="1514129127"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\flight\util\Collection.php" crc="1513869404"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\flight\template\View.php" crc="1513869404"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\flight\net\Router.php" crc="1513869404"/>
@@ -126,19 +131,19 @@
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\flight\Engine.php" crc="1513869404"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\flight\autoload.php" crc="1513869404"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\db\bk.sql" crc="1514111673"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\menu.php" crc="1514131061"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\header.php" crc="1514131086"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\footer.php" crc="1514131127"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\main.php" crc="1514115780"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\index.php" crc="1514131206"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\menu.php" crc="1514216613"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\header.php" crc="1514216824"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\common\footer.php" crc="1514216795"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\main.php" crc="1514215936"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\index.php" crc="1514219338"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\views\detail.php" crc="1514130737"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\models\ProductModel.php" crc="1514096226"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\models\ProductModel.php" crc="1514218874"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\models\Model.php" crc="1513869404"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\models\ImageModel.php" crc="1513960411"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\models\CategoryModel.php" crc="1514112030"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\models\ImageModel.php" crc="1514218808"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\models\CategoryModel.php" crc="1514215772"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\models\BasicModel.php" crc="1513869404"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\controllers\Initialize.php" crc="1514130850"/>
-		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\controllers\CommonController.php" crc="1514130854"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\controllers\Initialize.php" crc="1514215772"/>
+		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\controllers\CommonController.php" crc="1514218780"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\controllers\BasicController.php" crc="1513869404"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\config\define.php" crc="1514111581"/>
 		<file name="C:\Program Files (x86)\Ampps\www\shopdongho\app\config\config.php" crc="1514114656"/>

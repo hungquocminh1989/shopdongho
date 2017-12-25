@@ -18,23 +18,4 @@
   <link rel="stylesheet" href="public/assets/theme/css/style.css">
   <link rel="stylesheet" href="public/assets/gallery/style.css">
   <link rel="stylesheet" href="public/assets/mobirise/css/mbr-additional.css" type="text/css">
-  
-  <script src="public/assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="public/assets/popper/popper.min.js"></script>
-  <script src="public/assets/tether/tether.min.js"></script>
-  <script src="public/assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="public/assets/smoothscroll/smooth-scroll.js"></script>
-  <script src="public/assets/dropdown/js/script.min.js"></script>
-  <script src="public/assets/touchswipe/jquery.touch-swipe.min.js"></script>
-  <script src="public/assets/parallax/jarallax.min.js"></script>
-  <script src="public/assets/masonry/masonry.pkgd.min.js"></script>
-  <script src="public/assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="public/assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
-  <script src="public/assets/vimeoplayer/jquery.mb.vimeo_player.js"></script>
-  <script src="public/assets/viewportchecker/jquery.viewportchecker.js"></script>
-  <script src="public/assets/theme/js/script.js"></script>
-  <script src="public/assets/gallery/player.min.js"></script>
-  <script src="public/assets/gallery/script.js"></script>
-  <script src="public/assets/slidervideo/script.js"></script>
-  
 </head>

@@ -186,16 +186,11 @@
             <div class="container">
             	<?php 
             	$index = 0;
-            	$html_item = '
-            	<div class="media-container-row">
-                    %s
-                </div>
-            	';
             	$html_card ='
             	<div class="card p-3 col-12 col-md-6 col-lg-4">
                     <div class="card-wrapper">
                         <div class="card-img">
-                            <a href="MSP-001.html"><img src="%s" alt="Mobirise" title="" media-simple="true"></a>
+                            <a href="detail?m_product_id=%s"><img src="%s" alt="" title="" media-simple="true"></a>
                         </div>
                         <div class="card-box">
                             <h4 class="card-title mbr-fonts-style display-7"><a href="page1.html" class="text-black"><strong>%s</strong></a></h4>
@@ -206,18 +201,23 @@
                 </div>
             	';
             	echo '<div class="media-container-row">';
-				foreach($listProduct as $key => $value){
+				foreach($listProductNam as $key => $value){
 					$index++;
-					if($index >= 3){
+					if($index > 3){
+						$index = 1;
 						echo '</div>';
-						echo '<div class="media-container-row">';
+						if(count($listProduct)!=$index){
+							echo '<div class="media-container-row">';
+						}
 					}
-					else{
-						$html_card_replace = printf($html_card,$value['image_path'],$value['product_no'],$value['product_price']);
-						echo printf($html_item,$html_card_replace);
+					
+					$html_card_replace = sprintf($html_card,$value['m_product_id'],$value['image_path'],$value['product_no'],$value['product_price']);
+					echo $html_card_replace;
+					
+					if(count($listProduct)==$index){
+						echo '</div>';
 					}
 				}
-				echo '</div>';
             	?>
             </div>
         </section>

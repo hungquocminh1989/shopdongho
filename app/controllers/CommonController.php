@@ -9,13 +9,18 @@ class CommonController extends BasicController {
 	{
 		$arr_return = array();
 		$ProductModel = new \app\models\ProductModel();
-		$arr_return['listProduct'] = $ProductModel->listProductImage();
+		$arr_return['listProductNam'] = $ProductModel->listProductImage();
+		$arr_return['listProductNu'] = $ProductModel->listProductImage();
 	    parent::flight(__FUNCTION__,$arr_return);
 	    return;
 	}
 	
 	public static function detail()
 	{
+		$ProductModel = new \app\models\ProductModel();
+		$arr_return = array();
+		$arr_return['productInfo'] = $ProductModel->listProductDetailById($_GET['m_product_id']);
+		$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($_GET['m_product_id']);
 	    parent::flight(__FUNCTION__,$arr_return);
 	    return;
 	}

@@ -15,6 +15,35 @@ class ProductModel extends BasicModel {
 		return $result;
 	}
 	
+	public function listProductDetailById($m_product_id){
+		$arr_sql = array();
+		$arr_sql['m_product_id'] = $m_product_id;
+    	$result = $this->query(
+    	"
+    	SELECT * FROM m_product mp
+    	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
+    	INNER JOIN m_image im ON im.m_product_id = mp.m_product_id AND im.default_flg =1
+    	WHERE mp.del_flg = 0 AND mc.del_flg = 0 AND im.del_flg = 0 AND mp.m_product_id = :m_product_id
+    	"
+    	,$arr_sql);
+		return $result;
+	}
+	
+	public function listProductImageDetailById($m_product_id){
+		$arr_sql = array();
+		$arr_sql['m_product_id'] = $m_product_id;
+		
+    	$result = $this->query(
+    	"
+    	SELECT * FROM m_product mp
+    	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
+    	INNER JOIN m_image im ON im.m_product_id = mp.m_product_id
+    	WHERE mp.del_flg = 0 AND mc.del_flg = 0 AND im.del_flg = 0 AND mp.m_product_id = :m_product_id
+    	"
+    	,$arr_sql);
+		return $result;
+	}
+	
 	public function listProductImage(){
     	$result = $this->query(
     	"

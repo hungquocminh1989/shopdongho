@@ -3,9 +3,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
         <title>Page Title</title>
-        <link rel="stylesheet" href="public/css/bootstrap.css">
-        <script src="public/js/jquery-1.10.2.js"></script>
-        <script src="public/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="<?php echo BASE_URL;?>public/css/bootstrap.css">
+        <script src="<?php echo BASE_URL;?>public/js/jquery-1.10.2.js"></script>
+        <script src="<?php echo BASE_URL;?>public/js/bootstrap.js"></script>
     </head>
     <body>
         <div class="container">
@@ -13,7 +13,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Cập Nhật Danh Mục</div>
                 <div class="panel-body">
-                    <form action="main/category/add" method="POST">
+                    <form action="main/category/update" method="POST">
+                    	<input type="hidden" name="m_category_id" value="<?php echo (isset($rowCategory)) ? $rowCategory[0]['m_category_id']:'';?>"/>
                         <div class="form-group row">
                             <label for="ctg1" class="col-sm-2 form-control-label">Danh Mục</label>
                             <div class="col-sm-5">
@@ -24,7 +25,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="main/category/add" class="btn btn-info">Thêm</button>
+                                <button type="submit" formaction="main/category/update" class="btn btn-info">Thêm</button>
                             </div>
                         </div>
                     </form>
@@ -47,7 +48,7 @@
 				                                    <th scope="row">'.$index.'</th>
 				                                    <td>'.$value['category_name'].'</td>
 				                                    <td>
-				                                    <!--<button formaction="main/category/edit" name="m_category_id" value="'.$value['m_category_id'].'" type="submit" class="btn btn-info">Sửa</button>-->
+				                                    <button formaction="main/category/edit" name="m_category_id" value="'.$value['m_category_id'].'" type="submit" class="btn btn-info">Sửa</button>
 				                                    <button formaction="main/category/delete" name="m_category_id" value="'.$value['m_category_id'].'" type="submit" class="btn btn-danger">Xóa</button>
 				                                    </td>
 				                                </tr>

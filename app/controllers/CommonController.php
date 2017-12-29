@@ -4,7 +4,7 @@ namespace app\controllers;
 use Flight; 
 
 class CommonController extends BasicController {
-
+	
 	public static function index()
 	{
 		$arr_return = array();
@@ -26,13 +26,8 @@ class CommonController extends BasicController {
 	}
 
    	public static function main()
-	{
-		$CategoryModel = new \app\models\CategoryModel();
-		$ProductModel = new \app\models\ProductModel();
-		
-		$arr_return = array();
-		$arr_return['listCategory'] = $CategoryModel->listCategory();
-		$arr_return['listProduct'] = $ProductModel->listProduct();
+	{		
+		$arr_return = parent::getDataDefault();
 	    parent::flight(__FUNCTION__,$arr_return);
 	    return;
 	}
@@ -45,15 +40,27 @@ class CommonController extends BasicController {
 	    return;
 	}
 	
+	public static function updatecategory()
+	{
+		$model = new \app\models\CategoryModel();
+		if($_POST['m_category_id'] != ''){
+			$model->updateCategory($_POST['m_category_id'], $_POST['category_name']);
+		}
+		else{
+			$model->insertCategory($_POST['category_name']);
+		}
+		
+		Flight::redirect('/main');
+	    return;
+	}
+	
 	public static function editcategory()
 	{
 		$CategoryModel = new \app\models\CategoryModel();
 		$ProductModel = new \app\models\ProductModel();
 		
-		$arr_return = array();
+		$arr_return = $this->getDataDefault();
 		$arr_return['rowCategory'] = $CategoryModel->listCategoryById($_POST['m_category_id']);
-		$arr_return['listCategory'] = $CategoryModel->listCategory();
-		$arr_return['listProduct'] = $ProductModel->listProduct();
 		parent::flight('main',$arr_return);
 	    return;
 	}
@@ -62,6 +69,14 @@ class CommonController extends BasicController {
 	{
 		$model = new \app\models\CategoryModel();
 		$model->deleteCategory($_POST['m_category_id']);
+		Flight::redirect('/main');
+	    return;
+	}
+	
+	public static function updateproduct()
+	{
+		$model = new \app\models\CategoryModel();
+		$model->insertCategory($_POST['category_name']);
 		Flight::redirect('/main');
 	    return;
 	}

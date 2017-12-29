@@ -38,5 +38,16 @@ class CategoryModel extends BasicModel {
 		    WHERE  m_category_id = :m_category_id;
     	",$arr_sql);
 	}
+	
+	public function updateCategory($m_category_id, $category_name){
+		$arr_sql = array();
+		$arr_sql['category_name'] = $category_name;
+		$arr_sql['m_category_id'] = $m_category_id;
+    	$result = $this->execute("
+    		UPDATE m_category
+    		SET category_name = :category_name
+		    WHERE  m_category_id = :m_category_id;
+    	",$arr_sql);
+	}
     
 }

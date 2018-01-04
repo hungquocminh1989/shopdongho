@@ -20,14 +20,12 @@ class Initialize {
         Flight::route('/main', array($controller, 'main'));
         
         //Category
-        //Flight::route('/main/category/add', array($controller, 'addcategory'));
+        Flight::route('/main/category/add', array($controller, 'addcategory'));
         Flight::route('/main/category/update', array($controller, 'updatecategory'));
-        Flight::route('/main/category/edit', array($controller, 'editcategory'));
         Flight::route('/main/category/delete', array($controller, 'deletecategory'));
         
         //Product
         Flight::route('/main/product/add', array($controller, 'addproduct'));
-        Flight::route('/main/product/update', array($controller, 'updateproduct'));
         Flight::route('/main/product/edit', array($controller, 'editproduct'));
         Flight::route('/main/product/delete', array($controller, 'deleteproduct'));
         

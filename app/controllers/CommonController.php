@@ -26,8 +26,13 @@ class CommonController extends BasicController {
 	}
 
    	public static function main()
-	{		
-		$arr_return = parent::getDataDefault();
+	{
+		$CategoryModel = new \app\models\CategoryModel();
+		$ProductModel = new \app\models\ProductModel();
+		
+		$arr_return = array();
+		$arr_return['listCategory'] = $CategoryModel->listCategory();
+		$arr_return['listProduct'] = $ProductModel->listProduct();
 	    parent::flight(__FUNCTION__,$arr_return);
 	    return;
 	}
@@ -46,22 +51,8 @@ class CommonController extends BasicController {
 		if($_POST['m_category_id'] != ''){
 			$model->updateCategory($_POST['m_category_id'], $_POST['category_name']);
 		}
-		else{
-			$model->insertCategory($_POST['category_name']);
-		}
 		
 		Flight::redirect('/main');
-	    return;
-	}
-	
-	public static function editcategory()
-	{
-		$CategoryModel = new \app\models\CategoryModel();
-		$ProductModel = new \app\models\ProductModel();
-		
-		$arr_return = $this->getDataDefault();
-		$arr_return['rowCategory'] = $CategoryModel->listCategoryById($_POST['m_category_id']);
-		parent::flight('main',$arr_return);
 	    return;
 	}
 	

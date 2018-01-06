@@ -5,7 +5,7 @@ require 'app/config/define.php';
 require 'app/config/config.php';
 require_once __DIR__.'/flight/autoload.php';
 
+session_start();
 new app\controllers\Initialize();
-
 Flight::start();
 ?>

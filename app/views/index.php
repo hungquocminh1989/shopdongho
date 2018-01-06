@@ -59,6 +59,185 @@
                 </div>
             </div>
         </section>
+        <!--<section class="mbr-section content5 cid-qE4IagvCta mbr-parallax-background" id="content5-x" data-rv-view="653">
+            <div class="container">
+                <div class="media-container-row">
+                    <div class="title col-12 col-md-8">
+                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1"><span style="font-weight: normal;">Một số mẫu đáng chú ý trong năm 2017</span></h2>
+                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Hình ảnh bên dưới được tổng hợp từ các lựa chọn của khách hàng khi ghé shop mua.</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mbr-gallery mbr-slider-carousel cid-qE28ZZgWOm" id="gallery3-4" data-rv-view="656">
+            <div>
+                <div>
+                    <div class="mbr-gallery-row">
+                        <div class="mbr-gallery-layout-default">
+                            <div>
+                                <div>
+                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Awesome">
+                                        <div href="#lb-gallery3-4" data-slide-to="0" data-toggle="modal"><img src="public/assets/images/gallery00.jpg" alt=""><span class="icon-focus"></span></div>
+                                    </div>
+                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Responsive">
+                                        <div href="#lb-gallery3-4" data-slide-to="1" data-toggle="modal"><img src="public/assets/images/gallery01.jpg" alt=""><span class="icon-focus"></span></div>
+                                    </div>
+                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Creative">
+                                        <div href="#lb-gallery3-4" data-slide-to="2" data-toggle="modal"><img src="public/assets/images/gallery02.jpg" alt=""><span class="icon-focus"></span></div>
+                                    </div>
+                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Animated">
+                                        <div href="#lb-gallery3-4" data-slide-to="3" data-toggle="modal"><img src="public/assets/images/gallery03.jpg" alt=""><span class="icon-focus"></span></div>
+                                    </div>
+                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Awesome">
+                                        <div href="#lb-gallery3-4" data-slide-to="4" data-toggle="modal"><img src="public/assets/images/gallery04.jpg" alt=""><span class="icon-focus"></span></div>
+                                    </div>
+                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Awesome">
+                                        <div href="#lb-gallery3-4" data-slide-to="5" data-toggle="modal"><img src="public/assets/images/gallery05.jpg" alt=""><span class="icon-focus"></span></div>
+                                    </div>
+                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Responsive">
+                                        <div href="#lb-gallery3-4" data-slide-to="6" data-toggle="modal"><img src="public/assets/images/gallery06.jpg" alt=""><span class="icon-focus"></span></div>
+                                    </div>
+                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Animated">
+                                        <div href="#lb-gallery3-4" data-slide-to="7" data-toggle="modal"><img src="public/assets/images/gallery07.jpg" alt=""><span class="icon-focus"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    
+                    <div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1" data-keyboard="true" data-interval="false" id="lb-gallery3-4">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active"><img src="public/assets/images/gallery00.jpg" alt=""></div>
+                                        <div class="carousel-item"><img src="public/assets/images/gallery01.jpg" alt=""></div>
+                                        <div class="carousel-item"><img src="public/assets/images/gallery02.jpg" alt=""></div>
+                                        <div class="carousel-item"><img src="public/assets/images/gallery03.jpg" alt=""></div>
+                                        <div class="carousel-item"><img src="public/assets/images/gallery04.jpg" alt=""></div>
+                                        <div class="carousel-item"><img src="public/assets/images/gallery05.jpg" alt=""></div>
+                                        <div class="carousel-item"><img src="public/assets/images/gallery06.jpg" alt=""></div>
+                                        <div class="carousel-item"><img src="public/assets/images/gallery07.jpg" alt=""></div>
+                                    </div>
+                                    <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#lb-gallery3-4"><span class="mbri-left mbr-iconfont" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="carousel-control carousel-control-next" role="button" data-slide="next" href="#lb-gallery3-4"><span class="mbri-right mbr-iconfont" aria-hidden="true"></span><span class="sr-only">Next</span></a><a class="close" href="#" role="button" data-dismiss="modal"><span class="sr-only">Close</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>-->
+        <section class="mbr-section content5 cid-qE4H5PnFh6 mbr-parallax-background" id="content5-s" data-rv-view="691">
+            <div class="container">
+                <div class="media-container-row">
+                    <div class="title col-12 col-md-8">
+                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Đồng Hồ Nam</h2>
+                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Các mẫu đồng hồ nam thịnh hành nhất</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="features3 cid-qE29H88mj9" id="features3-6" data-rv-view="694">
+            <div class="container">
+                <?php 
+                    $index = 0;
+                    $html_card ='
+                    <div class="card p-3 col-12 col-md-6 col-lg-4">
+                           <div class="card-wrapper">
+                               <div class="card-img">
+                                   <a href="detail/%1$s/%5$s"><img src="%2$s" alt="" title="" media-simple="true"></a>
+                               </div>
+                               <div class="card-box">
+                                   <h4 class="card-title mbr-fonts-style display-7"><a href="page1.html" class="text-black"><strong>%3$s</strong></a></h4>
+                                   <p class="mbr-text mbr-fonts-style display-7">Giá : %4$s </p>
+                               </div>
+                               <div class="mbr-section-btn text-center"><a href="detail/%1$s/%5$s" class="btn btn-secondary display-4">Chi Tiết</a></div>
+                           </div>
+                       </div>
+                    ';
+                    echo '<div class="media-container-row">';
+                    foreach($listProductNam as $key => $value){
+	                    $index++;
+	                    if($index > 3){
+		                    $index = 1;
+		                    echo '</div>';
+		                    if(count($listProduct)!=$index){
+		                    echo '<div class="media-container-row">';
+		                    }
+	                    }
+	                    
+	                    $html_card_replace = sprintf($html_card,$value['m_product_id'],$value['image_path'],$value['product_no'],number_format($value['product_price']).SYSTEM_CURRENCY, $value['product_link']);
+	                    echo $html_card_replace;
+	                    
+	                    if(count($listProduct)==$index){
+	                    	echo '</div>';
+	                    }
+	                }
+                ?>
+            </div>
+        </section>
+        <section class="mbr-section content5 cid-qE4HlrxOXp mbr-parallax-background" id="content5-t" data-rv-view="697">
+            <div class="container">
+                <div class="media-container-row">
+                    <div class="title col-12 col-md-8">
+                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Đồng Hồ Nữ</h2>
+                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Các mẫu đồng hồ nữ thịnh hành nhất</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="features3 cid-qE29H88mj9" id="features3-u" data-rv-view="700">
+            <div class="container">
+                <?php 
+                    $index = 0;
+                    $html_card ='
+                    <div class="card p-3 col-12 col-md-6 col-lg-4">
+                           <div class="card-wrapper">
+                               <div class="card-img">
+                                   <a href="detail/%1$s/%5$s"><img src="%2$s" alt="" title="" media-simple="true"></a>
+                               </div>
+                               <div class="card-box">
+                                   <h4 class="card-title mbr-fonts-style display-7"><a href="page1.html" class="text-black"><strong>%3$s</strong></a></h4>
+                                   <p class="mbr-text mbr-fonts-style display-7">Giá : %4$s </p>
+                               </div>
+                               <div class="mbr-section-btn text-center"><a href="detail/%1$s/%5$s" class="btn btn-secondary display-4">Chi Tiết</a></div>
+                           </div>
+                       </div>
+                    ';
+                    echo '<div class="media-container-row">';
+                    foreach($listProductNu as $key => $value){
+	                    $index++;
+	                    if($index > 3){
+		                    $index = 1;
+		                    echo '</div>';
+		                    if(count($listProduct)!=$index){
+		                    echo '<div class="media-container-row">';
+		                    }
+	                    }
+	                    
+	                    $html_card_replace = sprintf($html_card,$value['m_product_id'],$value['image_path'],$value['product_no'],number_format($value['product_price']).SYSTEM_CURRENCY, $value['product_link']);
+	                    echo $html_card_replace;
+	                    
+	                    if(count($listProduct)==$index){
+	                    	echo '</div>';
+	                    }
+	                }
+                ?>
+            </div>
+        </section>
+        <section class="mbr-section article content1 cid-qE4fqWgeYB" id="content2-n" data-rv-view="703">
+            <div class="container">
+                <div class="media-container-row">
+                    <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                        <blockquote>
+                            <p>Đồng hồ đeo tay là một trong những phát minh vĩ đại nhất trên thế giới. Trước đây đồng hồ đeo tay chủ yếu giúp mọi người xem thời gian. Tuy nhiên, trong vài thập kỷ trở lại đây đồng hồ đeo tay không còn là một công cụ đơn thuần để mọi người xem giờ nữa mà nó là phụ kiện thiết yếu dành cho cả nam và nữ. </p>
+                            <p>Ai ai cũng muốn lựa chọn một chiếc đồng hồ đẹp giá rẻ nhất dành cho mình, nhưng làm thế nào để chọn được một chiếc đồng hồ đeo tay đẹp giá rẻ thì hãy tham khảo ngay tại Đồng Hồ Giá Rẻ nhé!</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="timeline2 cid-qE2eIDnaX2" id="timeline2-k" data-rv-view="650">
             <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
             </div>
@@ -98,186 +277,6 @@
                                 <p class="mbr-timeline-text mbr-fonts-style display-7">Tiến hành gửi cho nhân viên chuyển phát , hàng sẽ đến tay khách từ 3 - 4 ngày</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="mbr-section content5 cid-qE4IagvCta mbr-parallax-background" id="content5-x" data-rv-view="653">
-            <div class="container">
-                <div class="media-container-row">
-                    <div class="title col-12 col-md-8">
-                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1"><span style="font-weight: normal;">Một số mẫu đáng chú ý trong năm 2017</span></h2>
-                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Hình ảnh bên dưới được tổng hợp từ các lựa chọn của khách hàng khi ghé shop mua.</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="mbr-gallery mbr-slider-carousel cid-qE28ZZgWOm" id="gallery3-4" data-rv-view="656">
-            <div>
-                <div>
-                    <!-- Filter --><!-- Gallery -->
-                    <div class="mbr-gallery-row">
-                        <div class="mbr-gallery-layout-default">
-                            <div>
-                                <div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Awesome">
-                                        <div href="#lb-gallery3-4" data-slide-to="0" data-toggle="modal"><img src="public/assets/images/gallery00.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Responsive">
-                                        <div href="#lb-gallery3-4" data-slide-to="1" data-toggle="modal"><img src="public/assets/images/gallery01.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Creative">
-                                        <div href="#lb-gallery3-4" data-slide-to="2" data-toggle="modal"><img src="public/assets/images/gallery02.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Animated">
-                                        <div href="#lb-gallery3-4" data-slide-to="3" data-toggle="modal"><img src="public/assets/images/gallery03.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Awesome">
-                                        <div href="#lb-gallery3-4" data-slide-to="4" data-toggle="modal"><img src="public/assets/images/gallery04.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Awesome">
-                                        <div href="#lb-gallery3-4" data-slide-to="5" data-toggle="modal"><img src="public/assets/images/gallery05.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Responsive">
-                                        <div href="#lb-gallery3-4" data-slide-to="6" data-toggle="modal"><img src="public/assets/images/gallery06.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Animated">
-                                        <div href="#lb-gallery3-4" data-slide-to="7" data-toggle="modal"><img src="public/assets/images/gallery07.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    <!-- Lightbox -->
-                    <div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1" data-keyboard="true" data-interval="false" id="lb-gallery3-4">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active"><img src="public/assets/images/gallery00.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery01.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery02.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery03.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery04.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery05.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery06.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery07.jpg" alt=""></div>
-                                    </div>
-                                    <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#lb-gallery3-4"><span class="mbri-left mbr-iconfont" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="carousel-control carousel-control-next" role="button" data-slide="next" href="#lb-gallery3-4"><span class="mbri-right mbr-iconfont" aria-hidden="true"></span><span class="sr-only">Next</span></a><a class="close" href="#" role="button" data-dismiss="modal"><span class="sr-only">Close</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="mbr-section content5 cid-qE4H5PnFh6 mbr-parallax-background" id="content5-s" data-rv-view="691">
-            <div class="container">
-                <div class="media-container-row">
-                    <div class="title col-12 col-md-8">
-                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Đồng Hồ Nam</h2>
-                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Các mẫu đồng hồ nam thịnh hành nhất</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="features3 cid-qE29H88mj9" id="features3-6" data-rv-view="694">
-            <div class="container">
-            	<?php 
-            	$index = 0;
-            	$html_card ='
-            	<div class="card p-3 col-12 col-md-6 col-lg-4">
-                    <div class="card-wrapper">
-                        <div class="card-img">
-                            <a href="detail?m_product_id=%s"><img src="%s" alt="" title="" media-simple="true"></a>
-                        </div>
-                        <div class="card-box">
-                            <h4 class="card-title mbr-fonts-style display-7"><a href="page1.html" class="text-black"><strong>%s</strong></a></h4>
-                            <p class="mbr-text mbr-fonts-style display-7">Giá : %s đ</p>
-                        </div>
-                        <div class="mbr-section-btn text-center"><a href="MSP-001.html" class="btn btn-secondary display-4">Chi Tiết</a></div>
-                    </div>
-                </div>
-            	';
-            	echo '<div class="media-container-row">';
-				foreach($listProductNam as $key => $value){
-					$index++;
-					if($index > 3){
-						$index = 1;
-						echo '</div>';
-						if(count($listProduct)!=$index){
-							echo '<div class="media-container-row">';
-						}
-					}
-					
-					$html_card_replace = sprintf($html_card,$value['m_product_id'],$value['image_path'],$value['product_no'],$value['product_price']);
-					echo $html_card_replace;
-					
-					if(count($listProduct)==$index){
-						echo '</div>';
-					}
-				}
-            	?>
-            </div>
-        </section>
-        <section class="mbr-section content5 cid-qE4HlrxOXp mbr-parallax-background" id="content5-t" data-rv-view="697">
-            <div class="container">
-                <div class="media-container-row">
-                    <div class="title col-12 col-md-8">
-                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Đồng Hồ Nữ</h2>
-                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Các mẫu đồng hồ nữ thịnh hành nhất</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="features3 cid-qE4HuyTyP0" id="features3-u" data-rv-view="700">
-            <div class="container">
-                <div class="media-container-row">
-                    <div class="card p-3 col-12 col-md-6 col-lg-4">
-                        <div class="card-wrapper">
-                            <div class="card-img">
-                                <img src="public/assets/images/01.jpg" alt="Mobirise" media-simple="true">
-                            </div>
-                            <div class="card-box">
-                                <h4 class="card-title mbr-fonts-style display-7">No Coding</h4>
-                            </div>
-                            <div class="mbr-section-btn text-center"><a href="https://mobirise.com" class="btn btn-secondary display-4">Mua Ngay</a></div>
-                        </div>
-                    </div>
-                    <div class="card p-3 col-12 col-md-6 col-lg-4">
-                        <div class="card-wrapper">
-                            <div class="card-img">
-                                <img src="public/assets/images/0216.jpg" alt="Mobirise" media-simple="true">
-                            </div>
-                            <div class="card-box">
-                                <h4 class="card-title mbr-fonts-style display-7">Mobile Friendly</h4>
-                            </div>
-                            <div class="mbr-section-btn text-center"><a href="https://mobirise.com" class="btn btn-secondary display-4">Mua Ngay</a></div>
-                        </div>
-                    </div>
-                    <div class="card p-3 col-12 col-md-6 col-lg-4">
-                        <div class="card-wrapper">
-                            <div class="card-img">
-                                <img src="public/assets/images/0317.jpg" alt="Mobirise" media-simple="true">
-                            </div>
-                            <div class="card-box">
-                                <h4 class="card-title mbr-fonts-style display-7">Unique Styles</h4>
-                            </div>
-                            <div class="mbr-section-btn text-center"><a href="https://mobirise.com" class="btn btn-secondary display-4">Mua Ngay</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="mbr-section article content1 cid-qE4fqWgeYB" id="content2-n" data-rv-view="703">
-            <div class="container">
-                <div class="media-container-row">
-                    <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-                        <blockquote>
-                            <p>Đồng hồ đeo tay là một trong những phát minh vĩ đại nhất trên thế giới. Trước đây đồng hồ đeo tay chủ yếu giúp mọi người xem thời gian. Tuy nhiên, trong vài thập kỷ trở lại đây đồng hồ đeo tay không còn là một công cụ đơn thuần để mọi người xem giờ nữa mà nó là phụ kiện thiết yếu dành cho cả nam và nữ. </p>
-                            <p>Ai ai cũng muốn lựa chọn một chiếc đồng hồ đẹp giá rẻ nhất dành cho mình, nhưng làm thế nào để chọn được một chiếc đồng hồ đeo tay đẹp giá rẻ thì hãy tham khảo ngay tại Đồng Hồ Giá Rẻ nhé!</p>
-                        </blockquote>
                     </div>
                 </div>
             </div>

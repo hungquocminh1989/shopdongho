@@ -4,8 +4,15 @@ namespace app\models;
 class ImageModel extends BasicModel {
     
     
-    public function listImage(){
-    	
+    public function listImage($m_product_id){
+    	$arr_sql = array();
+		$arr_sql['m_product_id'] = $m_product_id;
+    	$result = $this->query("
+    		SELECT * FROM m_image 
+    		WHERE del_flg = 0 AND m_product_id = :m_product_id"
+    	,$arr_sql
+    	);
+		return $result;
 	}
 	
 	public function insertImage($m_product_id, $image_path ,$isDefault = 0){
@@ -19,8 +26,11 @@ class ImageModel extends BasicModel {
     	",$arr_sql);
 	}
 	
-	public function deleteImage($m_category_id){
-		
+	public function deleteImage($m_product_id){
+		$this->execute("
+    		DELETE FROM m_image
+		    WHERE  m_product_id = $m_product_id;
+    	");
 	}
     
 }

@@ -16,8 +16,10 @@ class Initialize {
         // Initialize Controller
         $controller = new CommonController();
         Flight::route('/(index)', array($controller, 'index'));
-        Flight::route('/detail', array($controller, 'detail'));
+        Flight::route('/detail/@id/@product_link', array($controller, 'detail'));
         Flight::route('/main', array($controller, 'main'));
+        Flight::route('/admin', array($controller, 'adminlogin'));
+        Flight::route('/admin/login', array($controller, 'login'));
         
         //Category
         Flight::route('/main/category/add', array($controller, 'addcategory'));
@@ -26,7 +28,7 @@ class Initialize {
         
         //Product
         Flight::route('/main/product/add', array($controller, 'addproduct'));
-        Flight::route('/main/product/edit', array($controller, 'editproduct'));
+        Flight::route('/main/product/update', array($controller, 'updateproduct'));
         Flight::route('/main/product/delete', array($controller, 'deleteproduct'));
         
         // Membership Controller
@@ -41,7 +43,7 @@ class Initialize {
         Flight::route('POST /sign-up', array($membership, 'registerAttempt'));*/
         
         // catch everything
-        Flight::route('/*', array($controller, 'redirect'));
+        Flight::route('/*', array($controller, 'index'));
     }
     
 }

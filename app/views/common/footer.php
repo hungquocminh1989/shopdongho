@@ -4,7 +4,7 @@
             <div class="col-12 col-md-3">
                 <div class="media-wrap">
                     <a href="https://mobirise.com/">
-                    <img src="public/assets/images/logo218.png" alt="Mobirise" media-simple="true">
+                    <img src="<?php echo SYSTEM_BASE_URL;?>public/assets/images/logo218.png" alt="Mobirise" media-simple="true">
                     </a>
                 </div>
             </div>
@@ -45,23 +45,23 @@
     </div>
 </section>
 
-<script src="public/assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="public/assets/popper/popper.min.js"></script>
-  <script src="public/assets/tether/tether.min.js"></script>
-  <script src="public/assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="public/assets/smoothscroll/smooth-scroll.js"></script>
-  <script src="public/assets/dropdown/js/script.min.js"></script>
-  <script src="public/assets/touchswipe/jquery.touch-swipe.min.js"></script>
-  <script src="public/assets/parallax/jarallax.min.js"></script>
-  <script src="public/assets/masonry/masonry.pkgd.min.js"></script>
-  <script src="public/assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="public/assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
-  <script src="public/assets/vimeoplayer/jquery.mb.vimeo_player.js"></script>
-  <script src="public/assets/viewportchecker/jquery.viewportchecker.js"></script>
-  <script src="public/assets/theme/js/script.js"></script>
-  <script src="public/assets/gallery/player.min.js"></script>
-  <script src="public/assets/gallery/script.js"></script>
-  <script src="public/assets/slidervideo/script.js"></script>
+<script src="<?php echo SYSTEM_BASE_URL;?>public/assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/popper/popper.min.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/tether/tether.min.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/dropdown/js/script.min.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/parallax/jarallax.min.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/masonry/masonry.pkgd.min.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/vimeoplayer/jquery.mb.vimeo_player.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/viewportchecker/jquery.viewportchecker.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/theme/js/script.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/gallery/player.min.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/gallery/script.js"></script>
+  <script src="<?php echo SYSTEM_BASE_URL;?>public/assets/slidervideo/script.js"></script>
 
 <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i></i></a></div>
 <input name="animation" type="hidden">

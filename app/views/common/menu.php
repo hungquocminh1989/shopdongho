@@ -11,8 +11,8 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                <a href="index.html">
-                <img src="public/assets/images/logo2.png" alt="Webdongho" title="Webdongho" media-simple="true" style="height: 3.8rem;">
+                <a href="<?php echo SYSTEM_BASE_URL;?>">
+                <img src="<?php echo SYSTEM_BASE_URL;?>public/assets/images/logo2.png" alt="Webdongho" title="Webdongho" media-simple="true" style="height: 3.8rem;">
                 </a>
                 </span>
             </div>
@@ -20,12 +20,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="index.html">Trang Chủ</a>
+                    <a class="nav-link link text-white display-4" href="<?php echo SYSTEM_BASE_URL;?>">Trang Chủ</a>
                 </li>
-                <li class="nav-item"><a class="nav-link link text-white display-4" href="https://mobirise.com">Giới Thiệu</a></li>
-                <li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#content5-s">Đồng Hồ Nam</a></li>
+                <li class="nav-item"><a class="nav-link link text-white display-4" href="<?php echo SYSTEM_BASE_URL;?>#timeline2-k">Giới Thiệu</a></li>
+                <li class="nav-item"><a class="nav-link link text-white display-4" href="<?php echo SYSTEM_BASE_URL;?>#content5-s">Đồng Hồ Nam</a></li>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="index.html#content5-t">Đồng Hồ Nữ</a>
+                    <a class="nav-link link text-white display-4" href="<?php echo SYSTEM_BASE_URL;?>#content5-t">Đồng Hồ Nữ</a>
                 </li>
             </ul>
             <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-secondary display-4" href="tel:0902660153">

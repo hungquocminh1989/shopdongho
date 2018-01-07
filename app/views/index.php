@@ -162,15 +162,15 @@
 	                    if($index > 3){
 		                    $index = 1;
 		                    echo '</div>';
-		                    if(count($listProduct)!=$index){
-		                    echo '<div class="media-container-row">';
+		                    if(count($listProductNam)!=$index){
+		                    	echo '<div class="media-container-row">';
 		                    }
 	                    }
 	                    
 	                    $html_card_replace = sprintf($html_card,$value['m_product_id'],$value['image_path'],$value['product_no'],number_format($value['product_price']).SYSTEM_CURRENCY, $value['product_link']);
 	                    echo $html_card_replace;
 	                    
-	                    if(count($listProduct)==$index){
+	                    if(count($listProductNam)==$index){
 	                    	echo '</div>';
 	                    }
 	                }
@@ -211,15 +211,15 @@
 	                    if($index > 3){
 		                    $index = 1;
 		                    echo '</div>';
-		                    if(count($listProduct)!=$index){
-		                    echo '<div class="media-container-row">';
+		                    if(count($listProductNam)!=$index){
+		                    	echo '<div class="media-container-row">';
 		                    }
 	                    }
 	                    
 	                    $html_card_replace = sprintf($html_card,$value['m_product_id'],$value['image_path'],$value['product_no'],number_format($value['product_price']).SYSTEM_CURRENCY, $value['product_link']);
 	                    echo $html_card_replace;
 	                    
-	                    if(count($listProduct)==$index){
+	                    if(count($listProductNam)==$index){
 	                    	echo '</div>';
 	                    }
 	                }

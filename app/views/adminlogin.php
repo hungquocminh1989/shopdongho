@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin Login</title>
         <link rel="stylesheet" href="public/css/bootstrap.css">
         <script src="public/js/jquery-1.10.2.js"></script>
@@ -9,13 +10,13 @@
     </head>
     <body>
         <form action="" method="POST">
-            <div id="loginModel" class="modal" role="dialog" show="true" data-backdrop="static">
+            <div id="loginModel" class="modal" role="dialog" data-backdrop="static">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Cập Nhật Danh Mục</h4>
+                            <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                            <h4 class="modal-title">Quản Trị Viên</h4>
                         </div>
                         <div class="modal-body">
                             <div class="input-group input-group-lg">

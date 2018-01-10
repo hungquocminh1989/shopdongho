@@ -1,0 +1,6 @@
+sudo service httpd stop
+cd /usr/share/httpd/html/
+rm -rf shopdongho
+git clone https://github.com/hungquocminh1989/shopdongho.git
+chmod -R 777 /usr/share/httpd/html/shopdongho/public
+sudo service httpd start

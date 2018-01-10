@@ -37,7 +37,7 @@ if ($handle = opendir($pathControllers)) {
 Smarty_Autoloader::register();
 
 //Register to Flight
-Flight::register('view', 'SmartyBC', array(), function($smarty){
+Flight::register('viewSmarty', 'SmartyBC', array(), function($smarty){
 	$smarty->left_delimiter = SMARTY_LEFT_DELIMITER;
 	$smarty->right_delimiter = SMARTY_RIGHT_DELIMITER;
     $smarty->template_dir = './app/views/';
@@ -48,12 +48,12 @@ Flight::register('view', 'SmartyBC', array(), function($smarty){
     $smarty->escape_html = TRUE;
 });
 
-//Override Flight's default render method
-Flight::map('render', function($template, $data){
+//Create renderSmarty method
+Flight::map('renderSmarty', function($template, $data = NULL){
     if (is_null($data) == false) {
-		Flight::view()->assign($data);
+		Flight::viewSmarty()->assign($data);
 	}
-    Flight::view()->display($template.'.html');
+    Flight::viewSmarty()->display($template.'.html');
 });
 
 //Override Flight's default error method

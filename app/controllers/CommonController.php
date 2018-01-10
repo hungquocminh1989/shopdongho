@@ -18,7 +18,7 @@ class CommonController extends BasicController {
 			Flight::redirect('/main');
 		}
 		else{
-			Flight::render(__FUNCTION__);
+			Flight::renderSmarty(__FUNCTION__);
 		}
 	    return;
 	}
@@ -67,7 +67,7 @@ class CommonController extends BasicController {
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
 			$arr_return['listProduct'] = $ProductModel->listProduct();
-		    Flight::render(__FUNCTION__,$arr_return);
+		    Flight::renderSmarty(__FUNCTION__,$arr_return);
 		    return;
 		}
 		else{
@@ -78,7 +78,7 @@ class CommonController extends BasicController {
 	
 	public static function addcategory()
 	{
-		$model = new Flight::CategoryModel();
+		$model = Flight::CategoryModel();
 		$model->insertCategory($_POST['category_name']);
 		Flight::redirect('/main');
 	    return;

@@ -1,7 +1,4 @@
 <?php
-namespace app\models;
-
-use PDO;
 
 class Model
 {
@@ -19,7 +16,7 @@ class Model
 		*/
 		$driver_options = array(PDO::ATTR_PERSISTENT => false);
 		try {
-			$this->dbh = new \PDO(DATABASE_DNS, DATABASE_USER, DATABASE_PASS, $driver_options);
+			$this->dbh = new PDO(DATABASE_DNS, DATABASE_USER, DATABASE_PASS, $driver_options);
 			$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
 			$this->_db_error($e);

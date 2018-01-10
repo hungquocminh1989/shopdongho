@@ -1,17 +1,14 @@
 <?php
-namespace app\controllers;
-
-use Flight; 
 
 class CommonController extends BasicController {
 	
 	public static function index()
 	{
 		$arr_return = array();
-		$ProductModel = new \app\models\ProductModel();
+		$ProductModel = Flight::ProductModel();
 		$arr_return['listProductNam'] = $ProductModel->listProductImage('Đồng Hồ Nam');
 		$arr_return['listProductNu'] = $ProductModel->listProductImage('Đồng Hồ Nữ');
-	    parent::flight(__FUNCTION__,$arr_return);
+	    Flight::render(__FUNCTION__,$arr_return);
 	    return;
 	}
 	
@@ -21,7 +18,7 @@ class CommonController extends BasicController {
 			Flight::redirect('/main');
 		}
 		else{
-			parent::flight(__FUNCTION__);
+			Flight::render(__FUNCTION__);
 		}
 	    return;
 	}
@@ -50,27 +47,27 @@ class CommonController extends BasicController {
 	
 	public static function detail($id, $product_link)
 	{
-		$ProductModel = new \app\models\ProductModel();
+		$ProductModel = Flight::ProductModel();
 		$arr_return = array();
 		$arr_return['productInfo'] = $ProductModel->listProductDetailById($id, $product_link);
 		$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);
 		if($arr_return['productInfo'] == NULL){
 			Flight::redirect('/');
 		}
-	    parent::flight(__FUNCTION__,$arr_return);
+	    Flight::render(__FUNCTION__,$arr_return);
 	    return;
 	}
 
    	public static function main()
 	{
 		if(self::checklogin() == TRUE){
-			$CategoryModel = new \app\models\CategoryModel();
-			$ProductModel = new \app\models\ProductModel();
+			$CategoryModel = Flight::CategoryModel();
+			$ProductModel = Flight::ProductModel();
 			
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
 			$arr_return['listProduct'] = $ProductModel->listProduct();
-		    parent::flight(__FUNCTION__,$arr_return);
+		    Flight::render(__FUNCTION__,$arr_return);
 		    return;
 		}
 		else{
@@ -81,7 +78,7 @@ class CommonController extends BasicController {
 	
 	public static function addcategory()
 	{
-		$model = new \app\models\CategoryModel();
+		$model = new Flight::CategoryModel();
 		$model->insertCategory($_POST['category_name']);
 		Flight::redirect('/main');
 	    return;
@@ -89,7 +86,7 @@ class CommonController extends BasicController {
 	
 	public static function updatecategory()
 	{
-		$model = new \app\models\CategoryModel();
+		$model = new Flight::CategoryModel();
 		if($_POST['m_category_id'] != ''){
 			$model->updateCategory($_POST['m_category_id'], $_POST['category_name']);
 		}
@@ -100,7 +97,7 @@ class CommonController extends BasicController {
 	
 	public static function deletecategory()
 	{
-		$model = new \app\models\CategoryModel();
+		$model = new Flight::CategoryModel();
 		$model->deleteCategory($_POST['m_category_id']);
 		Flight::redirect('/main');
 	    return;
@@ -109,7 +106,7 @@ class CommonController extends BasicController {
 	public static function updateproduct()
 	{
 		if($_POST['m_product_id'] != ''){
-			$ProductModel = new \app\models\ProductModel();
+			$ProductModel = Flight::ProductModel();
 			$arr_product = array();
 			$arr_product['m_product_id'] = $_POST['m_product_id'];
 			$arr_product['m_category_id'] = $_POST['m_category_id'];
@@ -140,7 +137,7 @@ class CommonController extends BasicController {
 	
 	public static function addproduct()
 	{
-		$ProductModel = new \app\models\ProductModel();
+		$ProductModel = Flight::ProductModel();
 		$arr_product = array();
 		$arr_product['m_category_id'] = $_POST['m_category_id'];
 		$arr_product['product_name'] = $_POST['product_name'];
@@ -183,7 +180,7 @@ class CommonController extends BasicController {
 			}
 		}
 		
-		$ImageModel = new \app\models\ImageModel();
+		$ImageModel = Flight::ImageModel();
 		if(count($arr_images) > 0){
 			
 			//Xóa Hình Cũ
@@ -211,7 +208,7 @@ class CommonController extends BasicController {
 	
 	public static function deleteproduct()
 	{
-		$model = new \app\models\ProductModel();
+		$model = new Flight::ProductModel();
 		$model->deleteProduct($_POST['m_product_id']);
 		Flight::redirect('/main');
 	    return;

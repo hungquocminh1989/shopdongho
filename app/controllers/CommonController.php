@@ -86,7 +86,7 @@ class CommonController extends BasicController {
 	
 	public static function updatecategory()
 	{
-		$model = new Flight::CategoryModel();
+		$model = Flight::CategoryModel();
 		if($_POST['m_category_id'] != ''){
 			$model->updateCategory($_POST['m_category_id'], $_POST['category_name']);
 		}
@@ -97,7 +97,7 @@ class CommonController extends BasicController {
 	
 	public static function deletecategory()
 	{
-		$model = new Flight::CategoryModel();
+		$model = Flight::CategoryModel();
 		$model->deleteCategory($_POST['m_category_id']);
 		Flight::redirect('/main');
 	    return;
@@ -208,7 +208,7 @@ class CommonController extends BasicController {
 	
 	public static function deleteproduct()
 	{
-		$model = new Flight::ProductModel();
+		$model = Flight::ProductModel();
 		$model->deleteProduct($_POST['m_product_id']);
 		Flight::redirect('/main');
 	    return;

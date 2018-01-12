@@ -40,6 +40,7 @@ Smarty_Autoloader::register();
 Flight::register('viewSmarty', 'SmartyBC', array(), function($smarty){
 	$smarty->left_delimiter = SMARTY_LEFT_DELIMITER;
 	$smarty->right_delimiter = SMARTY_RIGHT_DELIMITER;
+	$smarty->cache_lifetime = SMARTY_CACHE_LIFETIME; 
     $smarty->template_dir = './app/views/';
     $smarty->compile_dir = './cache/';
     $smarty->cache_dir = './cache/';

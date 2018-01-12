@@ -1,4 +1,5 @@
 <?php 
+define('SMARTY_CACHE_LIFETIME', 300);//Seconds
 define('SMARTY_LEFT_DELIMITER', '{');
 define('SMARTY_RIGHT_DELIMITER', '}');
 define('SYSTEM_DEFAULT_TIMEZONE', 'Asia/Tokyo');

@@ -299,21 +299,3 @@
       modal.find('[name="product_link"]').val(product_link);
     });
 </script>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId            : '1516447471927190',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      version          : 'v2.11'
-    });
-  };
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "<?php echo SYSTEM_BASE_URL;?>public/js/fbsdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-<div class="fb-customerchat" page_id="1042724125855991"></div>

@@ -11,10 +11,17 @@
                         <h1 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style display-1">Đồng hồ thời trang</h1>
                         <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-2">Chuyên cung cấp đồng hồ thời trang theo xu hướng</h3>
                         <p class="mbr-text align-center pb-3 mbr-fonts-style display-5">Luôn dẫn đầu về giá trên thị trường</p>
-                        <div class="mbr-section-btn align-center"><a class="btn btn-md btn-secondary display-4" href="index.html#content5-x"><span class="mbri-question mbr-iconfont mbr-iconfont-btn"></span>
-                            XU HƯỚNG</a> 
-                            <a class="btn btn-md btn-primary display-4" href="index.html#timeline2-k">
+                        <div class="mbr-section-btn align-center">
+                        	<a class="btn btn-md btn-primary display-4" href="index.html#timeline2-k">
                             <span class="mbr-iconfont mbri-idea"></span>ĐẶT HÀNG ĐƠN GIẢN</a>
+                            <br>
+                        	<a class="btn btn-md btn-secondary display-4" href="<?php echo SYSTEM_BASE_URL;?>#dong-ho-nam">
+                            ĐỒNG HỒ NAM</a> 
+                            <a class="btn btn-md btn-secondary display-4" href="<?php echo SYSTEM_BASE_URL;?>#dong-ho-nu">
+                            ĐỒNG HỒ NỮ</a> 
+                            <a class="btn btn-md btn-secondary display-4" href="<?php echo SYSTEM_BASE_URL;?>#dong-ho-cap">
+                            ĐỒNG HỒ CẶP</a> 
+                            
                         </div>
                     </div>
                 </div>
@@ -128,7 +135,7 @@
                 </div>
             </div>
         </section>-->
-        <section class="mbr-section content5 cid-qE4H5PnFh6 mbr-parallax-background" id="content5-s" data-rv-view="691">
+        <section class="mbr-section content5 cid-qE4H5PnFh6 mbr-parallax-background" id="dong-ho-nam" data-rv-view="691">
             <div class="container">
                 <div class="media-container-row">
                     <div class="title col-12 col-md-8">
@@ -178,7 +185,7 @@
                 ?>
             </div>
         </section>
-        <section class="mbr-section content5 cid-qE4HlrxOXp mbr-parallax-background" id="content5-t" data-rv-view="697">
+        <section class="mbr-section content5 cid-qE4HlrxOXp mbr-parallax-background" id="dong-ho-nu" data-rv-view="697">
             <div class="container">
                 <div class="media-container-row">
                     <div class="title col-12 col-md-8">
@@ -208,6 +215,56 @@
                     ';
                     echo '<div class="media-container-row">';
                     $listProductNu = Flight::smartyVars('listProductNu');
+                    foreach($listProductNu as $key => $value){
+	                    $index++;
+	                    if($index > 3){
+		                    $index = 1;
+		                    echo '</div>';
+		                    if(count($listProductNam)!=$index){
+		                    	echo '<div class="media-container-row">';
+		                    }
+	                    }
+	                    
+	                    $html_card_replace = sprintf($html_card,$value['m_product_id'],$value['image_path'],$value['product_no'],number_format($value['product_price']).SYSTEM_CURRENCY, $value['product_link']);
+	                    echo $html_card_replace;
+	                    
+	                    if(count($listProductNam)==$index){
+	                    	echo '</div>';
+	                    }
+	                }
+                ?>
+            </div>
+        </section>
+        <section class="mbr-section content5 cid-qE4HlrxOXp mbr-parallax-background" id="dong-ho-cap" data-rv-view="697">
+            <div class="container">
+                <div class="media-container-row">
+                    <div class="title col-12 col-md-8">
+                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Đồng Hồ Cặp</h2>
+                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Các mẫu đồng hồ cặp thịnh hành nhất</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="features3 cid-qE29H88mj9" id="features3-u" data-rv-view="700">
+            <div class="container">
+                <?php 
+                    $index = 0;
+                    $html_card ='
+                    <div class="card p-3 col-12 col-md-6 col-lg-4">
+                           <div class="card-wrapper">
+                               <div class="card-img">
+                                   <a href="detail/%1$s/%5$s"><img src="%2$s" alt="" title="" media-simple="true"></a>
+                               </div>
+                               <div class="card-box">
+                                   <h4 class="card-title mbr-fonts-style display-7"><a href="page1.html" class="text-black"><strong>%3$s</strong></a></h4>
+                                   <p class="mbr-text mbr-fonts-style display-7">Giá : %4$s </p>
+                               </div>
+                               <div class="mbr-section-btn text-center"><a href="detail/%1$s/%5$s" class="btn btn-secondary display-4">Chi Tiết</a></div>
+                           </div>
+                       </div>
+                    ';
+                    echo '<div class="media-container-row">';
+                    $listProductCap = Flight::smartyVars('listProductCap');
                     foreach($listProductNu as $key => $value){
 	                    $index++;
 	                    if($index > 3){

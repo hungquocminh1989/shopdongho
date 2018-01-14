@@ -39,16 +39,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	{foreach $listCategory as $value}
+                            	{%foreach $listCategory as $value%}
                             	<tr>
-                                    <th scope="row">{$value@iteration}</th>
-		                            <td id="grid_category_name_{$value['m_category_id']}">{$value['category_name']}</td>
+                                    <th scope="row">{%$value@iteration%}</th>
+		                            <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
 		                            <td>
-		                            <button class="btn btn-info" value="{$value['m_category_id']}" type="button" data-toggle="modal" data-target="#editModel">Sửa</button>
-		                            <button formaction="main/category/delete" name="m_category_id" value="{$value['m_category_id']}" type="submit" class="btn btn-danger">Xóa</button>
+		                            <button class="btn btn-info" value="{%$value['m_category_id']%}" type="button" data-toggle="modal" data-target="#editModel">Sửa</button>
+		                            <button formaction="main/category/delete" name="m_category_id" value="{%$value['m_category_id']%}" type="submit" class="btn btn-danger">Xóa</button>
 		                            </td>
 		                        </tr>
-                            	{/foreach}
+                            	{%/foreach%}
                             </tbody>
                         </table>
                     </form>
@@ -96,9 +96,9 @@
                             <div class="col-sm-5">
                                 <select required class="form-control" name="m_category_id">
                                     <option value=""></option>
-                                    {foreach $listCategory as $value}
-                                    <option value="{$value['m_category_id']}">{$value['category_name']}</option>
-                                    {/foreach}
+                                    {%foreach $listCategory as $value%}
+                                    <option value="{%$value['m_category_id']%}">{%$value['category_name']%}</option>
+                                    {%/foreach%}
                                 </select>
                             </div>
                         </div>
@@ -161,22 +161,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	{foreach $listProduct as $value}
+                            	{%foreach $listProduct as $value%}
                                 <tr>
-	                                  <th scope="row">{$value@iteration}</th>
-	                                  <td id="grid_category_name_{$value['m_product_id']}" >{$value['category_name']}</td>
-	                                  <input id="grid_category_id_{$value['m_product_id']}" type="hidden" value="{$value['m_category_id']}"/>
-	                                  <td id="grid_product_name_{$value['m_product_id']}" >{$value['product_name']}</td>
-	                                  <td id="grid_product_no_{$value['m_product_id']}" >{$value['product_no']}</td>
-	                                  <td>{$value['product_price']|number_format:2:".":","} {$smarty.const.SYSTEM_CURRENCY}</td>
-	                                  <input id="grid_product_price_{$value['m_product_id']}" type="hidden" value="{$value['product_price']}"/>
-	                                  <td id="grid_product_info_{$value['m_product_id']}" >{$value['product_info']}</td>
-	                                  <td id="grid_product_link_{$value['m_product_id']}" >{$value['product_link']}</td>
+	                                  <th scope="row">{%$value@iteration%}</th>
+	                                  <td id="grid_category_name_{%$value['m_product_id']%}" >{%$value['category_name']%}</td>
+	                                  <input id="grid_category_id_{%$value['m_product_id']%}" type="hidden" value="{%$value['m_category_id']%}"/>
+	                                  <td id="grid_product_name_{%$value['m_product_id']%}" >{%$value['product_name']%}</td>
+	                                  <td id="grid_product_no_{%$value['m_product_id']%}" >{%$value['product_no']%}</td>
+	                                  <td>{%$value['product_price']|number_format:2:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
+	                                  <input id="grid_product_price_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price']%}"/>
+	                                  <td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']%}</td>
+	                                  <td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>
 	                                  <td>
-	                                  <button class="btn btn-info" value="{$value['m_product_id']}"  type="button" data-toggle="modal" data-target="#editProductModel">Sửa</button>
-	                                  <button formaction="main/product/delete" name="m_product_id" value="{$value['m_product_id']}" type="submit" class="btn btn-danger">Xóa</button></td>
+	                                  <button class="btn btn-info" value="{%$value['m_product_id']%}"  type="button" data-toggle="modal" data-target="#editProductModel">Sửa</button>
+	                                  <button formaction="main/product/delete" name="m_product_id" value="{%$value['m_product_id']%}" type="submit" class="btn btn-danger">Xóa</button></td>
 	                              </tr>
-                                {/foreach}
+                                {%/foreach%}
                             </tbody>
                         </table>
                     </form>
@@ -197,9 +197,9 @@
                                             <div class="col-sm-8">
                                                 <select required class="form-control" name="m_category_id">
                                                     <option value=""></option>
-                                                    {foreach $listCategory as $value}
-				                                    <option value="{$value['m_category_id']}">{$value['category_name']}</option>
-				                                    {/foreach}
+                                                    {%foreach $listCategory as $value%}
+				                                    <option value="{%$value['m_category_id']%}">{%$value['category_name']%}</option>
+				                                    {%/foreach%}
                                                 </select>
                                             </div>
                                         </div>
@@ -299,3 +299,21 @@
       modal.find('[name="product_link"]').val(product_link);
     });
 </script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '1516447471927190',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.11'
+    });
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "<?php echo SYSTEM_BASE_URL;?>public/js/fbsdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="fb-customerchat" page_id="1042724125855991"></div>

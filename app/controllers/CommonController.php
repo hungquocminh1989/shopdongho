@@ -8,7 +8,7 @@ class CommonController extends BasicController {
 		$ProductModel = Flight::ProductModel();
 		$arr_return['listProductNam'] = $ProductModel->listProductImage('Đồng Hồ Nam');
 		$arr_return['listProductNu'] = $ProductModel->listProductImage('Đồng Hồ Nữ');
-	    Flight::render(__FUNCTION__,$arr_return);
+	    Flight::renderSmarty(__FUNCTION__,$arr_return);
 	    return;
 	}
 	
@@ -54,7 +54,7 @@ class CommonController extends BasicController {
 		if($arr_return['productInfo'] == NULL){
 			Flight::redirect('/');
 		}
-	    Flight::render(__FUNCTION__,$arr_return);
+	    Flight::renderSmarty(__FUNCTION__,$arr_return);
 	    return;
 	}
 

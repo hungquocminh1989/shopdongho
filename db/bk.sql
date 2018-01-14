@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50635
 File Encoding         : 65001
 
-Date: 2018-01-06 17:38:14
+Date: 2018-01-14 01:12:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `m_category` (
   `category_name` longtext CHARACTER SET utf8 COLLATE utf8_vietnamese_ci,
   `del_flg` int(11) DEFAULT '0',
   PRIMARY KEY (`m_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for m_image
@@ -37,7 +37,7 @@ CREATE TABLE `m_image` (
   `default_flg` int(11) DEFAULT '0',
   `del_flg` int(11) DEFAULT '0',
   PRIMARY KEY (`m_image_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for m_product
@@ -53,4 +53,4 @@ CREATE TABLE `m_product` (
   `product_link` longtext,
   `del_flg` int(11) DEFAULT '0',
   PRIMARY KEY (`m_product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;

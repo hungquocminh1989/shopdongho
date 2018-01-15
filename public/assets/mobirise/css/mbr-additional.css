@@ -3117,9 +3117,10 @@ body {
 
 .fixed-phone-button {
     position: fixed;
-    bottom: 20px;
+    bottom: 25px;
     left: 10px;
-    height: 100px;
+    height: 60px;
+    width: 60px;
     z-index: 999;
 }
 .svg-next-icon {
@@ -3140,6 +3141,6 @@ body {
 }
 
 .svg-phone-icon-bottom {
-	width: 80px;
-	height: 80px;
+	width: 75px;
+	height: 60px;
 }

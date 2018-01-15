@@ -3113,3 +3113,33 @@ body {
 .cid-qEgxwxfYdg P {
   color: #ffffff;
 }
+
+
+.fixed-phone-button {
+    position: fixed;
+    bottom: 20px;
+    left: 10px;
+    height: 100px;
+    z-index: 999;
+}
+.svg-next-icon {
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: relative;
+	top: 0;
+	fill: currentColor;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 10px;
+	color: #21fc3d;
+}
+.svg-phone-icon-top {
+	width: 60px;
+	height: 60px;
+}
+
+.svg-phone-icon-bottom {
+	width: 80px;
+	height: 80px;
+}

@@ -1360,8 +1360,8 @@ pre {
 }
 html,
 body {
-  height: auto;
-  min-height: 100vh;
+  /*height: auto;
+  min-height: 100vh;*/
 }
 .cid-qE27RH1vCu .navbar {
   background: #232323;

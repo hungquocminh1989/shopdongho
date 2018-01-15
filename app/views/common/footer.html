@@ -79,8 +79,8 @@
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement(s); js.id = id;
-     js.src = "<?php echo SYSTEM_BASE_URL;?>public/js/fbsdk.js";
+     js.src = "<?php echo SYSTEM_BASE_URL;?>public/js/fbsdk.js";//https://connect.facebook.net/vi_VN/sdk.js
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-<div class="fb-customerchat" page_id="1042724125855991"></div>
+<div class="fb-customerchat col-sm-12" page_id="1042724125855991"></div>

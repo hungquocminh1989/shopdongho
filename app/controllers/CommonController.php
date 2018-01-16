@@ -10,7 +10,6 @@ class CommonController extends BasicController {
 		$arr_return['listProductNu'] = $ProductModel->listProductImage('Đồng Hồ Nữ');
 		$arr_return['listProductCap'] = $ProductModel->listProductImage('Đồng Hồ Cặp');
 	    Flight::renderSmarty(__FUNCTION__,$arr_return);
-	    return;
 	}
 	
 	public static function adminlogin()
@@ -21,12 +20,11 @@ class CommonController extends BasicController {
 		else{
 			Flight::renderSmarty(__FUNCTION__);
 		}
-	    return;
 	}
 	
 	public static function login()
 	{
-		if(isset($_POST['passcode'])==TRUE && md5($_POST['passcode']) == md5(SYSTEM_PASSCODE))
+		if(isset($_POST['passcode'])==TRUE && md5($_POST['passcode']) == SYSTEM_PASSCODE)
 		{
 			$_SESSION["login_token"] = md5(SYSTEM_PASSCODE);
 			Flight::redirect('/main');
@@ -34,7 +32,6 @@ class CommonController extends BasicController {
 		else{
 			Flight::redirect('/admin');
 		}
-	    return;
 	}
 	
 	public function checklogin(){
@@ -56,7 +53,6 @@ class CommonController extends BasicController {
 			Flight::redirect('/');
 		}
 	    Flight::renderSmarty(__FUNCTION__,$arr_return);
-	    return;
 	}
 
    	public static function main()
@@ -69,11 +65,9 @@ class CommonController extends BasicController {
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
 			$arr_return['listProduct'] = $ProductModel->listProduct();
 		    Flight::renderSmarty(__FUNCTION__,$arr_return);
-		    return;
 		}
 		else{
 			Flight::redirect('/admin');
-			return;
 		}
 	}
 	
@@ -82,7 +76,6 @@ class CommonController extends BasicController {
 		$model = Flight::CategoryModel();
 		$model->insertCategory($_POST['category_name']);
 		Flight::redirect('/main');
-	    return;
 	}
 	
 	public static function updatecategory()
@@ -93,7 +86,6 @@ class CommonController extends BasicController {
 		}
 		
 		Flight::redirect('/main');
-	    return;
 	}
 	
 	public static function deletecategory()
@@ -101,7 +93,6 @@ class CommonController extends BasicController {
 		$model = Flight::CategoryModel();
 		$model->deleteCategory($_POST['m_category_id']);
 		Flight::redirect('/main');
-	    return;
 	}
 	
 	public static function updateproduct()
@@ -133,7 +124,6 @@ class CommonController extends BasicController {
 		}
 		
 		Flight::redirect('/main');
-	    return;
 	}
 	
 	public static function addproduct()
@@ -163,7 +153,6 @@ class CommonController extends BasicController {
 		
 		
 		Flight::redirect('/main');
-	    return;
 	}
 	
 	public function insertImagesUpload($m_product_id){
@@ -212,7 +201,6 @@ class CommonController extends BasicController {
 		$model = Flight::ProductModel();
 		$model->deleteProduct($_POST['m_product_id']);
 		Flight::redirect('/main');
-	    return;
 	}
     
 }

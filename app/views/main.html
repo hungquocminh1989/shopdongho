@@ -7,6 +7,20 @@
         <link rel="stylesheet" href="public/css/bootstrap.css">
         <script src="public/js/jquery-1.10.2.js"></script>
         <script src="public/js/bootstrap.js"></script>
+        <style>
+        	.thumbnail {
+			    height: 50px;
+			}
+			.thumbnail_item{
+				float: left;
+			}
+        	#img_review{
+        		float: left;
+        	}
+			.thumbnail_item img:focus {
+			    outline: 1px solid blue;
+			}
+        </style>
     </head>
     <body>
         <div class="container">
@@ -135,7 +149,13 @@
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Chọn Ảnh</label>
                             <div class="col-sm-5">
-                                <input class="form-control-file" name="upload[]" type="file" multiple accept="image/*" />
+                                <input id="select_image" class="form-control-file" name="upload[]" type="file" multiple accept="image/*" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Xem Trước</label>
+                            <div id="img_review" class="col-sm-5">
+                                
                             </div>
                         </div>
                         <div class="form-group row">
@@ -298,4 +318,35 @@
       var product_link = $('#grid_product_link_'+button.val()).html();
       modal.find('[name="product_link"]').val(product_link);
     });
+    
+	function handleFileSelect() {
+    	//Check File API support
+	    if (window.File && window.FileList && window.FileReader) {
+
+	        var files = event.target.files; //FileList object
+	        var output = document.getElementById("img_review");
+
+	        for (var i = 0; i < files.length; i++) {
+	            var file = files[i];
+	            //Only pics
+	            if (!file.type.match('image')) continue;
+
+	            var picReader = new FileReader();
+	            picReader.addEventListener("load", function (event) {
+	                var picFile = event.target;
+	                var div = document.createElement("div");
+	                div.className = 'thumbnail_item';
+	                div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'/>";
+	                output.insertBefore(div, null);
+	            });
+	            //Read the image
+	            picReader.readAsDataURL(file);
+	        }
+	    } else {
+	        console.log("Your browser does not support File API");
+	    }
+	}
+
+	document.getElementById('select_image').addEventListener('change', handleFileSelect, false);
+    
 </script>

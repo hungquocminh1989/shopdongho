@@ -186,7 +186,7 @@ class CommonController extends BasicController {
 			
 			
 			foreach($arr_images as $k => $image){
-				if($k == 0){
+				if($k == $_POST['image_default']){
 					$ImageModel->insertImage($m_product_id, $image,1);
 				}
 				else{

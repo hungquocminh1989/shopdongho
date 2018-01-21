@@ -10,15 +10,18 @@
         <style>
         	.thumbnail {
 			    height: 50px;
+			    margin-bottom:auto;
 			}
 			.thumbnail_item{
 				float: left;
+				height:100%;
+				margin-right: 5px;
 			}
         	#img_review{
         		float: left;
         	}
-			.thumbnail_item img:focus {
-			    outline: 1px solid blue;
+			.thumbnail_item:focus {
+			    outline: 2px solid blue;
 			}
         </style>
     </head>
@@ -154,6 +157,7 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Xem Trước</label>
+                            <input type="hidden" id="image_default" name="image_default" value="0"/>
                             <div id="img_review" class="col-sm-5">
                                 
                             </div>
@@ -200,7 +204,7 @@
                             </tbody>
                         </table>
                     </form>
-                    <form action="" enctype="multipart/form-data" method="POST">
+                    <form id="abc" action="" enctype="multipart/form-data" method="POST">
                         <!-- Modal Update Product-->
                         <div id="editProductModel" class="modal" role="dialog" data-backdrop="static">
                             <div class="modal-dialog">
@@ -256,9 +260,16 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 form-control-label">Chọn Ảnh</label>
                                             <div class="col-sm-8">
-                                                <input class="form-control-file" name="upload[]" type="file" multiple accept="image/*" />
+                                                <input id="select_image_popup" class="form-control-file" name="upload[]" type="file" multiple accept="image/*" />
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+				                            <label class="col-sm-4 form-control-label">Xem Trước</label>
+				                            <input type="hidden" id="image_default_popup" name="image_default" value="0"/>
+				                            <div id="img_review_popup" class="col-sm-8">
+				                                
+				                            </div>
+				                        </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
                                             </div>
@@ -280,6 +291,7 @@
     </body>
 </html>
 <script>
+$(function() {
     $('#editModel').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget); // Button that triggered the modal
       //var recipient = button.data('whatever'); // Extract info from data-* attributes
@@ -292,38 +304,57 @@
       modal.find('[name="category_name"]').val(category_name);
     });
     
+    
+    $(document).on('click', '#img_review .thumbnail_item', function() {
+    	var index = $( "#img_review .thumbnail_item" ).index( this );
+    	$('#image_default').val(index);
+    	//alert(index);
+    });
+    
+    $(document).on('click', '#img_review_popup .thumbnail_item', function() {
+    	var index = $( "#img_review_popup .thumbnail_item" ).index( this );
+    	$('#image_default_popup').val(index);
+    	//alert(index);
+    });
+    
     $('#editProductModel').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget); // Button that triggered the modal
-      //var recipient = button.data('whatever'); // Extract info from data-* attributes
-      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-      var modal = $(this)
-      modal.find('[name="m_product_id"]').val(button.val());
-      
-      var category_id = $('#grid_category_id_'+button.val()).val();
-      modal.find('[name="m_category_id"]').val(category_id);
-      
-      var product_name = $('#grid_product_name_'+button.val()).html();
-      modal.find('[name="product_name"]').val(product_name);
-      
-      var product_no = $('#grid_product_no_'+button.val()).html();
-      modal.find('[name="product_no"]').val(product_no);
-      
-      var product_price = $('#grid_product_price_'+button.val()).val();
-      modal.find('[name="product_price"]').val(product_price);
-      
-      var product_info = $('#grid_product_info_'+button.val()).html();
-      modal.find('[name="product_info"]').val(product_info);
-      
-      var product_link = $('#grid_product_link_'+button.val()).html();
-      modal.find('[name="product_link"]').val(product_link);
+    	$('#select_image_popup').val('');
+    	$('#image_default_popup').val(0);
+    	$('#img_review_popup').html('');
+
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		//var recipient = button.data('whatever'); // Extract info from data-* attributes
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this)
+		modal.find('[name="m_product_id"]').val(button.val());
+
+		var category_id = $('#grid_category_id_'+button.val()).val();
+		modal.find('[name="m_category_id"]').val(category_id);
+
+		var product_name = $('#grid_product_name_'+button.val()).html();
+		modal.find('[name="product_name"]').val(product_name);
+
+		var product_no = $('#grid_product_no_'+button.val()).html();
+		modal.find('[name="product_no"]').val(product_no);
+
+		var product_price = $('#grid_product_price_'+button.val()).val();
+		modal.find('[name="product_price"]').val(product_price);
+
+		var product_info = $('#grid_product_info_'+button.val()).html();
+		modal.find('[name="product_info"]').val(product_info);
+
+		var product_link = $('#grid_product_link_'+button.val()).html();
+		modal.find('[name="product_link"]').val(product_link);
     });
     
 	function handleFileSelect() {
+		$('#img_review').html('');
+		
     	//Check File API support
 	    if (window.File && window.FileList && window.FileReader) {
 
-	        var files = event.target.files; //FileList object
+	        var files = document.getElementById('select_image').files; //FileList object
 	        var output = document.getElementById("img_review");
 
 	        for (var i = 0; i < files.length; i++) {
@@ -331,22 +362,53 @@
 	            //Only pics
 	            if (!file.type.match('image')) continue;
 
-	            var picReader = new FileReader();
-	            picReader.addEventListener("load", function (event) {
-	                var picFile = event.target;
-	                var div = document.createElement("div");
-	                div.className = 'thumbnail_item';
-	                div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'/>";
-	                output.insertBefore(div, null);
-	            });
-	            //Read the image
-	            picReader.readAsDataURL(file);
+	            addEventLoadImage(file, i, output);
+	            
 	        }
 	    } else {
 	        console.log("Your browser does not support File API");
 	    }
 	}
+	
+	function handleFileSelect_popup() {
+		$('#img_review_popup').html('');
+		
+    	//Check File API support
+	    if (window.File && window.FileList && window.FileReader) {
+
+	        var files = document.getElementById('select_image_popup').files; //FileList object
+	        var output = document.getElementById("img_review_popup");
+
+	        for (var i = 0; i < files.length; i++) {
+	            var file = files[i];
+	            //Only pics
+	            if (!file.type.match('image')) continue;
+
+	            addEventLoadImage(file, i, output);
+	        }
+	    } else {
+	        console.log("Your browser does not support File API");
+	    }
+	}
+	
+	function addEventLoadImage(file, index, output){
+		var picReader = new FileReader();
+        picReader.addEventListener("load", function (event) {
+            var picFile = event.target;
+            var div = document.createElement("div");
+            div.className = 'thumbnail_item';
+            div.setAttribute('tabindex',index);
+            div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'/>";
+            output.insertBefore(div, null);
+        });
+        //Read the image
+        //setTimeout(function(){ 
+        	picReader.readAsDataURL(file);
+        //}, 1000);
+	    
+	}
 
 	document.getElementById('select_image').addEventListener('change', handleFileSelect, false);
-    
+	document.getElementById('select_image_popup').addEventListener('change', handleFileSelect_popup, false);
+});    
 </script>

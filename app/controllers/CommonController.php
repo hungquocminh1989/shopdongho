@@ -166,6 +166,9 @@ class CommonController extends BasicController {
 				$filename = uniqid().'_'.$_FILES['upload']['name'][$i];
 				$file_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$m_product_id.'/'.$filename;
 				copy($file_src,$file_dest);
+				
+				//Nén hình
+				Flight::imageCompress($file_dest,$file_dest);
 				$arr_images[] = 'public/upload/'.$m_product_id.'/'.$filename;
 			}
 		}

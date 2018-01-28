@@ -43,7 +43,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="main/category/add" class="btn btn-info">Thêm</button>
+                                <button type="submit" formaction="main/category/add" class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
                     </form>
@@ -62,7 +62,7 @@
                                     <th scope="row">{%$value@iteration%}</th>
                                     <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
                                     <td>
-                                        <button class="btn btn-info" value="{%$value['m_category_id']%}" type="button" data-toggle="modal" data-target="#editModel">Sửa</button>
+                                        <button class="btn btn-primary" value="{%$value['m_category_id']%}" type="button" data-toggle="modal" data-target="#editModel">Sửa</button>
                                         <button formaction="main/category/delete" name="m_category_id" value="{%$value['m_category_id']%}" type="submit" class="btn btn-danger">Xóa</button>
                                     </td>
                                 </tr>
@@ -92,7 +92,7 @@
                                             <div class="col-sm-2">
                                             </div>
                                             <div class="col-sm-3">
-                                                <button type="submit" formaction="main/category/update" class="btn btn-info">Cập Nhật</button>
+                                                <button type="submit" formaction="main/category/update" class="btn btn-primary">Cập Nhật</button>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +141,16 @@
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Nhập Thông Tin</label>
                             <div class="col-sm-5">
-                                <input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">
+                                <!--<input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">-->
+                                <textarea name="product_info" class="form-control" resiz rows="8" required>
+Nhãn hiệu : Armani
+Xuất xứ : Nhật Bản
+Kiểu máy : Quartz
+Chất liệu vỏ : Thép không gỉ
+Chất liệu kính : Kính Cứng
+Độ chịu nước : Chống nước sinh hoạt
+Chức năng khác : Lịch ngày
+                                </textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -166,12 +175,12 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="main/product/add" class="btn btn-info">Thêm</button>
+                                <button type="submit" formaction="main/product/add" class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
                     </form>
                     <form method="post">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -192,13 +201,15 @@
                                     <input id="grid_category_id_{%$value['m_product_id']%}" type="hidden" value="{%$value['m_category_id']%}"/>
                                     <td id="grid_product_name_{%$value['m_product_id']%}" >{%$value['product_name']%}</td>
                                     <td id="grid_product_no_{%$value['m_product_id']%}" >{%$value['product_no']%}</td>
-                                    <td>{%$value['product_price']|number_format:2:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
+                                    <td>{%$value['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
                                     <input id="grid_product_price_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price']%}"/>
-                                    <td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']%}</td>
+                                    <td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']|nl2br nofilter%}</td>
                                     <td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>
                                     <td>
-                                        <button class="btn btn-info" value="{%$value['m_product_id']%}"  type="button" data-toggle="modal" data-target="#editProductModel">Sửa</button>
+                                    	<a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
+                                        <button class="btn btn-primary" value="{%$value['m_product_id']%}"  type="button" data-toggle="modal" data-target="#editProductModel">Sửa</button>
                                         <button formaction="main/product/delete" name="m_product_id" value="{%$value['m_product_id']%}" type="submit" class="btn btn-danger">Xóa</button>
+                                        
                                     </td>
                                 </tr>
                                 {%/foreach%}
@@ -249,7 +260,8 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 form-control-label">Nhập Thông Tin</label>
                                             <div class="col-sm-8">
-                                                <input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">
+                                                <!--<input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">-->
+                                                <textarea name="product_info" class="form-control" rows="8" required></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -274,7 +286,7 @@
                                             <div class="col-sm-4">
                                             </div>
                                             <div class="col-sm-8">
-                                                <button type="submit" formaction="main/product/update" class="btn btn-info">Cập Nhật</button>
+                                                <button type="submit" formaction="main/product/update" class="btn btn-primary">Cập Nhật</button>
                                             </div>
                                         </div>
                                     </div>
@@ -342,6 +354,7 @@
     		modal.find('[name="product_price"]').val(product_price);
     
     		var product_info = $('#grid_product_info_'+button.val()).html();
+    		product_info = product_info.replace(new RegExp('<br>', 'g'), '').trim();
     		modal.find('[name="product_info"]').val(product_info);
     
     		var product_link = $('#grid_product_link_'+button.val()).html();

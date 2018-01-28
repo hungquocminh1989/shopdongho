@@ -37,7 +37,7 @@
                                 <p class="mbr-text mb-5 pt-3 mbr-light mbr-fonts-style display-5">
                                 Mã số : {%if isset($productInfo[0]['product_no'])%}{%$productInfo[0]['product_no']%}{%/if%}
                                 <br>
-                                Giá : {%if isset($productInfo[0]['product_price'])%}{%$productInfo[0]['product_price']|number_format:2:".":","%}{%/if%}
+                                Giá : {%if isset($productInfo[0]['product_price'])%}{%$productInfo[0]['product_price']|number_format:0:".":","%}{%/if%}
                                 </p>
                             </div>
                             <div class="block-content">
@@ -52,12 +52,14 @@
                                     </div>
                                     <div class="card-box">
                                         <p class="block-text mbr-fonts-style display-7">
-                                        	Nhãn hiệu : Armani
+                                        	{%if isset($productInfo[0]['product_info'])%}{%$productInfo[0]['product_info']|nl2br nofilter%}{%/if%}
+                                        	<!--Nhãn hiệu : Armani
                                         	<br>Xuất xứ : Nhật Bản 
-                                            <br>Kiểu máy : Quartz<br>Chất liệu vỏ : Thép không gỉ
+                                            <br>Kiểu máy : Quartz
+                                            <br>Chất liệu vỏ : Thép không gỉ
                                             <br>Chất liệu kính : Kính Cứng 
                                             <br>Độ chịu nước : Chống nước sinh hoạt 
-                                            <br>Chức năng khác : Lịch ngày
+                                            <br>Chức năng khác : Lịch ngày-->
                                         </p>
                                     </div>
                                 </div>

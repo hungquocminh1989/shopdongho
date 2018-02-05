@@ -63,7 +63,7 @@ class CommonController extends BasicController {
 			
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
-			$arr_return['listProduct'] = $ProductModel->listProduct();
+			$arr_return['listProduct'] = $ProductModel->listProductImage();
 		    Flight::renderSmarty(__FUNCTION__,$arr_return);
 		}
 		else{

@@ -9,3 +9,10 @@ define('SYSTEM_ROOT_DIR', SYSTEM_PUBLIC_DIR);
 define('SYSTEM_PUBLIC_UPLOAD', SYSTEM_ROOT_DIR.'/public/upload');
 define('SYSTEM_CURRENCY', ' đ');
 define('SYSTEM_PHONE', '0902660153');
+define('SYSTEM_PRODUCT_INFO_DEFAULT', 'Nhãn hiệu : Armani
+Xuất xứ : Nhật Bản
+Kiểu máy : Quartz
+Chất liệu vỏ : Thép không gỉ
+Chất liệu kính : Kính Cứng
+Độ chịu nước : Chống nước sinh hoạt
+Chức năng khác : Lịch ngày');

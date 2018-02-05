@@ -47,14 +47,14 @@ class ProductModel extends BasicModel {
 		return $result;
 	}
 	
-	public function listProductImage($category_name){
+	public function listProductImage($category_name = '%'){
     	$result = $this->query(
     	"
     	SELECT * FROM m_product mp
     	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
     	INNER JOIN m_image im ON im.m_product_id = mp.m_product_id AND default_flg =1
     	WHERE mp.del_flg = 0 AND mc.del_flg = 0 AND im.del_flg = 0
-    	AND mc.category_name = '$category_name'
+    	AND mc.category_name LIKE '$category_name'
     	"
     	);
 		return $result;

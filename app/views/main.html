@@ -12,6 +12,9 @@
 	            height: 50px;
 	            margin-bottom:auto;
             }
+            .thumbnail_grid {
+	            height: 120px !important;
+            }
             .thumbnail_item{
 	            float: left;
 	            height:100%;
@@ -143,13 +146,7 @@
                             <div class="col-sm-5">
                                 <!--<input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">-->
                                 <textarea name="product_info" class="form-control" resiz rows="8" required>
-Nhãn hiệu : Armani
-Xuất xứ : Nhật Bản
-Kiểu máy : Quartz
-Chất liệu vỏ : Thép không gỉ
-Chất liệu kính : Kính Cứng
-Độ chịu nước : Chống nước sinh hoạt
-Chức năng khác : Lịch ngày
+{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT%}
                                 </textarea>
                             </div>
                         </div>
@@ -189,6 +186,7 @@ Chức năng khác : Lịch ngày
                                     <th>Mã Sản Phẩm</th>
                                     <th>Giá</th>
                                     <th>Thông Tin</th>
+                                    <th>Hình Ảnh</th>
                                     <th>Link Hiển Thị</th>
                                     <th>Thao Tác</th>
                                 </tr>
@@ -196,7 +194,7 @@ Chức năng khác : Lịch ngày
                             <tbody>
                                 {%foreach $listProduct as $value%}
                                 <tr>
-                                    <th scope="row">{%$value@iteration%}</th>
+                                    <td scope="row">{%$value@iteration%}</td>
                                     <td id="grid_category_name_{%$value['m_product_id']%}" >{%$value['category_name']%}</td>
                                     <input id="grid_category_id_{%$value['m_product_id']%}" type="hidden" value="{%$value['m_category_id']%}"/>
                                     <td id="grid_product_name_{%$value['m_product_id']%}" >{%$value['product_name']%}</td>
@@ -204,6 +202,7 @@ Chức năng khác : Lịch ngày
                                     <td>{%$value['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
                                     <input id="grid_product_price_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price']%}"/>
                                     <td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']|nl2br nofilter%}</td>
+                                    <td id=""><img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}"></td>
                                     <td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>
                                     <td>
                                     	<a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>

@@ -145,9 +145,7 @@
                             <label class="col-sm-2 form-control-label">Nhập Thông Tin</label>
                             <div class="col-sm-5">
                                 <!--<input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">-->
-                                <textarea name="product_info" class="form-control" resiz rows="8" required>
-{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT%}
-                                </textarea>
+                                <textarea name="product_info" class="form-control" resiz rows="8" required>{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT%}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -359,15 +357,15 @@
     		var product_link = $('#grid_product_link_'+button.val()).html();
     		modal.find('[name="product_link"]').val(product_link);
         });
-        
-    	function handleFileSelect() {
-    		$('#img_review').html('');
+    	
+    	function handleFileSelect(idReview,tagSelect) {
+    		$('#'+idReview).html('');
     		
         	//Check File API support
     	    if (window.File && window.FileList && window.FileReader) {
     
-    	        var files = document.getElementById('select_image').files; //FileList object
-    	        var output = document.getElementById("img_review");
+    	        var files = document.getElementById(tagSelect).files; //FileList object
+    	        var output = document.getElementById(idReview);
     
     	        for (var i = 0; i < files.length; i++) {
     	            var file = files[i];
@@ -376,27 +374,6 @@
     
     	            addEventLoadImage(file, i, output);
     	            
-    	        }
-    	    } else {
-    	        console.log("Your browser does not support File API");
-    	    }
-    	}
-    	
-    	function handleFileSelect_popup() {
-    		$('#img_review_popup').html('');
-    		
-        	//Check File API support
-    	    if (window.File && window.FileList && window.FileReader) {
-    
-    	        var files = document.getElementById('select_image_popup').files; //FileList object
-    	        var output = document.getElementById("img_review_popup");
-    
-    	        for (var i = 0; i < files.length; i++) {
-    	            var file = files[i];
-    	            //Only pics
-    	            if (!file.type.match('image')) continue;
-    
-    	            addEventLoadImage(file, i, output);
     	        }
     	    } else {
     	        console.log("Your browser does not support File API");
@@ -418,7 +395,11 @@
             picReader.readAsDataURL(file);
     	}
     
-    	document.getElementById('select_image').addEventListener('change', handleFileSelect, false);
-    	document.getElementById('select_image_popup').addEventListener('change', handleFileSelect_popup, false);
+    	document.getElementById('select_image').addEventListener('change', function(){
+		    handleFileSelect('img_review','select_image');
+		}, false);
+		document.getElementById('select_image_popup').addEventListener('change', function(){
+		    handleFileSelect('img_review_popup','select_image_popup');
+		}, false);
     });    
 </script>

@@ -7,31 +7,28 @@ date_default_timezone_set(SYSTEM_DEFAULT_TIMEZONE);
 //Set path folder template
 Flight::set('flight.views.path', 'app/views/');
 
-//Register Folder Models Autoload
-$pathModels = getcwd().'/app/models';
-Flight::path($pathModels);
-if ($handle = opendir($pathModels)) {
-    while (false !== ($entry = readdir($handle))) {
-        if ($entry != "." && $entry != "..") {
-            $filename = basename($entry,".php");
-            Flight::register($filename, $filename);
-        }
-    }
-    closedir($handle);
-}
+//Create autoLoad method
+Flight::map('autoLoad', function($folderPath){
+	$pathModels = getcwd().$folderPath;
+    Flight::path($pathModels);
+	if ($handle = opendir($pathModels)) {
+	    while (false !== ($entry = readdir($handle))) {
+	        if ($entry != "." && $entry != "..") {
+	            $filename = basename($entry,".php");
+	            Flight::register($filename, $filename);
+	        }
+	    }
+	    closedir($handle);
+	}
+});
 
-//Register Folder Controllers Autoload
-$pathControllers = getcwd().'/app/controllers';
-Flight::path($pathControllers);
-if ($handle = opendir($pathControllers)) {
-    while (false !== ($entry = readdir($handle))) {
-        if ($entry != "." && $entry != "..") {
-            $filename = basename($entry,".php");
-            Flight::register($filename, $filename);
-        }
-    }
-    closedir($handle);
-}
+//Register class autoload
+Flight::autoLoad('/app/models');
+Flight::autoLoad('/app/controllers');
+
+//Register Utilities PHP 
+//(http://brandonwamboldt.github.io/utilphp/)
+Flight::autoLoad('/app/library/Utilities');
 
 //Register Smarty
 Smarty_Autoloader::register();

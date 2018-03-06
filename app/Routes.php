@@ -18,6 +18,9 @@ Flight::route('/main/product/add', array($controller, 'addproduct'));
 Flight::route('/main/product/update', array($controller, 'updateproduct'));
 Flight::route('/main/product/delete', array($controller, 'deleteproduct'));
 
+//API
+Flight::route('/javascript-obfuscator', array($controller, 'action_obfuscator'));
+
 // Membership Controller
 /*$membership = new MembershipController();
 Flight::route('GET /login', array($membership, 'login'));

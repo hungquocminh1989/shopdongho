@@ -9,7 +9,7 @@ class CommonController extends BasicController {
 		$arr_return['listProductNam'] = $ProductModel->listProductImage('Đồng Hồ Nam');
 		$arr_return['listProductNu'] = $ProductModel->listProductImage('Đồng Hồ Nữ');
 		$arr_return['listProductCap'] = $ProductModel->listProductImage('Đồng Hồ Cặp');
-	    Flight::renderSmarty(__FUNCTION__,$arr_return);
+	    Flight::renderSmarty('index.html',$arr_return);
 	}
 	
 	public static function adminlogin()
@@ -18,7 +18,7 @@ class CommonController extends BasicController {
 			Flight::redirect('/main');
 		}
 		else{
-			Flight::renderSmarty(__FUNCTION__);
+			Flight::renderSmarty('adminlogin.html');
 		}
 	}
 	
@@ -52,7 +52,7 @@ class CommonController extends BasicController {
 		if($arr_return['productInfo'] == NULL){
 			Flight::redirect('/');
 		}
-	    Flight::renderSmarty(__FUNCTION__,$arr_return);
+	    Flight::renderSmarty('detail.html',$arr_return);
 	}
 
    	public static function main()
@@ -64,7 +64,8 @@ class CommonController extends BasicController {
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
 			$arr_return['listProduct'] = $ProductModel->listProductImage();
-		    Flight::renderSmarty(__FUNCTION__,$arr_return);
+			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
+		    Flight::renderSmarty('main.html',$arr_return);
 		}
 		else{
 			Flight::redirect('/admin');

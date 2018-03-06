@@ -1,5 +1,5 @@
 <?php
 define('SYSTEM_BASE_URL', 'http://127.0.0.1/shopdongho/');
-define('DATABASE_DNS', 'mysql:dbname=test1;host=localhost');
+define('DATABASE_DNS', 'mysql:dbname=test1;host=45.76.180.116');
 define('DATABASE_USER', 'root');
-define('DATABASE_PASS', '123456');
+define('DATABASE_PASS', 'pass5510453');

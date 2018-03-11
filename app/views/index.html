@@ -1,345 +1,178 @@
 <!DOCTYPE html>
-<html >
-    <?php include 'app/views/common/header.html'; ?>
-    <body>
-        <?php include 'app/views/common/menu.html'; ?>
-        <section class="engine"><a href="https://mobirise.co/q">bootstrap slider</a></section>
-        <section class="header1 cid-qE28GIrVO8 mbr-parallax-background" id="header1-3" data-rv-view="644">
+<html>
+    {%include 'app/views/common/header.html'%}
+    <body style="">
+    	{%include 'app/views/common/menu.html'%}
+        <section id="services-box">
             <div class="container">
-                <div class="row justify-content-md-center">
-                    <div class="mbr-white col-md-10">
-                        <h1 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style display-1">Đồng hồ thời trang</h1>
-                        <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-2">Chuyên cung cấp đồng hồ thời trang theo xu hướng</h3>
-                        <p class="mbr-text align-center pb-3 mbr-fonts-style display-5">Luôn dẫn đầu về giá trên thị trường</p>
-                        <div class="mbr-section-btn align-center">
-                        	<a class="btn btn-md btn-primary display-4" href="index.html#timeline2-k">
-                            <span class="mbr-iconfont mbri-idea"></span>ĐẶT HÀNG ĐƠN GIẢN</a>
-                            <!--<br>
-                        	<a class="btn btn-md btn-secondary display-4" href="<?php echo SYSTEM_BASE_URL;?>#dong-ho-nam">
-                            ĐỒNG HỒ NAM</a> 
-                            <a class="btn btn-md btn-secondary display-4" href="<?php echo SYSTEM_BASE_URL;?>#dong-ho-nu">
-                            ĐỒNG HỒ NỮ</a> 
-                            <a class="btn btn-md btn-secondary display-4" href="<?php echo SYSTEM_BASE_URL;?>#dong-ho-cap">
-                            ĐỒNG HỒ CẶP</a> -->
-                            
+                <ul class="services-part">
+                    <li>
+                        <a href="#">
+                            <div class="icon-box"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="exclusive-icon" alt="" title=""></div>
+                            <div class="text-box">Exclusive <span>Collectaion</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon-box"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="shipping-icon" alt="" title=""></div>
+                            <div class="text-box">Free Shipping &amp; <span>Easy Return</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon-box"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="cashon-icon" alt="" title=""></div>
+                            <div class="text-box">Cash on <span>Delivery Option</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon-box"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="best-price-icon" alt="" title=""></div>
+                            <div class="text-box">Best Price <span>Guarantee</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon-box"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="genuine-icon" alt="" title=""></div>
+                            <div class="text-box">100% Genuine <span> Products</span></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section id="banner-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <!--de sau-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="add-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="add-banner1 clearfix">
+                            <div class="img-box"> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/strip-new.png" class="strip-img" alt="" title=""> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/pro-thumb1.jpg" class="pro-img" alt="" title=""> </div>
+                            <div class="cpart-box"> <span class="text-row">New Fancy</span> <span class="text-row1">Tshirt</span> <span class="text-row2">Fresh Arrivals</span> <a href="#" class="shop-link"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="larrow-icon" alt="" title="">Shop Now</a> </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="add-banner1 clearfix">
+                            <div class="img-box"> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/strip-exc.png" class="strip-img" alt="" title=""> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/pro-thumb2.jpg" class="pro-img" alt="" title=""> </div>
+                            <div class="cpart-box"> <span class="text-row">Black Border</span> <span class="text-row1">Shoes</span> <span class="text-row2">Starting $ <em>2599</em></span> <a href="#" class="shop-link"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="larrow-icon" alt="" title="">Shop Now</a> </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="add-banner1 clearfix">
+                            <div class="img-box"> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/strip-sale.png" class="strip-img" alt="" title=""> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/pro-thumb3.jpg" class="pro-img" alt="" title=""> </div>
+                            <div class="cpart-box"> <span class="text-row">Black Trandy</span> <span class="text-row1"> Jeans</span> <span class="text-row2">Starting $ <em>2599</em></span> <a href="#" class="shop-link"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="larrow-icon" alt="" title="">Shop Now</a> </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="features10 cid-qE2dcnrpIL" id="features10-f" data-rv-view="647">
+        <section id="add-pro-box">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="card p-3 col-12 col-md-6 col-lg-4">
-                        <div class="media mb-3">
-                            <div class="card-img align-self-center">
-                                <span class="mbr-iconfont mbri-delivery" media-simple="true"></span>
+            	{%foreach $listCategory as $ctg%}
+                <h3><span id="{%$ctg['category_name']%}" class="label label-default">{%$ctg['category_name']%}</span></h3>
+                <br/>
+                <div class="row">
+                	{%foreach $listProduct as $prd%}
+                	{%if $ctg.m_category_id = $prd.m_category_id %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="pro-box">
+                            <div class="img-box">
+                                <div class="green-box"><i class="fa fa-gift"></i><span> Offer</span></div>
+                                <div class="add-btn-box">
+                                	<a href="#"><i class="fa fa-shopping-cart"></i>Đặt Mua</a>
+                                </div>
+                                <a href="detail/{%$prd['m_product_id']%}/{%$prd['product_link']%}">
+                                	<img style="width: 320px;height: 350px;" src="{%$prd['image_path']%}" alt="" title="" draggable="false"/>
+                                </a>
+                                   
                             </div>
-                            <h4 class="card-title media-body py-3 mbr-fonts-style display-7">GIAO HÀNG TẬN NHÀ</h4>
-                        </div>
-                        <div class="card-box">
-                            <p class="mbr-text mbr-fonts-style display-7">Dịch vụ giao hàng và tặng quà tận nhà trên toàn quốc</p>
+                            <div class="pro-desc">
+		                                <div class="pro-name"><a href="detail/{%$prd['m_product_id']%}/{%$prd['product_link']%}">{%$prd['product_name']%}</a></div>
+		                                <div class="clearfix">
+		                                    <div class="price"><span class="old-price">$4999</span>{%$prd['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</div>
+		                                    <div class="ratingstar pull-right"> <i class="fa fa-star green"> </i><i class="fa fa-star green"> </i><i class="fa fa-star-half-full green"> </i> <i class="fa fa-star-half-full green"></i> <i class="fa fa-star-o green"></i></div>
+	                                </div>
+	                            </div> 
                         </div>
                     </div>
-                    <div class="card p-3 col-12 col-md-6 col-lg-4">
-                        <div class="media mb-3">
-                            <div class="card-img align-self-center">
-                                <span class="mbr-iconfont mbri-cash" media-simple="true"></span>
-                            </div>
-                            <h4 class="card-title media-body py-3 mbr-fonts-style display-7">GIAO HÀNG NHẬN TIỀN</h4>
-                        </div>
-                        <div class="card-box">
-                            <p class="mbr-text mbr-fonts-style display-7">Thanh toán đơn hàng bằng hình thức trực tiếp</p>
-                        </div>
-                    </div>
-                    <div class="card p-3 col-12 col-md-6 col-lg-4">
-                        <div class="media mb-3">
-                            <div class="card-img align-self-center">
-                                <span class="mbr-iconfont mbri-responsive" media-simple="true"></span>
-                            </div>
-                            <h4 class="card-title media-body py-3 mbr-fonts-style display-7">ĐẶT HÀNG ONLINE</h4>
-                        </div>
-                        <div class="card-box">
-                            <p class="mbr-text mbr-fonts-style display-7">Hỗ trợ 24/7 <br>Tư vấn trực tiếp : <strong>0902660153</strong></p>
-                        </div>
-                    </div>
+                    {%/if%}
+                    {%/foreach%}
                 </div>
-            </div>
-        </section>
-        <!--<section class="mbr-section content5 cid-qE4IagvCta mbr-parallax-background" id="content5-x" data-rv-view="653">
-            <div class="container">
-                <div class="media-container-row">
-                    <div class="title col-12 col-md-8">
-                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1"><span style="font-weight: normal;">Một số mẫu đáng chú ý trong năm 2017</span></h2>
-                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Hình ảnh bên dưới được tổng hợp từ các lựa chọn của khách hàng khi ghé shop mua.</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="mbr-gallery mbr-slider-carousel cid-qE28ZZgWOm" id="gallery3-4" data-rv-view="656">
-            <div>
-                <div>
-                    <div class="mbr-gallery-row">
-                        <div class="mbr-gallery-layout-default">
-                            <div>
-                                <div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Awesome">
-                                        <div href="#lb-gallery3-4" data-slide-to="0" data-toggle="modal"><img src="public/assets/images/gallery00.jpg" alt=""><span class="icon-focus"></span></div>
+                {%/foreach%}
+                
+                <h1 class="heading2">Just Added <span>Products</span></h1>
+                <div class="crflexslider carousel">
+                    <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                        <ul class="slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+                            <li>
+                                <div class="pro-box">
+                                    <div class="img-box">
+                                        <div class="green-box"><i class="fa fa-gift"></i><span> Offer</span></div>
+                                        <div class="add-btn-box"> <a href="#"><i class="fa fa-shopping-cart"></i> Buy</a> <a href="#"><i class="fa fa-heart"></i> Wishlist</a> <a href="#"><i class="fa fa-signal"></i> Compare</a> </div>
+                                        <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/pro-thumb4.jpg" alt="" title="" draggable="false"> 
                                     </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Responsive">
-                                        <div href="#lb-gallery3-4" data-slide-to="1" data-toggle="modal"><img src="public/assets/images/gallery01.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Creative">
-                                        <div href="#lb-gallery3-4" data-slide-to="2" data-toggle="modal"><img src="public/assets/images/gallery02.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Animated">
-                                        <div href="#lb-gallery3-4" data-slide-to="3" data-toggle="modal"><img src="public/assets/images/gallery03.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Awesome">
-                                        <div href="#lb-gallery3-4" data-slide-to="4" data-toggle="modal"><img src="public/assets/images/gallery04.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Awesome">
-                                        <div href="#lb-gallery3-4" data-slide-to="5" data-toggle="modal"><img src="public/assets/images/gallery05.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Responsive">
-                                        <div href="#lb-gallery3-4" data-slide-to="6" data-toggle="modal"><img src="public/assets/images/gallery06.jpg" alt=""><span class="icon-focus"></span></div>
-                                    </div>
-                                    <div class="mbr-gallery-item mbr-gallery-item--pNaN" data-video-url="false" data-tags="Animated">
-                                        <div href="#lb-gallery3-4" data-slide-to="7" data-toggle="modal"><img src="public/assets/images/gallery07.jpg" alt=""><span class="icon-focus"></span></div>
+                                    <div class="pro-desc">
+                                        <div class="pro-name"><a href="#">New Look Mini Skirt</a></div>
+                                        <div class="clearfix">
+                                            <div class="price"><span class="old-price">$4999</span>$ 3550</div>
+                                            <div class="ratingstar pull-right"> <i class="fa fa-star green"> </i><i class="fa fa-star green"> </i><i class="fa fa-star-half-full green"> </i> <i class="fa fa-star-half-full green"></i> <i class="fa fa-star-o green"></i></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
-                    
-                    <div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1" data-keyboard="true" data-interval="false" id="lb-gallery3-4">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active"><img src="public/assets/images/gallery00.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery01.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery02.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery03.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery04.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery05.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery06.jpg" alt=""></div>
-                                        <div class="carousel-item"><img src="public/assets/images/gallery07.jpg" alt=""></div>
-                                    </div>
-                                    <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#lb-gallery3-4"><span class="mbri-left mbr-iconfont" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="carousel-control carousel-control-next" role="button" data-slide="next" href="#lb-gallery3-4"><span class="mbri-right mbr-iconfont" aria-hidden="true"></span><span class="sr-only">Next</span></a><a class="close" href="#" role="button" data-dismiss="modal"><span class="sr-only">Close</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>-->
-        <section class="mbr-section content5 cid-qE4H5PnFh6 mbr-parallax-background" id="dong-ho-nam" data-rv-view="691">
-            <div class="container">
-                <div class="media-container-row">
-                    <div class="title col-12 col-md-8">
-                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Đồng Hồ Nam</h2>
-                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Các mẫu đồng hồ nam thịnh hành nhất</h3>
-                    </div>
+                    <ol class="flex-control-nav flex-control-paging">
+                        <li><a class="flex-active">1</a></li>
+                        <li><a>2</a></li>
+                    </ol>
+                    <ul class="flex-direction-nav">
+                        <li><a class="flex-prev" href="#">Previous</a></li>
+                        <li><a class="flex-next" href="#">Next</a></li>
+                    </ul>
                 </div>
             </div>
         </section>
-        <section class="features3 cid-qE29H88mj9" id="features3-6" data-rv-view="694">
+        <section id="add-big-banner">
             <div class="container">
-                <?php 
-                    $index = 0;
-                    $html_card ='
-                    <div class="card p-3 col-12 col-md-6 col-lg-4">
-                           <div class="card-wrapper">
-                               <div class="card-img">
-                                   <a href="detail/%1$s/%5$s"><img src="%2$s" alt="" title="" media-simple="true"></a>
-                               </div>
-                               <div class="card-box">
-                                   <h4 class="card-title mbr-fonts-style display-7"><a href="page1.html" class="text-black"><strong>%3$s</strong></a></h4>
-                                   <p class="mbr-text mbr-fonts-style display-7">Giá : %4$s </p>
-                               </div>
-                               <div class="mbr-section-btn text-center"><a href="detail/%1$s/%5$s" class="btn btn-primary display-4">Chi Tiết</a></div>
-                           </div>
-                       </div>
-                    ';
-                    echo '<div class="media-container-row">';
-                    $listProductNam = Flight::smartyVars('listProductNam');
-                    foreach($listProductNam as $key => $value){
-	                    $index++;
-	                    if($index > 3){
-		                    $index = 1;
-		                    echo '</div>';
-		                    if(count($listProductNam)!=$index){
-		                    	echo '<div class="media-container-row">';
-		                    }
-	                    }
-	                    
-	                    $html_card_replace = sprintf($html_card,$value['m_product_id'],$value['image_path'],$value['product_no'],number_format($value['product_price']).SYSTEM_CURRENCY, $value['product_link']);
-	                    echo $html_card_replace;
-	                    
-	                    if(count($listProductNam)==$index){
-	                    	echo '</div>';
-	                    }
-	                }
-                ?>
-            </div>
-        </section>
-        <section class="mbr-section content5 cid-qE4HlrxOXp mbr-parallax-background" id="dong-ho-nu" data-rv-view="697">
-            <div class="container">
-                <div class="media-container-row">
-                    <div class="title col-12 col-md-8">
-                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Đồng Hồ Nữ</h2>
-                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Các mẫu đồng hồ nữ thịnh hành nhất</h3>
-                    </div>
+                <div class="row">
+                    <div class="col-md-6 col-xs-12 text-left"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/banner-580.jpg" class="img-responsive" alt="" title=""></div>
+                    <div class="col-md-6 col-xs-12 text-right"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/banner1-580.jpg" class="img-responsive" alt="" title=""></div>
                 </div>
             </div>
         </section>
-        <section class="features3 cid-qE29H88mj9" id="features3-u" data-rv-view="700">
+        <section id="mpart">
             <div class="container">
-                <?php 
-                    $index = 0;
-                    $html_card ='
-                    <div class="card p-3 col-12 col-md-6 col-lg-4">
-                           <div class="card-wrapper">
-                               <div class="card-img">
-                                   <a href="detail/%1$s/%5$s"><img src="%2$s" alt="" title="" media-simple="true"></a>
-                               </div>
-                               <div class="card-box">
-                                   <h4 class="card-title mbr-fonts-style display-7"><a href="page1.html" class="text-black"><strong>%3$s</strong></a></h4>
-                                   <p class="mbr-text mbr-fonts-style display-7">Giá : %4$s </p>
-                               </div>
-                               <div class="mbr-section-btn text-center"><a href="detail/%1$s/%5$s" class="btn btn-primary display-4">Chi Tiết</a></div>
-                           </div>
-                       </div>
-                    ';
-                    echo '<div class="media-container-row">';
-                    $listProductNu = Flight::smartyVars('listProductNu');
-                    foreach($listProductNu as $key => $value){
-	                    $index++;
-	                    if($index > 3){
-		                    $index = 1;
-		                    echo '</div>';
-		                    if(count($listProductNam)!=$index){
-		                    	echo '<div class="media-container-row">';
-		                    }
-	                    }
-	                    
-	                    $html_card_replace = sprintf($html_card,$value['m_product_id'],$value['image_path'],$value['product_no'],number_format($value['product_price']).SYSTEM_CURRENCY, $value['product_link']);
-	                    echo $html_card_replace;
-	                    
-	                    if(count($listProductNam)==$index){
-	                    	echo '</div>';
-	                    }
-	                }
-                ?>
-            </div>
-        </section>
-        <section class="mbr-section content5 cid-qE4HlrxOXp1 mbr-parallax-background" id="dong-ho-cap" data-rv-view="697">
-            <div class="container">
-                <div class="media-container-row">
-                    <div class="title col-12 col-md-8">
-                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Đồng Hồ Cặp</h2>
-                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">Các mẫu đồng hồ cặp thịnh hành nhất</h3>
+                <h1 class="heading2 brand-title">Top <span>Brands</span></h1>
+                <div class="brandflexsliderfull carousel">
+                    <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                        <ul class="slides" style="width: 1400%; transition-duration: 0s; transform: translate3d(-468.8px, 0px, 0px);">
+                            <li > <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/brand1.jpg" alt="" title="" draggable="false"> </li>
+                            <li > <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/brand2.jpg" alt="" title="" draggable="false"> </li>
+                            <li > <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/brand3.jpg" alt="" title="" draggable="false"> </li>
+                            <li ><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/brand4.jpg" alt="" title="" draggable="false"> </li>
+                            <li > <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/brand1.jpg" alt="" title="" draggable="false"> </li>
+                            <li > <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/brand2.jpg" alt="" title="" draggable="false"> </li>
+                            <li > <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/brand3.jpg" alt="" title="" draggable="false"> </li>
+                        </ul>
                     </div>
+                    <ol class="flex-control-nav flex-control-paging">
+                        <li><a class="">1</a></li>
+                        <li><a class="flex-active">2</a></li>
+                    </ol>
+                    <ul class="flex-direction-nav">
+                        <li><a class="flex-prev" href="#">Previous</a></li>
+                        <li><a class="flex-next" href="#">Next</a></li>
+                    </ul>
                 </div>
             </div>
         </section>
-        <section class="features3 cid-qE29H88mj9" id="features3-u" data-rv-view="700">
-            <div class="container">
-                <?php 
-                    $index = 0;
-                    $html_card ='
-                    <div class="card p-3 col-12 col-md-6 col-lg-4">
-                           <div class="card-wrapper">
-                               <div class="card-img">
-                                   <a href="detail/%1$s/%5$s"><img src="%2$s" alt="" title="" media-simple="true"></a>
-                               </div>
-                               <div class="card-box">
-                                   <h4 class="card-title mbr-fonts-style display-7"><a href="page1.html" class="text-black"><strong>%3$s</strong></a></h4>
-                                   <p class="mbr-text mbr-fonts-style display-7">Giá : %4$s </p>
-                               </div>
-                               <div class="mbr-section-btn text-center"><a href="detail/%1$s/%5$s" class="btn btn-primary display-4">Chi Tiết</a></div>
-                           </div>
-                       </div>
-                    ';
-                    echo '<div class="media-container-row">';
-                    $listProductCap = Flight::smartyVars('listProductCap');
-                    foreach($listProductNu as $key => $value){
-	                    $index++;
-	                    if($index > 3){
-		                    $index = 1;
-		                    echo '</div>';
-		                    if(count($listProductNam)!=$index){
-		                    	echo '<div class="media-container-row">';
-		                    }
-	                    }
-	                    
-	                    $html_card_replace = sprintf($html_card,$value['m_product_id'],$value['image_path'],$value['product_no'],number_format($value['product_price']).SYSTEM_CURRENCY, $value['product_link']);
-	                    echo $html_card_replace;
-	                    
-	                    if(count($listProductNam)==$index){
-	                    	echo '</div>';
-	                    }
-	                }
-                ?>
-            </div>
-        </section>
-        <section class="mbr-section article content1 cid-qE4fqWgeYB" id="content2-n" data-rv-view="703">
-            <div class="container">
-                <div class="media-container-row">
-                    <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-                        <blockquote>
-                            <p>Đồng hồ đeo tay là một trong những phát minh vĩ đại nhất trên thế giới. Trước đây đồng hồ đeo tay chủ yếu giúp mọi người xem thời gian. Tuy nhiên, trong vài thập kỷ trở lại đây đồng hồ đeo tay không còn là một công cụ đơn thuần để mọi người xem giờ nữa mà nó là phụ kiện thiết yếu dành cho cả nam và nữ. </p>
-                            <p>Ai ai cũng muốn lựa chọn một chiếc đồng hồ đẹp giá rẻ nhất dành cho mình, nhưng làm thế nào để chọn được một chiếc đồng hồ đeo tay đẹp giá rẻ thì hãy tham khảo ngay tại Đồng Hồ Giá Rẻ nhé!</p>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="timeline2 cid-qE2eIDnaX2" id="timeline2-k" data-rv-view="650">
-            <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
-            </div>
-            <div class="container align-center">
-                <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">Quy trình đặt hàng nhanh chóng</h2>
-                <h3 class="mbr-section-subtitle pb-5 mbr-fonts-style display-5">Hãy luôn giữ liên lạc với chúng tôi thông qua phương thức <b style="color:red;">Facebook Messager</b></h3>
-                <div class="container timelines-container" mbri-timelines="">
-                    <div class="row timeline-element reverse separline">
-                        <span class="iconsBackground">
-                        <span class="mbr-iconfont mbri-touch" media-simple="true"></span>
-                        </span>          
-                        <div class="col-xs-12 col-md-6 align-left">
-                            <div class="timeline-text-content">
-                                <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-5">Lựa chọn sản phẩm</h4>
-                                <p class="mbr-timeline-text mbr-fonts-style display-7">Chọn mẫu đồng hồ bạn thích và gửi ngay mã số cho chúng tôi</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row timeline-element  separline">
-                        <span class="iconsBackground">
-                        <span class="mbr-iconfont mbri-timer" media-simple="true"></span>
-                        </span>
-                        <div class="col-xs-12 col-md-6 align-left ">
-                            <div class="timeline-text-content">
-                                <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-5">Xác nhận đơn hàng của bạn</h4>
-                                <p class="mbr-timeline-text mbr-fonts-style display-7">Chúng tôi sẽ kiểm tra kho hàng và xác nhận thông tin liên lạc của khách hàng</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row timeline-element reverse">
-                        <span class="iconsBackground">
-                        <span class="mbr-iconfont mbri-delivery" media-simple="true"></span>
-                        </span>
-                        <div class="col-xs-12 col-md-6 align-left">
-                            <div class="timeline-text-content">
-                                <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-5">Chuyển phát và nhận hàng tại nhà</h4>
-                                <p class="mbr-timeline-text mbr-fonts-style display-7">Tiến hành gửi cho nhân viên chuyển phát , hàng sẽ đến tay khách từ 3 - 4 ngày</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <?php include 'app/views/common/footer.html'; ?>
+        {%include 'app/views/common/footer.html'%}
     </body>
 </html>

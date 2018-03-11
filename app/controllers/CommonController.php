@@ -5,10 +5,13 @@ class CommonController extends BasicController {
 	public static function index()
 	{
 		$arr_return = array();
+		$CategoryModel = Flight::CategoryModel();
 		$ProductModel = Flight::ProductModel();
 		$arr_return['listProductNam'] = $ProductModel->listProductImage('Đồng Hồ Nam');
 		$arr_return['listProductNu'] = $ProductModel->listProductImage('Đồng Hồ Nữ');
 		$arr_return['listProductCap'] = $ProductModel->listProductImage('Đồng Hồ Cặp');
+		$arr_return['listCategory'] = $CategoryModel->listCategory();
+		$arr_return['listProduct'] = $ProductModel->listProductImage();
 	    Flight::renderSmarty('index.html',$arr_return);
 	}
 	
@@ -45,8 +48,10 @@ class CommonController extends BasicController {
 	
 	public static function detail($id, $product_link)
 	{
+		$CategoryModel = Flight::CategoryModel();
 		$ProductModel = Flight::ProductModel();
 		$arr_return = array();
+		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['productInfo'] = $ProductModel->listProductDetailById($id, $product_link);
 		$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);
 		if($arr_return['productInfo'] == NULL){

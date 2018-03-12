@@ -75,68 +75,38 @@
         <section id="add-pro-box">
             <div class="container">
             	{%foreach $listCategory as $ctg%}
-                <h3><span id="{%$ctg['category_name']%}" class="label label-default">{%$ctg['category_name']%}</span></h3>
-                <br/>
-                <div class="row">
-                	{%foreach $listProduct as $prd%}
-                	{%if $ctg.m_category_id = $prd.m_category_id %}
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="pro-box">
-                            <div class="img-box">
-                                <div class="green-box"><i class="fa fa-gift"></i><span> Offer</span></div>
-                                <div class="add-btn-box">
-                                	<a href="#"><i class="fa fa-shopping-cart"></i>Đặt Mua</a>
-                                </div>
-                                <a href="detail/{%$prd['m_product_id']%}/{%$prd['product_link']%}">
-                                	<img style="width: 320px;height: 350px;" src="{%$prd['image_path']%}" alt="" title="" draggable="false"/>
-                                </a>
-                                   
-                            </div>
-                            <div class="pro-desc">
-		                                <div class="pro-name"><a href="detail/{%$prd['m_product_id']%}/{%$prd['product_link']%}">{%$prd['product_name']%}</a></div>
-		                                <div class="clearfix">
-		                                    <div class="price"><span class="old-price">$4999</span>{%$prd['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</div>
-		                                    <div class="ratingstar pull-right"> <i class="fa fa-star green"> </i><i class="fa fa-star green"> </i><i class="fa fa-star-half-full green"> </i> <i class="fa fa-star-half-full green"></i> <i class="fa fa-star-o green"></i></div>
+            	<div class="panel panel-info" style="padding: 5px;">
+            		<br/>
+	                <h3><span id="{%$ctg['category_name']%}" class="label label-info">{%$ctg['category_name']%}</span></h3>
+	                <br/>
+	                <div class="row">
+	                {%foreach $listProduct as $prd%}
+	                	{%if $ctg.m_category_id = $prd.m_category_id %}
+	                    <div class="col-lg-4 col-md-6 mb-4">
+	                        <div class="pro-box">
+	                            <div class="img-box">
+	                                <div class="green-box"><i class="fa fa-gift"></i><span> Offer</span></div>
+	                                <div class="add-btn-box">
+	                                	<a href="#"><i class="fa fa-shopping-cart"></i>Đặt Mua</a>
+	                                </div>
+	                                <a href="detail/{%$prd['m_product_id']%}/{%$prd['product_link']%}">
+	                                	<img style="width: 320px;height: 350px;" src="{%$prd['image_path']%}" alt="" title="" draggable="false"/>
+	                                </a>
+	                            </div>
+	                            <div class="pro-desc">
+	                                <div class="pro-name"><a href="detail/{%$prd['m_product_id']%}/{%$prd['product_link']%}">{%$prd['product_name']%}</a></div>
+	                                <div class="clearfix">
+	                                    <div class="price"><span class="old-price">$4999</span>{%$prd['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</div>
+	                                    <div class="ratingstar pull-right"> <i class="fa fa-star green"> </i><i class="fa fa-star green"> </i><i class="fa fa-star-half-full green"> </i> <i class="fa fa-star-half-full green"></i> <i class="fa fa-star-o green"></i></div>
 	                                </div>
 	                            </div> 
-                        </div>
-                    </div>
-                    {%/if%}
-                    {%/foreach%}
+	                        </div>
+	                    </div>
+	                    {%/if%}
+	                {%/foreach%}
+	                </div>
                 </div>
                 {%/foreach%}
-                
-                <h1 class="heading2">Just Added <span>Products</span></h1>
-                <div class="crflexslider carousel">
-                    <div class="flex-viewport" style="overflow: hidden; position: relative;">
-                        <ul class="slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-                            <li>
-                                <div class="pro-box">
-                                    <div class="img-box">
-                                        <div class="green-box"><i class="fa fa-gift"></i><span> Offer</span></div>
-                                        <div class="add-btn-box"> <a href="#"><i class="fa fa-shopping-cart"></i> Buy</a> <a href="#"><i class="fa fa-heart"></i> Wishlist</a> <a href="#"><i class="fa fa-signal"></i> Compare</a> </div>
-                                        <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/pro-thumb4.jpg" alt="" title="" draggable="false"> 
-                                    </div>
-                                    <div class="pro-desc">
-                                        <div class="pro-name"><a href="#">New Look Mini Skirt</a></div>
-                                        <div class="clearfix">
-                                            <div class="price"><span class="old-price">$4999</span>$ 3550</div>
-                                            <div class="ratingstar pull-right"> <i class="fa fa-star green"> </i><i class="fa fa-star green"> </i><i class="fa fa-star-half-full green"> </i> <i class="fa fa-star-half-full green"></i> <i class="fa fa-star-o green"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <ol class="flex-control-nav flex-control-paging">
-                        <li><a class="flex-active">1</a></li>
-                        <li><a>2</a></li>
-                    </ol>
-                    <ul class="flex-direction-nav">
-                        <li><a class="flex-prev" href="#">Previous</a></li>
-                        <li><a class="flex-next" href="#">Next</a></li>
-                    </ul>
-                </div>
             </div>
         </section>
         <section id="add-big-banner">

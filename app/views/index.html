@@ -80,11 +80,13 @@
 	                <br/>
 	                <div class="row">
 	                {%foreach $listProduct as $prd%}
-	                	{%if $ctg.m_category_id = $prd.m_category_id %}
+	                	{%if $ctg.m_category_id == $prd.m_category_id %}
 	                    <div class="col-lg-4 col-md-6 mb-4">
 	                        <div class="pro-box">
 	                            <div class="img-box">
-	                                <div class="green-box"><i class="fa fa-gift"></i><span> Offer</span></div>
+	                            	{%if $prd.flg_notify == 1 %}
+	                                	<div class="green-box"><i class="fa fa-gift"></i><span> {%$prd.msg_notify%}</span></div>
+	                                {%/if%}
 	                                <div class="add-btn-box">
 	                                	<a href="#"><i class="fa fa-shopping-cart"></i>Đặt Mua</a>
 	                                </div>
@@ -95,7 +97,14 @@
 	                            <div class="pro-desc">
 	                                <div class="pro-name"><a href="detail/{%$prd['m_product_id']%}/{%$prd['product_link']%}">{%$prd['product_name']%}</a></div>
 	                                <div class="clearfix">
-	                                    <div class="price"><span class="old-price">$4999</span>{%$prd['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</div>
+	                                    <div class="price">
+	                                    {%if $prd.product_price_sale != '' %}
+		                                    <span class="old-price">{%$prd.product_price|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</span>
+		                                    {%$prd.product_price_sale|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}
+	                                    {%else%}
+	                                    	{%$prd.product_price|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}
+	                                    {%/if%}
+	                                    </div>
 	                                    <div class="ratingstar pull-right"> <i class="fa fa-star green"> </i><i class="fa fa-star green"> </i><i class="fa fa-star-half-full green"> </i> <i class="fa fa-star-half-full green"></i> <i class="fa fa-star-o green"></i></div>
 	                                </div>
 	                            </div> 

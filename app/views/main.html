@@ -9,23 +9,23 @@
         <script src="public/js/bootstrap.js"></script>
         <style>
             .thumbnail {
-	            height: 50px;
-	            margin-bottom:auto;
+            height: 50px;
+            margin-bottom:auto;
             }
             .thumbnail_grid {
-	            height: 120px !important;
+            height: 120px !important;
             }
             .thumbnail_item{
-	            float: left;
-	            height:100%;
-	            margin-right: 5px;
-	            margin-bottom: 5px;
+            float: left;
+            height:100%;
+            margin-right: 5px;
+            margin-bottom: 5px;
             }
             #img_review{
-            	float: left;
+            float: left;
             }
             .thumbnail_item:focus {
-            	outline: 2px solid blue;
+            outline: 2px solid blue;
             }
         </style>
     </head>
@@ -137,8 +137,27 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Nhập Giá</label>
-                            <div class="col-sm-5">
+                            <div class="col-sm-2">
                                 <input required name="product_price" type="text" class="form-control" placeholder="Nhập Giá">
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                    	Giá Sale
+                                    </span>
+                                    <input type="text" name="product_price_sale" class="form-control" placeholder="Nhập Giá">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Nhãn Thông Tin</label>
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <span class="input-group-addon middle">
+                                    <input type="checkbox" name="flg_notify"><span style="padding: 5px;">Hiển Thị</span>
+                                    </span>
+                                    <input type="text" name="msg_notify" class="form-control" placeholder="Nhập Thông Báo">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -203,10 +222,9 @@
                                     <td id=""><img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}"></td>
                                     <td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>
                                     <td>
-                                    	<a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
+                                        <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
                                         <button class="btn btn-primary" value="{%$value['m_product_id']%}"  type="button" data-toggle="modal" data-target="#editProductModel">Sửa</button>
                                         <button formaction="main/product/delete" name="m_product_id" value="{%$value['m_product_id']%}" type="submit" class="btn btn-danger">Xóa</button>
-                                        
                                     </td>
                                 </tr>
                                 {%/foreach%}
@@ -300,5 +318,5 @@
     </body>
 </html>
 <script>
-{%$javascript_src|unescape: "html" nofilter%} 
+    {%$javascript_src|unescape: "html" nofilter%} 
 </script>

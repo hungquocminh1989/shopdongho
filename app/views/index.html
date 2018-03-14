@@ -76,8 +76,7 @@
             <div class="container">
             	{%foreach $listCategory as $ctg%}
             	<div class="panel panel-info" style="padding: 5px;">
-            		<br/>
-	                <h3><span id="{%$ctg['category_name']%}" class="label label-info">{%$ctg['category_name']%}</span></h3>
+	                <h3><span id="{%$ctg['category_name']%}" class="label" style="background-color:#ee2a7c;">{%$ctg['category_name']%}</span></h3>
 	                <br/>
 	                <div class="row">
 	                {%foreach $listProduct as $prd%}

@@ -154,7 +154,7 @@
                             <div class="col-sm-5">
                                 <div class="input-group">
                                     <span class="input-group-addon middle">
-                                    <input type="checkbox" name="flg_notify"><span style="padding: 5px;">Hiển Thị</span>
+                                    <input type="checkbox" name="flg_notify" value="1"><span style="padding: 5px;">Hiển Thị</span>
                                     </span>
                                     <input type="text" name="msg_notify" class="form-control" placeholder="Nhập Thông Báo">
                                 </div>
@@ -164,7 +164,7 @@
                             <label class="col-sm-2 form-control-label">Nhập Thông Tin</label>
                             <div class="col-sm-5">
                                 <!--<input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">-->
-                                <textarea name="product_info" class="form-control" resiz rows="8" required>{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT%}</textarea>
+                                <textarea name="product_info" class="form-control" rows="8" required>{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT%}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -202,6 +202,8 @@
                                     <th>Tên Sản Phẩm</th>
                                     <th>Mã Sản Phẩm</th>
                                     <th>Giá</th>
+                                    <th>Giá Sale</th>
+                                    <th>Nhãn Thông Tin</th>
                                     <th>Thông Tin</th>
                                     <th>Hình Ảnh</th>
                                     <th>Link Hiển Thị</th>
@@ -218,6 +220,12 @@
                                     <td id="grid_product_no_{%$value['m_product_id']%}" >{%$value['product_no']%}</td>
                                     <td>{%$value['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
                                     <input id="grid_product_price_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price']%}"/>
+                                    <td>{%$value['product_price_sale']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
+                                    <input id="grid_product_price_sale_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price_sale']%}"/>
+                                    <td>
+	                                    <input class="checkbox" type="checkbox" disabled="disabled" value="1" id="grid_flg_notify_{%$value['m_product_id']%}" {%if $value['flg_notify'] == 1%}checked="checked"{%/if%}/>
+	                                    <span id="grid_msg_notify_{%$value['m_product_id']%}">{%$value['msg_notify']%}</span>
+                                    </td>
                                     <td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']|nl2br nofilter%}</td>
                                     <td id=""><img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}"></td>
                                     <td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>
@@ -268,10 +276,29 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 form-control-label">Nhập Giá</label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-3">
                                                 <input required name="product_price" type="text" class="form-control" placeholder="Nhập Giá">
                                             </div>
+                                            <div class="col-sm-5">
+				                                <div class="input-group">
+				                                    <span class="input-group-addon">
+				                                    	Giá Sale
+				                                    </span>
+				                                    <input type="text" name="product_price_sale" class="form-control" placeholder="Nhập Giá">
+				                                </div>
+				                            </div>
                                         </div>
+                                        <div class="form-group row">
+				                            <label class="col-sm-4 form-control-label">Nhãn Thông Tin</label>
+				                            <div class="col-sm-8">
+				                                <div class="input-group">
+				                                    <span class="input-group-addon middle">
+				                                    <input type="checkbox" name="flg_notify" value="1"><span style="padding: 5px;">Hiển Thị</span>
+				                                    </span>
+				                                    <input type="text" name="msg_notify" class="form-control" placeholder="Nhập Thông Báo">
+				                                </div>
+				                            </div>
+				                        </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 form-control-label">Nhập Thông Tin</label>
                                             <div class="col-sm-8">

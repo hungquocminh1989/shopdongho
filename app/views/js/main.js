@@ -47,6 +47,18 @@ $(function() {
 
 	var product_price = $('#grid_product_price_'+button.val()).val();
 	modal.find('[name="product_price"]').val(product_price);
+	
+	var product_price_sale = $('#grid_product_price_sale_'+button.val()).val();
+	modal.find('[name="product_price_sale"]').val(product_price_sale);
+	
+	var msg_notify = $('#grid_msg_notify_'+button.val()).html();
+	modal.find('[name="msg_notify"]').val(msg_notify);
+	
+	var msg_notify = $('#grid_flg_notify_'+button.val()).val();
+	if(msg_notify == 1){
+		modal.find('[name="flg_notify"]').attr('checked',true);
+	}
+	
 
 	var product_info = $('#grid_product_info_'+button.val()).html();
 	product_info = product_info.replace(new RegExp('<br>', 'g'), '').trim();

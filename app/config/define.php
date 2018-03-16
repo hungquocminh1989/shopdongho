@@ -18,3 +18,4 @@ Chất liệu vỏ : Thép không gỉ
 Chất liệu kính : Kính Cứng
 Độ chịu nước : Chống nước sinh hoạt
 Chức năng khác : Lịch ngày');
+define('SYSTEM_TMP_DIR', str_replace("\\", '/', getcwd().'/tmp'));

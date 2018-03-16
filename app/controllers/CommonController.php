@@ -7,9 +7,6 @@ class CommonController extends BasicController {
 		$arr_return = array();
 		$CategoryModel = Flight::CategoryModel();
 		$ProductModel = Flight::ProductModel();
-		$arr_return['listProductNam'] = $ProductModel->listProductImage('Đồng Hồ Nam');
-		$arr_return['listProductNu'] = $ProductModel->listProductImage('Đồng Hồ Nữ');
-		$arr_return['listProductCap'] = $ProductModel->listProductImage('Đồng Hồ Cặp');
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['listProduct'] = $ProductModel->listProductImage();
 	    Flight::renderSmarty('index.html',$arr_return);
@@ -111,6 +108,12 @@ class CommonController extends BasicController {
 			$arr_product['product_name'] = $_POST['product_name'];
 			$arr_product['product_no'] = $_POST['product_no'];
 			$arr_product['product_price'] = $_POST['product_price'];
+			$arr_product['product_price_sale'] = $_POST['product_price_sale'];
+			$arr_product['flg_notify'] = 0;
+			if(isset($_POST['flg_notify']) == TRUE){
+				$arr_product['flg_notify'] = $_POST['flg_notify'];
+			}
+			$arr_product['msg_notify'] = $_POST['msg_notify'];
 			$arr_product['product_info'] = $_POST['product_info'];
 			$arr_product['product_link'] = $_POST['product_link'];
 			$m_product_id = $ProductModel->updateProduct($arr_product);
@@ -140,6 +143,12 @@ class CommonController extends BasicController {
 		$arr_product['product_name'] = $_POST['product_name'];
 		$arr_product['product_no'] = $_POST['product_no'];
 		$arr_product['product_price'] = $_POST['product_price'];
+		$arr_product['product_price_sale'] = $_POST['product_price_sale'];
+		$arr_product['flg_notify'] = 0;
+		if(isset($_POST['flg_notify']) == TRUE){
+			$arr_product['flg_notify'] = $_POST['flg_notify'];
+		}
+		$arr_product['msg_notify'] = $_POST['msg_notify'];
 		$arr_product['product_info'] = $_POST['product_info'];
 		$arr_product['product_link'] = $_POST['product_link'];
 		$m_product_id = $ProductModel->insertProduct($arr_product);

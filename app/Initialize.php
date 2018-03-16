@@ -39,8 +39,8 @@ Flight::register('viewSmarty', 'SmartyBC', array(), function($smarty){
 	$smarty->right_delimiter = SMARTY_RIGHT_DELIMITER;
 	$smarty->cache_lifetime = SMARTY_CACHE_LIFETIME; 
     $smarty->template_dir = './app/views/';
-    $smarty->compile_dir = './cache/';
-    $smarty->cache_dir = './cache/';
+    $smarty->compile_dir = SYSTEM_TMP_DIR.'/cache/';
+    $smarty->cache_dir = SYSTEM_TMP_DIR.'/cache/';
     $smarty->php_handling = $smarty::PHP_ALLOW;//Allow php at template
     //$smarty->config_dir = './config/';
     $smarty->escape_html = TRUE;

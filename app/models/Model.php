@@ -67,14 +67,12 @@ class Model
 	}
 	
 	protected function prepare($sql) {
-		//ACWLog::sql_statement($sql);
 		return $this->_internal_prepare($sql);
 	}
 	protected function prepared_execute($stmt, $param=null) {
 		$this->_internal_execute($stmt, $param);
 	}
 	protected function prepared_query($stmt, $param=null) {
-		ACWLog::sql('prepared_query', $param);
 		
 		$this->_internal_execute($stmt, $param);
 		// FETCH

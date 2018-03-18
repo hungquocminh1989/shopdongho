@@ -2,17 +2,19 @@
 
 class CommonController extends BasicController {
 	
-	public static function index()
+	public static function action_index()
 	{
 		$arr_return = array();
 		$CategoryModel = Flight::CategoryModel();
 		$ProductModel = Flight::ProductModel();
+		$DefineModel = Flight::DefineModel();
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['listProduct'] = $ProductModel->listProductImage();
+		$arr_return['listDefine'] = $DefineModel->get_define();
 	    Flight::renderSmarty('index.html',$arr_return);
 	}
 	
-	public static function adminlogin()
+	public static function action_admin()
 	{
 		if(self::checklogin() == TRUE){
 			Flight::redirect('/main');
@@ -22,7 +24,7 @@ class CommonController extends BasicController {
 		}
 	}
 	
-	public static function login()
+	public static function action_login()
 	{
 		if(isset($_POST['passcode'])==TRUE && md5($_POST['passcode']) == SYSTEM_PASSCODE)
 		{
@@ -43,7 +45,7 @@ class CommonController extends BasicController {
 		}
 	}
 	
-	public static function detail($id, $product_link)
+	public static function action_detail($id, $product_link)
 	{
 		$CategoryModel = Flight::CategoryModel();
 		$ProductModel = Flight::ProductModel();
@@ -57,15 +59,17 @@ class CommonController extends BasicController {
 	    Flight::renderSmarty('detail.html',$arr_return);
 	}
 
-   	public static function main()
+   	public static function action_main()
 	{
 		if(self::checklogin() == TRUE){
 			$CategoryModel = Flight::CategoryModel();
 			$ProductModel = Flight::ProductModel();
+			$DefineModel = Flight::DefineModel();
 			
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
 			$arr_return['listProduct'] = $ProductModel->listProductImage();
+			$arr_return['listDefine'] = $DefineModel->get_define();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
 		    Flight::renderSmarty('main.html',$arr_return);
 		}
@@ -74,14 +78,23 @@ class CommonController extends BasicController {
 		}
 	}
 	
-	public static function addcategory()
+	public static function action_add_define()
+	{
+		$model = Flight::DefineModel();
+		$arrPost = Flight::request()->data->getData();
+		$param = Flight::Arr()->filter($arrPost,array('site_name','phone'));
+		$model->create_define($param);
+		Flight::redirect('/main');
+	}
+	
+	public static function action_addcategory()
 	{
 		$model = Flight::CategoryModel();
 		$model->insertCategory($_POST['category_name']);
 		Flight::redirect('/main');
 	}
 	
-	public static function updatecategory()
+	public static function action_updatecategory()
 	{
 		$model = Flight::CategoryModel();
 		if($_POST['m_category_id'] != ''){
@@ -91,14 +104,14 @@ class CommonController extends BasicController {
 		Flight::redirect('/main');
 	}
 	
-	public static function deletecategory()
+	public static function action_deletecategory()
 	{
 		$model = Flight::CategoryModel();
 		$model->deleteCategory($_POST['m_category_id']);
 		Flight::redirect('/main');
 	}
 	
-	public static function updateproduct()
+	public static function action_updateproduct()
 	{
 		if($_POST['m_product_id'] != ''){
 			$ProductModel = Flight::ProductModel();
@@ -135,7 +148,7 @@ class CommonController extends BasicController {
 		Flight::redirect('/main');
 	}
 	
-	public static function addproduct()
+	public static function action_addproduct()
 	{
 		$ProductModel = Flight::ProductModel();
 		$arr_product = array();
@@ -214,7 +227,7 @@ class CommonController extends BasicController {
 		}
 	}
 	
-	public static function deleteproduct()
+	public static function action_deleteproduct()
 	{
 		$model = Flight::ProductModel();
 		$model->deleteProduct($_POST['m_product_id']);

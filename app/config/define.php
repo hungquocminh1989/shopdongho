@@ -10,7 +10,6 @@ define('SYSTEM_PASSCODE', 'bb8b067fa8aab806dc17e3087c8e3eab');
 define('SYSTEM_ROOT_DIR', SYSTEM_PUBLIC_DIR);
 define('SYSTEM_PUBLIC_UPLOAD', SYSTEM_ROOT_DIR.'/public/upload');
 define('SYSTEM_CURRENCY', ' đ');
-define('SYSTEM_PHONE', '0902660153');
 define('SYSTEM_PRODUCT_INFO_DEFAULT', 'Nhãn hiệu : Armani
 Xuất xứ : Nhật Bản
 Kiểu máy : Quartz

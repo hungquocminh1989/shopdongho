@@ -2,21 +2,24 @@
 
 //Register Controller Request
 $controller = Flight::CommonController();
-Flight::route('/(index)', array($controller, 'index'));
-Flight::route('/detail/@id/@product_link', array($controller, 'detail'));
-Flight::route('/main', array($controller, 'main'));
-Flight::route('/admin', array($controller, 'adminlogin'));
-Flight::route('/admin/login', array($controller, 'login'));
+Flight::route('/(index)', array($controller, 'action_index'));
+Flight::route('/detail/@id/@product_link', array($controller, 'action_detail'));
+Flight::route('/main', array($controller, 'action_main'));
+Flight::route('/admin', array($controller, 'action_admin'));
+Flight::route('/admin/login', array($controller, 'action_login'));
 
 //Category
-Flight::route('/main/category/add', array($controller, 'addcategory'));
-Flight::route('/main/category/update', array($controller, 'updatecategory'));
-Flight::route('/main/category/delete', array($controller, 'deletecategory'));
+Flight::route('/main/category/add', array($controller, 'action_addcategory'));
+Flight::route('/main/category/update', array($controller, 'action_updatecategory'));
+Flight::route('/main/category/delete', array($controller, 'action_deletecategory'));
 
 //Product
-Flight::route('/main/product/add', array($controller, 'addproduct'));
-Flight::route('/main/product/update', array($controller, 'updateproduct'));
-Flight::route('/main/product/delete', array($controller, 'deleteproduct'));
+Flight::route('/main/product/add', array($controller, 'action_addproduct'));
+Flight::route('/main/product/update', array($controller, 'action_updateproduct'));
+Flight::route('/main/product/delete', array($controller, 'action_deleteproduct'));
+
+//Infomation
+Flight::route('/main/define/add', array($controller, 'action_add_define'));
 
 //API
 Flight::route('/javascript-obfuscator', array($controller, 'action_obfuscator'));

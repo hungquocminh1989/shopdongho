@@ -78,11 +78,47 @@ class CommonController extends BasicController {
 		}
 	}
 	
+	public function copy_file_uploaded($name, $folderRoot, $compress = FALSE){
+		
+		$arr_return = array();
+		
+		$countFile = count($_FILES[$name]['type']);
+		if($countFile > 0&& $_FILES[$name]['type'][0] != ''){
+			for($i = 0; $i < $countFile; $i++){
+				$file_src = $_FILES[$name]['tmp_name'][$i];
+				$filename = uniqid().'_'.$_FILES[$name]['name'][$i];
+				$file_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$folderRoot.'/'.$filename;
+				copy($file_src,$file_dest);
+				
+				//Nén hình
+				if($compress == TRUE){
+					Flight::imageCompress($file_dest,$file_dest);
+				}
+				$arr_return[] = $file_dest;
+			}
+		}
+		
+		//check return 
+		if(count($arr_return) == 1){
+			return $arr_return[0];
+		}
+		else if(count($arr_return) > 1){
+			return $arr_return;
+		}
+		else{
+			return NULL;
+		}
+	}
+	
 	public static function action_add_define()
 	{
 		$model = Flight::DefineModel();
 		$arrPost = Flight::request()->data->getData();
 		$param = Flight::Arr()->filter($arrPost,array('site_name','phone'));
+		
+		//Copy file uploaded
+		
+		
 		$model->create_define($param);
 		Flight::redirect('/main');
 	}

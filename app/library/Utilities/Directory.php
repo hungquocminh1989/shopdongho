@@ -12,7 +12,7 @@
  *
  * @since  0.1.0
  */
-class Dir
+class Directory
 {
 	/**
 	 * Returns a relative path (aka, "rel") from an absolute path (aka, "abs")

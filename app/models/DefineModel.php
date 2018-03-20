@@ -12,8 +12,8 @@ class DefineModel extends BasicModel {
 	    	");
 	    	
 	    	$result = $this->execute("
-	    		INSERT INTO m_define (site_name, phone)
-			    VALUES (:site_name, :phone);
+	    		INSERT INTO m_define (site_name, phone, path_logo)
+			    VALUES (:site_name, :phone, :path_logo);
 	    	",$sql_param);
 	    	$this->commit();
 	    	

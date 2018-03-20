@@ -80,45 +80,32 @@ class CommonController extends BasicController {
 	
 	public function copy_file_uploaded($name, $folderRoot, $compress = FALSE){
 		
-		$arr_return = array();
-		
 		$countFile = count($_FILES[$name]['type']);
-		if($countFile > 0&& $_FILES[$name]['type'][0] != ''){
-			for($i = 0; $i < $countFile; $i++){
-				$file_src = $_FILES[$name]['tmp_name'][$i];
-				$filename = uniqid().'_'.$_FILES[$name]['name'][$i];
-				$file_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$folderRoot.'/'.$filename;
-				copy($file_src,$file_dest);
-				
-				//Nén hình
-				if($compress == TRUE){
-					Flight::imageCompress($file_dest,$file_dest);
-				}
-				$arr_return[] = $file_dest;
+		if($countFile > 0 && $_FILES[$name]['type'][0] != ''){
+			$file_src = $_FILES[$name]['tmp_name'];
+			$filename = uniqid().'_'.$_FILES[$name]['name'];
+			$folder_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$folderRoot;
+			$file_dest = $folder_dest.'/'.$filename;
+			if (!file_exists($folder_dest)) {
+			    mkdir($folder_dest, 0777, true);
 			}
+			copy($file_src,$file_dest);
+			
+			//Nén hình
+			if($compress == TRUE){
+				Flight::imageCompress($file_dest,$file_dest);
+			}
+			return 'public/upload/'.$folderRoot.'/'.$filename;
 		}
-		
-		//check return 
-		if(count($arr_return) == 1){
-			return $arr_return[0];
-		}
-		else if(count($arr_return) > 1){
-			return $arr_return;
-		}
-		else{
-			return NULL;
-		}
+		return NULL;
 	}
 	
 	public static function action_add_define()
 	{
 		$model = Flight::DefineModel();
 		$arrPost = Flight::request()->data->getData();
-		$param = Flight::Arr()->filter($arrPost,array('site_name','phone'));
-		
-		//Copy file uploaded
-		
-		
+		$arrPost['path_logo'] = self::copy_file_uploaded('upload_logo_site', 'site_define');
+		$param = Flight::Arr()->filter($arrPost,array('site_name','phone','path_logo'));
 		$model->create_define($param);
 		Flight::redirect('/main');
 	}

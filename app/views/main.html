@@ -33,8 +33,8 @@
         <div class="container">
             <br>
             <div class="panel panel-default">
-            	<div class="panel-heading">
-            		<a data-toggle="collapse" href="#infomation_form">Thông Tin Chung</a>
+            	<div data-toggle="collapse" href="#infomation_form" class="panel-heading">
+            		Thông Tin Chung
             	</div>
             	<div id="infomation_form" class="panel-body collapse">
             		<form action="" enctype="multipart/form-data" method="POST">
@@ -53,6 +53,7 @@
                         <div class="form-group row">
                             <label for="ctg1" class="col-sm-2 form-control-label">Logo</label>
                             <div class="col-sm-5">
+                            	<img class="thumbnail thumbnail_grid" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$listDefine[0].path_logo%}">
                                 <input id="select_logo_site" class="form-control-file" name="upload_logo_site" type="file" accept="image/*" />
                             </div>
                         </div>
@@ -67,8 +68,8 @@
             	</div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">
-                	<a data-toggle="collapse" href="#category_form">Cập Nhật Danh Mục</a>
+                <div data-toggle="collapse" href="#category_form" class="panel-heading">
+                	Cập Nhật Danh Mục
                 </div>
                 <div id="category_form" class="panel-body collapse">
                     <form action="" method="POST">
@@ -143,12 +144,14 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form>	
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Cập Nhật Sản Phẩm</div>
-                <div class="panel-body">
+                <div data-toggle="collapse" href="#product_form" class="panel-heading">
+                	Cập Nhật Sản Phẩm
+                </div>
+                <div id="product_form" class="panel-body collapse in">
                     <form action="" enctype="multipart/form-data" method="POST">
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Chọn Danh Mục</label>

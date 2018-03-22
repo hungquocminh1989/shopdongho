@@ -188,16 +188,7 @@ class CommonController extends BasicController {
 		$m_product_id = $ProductModel->insertProduct($arr_product);
 		
 		if($m_product_id != -1){
-			if (!is_dir('public/upload')) {
-			    mkdir('public/upload', 0777, true);
-			}
-			
-			if (!is_dir('public/upload/'.$m_product_id)) {
-			    mkdir('public/upload/'.$m_product_id, 0777, true);
-			}
-			
 			self::insertImagesUpload($m_product_id);
-			
 		}
 		
 		
@@ -214,7 +205,7 @@ class CommonController extends BasicController {
 				$file_src = $_FILES['upload']['tmp_name'][$i];
 				$filename = uniqid().'_'.$_FILES['upload']['name'][$i];
 				$file_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$m_product_id.'/'.$filename;
-				copy($file_src,$file_dest);
+				Flight::FileManager()->CopyFile($file_src,$file_dest);
 				
 				//Nén hình
 				Flight::imageCompress($file_dest,$file_dest);
@@ -229,11 +220,10 @@ class CommonController extends BasicController {
 			$listImage = $ImageModel->listImage($m_product_id);
 			if($listImage != NULL && count($listImage)>0){
 				foreach($listImage as $imageDelete){
-					if(file_exists(SYSTEM_ROOT_DIR.'/'.$imageDelete['image_path'])==TRUE){
-						unlink(SYSTEM_ROOT_DIR.'/'.$imageDelete['image_path']);
-					}
+					Flight::FileManager()->DeleteFile(SYSTEM_ROOT_DIR.'/'.$imageDelete['image_path']);
 				}
 				$ImageModel->deleteImage($m_product_id);
+				
 			}
 			
 			

@@ -27,8 +27,12 @@ class FileManager
 		try{
 			
 			$source = FileManager::RepairPath($source);
-			unlink($source);
-			return TRUE;
+			if(file_exists($source) == TRUE){
+				unlink($source);
+				return TRUE;
+			}
+			return FALSE;
+			
 		} catch (Exception $ex) {
 			return FALSE;
 		}

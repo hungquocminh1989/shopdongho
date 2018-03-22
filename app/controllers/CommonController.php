@@ -86,10 +86,8 @@ class CommonController extends BasicController {
 			$filename = uniqid().'_'.$_FILES[$name]['name'];
 			$folder_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$folderRoot;
 			$file_dest = $folder_dest.'/'.$filename;
-			if (!file_exists($folder_dest)) {
-			    mkdir($folder_dest, 0777, true);
-			}
-			copy($file_src,$file_dest);
+			
+			Flight::FileManager()->CopyFile($file_src,$file_dest);
 			
 			//Nén hình
 			if($compress == TRUE){

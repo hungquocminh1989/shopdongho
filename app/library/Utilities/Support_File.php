@@ -1,15 +1,15 @@
 <?php
-class FileManager
+class Support_File
 {
 	
 	public static function CopyFile($source, $destination)
 	{
 		try{
-			$source = FileManager::RepairPath($source);
-			$destination = FileManager::RepairPath($destination);
+			$source = Support_File::RepairPath($source);
+			$destination = Support_File::RepairPath($destination);
 			
 			if(file_exists($source) == TRUE){
-				FileManager::CreateFolder($destination);
+				Support_File::CreateFolder($destination);
 				copy($source,$destination);
 				
 				return TRUE;
@@ -26,7 +26,7 @@ class FileManager
 	{
 		try{
 			
-			$source = FileManager::RepairPath($source);
+			$source = Support_File::RepairPath($source);
 			if(file_exists($source) == TRUE){
 				unlink($source);
 				return TRUE;
@@ -42,8 +42,8 @@ class FileManager
 	{
 		try{
 			
-			if(FileManager::CopyFile($source, $destination) == TRUE){
-				if(FileManager::DeleteFile($source) == TRUE){
+			if(Support_File::CopyFile($source, $destination) == TRUE){
+				if(Support_File::DeleteFile($source) == TRUE){
 					return TRUE;
 				}
 			}
@@ -58,7 +58,7 @@ class FileManager
 	{
 		try{
 			
-			$source = FileManager::RepairPath($source);
+			$source = Support_File::RepairPath($source);
 			
 			if(file_exists($source) == TRUE){
 				return TRUE;
@@ -74,40 +74,40 @@ class FileManager
 	
 	public static function FileList($source)
 	{
-		$source = FileManager::RepairPath($source);
+		$source = Support_File::RepairPath($source);
 	}
 	
 	public static function CopyFolder($source, $destination)
 	{
-		$source = FileManager::RepairPath($source);
-		$destination = FileManager::RepairPath($destination);
+		$source = Support_File::RepairPath($source);
+		$destination = Support_File::RepairPath($destination);
 	}
 	
 	public static function DeleteFolder($source)
 	{
-		$source = FileManager::RepairPath($source);
+		$source = Support_File::RepairPath($source);
 	}
 	
 	public static function MoveFolder($source, $destination)
 	{
-		$source = FileManager::RepairPath($source);
-		$destination = FileManager::RepairPath($destination);
+		$source = Support_File::RepairPath($source);
+		$destination = Support_File::RepairPath($destination);
 	}
 	
 	public static function FolderExists($source)
 	{
-		$source = FileManager::RepairPath($source);
+		$source = Support_File::RepairPath($source);
 	}
 	
 	public static function FolderList($source)
 	{
-		$source = FileManager::RepairPath($source);
+		$source = Support_File::RepairPath($source);
 	}
 	
 	public static function CreateFolder($source)
 	{
 		try{
-			$source = FileManager::RepairPath($source);
+			$source = Support_File::RepairPath($source);
 			
 			$arr_path = explode("/",$source);
 			

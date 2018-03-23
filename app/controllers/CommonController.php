@@ -5,9 +5,9 @@ class CommonController extends BasicController {
 	public static function action_index()
 	{
 		$arr_return = array();
-		$CategoryModel = Flight::CategoryModel();
-		$ProductModel = Flight::ProductModel();
-		$DefineModel = Flight::DefineModel();
+		$CategoryModel = new CategoryModel();
+		$ProductModel = new ProductModel();
+		$DefineModel = new DefineModel();
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['listProduct'] = $ProductModel->listProductImage();
 		$arr_return['listDefine'] = $DefineModel->get_define();
@@ -47,8 +47,8 @@ class CommonController extends BasicController {
 	
 	public static function action_detail($id, $product_link)
 	{
-		$CategoryModel = Flight::CategoryModel();
-		$ProductModel = Flight::ProductModel();
+		$CategoryModel = new CategoryModel();
+		$ProductModel = new ProductModel();
 		$arr_return = array();
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['productInfo'] = $ProductModel->listProductDetailById($id, $product_link);
@@ -62,9 +62,9 @@ class CommonController extends BasicController {
    	public static function action_main()
 	{
 		if(self::checklogin() == TRUE){
-			$CategoryModel = Flight::CategoryModel();
-			$ProductModel = Flight::ProductModel();
-			$DefineModel = Flight::DefineModel();
+			$CategoryModel = new CategoryModel();
+			$ProductModel = new ProductModel();
+			$DefineModel = new DefineModel();
 			
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
@@ -87,11 +87,11 @@ class CommonController extends BasicController {
 			$folder_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$folderRoot;
 			$file_dest = $folder_dest.'/'.$filename;
 			
-			Flight::FileManager()->CopyFile($file_src,$file_dest);
+			Support_File::CopyFile($file_src,$file_dest);
 			
 			//Nén hình
 			if($compress == TRUE){
-				Flight::imageCompress($file_dest,$file_dest);
+				Support_Image::imageCompress($file_dest,$file_dest);
 			}
 			return 'public/upload/'.$folderRoot.'/'.$filename;
 		}
@@ -100,24 +100,24 @@ class CommonController extends BasicController {
 	
 	public static function action_add_define()
 	{
-		$model = Flight::DefineModel();
+		$model = new DefineModel();
 		$arrPost = Flight::request()->data->getData();
 		$arrPost['path_logo'] = self::copy_file_uploaded('upload_logo_site', 'site_define');
-		$param = Flight::Arr()->filter($arrPost,array('site_name','phone','path_logo'));
+		$param = Support_Array::filter($arrPost,array('site_name','phone','path_logo'));
 		$model->create_define($param);
 		Flight::redirect('/main');
 	}
 	
 	public static function action_addcategory()
 	{
-		$model = Flight::CategoryModel();
+		$model = new CategoryModel();
 		$model->insertCategory($_POST['category_name']);
 		Flight::redirect('/main');
 	}
 	
 	public static function action_updatecategory()
 	{
-		$model = Flight::CategoryModel();
+		$model = new CategoryModel();
 		if($_POST['m_category_id'] != ''){
 			$model->updateCategory($_POST['m_category_id'], $_POST['category_name']);
 		}
@@ -127,7 +127,7 @@ class CommonController extends BasicController {
 	
 	public static function action_deletecategory()
 	{
-		$model = Flight::CategoryModel();
+		$model = new CategoryModel();
 		$model->deleteCategory($_POST['m_category_id']);
 		Flight::redirect('/main');
 	}
@@ -135,7 +135,7 @@ class CommonController extends BasicController {
 	public static function action_updateproduct()
 	{
 		if($_POST['m_product_id'] != ''){
-			$ProductModel = Flight::ProductModel();
+			$ProductModel = new ProductModel();
 			$arr_product = array();
 			$arr_product['m_product_id'] = $_POST['m_product_id'];
 			$arr_product['m_category_id'] = $_POST['m_category_id'];
@@ -153,14 +153,6 @@ class CommonController extends BasicController {
 			$m_product_id = $ProductModel->updateProduct($arr_product);
 			
 			if($m_product_id != -1){
-				if (!is_dir('public/upload')) {
-				    mkdir('public/upload', 0777, true);
-				}
-				
-				if (!is_dir('public/upload/'.$m_product_id)) {
-				    mkdir('public/upload/'.$m_product_id, 0777, true);
-				}
-				
 				self::insertImagesUpload($m_product_id);
 				
 			}
@@ -171,7 +163,7 @@ class CommonController extends BasicController {
 	
 	public static function action_addproduct()
 	{
-		$ProductModel = Flight::ProductModel();
+		$ProductModel = new ProductModel();
 		$arr_product = array();
 		$arr_product['m_category_id'] = $_POST['m_category_id'];
 		$arr_product['product_name'] = $_POST['product_name'];
@@ -205,22 +197,22 @@ class CommonController extends BasicController {
 				$file_src = $_FILES['upload']['tmp_name'][$i];
 				$filename = uniqid().'_'.$_FILES['upload']['name'][$i];
 				$file_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$m_product_id.'/'.$filename;
-				Flight::FileManager()->CopyFile($file_src,$file_dest);
+				Support_File::CopyFile($file_src,$file_dest);
 				
 				//Nén hình
-				Flight::imageCompress($file_dest,$file_dest);
+				Support_Image::imageCompress($file_dest,$file_dest);
 				$arr_images[] = 'public/upload/'.$m_product_id.'/'.$filename;
 			}
 		}
 		
-		$ImageModel = Flight::ImageModel();
+		$ImageModel = new ImageModel();
 		if(count($arr_images) > 0){
 			
 			//Xóa Hình Cũ
 			$listImage = $ImageModel->listImage($m_product_id);
 			if($listImage != NULL && count($listImage)>0){
 				foreach($listImage as $imageDelete){
-					Flight::FileManager()->DeleteFile(SYSTEM_ROOT_DIR.'/'.$imageDelete['image_path']);
+					Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$imageDelete['image_path']);
 				}
 				$ImageModel->deleteImage($m_product_id);
 				
@@ -240,7 +232,7 @@ class CommonController extends BasicController {
 	
 	public static function action_deleteproduct()
 	{
-		$model = Flight::ProductModel();
+		$model = new ProductModel();
 		$model->deleteProduct($_POST['m_product_id']);
 		Flight::redirect('/main');
 	}

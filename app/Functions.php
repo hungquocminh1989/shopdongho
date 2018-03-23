@@ -17,28 +17,6 @@ Flight::map('smartyVars', function($keyName = NULL){
 	}
 });
 
-//Create compress method (compress image)
-//In Windows, you'll include the GD2 DLL php_gd2.dll as an extension in php.ini.
-//http://php.net/manual/en/image.installation.php
-Flight::map('imageCompress', function($source, $destination, $quality = 90){
-	
-	$info = getimagesize($source);
-
-	if ($info['mime'] == 'image/jpeg'){
-		$image = imagecreatefromjpeg($source);
-	}
-	elseif ($info['mime'] == 'image/gif'){
-		$image = imagecreatefromgif($source);
-	}
-	elseif ($info['mime'] == 'image/png'){
-		$image = imagecreatefrompng($source);
-	}	
-
-	imagejpeg($image, $destination, $quality);
-
-	return $destination;
-});
-
 //Create obfuscator javascript method
 Flight::map('javascript_obfuscator', function($file, $param = array()){
 	
@@ -124,19 +102,6 @@ Flight::map('javascript_obfuscator', function($file, $param = array()){
 	else{
 		return $result;
 	}
-});
-
-//Create log method
-Flight::map('Log', function($refix, $contents){
-	Flight::FileManager()->CreateFolder(SYSTEM_TMP_DIR.'/log');
-	
-	$filename = SYSTEM_TMP_DIR.'/log/'.Date('Y-m-d').'_'.$refix.'.log';
-	$ip = Flight::Util()->get_client_ip();
-	$url = Flight::Util()->get_current_url();
-	
-	$contents = "\r\n【".Date('Y-m-d H:i:s')."】 Access from $ip - $url"."\r\n".$contents;
-	file_put_contents($filename, $contents, FILE_APPEND);
-	return;
 });
 
 //Override Flight's default error method

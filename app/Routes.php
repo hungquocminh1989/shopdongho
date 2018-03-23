@@ -1,7 +1,7 @@
 <?php
 
 //Register Controller Request
-$controller = Flight::CommonController();
+$controller = new CommonController();
 Flight::route('/(index)', array($controller, 'action_index'));
 Flight::route('/detail/@id/@product_link', array($controller, 'action_detail'));
 Flight::route('/main', array($controller, 'action_main'));

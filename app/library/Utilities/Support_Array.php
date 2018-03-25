@@ -845,7 +845,9 @@ class Support_Array
 	{
 		$new_array = array();
 		foreach ($filter as $key) {
-			$new_array[$key] = $source[$key];
+			if(isset($source[$key]) == TRUE){
+				$new_array[$key] = $source[$key];
+			}
 		}
 		if (is_null($add) == false) {
 			$new_array = static::merge($new_array, $add);

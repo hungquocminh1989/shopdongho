@@ -5,20 +5,24 @@ class DefineModel extends BasicModel {
     
 	
 	public function create_define($sql_param){
-		$this->begin_transaction();
+		
+		$db = $this->MedooDb();
+		$db->begin_transaction();
+		
 		try{
-			$this->execute("
-	    		DELETE FROM m_define
-	    	");
-	    	
-	    	$result = $this->execute("
-	    		INSERT INTO m_define (site_name, phone, path_logo)
-			    VALUES (:site_name, :phone, :path_logo);
-	    	",$sql_param);
-	    	$this->commit();
-	    	
+			$data = $db->query("
+				SELECT * FROM m_define LIMIT 1;
+			")->fetchAll();
+			
+			if($data != NULL && count($data) > 0 ){
+				$db->update('m_define',$sql_param,['m_define_id'=>$data[0]['m_define_id']]);
+			}
+			else{
+				$db->insert('m_define',$sql_param);
+			}
+			$db->commit();
 		} catch (Exception $ex) {
-			$this->rollback();
+			$db->rollback();
 		}
 	}
 	

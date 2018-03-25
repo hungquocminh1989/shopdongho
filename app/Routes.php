@@ -10,6 +10,7 @@ Flight::route('/admin/login', array($controller, 'action_login'));
 
 //Category
 Flight::route('/main/category/add', array($controller, 'action_addcategory'));
+Flight::route('/main/category/edit', array($controller, 'action_editcategory'));
 Flight::route('/main/category/update', array($controller, 'action_updatecategory'));
 Flight::route('/main/category/delete', array($controller, 'action_deletecategory'));
 

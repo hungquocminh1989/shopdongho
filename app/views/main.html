@@ -4,16 +4,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Quản Lý Sản Phẩm</title>
-        <link rel="stylesheet" href="public/css/bootstrap.css">
-        <script src="public/js/jquery-1.10.2.js"></script>
-        <script src="public/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="{%$smarty.const.SYSTEM_BASE_URL%}public/css/bootstrap.css">
+        <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/jquery-1.10.2.js"></script>
+        <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/bootstrap.js"></script>
+        <!-- include summernote css/js -->
+		<link href="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/summernote.css" rel="stylesheet">
+		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/summernote.js"></script>
+		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/lang/summernote-vi-VN.js"></script>
+		<!-- bootstrap3-dialog -->
+		<link href="{%$smarty.const.SYSTEM_BASE_URL%}public/bootstrap3-dialog/css/bootstrap-dialog.css" rel="stylesheet">
+		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/bootstrap3-dialog/js/bootstrap-dialog.js"></script>
         <style>
             .thumbnail {
             height: 50px;
             margin-bottom:auto;
             }
             .thumbnail_grid {
-            height: 120px !important;
+            height: 100px !important;
+            width: 100px !important;
             }
             .thumbnail_item{
             float: left;
@@ -27,7 +35,16 @@
             .thumbnail_item:focus {
             outline: 2px solid blue;
             }
+            
+            .table > tbody > tr > td {
+			  vertical-align: middle !important;
+			}
+			.table > thead > tr > th {
+			  vertical-align: middle !important;
+			}
+
         </style>
+        {%include 'app/views/common/system.html'%}
     </head>
     <body>
         <div class="container">
@@ -48,6 +65,12 @@
                             <label for="ctg1" class="col-sm-2 form-control-label">Số Điện Thoại</label>
                             <div class="col-sm-5">
                                 <input required name="phone" type="text" class="form-control" id="" value="{%$listDefine[0].phone%}" placeholder="Nhập Số Điện Thoại">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ctg1" class="col-sm-2 form-control-label">Địa Chỉ Shop</label>
+                            <div class="col-sm-5">
+                                <input required name="address" type="text" class="form-control" id="" value="{%$listDefine[0].address%}" placeholder="Nhập Địa Chỉ">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -103,46 +126,13 @@
 	                                    <th scope="row">{%$value@iteration%}</th>
 	                                    <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
 	                                    <td>
-	                                        <button class="btn btn-primary" value="{%$value['m_category_id']%}" type="button" data-toggle="modal" data-target="#editModel">Sửa</button>
+	                                        <button class="btn btn-primary editCtg" value="{%$value['m_category_id']%}" type="button">Sửa</button>
 	                                        <button formaction="main/category/delete" name="m_category_id" value="{%$value['m_category_id']%}" type="submit" class="btn btn-danger">Xóa</button>
 	                                    </td>
 	                                </tr>
 	                                {%/foreach%}
 	                            </tbody>
 	                        </table>
-                        </div>
-                    </form>
-                    <form action="" method="POST">
-                        <!-- Modal Update Category-->
-                        <div id="editModel" class="modal" role="dialog" data-backdrop="static">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Cập Nhật Danh Mục</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="hidden" name="m_category_id" value=""/>
-                                        <div class="form-group row">
-                                            <label for="ctg1" class="col-sm-2 form-control-label">Danh Mục</label>
-                                            <div class="col-sm-5">
-                                                <input required name="category_name" type="text" class="form-control" id="ctg1" placeholder="Nhập Danh Mục">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-2">
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <button type="submit" formaction="main/category/update" class="btn btn-primary">Cập Nhật</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </form>	
                 </div>
@@ -206,7 +196,8 @@
                             <label class="col-sm-2 form-control-label">Nhập Thông Tin</label>
                             <div class="col-sm-5">
                                 <!--<input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">-->
-                                <textarea name="product_info" class="form-control" rows="8" required>{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT%}</textarea>
+                                <!--<textarea name="product_info" class="form-control" rows="8" required>{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT%}</textarea>-->
+                                <textarea class="summernote" name="product_info">{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT|nl2br nofilter%}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -238,6 +229,17 @@
                     <form method="post">
 	                    <div class="table-responsive">
 	                        <table class="table table-bordered table-striped">
+	                        	<colgroup width="2%"/>
+                            	<colgroup width="15%"/>
+                            	<colgroup width="20%"/>
+                            	<colgroup width="10%"/>
+                            	<colgroup width="10%"/>
+                            	<colgroup width="10%"/>
+                            	<colgroup width="3%"/>
+                            	<!--<colgroup width=""/>-->
+                            	<colgroup width="10%"/>
+                            	<!--<colgroup width="5%"/>-->
+                            	<colgroup width="20%"/>
 	                            <thead>
 	                                <tr>
 	                                    <th>#</th>
@@ -247,15 +249,15 @@
 	                                    <th>Giá</th>
 	                                    <th>Giá Sale</th>
 	                                    <th>Nhãn Thông Tin</th>
-	                                    <th>Thông Tin</th>
+	                                    <!--<th>Thông Tin</th>-->
 	                                    <th>Hình Ảnh</th>
-	                                    <th>Link Hiển Thị</th>
+	                                    <!--<th>Link Hiển Thị</th>-->
 	                                    <th>Thao Tác</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
 	                                {%foreach $listProduct as $value%}
-	                                <tr>
+	                                <tr style="vertical-align:middle !important;">
 	                                    <td scope="row">{%$value@iteration%}</td>
 	                                    <td id="grid_category_name_{%$value['m_product_id']%}" >{%$value['category_name']%}</td>
 	                                    <input id="grid_category_id_{%$value['m_product_id']%}" type="hidden" value="{%$value['m_category_id']%}"/>
@@ -269,9 +271,9 @@
 		                                    <input class="checkbox" type="checkbox" disabled="disabled" value="1" id="grid_flg_notify_{%$value['m_product_id']%}" {%if $value['flg_notify'] == 1%}checked="checked"{%/if%}/>
 		                                    <span id="grid_msg_notify_{%$value['m_product_id']%}">{%$value['msg_notify']%}</span>
 	                                    </td>
-	                                    <td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']|nl2br nofilter%}</td>
+	                                    <!--<td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']|nl2br nofilter%}</td>-->
 	                                    <td id=""><img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}"></td>
-	                                    <td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>
+	                                    <!--<td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>-->
 	                                    <td>
 	                                        <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
 	                                        <button class="btn btn-primary" value="{%$value['m_product_id']%}"  type="button" data-toggle="modal" data-target="#editProductModel">Sửa</button>
@@ -349,6 +351,7 @@
                                             <div class="col-sm-8">
                                                 <!--<input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">-->
                                                 <textarea name="product_info" class="form-control" rows="8" required></textarea>
+                                                <!--<textarea class="summernote" name="product_info">{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT|nl2br nofilter%}</textarea>-->
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -389,6 +392,7 @@
         </div>
     </body>
 </html>
+
 <script>
     {%$javascript_src|unescape: "html" nofilter%} 
 </script>

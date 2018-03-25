@@ -49,10 +49,12 @@ class CommonController extends BasicController {
 	{
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
+		$DefineModel = new DefineModel();
 		$arr_return = array();
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['productInfo'] = $ProductModel->listProductDetailById($id, $product_link);
 		$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);
+		$arr_return['listDefine'] = $DefineModel->get_define();
 		if($arr_return['productInfo'] == NULL){
 			Flight::redirect('/');
 		}
@@ -102,8 +104,11 @@ class CommonController extends BasicController {
 	{
 		$model = new DefineModel();
 		$arrPost = Flight::request()->data->getData();
-		$arrPost['path_logo'] = self::copy_file_uploaded('upload_logo_site', 'site_define');
-		$param = Support_Array::filter($arrPost,array('site_name','phone','path_logo'));
+		$path = self::copy_file_uploaded('upload_logo_site', 'site_define');
+		if($path != NULL){
+			$arrPost['path_logo'] = $path;
+		}
+		$param = Support_Array::filter($arrPost,array('site_name','phone','path_logo','address'));
 		$model->create_define($param);
 		Flight::redirect('/main');
 	}
@@ -113,6 +118,13 @@ class CommonController extends BasicController {
 		$model = new CategoryModel();
 		$model->insertCategory($_POST['category_name']);
 		Flight::redirect('/main');
+	}
+	
+	public static function action_editcategory()
+	{
+		$model = new CategoryModel();
+		$arr_return = $model->listCategoryById($_POST['m_category_id'])[0];
+		Flight::renderSmarty('dialog/category_edit.html',$arr_return);
 	}
 	
 	public static function action_updatecategory()

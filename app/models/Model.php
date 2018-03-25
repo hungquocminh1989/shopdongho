@@ -6,6 +6,7 @@ class Model
 	private $in_transaction;
 	private $_last_param;
 	private $_last_sql;
+	private $db_medoo;
 	
 	public function __construct()
 	{
@@ -15,13 +16,30 @@ class Model
 		$password = 'abcd123456';
 		*/
 		$driver_options = array(PDO::ATTR_PERSISTENT => false);
+		
 		try {
 			$this->dbh = new PDO(DATABASE_DNS, DATABASE_USER, DATABASE_PASS, $driver_options);
 			$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		} catch (PDOException $e) {
+			
+			//Connect Medoo
+			$this->db_medoo = new Medoo([
+			    'database_type' => DATABASE_TYPE,
+			    'database_name' => DATABASE_NAME,
+			    'server' 		=> DATABASE_HOST,
+			    'username' 		=> DATABASE_USER,
+			    'password' 		=> DATABASE_PASS
+			]);
+			
+		} 
+		catch (PDOException $e) {
 			$this->_db_error($e);
 		}
+		
 		$this->in_transaction = false;
+	}
+	
+	public function MedooDb() {
+		return $this->db_medoo;
 	}
 	
 	protected function begin_transaction() {

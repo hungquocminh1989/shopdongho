@@ -11,9 +11,6 @@
 		<link href="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/summernote.css" rel="stylesheet">
 		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/summernote.js"></script>
 		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/lang/summernote-vi-VN.js"></script>
-		<!-- bootstrap3-dialog -->
-		<link href="{%$smarty.const.SYSTEM_BASE_URL%}public/bootstrap3-dialog/css/bootstrap-dialog.css" rel="stylesheet">
-		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/bootstrap3-dialog/js/bootstrap-dialog.js"></script>
         <style>
             .thumbnail {
             height: 50px;
@@ -126,7 +123,7 @@
 	                                    <th scope="row">{%$value@iteration%}</th>
 	                                    <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
 	                                    <td>
-	                                        <button class="btn btn-primary editCtg" value="{%$value['m_category_id']%}" type="button">Sửa</button>
+	                                        <button class="btn btn-primary edit_ctg" value="{%$value['m_category_id']%}" type="button">Sửa</button>
 	                                        <button formaction="main/category/delete" name="m_category_id" value="{%$value['m_category_id']%}" type="submit" class="btn btn-danger">Xóa</button>
 	                                    </td>
 	                                </tr>
@@ -276,7 +273,7 @@
 	                                    <!--<td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>-->
 	                                    <td>
 	                                        <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
-	                                        <button class="btn btn-primary" value="{%$value['m_product_id']%}"  type="button" data-toggle="modal" data-target="#editProductModel">Sửa</button>
+	                                        <button class="btn btn-primary edit_product" value="{%$value['m_product_id']%}"  type="button">Sửa</button>
 	                                        <button formaction="main/product/delete" name="m_product_id" value="{%$value['m_product_id']%}" type="submit" class="btn btn-danger">Xóa</button>
 	                                    </td>
 	                                </tr>
@@ -284,108 +281,6 @@
 	                            </tbody>
 	                        </table>
 	                    </div>
-                    </form>
-                    <form id="abc" action="" enctype="multipart/form-data" method="POST">
-                        <!-- Modal Update Product-->
-                        <div id="editProductModel" class="modal" role="dialog" data-backdrop="static">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Cập Nhật Sản Phẩm</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="hidden" name="m_product_id" value=""/>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label">Chọn Danh Mục</label>
-                                            <div class="col-sm-8">
-                                                <select required class="form-control" name="m_category_id">
-                                                    <option value=""></option>
-                                                    {%foreach $listCategory as $value%}
-                                                    <option value="{%$value['m_category_id']%}">{%$value['category_name']%}</option>
-                                                    {%/foreach%}
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label">Nhập Tên Sản Phẩm</label>
-                                            <div class="col-sm-8">
-                                                <input required name="product_name" type="text" class="form-control" placeholder="Nhập Tên Sản Phẩm">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label">Nhập Mã Sản Phẩm</label>
-                                            <div class="col-sm-8">
-                                                <input required name="product_no" type="text" class="form-control" placeholder="Nhập Mã Sản Phẩm">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label">Nhập Giá</label>
-                                            <div class="col-sm-3">
-                                                <input required name="product_price" type="text" class="form-control" placeholder="Nhập Giá">
-                                            </div>
-                                            <div class="col-sm-5">
-				                                <div class="input-group">
-				                                    <span class="input-group-addon">
-				                                    	Giá Sale
-				                                    </span>
-				                                    <input type="text" name="product_price_sale" class="form-control" placeholder="Nhập Giá">
-				                                </div>
-				                            </div>
-                                        </div>
-                                        <div class="form-group row">
-				                            <label class="col-sm-4 form-control-label">Nhãn Thông Tin</label>
-				                            <div class="col-sm-8">
-				                                <div class="input-group">
-				                                    <span class="input-group-addon middle">
-					                                    <input type="checkbox" name="flg_notify" value="1">
-					                                    <span style="padding: 5px;">Hiển Thị</span>
-				                                    </span>
-				                                    <input type="text" name="msg_notify" class="form-control" placeholder="Nhập Thông Báo">
-				                                </div>
-				                            </div>
-				                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label">Nhập Thông Tin</label>
-                                            <div class="col-sm-8">
-                                                <!--<input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">-->
-                                                <textarea name="product_info" class="form-control" rows="8" required></textarea>
-                                                <!--<textarea class="summernote" name="product_info">{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT|nl2br nofilter%}</textarea>-->
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label">Nhập Link Hiển Thị</label>
-                                            <div class="col-sm-8">
-                                                <input required name="product_link" type="text" class="form-control" placeholder="Nhập Link Hiển Thị">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label">Chọn Ảnh</label>
-                                            <div class="col-sm-8">
-                                                <input id="select_image_popup" class="form-control-file" name="upload[]" type="file" multiple accept="image/*" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label">Xem Trước</label>
-                                            <input type="hidden" id="image_default_popup" name="image_default" value="0"/>
-                                            <div id="img_review_popup" class="col-sm-8">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-4">
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <button type="submit" formaction="main/product/update" class="btn btn-primary">Cập Nhật</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>

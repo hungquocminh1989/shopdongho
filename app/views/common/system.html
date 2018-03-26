@@ -55,6 +55,11 @@
 	margin: auto;
 }
 </style>
+<!-- bootstrap3-dialog -->
+<!--https://github.com/nakupanda/bootstrap3-dialog-->
+<!--https://nakupanda.github.io/bootstrap3-dialog/-->
+<link href="{%$smarty.const.SYSTEM_BASE_URL%}public/bootstrap3-dialog/css/bootstrap-dialog.css" rel="stylesheet"/>
+<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/bootstrap3-dialog/js/bootstrap-dialog.js"></script>
 <script type="text/javascript">
     function System() {
         this.initialize.apply(this, arguments);
@@ -76,7 +81,7 @@
     };
     
     System.prototype.always_func = function (data){
-    	//alert(111);
+    	//Do Nothing.
     };
     System.prototype.done_func = function (data){
     	System.message_success('Thuc hien thanh cong');
@@ -105,14 +110,18 @@
     		.fail(aa_this.fail_func);
     };
 	
-	System.show_dialog = function (content,titlte = '', ok_func) {
+	System.show_dialog = function (content,titlte = '',exec_func , ok_func) {
 		//http://nakupanda.github.io/bootstrap3-dialog/
 		BootstrapDialog.show({
 			title: titlte,
-			message: function(dialog) {
-                return content;
-            },
+			message: content,
+			nl2br : false,
 			type: BootstrapDialog.TYPE_PRIMARY,
+			onshown: function(dialog) {//Chạy hàm sau khi load dialog
+                if (exec_func) {
+					exec_func();
+				}
+            },
 			closable: false,
             closeByBackdrop: false,
             closeByKeyboard: false,
@@ -133,6 +142,7 @@
 		BootstrapDialog.show({
             title: 'Thông Báo',
             message: msg,
+            nl2br : false,
 			type: BootstrapDialog.TYPE_SUCCESS,
 			closable: false,
             closeByBackdrop: false,
@@ -154,6 +164,7 @@
 		BootstrapDialog.show({
             title: 'Thông Báo Xác Nhận',
             message: msg,
+            nl2br : false,
 			type: BootstrapDialog.TYPE_WARNING,
 			closable: false,
             closeByBackdrop: false,
@@ -183,6 +194,7 @@
     	BootstrapDialog.show({
             title: 'Cảnh Báo',
             message: msg,
+            nl2br : false,
 			type: BootstrapDialog.TYPE_DANGER,
 			closable: false,
             closeByBackdrop: false,

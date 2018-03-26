@@ -15,6 +15,23 @@ class ProductModel extends BasicModel {
 		return $result;
 	}
 	
+	public function listProductById($m_product_id){
+		$db = $this->MedooDb();
+		$result = $db->select('m_product','*',
+			[
+				'del_flg' => 0,
+				'm_product_id' => $m_product_id,
+			]
+		);
+		if($result != NULL && count($result) > 0 )
+		{
+			return $result[0];
+		}
+		else{
+			return NULL;
+		}
+	}
+	
 	public function listProductDetailById($m_product_id, $product_link){
 		$arr_sql = array();
 		$arr_sql['m_product_id'] = $m_product_id;

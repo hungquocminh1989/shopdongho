@@ -123,7 +123,7 @@ class CommonController extends BasicController {
 	public static function action_editcategory()
 	{
 		$model = new CategoryModel();
-		$arr_return = $model->listCategoryById($_POST['m_category_id'])[0];
+		$arr_return = $model->listCategoryById($_POST['m_category_id']);
 		Flight::renderSmarty('dialog/category_edit.html',$arr_return);
 	}
 	
@@ -197,6 +197,16 @@ class CommonController extends BasicController {
 		
 		
 		Flight::redirect('/main');
+	}
+	
+	public static function action_editproduct()
+	{
+		$model = new ProductModel();
+		$CategoryModel = new CategoryModel();
+		$arr_return = array();
+		$arr_return = $model->listProductById($_POST['m_product_id']);
+		$arr_return['listCategory'] = $CategoryModel->listCategory();
+		Flight::renderSmarty('dialog/product_edit.html',$arr_return);
 	}
 	
 	public function insertImagesUpload($m_product_id){

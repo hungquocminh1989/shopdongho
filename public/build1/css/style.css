@@ -268,7 +268,7 @@ ul.categories li a:before { content: ""; font-family: fontAwesome; margin-rig
 
 .pro-box { padding-bottom: 40px;}
 .headinglefttitle { font-size: 30px; font-weight: 600; color: #000; margin: 0 0 25px 0; /*text-transform: uppercase*/ }
-.headingsubtitle { font-size: 14px; color: #888; margin-bottom: 30px }
+.headingsubtitle { font-size: 14px; /*color: #888;*/ margin-bottom: 30px }
 .productbox { background: #f9f9f9; padding: 25px; position: relative }
 .productbox:after { clear: both; content: ''; display: block }
 .productaction { display: block; margin: 30px 0 }

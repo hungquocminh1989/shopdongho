@@ -31,7 +31,7 @@
                             <h1 class="headinglefttitle">{%if isset($productInfo[0]['product_name'])%}{%$productInfo[0]['product_name']%}{%/if%}</h1>
                             <h1 class="headinglefttitle">{%if isset($productInfo[0]['product_no'])%}{%$productInfo[0]['product_no']%}{%/if%}</h1>
                             <div class="headingsubtitle">
-                            	{%if isset($productInfo[0]['product_info'])%}{%$productInfo[0]['product_info']|nl2br nofilter%}{%/if%}
+                            	{%if isset($productInfo[0]['product_info'])%}{%$productInfo[0]['product_info']|unescape: "html" nofilter%}{%/if%}
                             </div>
                             <div class="productprice">
                                 <div class="addreview">

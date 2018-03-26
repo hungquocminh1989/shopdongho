@@ -6,7 +6,7 @@
             <select required class="form-control" name="m_category_id">
                 <option value=""></option>
                 {%foreach $listCategory as $value%}
-                <option value="{%$value['m_category_id']%}">{%$value['category_name']%}</option>
+                <option {%if $value['m_category_id']== $m_category_id %} selected {%/if%} value="{%$value['m_category_id']%}">{%$value['category_name']%}</option>
                 {%/foreach%}
             </select>
         </div>
@@ -54,7 +54,7 @@
         <div class="col-sm-8">
             <!--<input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">-->
             <!--<textarea name="product_info" class="form-control" rows="8" required></textarea>-->
-            <textarea class="summernote1" name="product_info">{%$product_info|nl2br nofilter%}</textarea>
+            <textarea class="summernote1" name="product_info">{%$product_info%}</textarea>
         </div>
     </div>
     <div class="form-group row">

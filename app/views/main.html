@@ -107,31 +107,29 @@
                             </div>
                         </div>
                     </form>
-                    <form action="" method="POST">
-                        <div class="table-responsive">
-	                        <table class="table table-bordered">
-	                            <thead>
-	                                <tr>
-	                                    <th>#</th>
-	                                    <th>Danh Mục</th>
-	                                    <th>Thao Tác</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody>
-	                                {%foreach $listCategory as $value%}
-	                                <tr>
-	                                    <th scope="row">{%$value@iteration%}</th>
-	                                    <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
-	                                    <td>
-	                                        <button class="btn btn-primary edit_ctg" value="{%$value['m_category_id']%}" type="button">Sửa</button>
-	                                        <button formaction="main/category/delete" name="m_category_id" value="{%$value['m_category_id']%}" type="submit" class="btn btn-danger">Xóa</button>
-	                                    </td>
-	                                </tr>
-	                                {%/foreach%}
-	                            </tbody>
-	                        </table>
-                        </div>
-                    </form>	
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Danh Mục</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%foreach $listCategory as $value%}
+                                <tr>
+                                    <th scope="row">{%$value@iteration%}</th>
+                                    <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
+                                    <td>
+                                        <button class="btn btn-primary edit_ctg" value="{%$value['m_category_id']%}">Sửa</button>
+                                        <button value="{%$value['m_category_id']%}" class="btn btn-danger delete_ctg">Xóa</button>
+                                    </td>
+                                </tr>
+                                {%/foreach%}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -223,65 +221,63 @@
                             </div>
                         </div>
                     </form>
-                    <form method="post">
-	                    <div class="table-responsive">
-	                        <table class="table table-bordered table-striped">
-	                        	<colgroup width="2%"/>
-                            	<colgroup width="15%"/>
-                            	<colgroup width="20%"/>
-                            	<colgroup width="10%"/>
-                            	<colgroup width="10%"/>
-                            	<colgroup width="10%"/>
-                            	<colgroup width="3%"/>
-                            	<!--<colgroup width=""/>-->
-                            	<colgroup width="10%"/>
-                            	<!--<colgroup width="5%"/>-->
-                            	<colgroup width="20%"/>
-	                            <thead>
-	                                <tr>
-	                                    <th>#</th>
-	                                    <th>Danh Mục</th>
-	                                    <th>Tên Sản Phẩm</th>
-	                                    <th>Mã Sản Phẩm</th>
-	                                    <th>Giá</th>
-	                                    <th>Giá Sale</th>
-	                                    <th>Nhãn Thông Tin</th>
-	                                    <!--<th>Thông Tin</th>-->
-	                                    <th>Hình Ảnh</th>
-	                                    <!--<th>Link Hiển Thị</th>-->
-	                                    <th>Thao Tác</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody>
-	                                {%foreach $listProduct as $value%}
-	                                <tr style="vertical-align:middle !important;">
-	                                    <td scope="row">{%$value@iteration%}</td>
-	                                    <td id="grid_category_name_{%$value['m_product_id']%}" >{%$value['category_name']%}</td>
-	                                    <input id="grid_category_id_{%$value['m_product_id']%}" type="hidden" value="{%$value['m_category_id']%}"/>
-	                                    <td id="grid_product_name_{%$value['m_product_id']%}" >{%$value['product_name']%}</td>
-	                                    <td id="grid_product_no_{%$value['m_product_id']%}" >{%$value['product_no']%}</td>
-	                                    <td>{%$value['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
-	                                    <input id="grid_product_price_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price']%}"/>
-	                                    <td>{%$value['product_price_sale']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
-	                                    <input id="grid_product_price_sale_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price_sale']%}"/>
-	                                    <td>
-		                                    <input class="checkbox" type="checkbox" disabled="disabled" value="1" id="grid_flg_notify_{%$value['m_product_id']%}" {%if $value['flg_notify'] == 1%}checked="checked"{%/if%}/>
-		                                    <span id="grid_msg_notify_{%$value['m_product_id']%}">{%$value['msg_notify']%}</span>
-	                                    </td>
-	                                    <!--<td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']|nl2br nofilter%}</td>-->
-	                                    <td id=""><img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}"></td>
-	                                    <!--<td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>-->
-	                                    <td>
-	                                        <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
-	                                        <button class="btn btn-primary edit_product" value="{%$value['m_product_id']%}"  type="button">Sửa</button>
-	                                        <button formaction="main/product/delete" name="m_product_id" value="{%$value['m_product_id']%}" type="submit" class="btn btn-danger">Xóa</button>
-	                                    </td>
-	                                </tr>
-	                                {%/foreach%}
-	                            </tbody>
-	                        </table>
-	                    </div>
-                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                        	<colgroup width="2%"/>
+                        	<colgroup width="15%"/>
+                        	<colgroup width="20%"/>
+                        	<colgroup width="10%"/>
+                        	<colgroup width="10%"/>
+                        	<colgroup width="10%"/>
+                        	<colgroup width="3%"/>
+                        	<!--<colgroup width=""/>-->
+                        	<colgroup width="10%"/>
+                        	<!--<colgroup width="5%"/>-->
+                        	<colgroup width="20%"/>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Danh Mục</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Mã Sản Phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Giá Sale</th>
+                                    <th>Nhãn Thông Tin</th>
+                                    <!--<th>Thông Tin</th>-->
+                                    <th>Hình Ảnh</th>
+                                    <!--<th>Link Hiển Thị</th>-->
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%foreach $listProduct as $value%}
+                                <tr style="vertical-align:middle !important;">
+                                    <td scope="row">{%$value@iteration%}</td>
+                                    <td id="grid_category_name_{%$value['m_product_id']%}" >{%$value['category_name']%}</td>
+                                    <input id="grid_category_id_{%$value['m_product_id']%}" type="hidden" value="{%$value['m_category_id']%}"/>
+                                    <td id="grid_product_name_{%$value['m_product_id']%}" >{%$value['product_name']%}</td>
+                                    <td id="grid_product_no_{%$value['m_product_id']%}" >{%$value['product_no']%}</td>
+                                    <td>{%$value['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
+                                    <input id="grid_product_price_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price']%}"/>
+                                    <td>{%$value['product_price_sale']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
+                                    <input id="grid_product_price_sale_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price_sale']%}"/>
+                                    <td>
+	                                    <input class="checkbox" type="checkbox" disabled="disabled" value="1" id="grid_flg_notify_{%$value['m_product_id']%}" {%if $value['flg_notify'] == 1%}checked="checked"{%/if%}/>
+	                                    <span id="grid_msg_notify_{%$value['m_product_id']%}">{%$value['msg_notify']%}</span>
+                                    </td>
+                                    <!--<td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']|nl2br nofilter%}</td>-->
+                                    <td id=""><img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}"></td>
+                                    <!--<td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>-->
+                                    <td>
+                                        <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
+                                        <button class="btn btn-primary edit_product" value="{%$value['m_product_id']%}">Sửa</button>
+                                        <button value="{%$value['m_product_id']%}" class="btn btn-danger delete_product">Xóa</button>
+                                    </td>
+                                </tr>
+                                {%/foreach%}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

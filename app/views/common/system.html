@@ -128,10 +128,10 @@
 			buttons: [{
                 label: 'Đóng',
                 action: function(dialog) {
-                    dialog.close();
-					if (ok_func) {
+                	if (ok_func) {
 						ok_func();
 					}
+                    dialog.close();
                 }
             }]
         });
@@ -150,10 +150,10 @@
             buttons: [{
                 label: 'Đóng',
                 action: function(dialog) {
-                    dialog.close();
-					if (ok_func) {
+                	if (ok_func) {
 						ok_func();
 					}
+                    dialog.close();
                 }
             }]
         });
@@ -172,18 +172,19 @@
             buttons: [{
                 label: 'OK',
                 action: function(dialog) {
-					dialog.close();
-                    if (ok_func) {
+                	if (ok_func) {
 						ok_func();
 					}
+					dialog.close();
+                    
                 }
             }, {
                 label: 'Đóng',
                 action: function(dialog) {
-					dialog.close();
-                    if (cancel_func) {
+                	if (cancel_func) {
 						cancel_func();
 					}
+					dialog.close();
                 }
             }]
         });
@@ -202,10 +203,10 @@
             buttons: [{
                 label: 'Đóng',
                 action: function(dialog) {
-                    dialog.close();
-					if (ok_func) {
+                	if (ok_func) {
 						ok_func();
 					}
+                    dialog.close();
                 }
             }]
         });

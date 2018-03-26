@@ -141,7 +141,7 @@ class CommonController extends BasicController {
 	{
 		$model = new CategoryModel();
 		$model->deleteCategory($_POST['m_category_id']);
-		Flight::redirect('/main');
+		Flight::json(array('status' => 'OK'));
 	}
 	
 	public static function action_updateproduct()
@@ -256,7 +256,7 @@ class CommonController extends BasicController {
 	{
 		$model = new ProductModel();
 		$model->deleteProduct($_POST['m_product_id']);
-		Flight::redirect('/main');
+		Flight::json(array('status' => 'OK'));
 	}
     
 }

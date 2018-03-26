@@ -47,7 +47,7 @@ $(function() {
 	function handleFileSelect(idReview,tagSelect) {
 		$('#'+idReview).html('');
 		
-	    	//Check File API support
+	   	//Check File API support
 	    if (window.File && window.FileList && window.FileReader) {
 
 	        var files = document.getElementById(tagSelect).files; //FileList object
@@ -68,17 +68,17 @@ $(function() {
 
 	function addEventLoadImage(file, index, output){
 		var picReader = new FileReader();
-	        picReader.addEventListener("load", function (event) {
-	            var picFile = event.target;
-	            var div = document.createElement("div");
-	            div.className = 'thumbnail_item';
-	            div.setAttribute('tabindex',index);
-	            div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'/>";
-	            output.insertBefore(div, null);
-	        });
-	        
-	        //Read the image
-	        picReader.readAsDataURL(file);
+        picReader.addEventListener("load", function (event) {
+            var picFile = event.target;
+            var div = document.createElement("div");
+            div.className = 'thumbnail_item';
+            div.setAttribute('tabindex',index);
+            div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'/>";
+            output.insertBefore(div, null);
+        });
+        
+        //Read the image
+        picReader.readAsDataURL(file);
 	}
 
 	document.getElementById('select_image').addEventListener('change', function(){

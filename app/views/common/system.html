@@ -32,7 +32,7 @@
     height: 100%;
     width: 100%;
     position: fixed;
-    z-index: 999;
+    z-index: 99999;
     left: 0;
     top: 0;
     background-color: rgb(220,220,220);
@@ -128,10 +128,10 @@
 			buttons: [{
                 label: 'Đóng',
                 action: function(dialog) {
+                	dialog.close();
                 	if (ok_func) {
 						ok_func();
 					}
-                    dialog.close();
                 }
             }]
         });
@@ -150,10 +150,10 @@
             buttons: [{
                 label: 'Đóng',
                 action: function(dialog) {
+                	dialog.close();
                 	if (ok_func) {
 						ok_func();
 					}
-                    dialog.close();
                 }
             }]
         });
@@ -172,19 +172,19 @@
             buttons: [{
                 label: 'OK',
                 action: function(dialog) {
+                	dialog.close();
                 	if (ok_func) {
 						ok_func();
 					}
-					dialog.close();
                     
                 }
             }, {
                 label: 'Đóng',
                 action: function(dialog) {
+                	dialog.close();
                 	if (cancel_func) {
 						cancel_func();
 					}
-					dialog.close();
                 }
             }]
         });
@@ -203,14 +203,34 @@
             buttons: [{
                 label: 'Đóng',
                 action: function(dialog) {
+                	dialog.close();
                 	if (ok_func) {
 						ok_func();
 					}
-                    dialog.close();
                 }
             }]
         });
     };
+    
+    //Reload Page
+    System.reload = function () {
+    	System.loading(true);
+		location.reload();
+    };
+    
+    /*$(document).on('click', '[type="submit"]', function() {
+    	System.message_confirm('Thực Hiện Xử Lý Này ?',
+    		function(){
+    			return true;
+			}
+    	);
+    	return false;
+    });*/
+    
+    //Lock screen when submit
+    $(document).on('submit', 'form', function() {
+    	System.loading(true);
+    });
     
     System.loading = function (flag) {
     	if (flag) {

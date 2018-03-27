@@ -4,25 +4,25 @@ $(function() {
 		lang: 'vi-VN' 
 	});
     
-    $(document).on('click', '.edit_ctg', function() {
+    $(document).on('click', '.btn_edit_ctg', function() {
     	var ajax = new System();
+    	var m_category_id = this.value;
     	ajax.done_func = function(html) {
     		System.show_dialog(html,'Cập Nhật Danh Mục');
     	};
     	ajax.connect("POST","main/category/edit",{
-            		"m_category_id": this.value  
+            		"m_category_id": m_category_id  
 	    });
-    	
     });
     
-    $(document).on('click', '.delete_ctg', function() {
+    $(document).on('click', '.btn_delete_ctg', function() {
     	var m_category_id = this.value ;
     	System.message_confirm('Xóa Danh Mục Đã Chọn ?',
     		function(){
     			var ajax = new System();
 				ajax.done_func = function(html) {
 		    		System.message_success('Xóa Danh Mục Thành Công.',function(){
-		    			location.reload();
+		    			System.reload();
 		    		});
 		    	};
 		    	ajax.connect("POST","main/category/delete",{
@@ -32,8 +32,9 @@ $(function() {
     	);
     });
     
-    $(document).on('click', '.edit_product', function() {
+    $(document).on('click', '.btn_edit_product', function() {
     	var ajax = new System();
+    	var m_product_id = this.value;
     	ajax.done_func = function(html) {
     		System.show_dialog(html,'Cập Nhật Sản Phẩm',function(){
     			//Chạy sau khi dialog đã được open
@@ -47,17 +48,19 @@ $(function() {
     		});
     	};
     	ajax.connect("POST","main/product/edit",{
-            		"m_product_id": this.value  
+            		"m_product_id": m_product_id  
 	    });
     });
     
-    $(document).on('click', '.delete_product', function() {
+    $(document).on('click', '.btn_delete_product', function() {
     	var m_product_id = this.value ;
     	System.message_confirm('Xóa Sản Phẩm Đã Chọn ?',
     		function(){
     			var ajax = new System();
 				ajax.done_func = function(html) {
-		    		System.message_success('Xóa Sản Phẩm Thành Công.');
+		    		System.message_success('Xóa Sản Phẩm Thành Công.',function(){
+		    			System.reload();
+		    		});
 		    	};
 		    	ajax.connect("POST","main/product/delete",{
 		            		"m_product_id": m_product_id  
@@ -76,6 +79,10 @@ $(function() {
     	$('#image_default_popup').val(index);
     });
 
+	document.getElementById('select_image').addEventListener('change', function(){
+	    handleFileSelect('img_review','select_image');
+	}, false);
+	
 	function handleFileSelect(idReview,tagSelect) {
 		$('#'+idReview).html('');
 		
@@ -100,21 +107,17 @@ $(function() {
 
 	function addEventLoadImage(file, index, output){
 		var picReader = new FileReader();
-        picReader.addEventListener("load", function (event) {
-            var picFile = event.target;
-            var div = document.createElement("div");
-            div.className = 'thumbnail_item';
-            div.setAttribute('tabindex',index);
-            div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'/>";
-            output.insertBefore(div, null);
-        });
-        
-        //Read the image
-        picReader.readAsDataURL(file);
+	    picReader.addEventListener("load", function (event) {
+	        var picFile = event.target;
+	        var div = document.createElement("div");
+	        div.className = 'thumbnail_item';
+	        div.setAttribute('tabindex',index);
+	        div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'/>";
+	        output.insertBefore(div, null);
+	    });
+	    
+	    //Read the image
+	    picReader.readAsDataURL(file);
 	}
-
-	document.getElementById('select_image').addEventListener('change', function(){
-	    handleFileSelect('img_review','select_image');
-	}, false);
 	
 });

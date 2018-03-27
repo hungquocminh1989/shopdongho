@@ -8,6 +8,7 @@
         <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/jquery-1.10.2.js"></script>
         <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/bootstrap.js"></script>
         <!-- include summernote css/js -->
+        <!--https://summernote.org/-->
 		<link href="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/summernote.css" rel="stylesheet">
 		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/summernote.js"></script>
 		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/lang/summernote-vi-VN.js"></script>
@@ -122,8 +123,8 @@
                                     <th scope="row">{%$value@iteration%}</th>
                                     <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
                                     <td>
-                                        <button class="btn btn-primary edit_ctg" value="{%$value['m_category_id']%}">Sửa</button>
-                                        <button value="{%$value['m_category_id']%}" class="btn btn-danger delete_ctg">Xóa</button>
+                                        <button class="btn btn-primary btn_edit_ctg" value="{%$value['m_category_id']%}">Sửa</button>
+                                        <button value="{%$value['m_category_id']%}" class="btn btn-danger btn_delete_ctg">Xóa</button>
                                     </td>
                                 </tr>
                                 {%/foreach%}
@@ -270,8 +271,8 @@
                                     <!--<td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>-->
                                     <td>
                                         <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
-                                        <button class="btn btn-primary edit_product" value="{%$value['m_product_id']%}">Sửa</button>
-                                        <button value="{%$value['m_product_id']%}" class="btn btn-danger delete_product">Xóa</button>
+                                        <button class="btn btn-primary btn_edit_product" value="{%$value['m_product_id']%}">Sửa</button>
+                                        <button value="{%$value['m_product_id']%}" class="btn btn-danger btn_delete_product">Xóa</button>
                                     </td>
                                 </tr>
                                 {%/foreach%}

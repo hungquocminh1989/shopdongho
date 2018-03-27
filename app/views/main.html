@@ -88,6 +88,65 @@
             		</form>
             	</div>
             </div>
+            
+            <div class="panel panel-default">
+            	<div data-toggle="collapse" href="#header_form" class="panel-heading">
+            		Quản Lý Thanh Điều Hướng
+            	</div>
+            	<div id="header_form" class="panel-body collapse">
+            		<form action="" enctype="multipart/form-data" method="POST">
+            			<div class="form-group row">
+                            <label for="ctg1" class="col-sm-2 form-control-label">Tên Trang</label>
+                            <div class="col-sm-5">
+                                <input required name="site_name" type="text" class="form-control" id="" value="{%$listDefine[0].site_name%}" placeholder="Nhập Tên Website">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="submit" formaction="main/define/add" class="btn btn-primary">Cập Nhật</button>
+                            </div>
+                        </div>
+            		</form>
+            	</div>
+            </div>
+            
+            <div class="panel panel-default">
+            	<div data-toggle="collapse" href="#page_form" class="panel-heading">
+            		Quản Lý Trang
+            	</div>
+            	<div id="page_form" class="panel-body collapse">
+            		<form action="" enctype="multipart/form-data" method="POST">
+            			<div class="form-group row">
+                            <label for="ctg1" class="col-sm-2 form-control-label">Tên Trang</label>
+                            <div class="col-sm-5">
+                                <input required name="site_name" type="text" class="form-control" id="" value="{%$listDefine[0].site_name%}" placeholder="Nhập Tên Website">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ctg1" class="col-sm-2 form-control-label">Link Truy Cập</label>
+                            <div class="col-sm-5">
+                                <input required name="phone" type="text" class="form-control" id="" value="{%$listDefine[0].phone%}" placeholder="Nhập Số Điện Thoại">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ctg1" class="col-sm-2 form-control-label">Nội Dung</label>
+                            <div class="col-sm-5">
+                                <textarea class="summernote" name="product_info">{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT|nl2br nofilter%}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="submit" formaction="main/define/add" class="btn btn-primary">Cập Nhật</button>
+                            </div>
+                        </div>
+            		</form>
+            	</div>
+            </div>
+            
             <div class="panel panel-default">
                 <div data-toggle="collapse" href="#category_form" class="panel-heading">
                 	Cập Nhật Danh Mục

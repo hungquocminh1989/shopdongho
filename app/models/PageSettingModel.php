@@ -1,6 +1,6 @@
 <?php 
 
-class DefineModel extends BasicModel {
+class PageSettingModel extends BasicModel {
     
     
 	
@@ -11,14 +11,14 @@ class DefineModel extends BasicModel {
 		
 		try{
 			$data = $db->query("
-				SELECT * FROM m_define LIMIT 1;
+				SELECT * FROM m_site_setting LIMIT 1;
 			")->fetchAll();
 			
 			if($data != NULL && count($data) > 0 ){
-				$db->update('m_define',$sql_param,['m_define_id'=>$data[0]['m_define_id']]);
+				$db->update('m_site_setting',$sql_param,['m_site_setting_id'=>$data[0]['m_site_setting_id']]);
 			}
 			else{
-				$db->insert('m_define',$sql_param);
+				$db->insert('m_site_setting',$sql_param);
 			}
 			$db->commit();
 		} catch (Exception $ex) {
@@ -27,7 +27,7 @@ class DefineModel extends BasicModel {
 	}
 	
 	public function get_define(){
-		return $this->query("SELECT * FROM m_define");
+		return $this->query("SELECT * FROM m_site_setting");
 	}
     
 }

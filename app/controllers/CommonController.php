@@ -7,10 +7,10 @@ class CommonController extends BasicController {
 		$arr_return = array();
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
-		$DefineModel = new DefineModel();
+		$PageSettingModel = new PageSettingModel();
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['listProduct'] = $ProductModel->listProductImage();
-		$arr_return['listDefine'] = $DefineModel->get_define();
+		$arr_return['listDefine'] = $PageSettingModel->get_define();
 	    Flight::renderSmarty('index.html',$arr_return);
 	}
 	
@@ -49,12 +49,12 @@ class CommonController extends BasicController {
 	{
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
-		$DefineModel = new DefineModel();
+		$PageSettingModel = new PageSettingModel();
 		$arr_return = array();
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['productInfo'] = $ProductModel->listProductDetailById($id, $product_link);
 		$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);
-		$arr_return['listDefine'] = $DefineModel->get_define();
+		$arr_return['listDefine'] = $PageSettingModel->get_define();
 		if($arr_return['productInfo'] == NULL){
 			Flight::redirect('/');
 		}
@@ -66,12 +66,12 @@ class CommonController extends BasicController {
 		if(self::checklogin() == TRUE){
 			$CategoryModel = new CategoryModel();
 			$ProductModel = new ProductModel();
-			$DefineModel = new DefineModel();
+			$PageSettingModel = new PageSettingModel();
 			
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
 			$arr_return['listProduct'] = $ProductModel->listProductImage();
-			$arr_return['listDefine'] = $DefineModel->get_define();
+			$arr_return['listDefine'] = $PageSettingModel->get_define();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
 		    Flight::renderSmarty('main.html',$arr_return);
 		}
@@ -102,7 +102,7 @@ class CommonController extends BasicController {
 	
 	public static function action_add_define()
 	{
-		$model = new DefineModel();
+		$model = new PageSettingModel();
 		$arrPost = Flight::request()->data->getData();
 		$path = self::copy_file_uploaded('upload_logo_site', 'site_define');
 		if($path != NULL){

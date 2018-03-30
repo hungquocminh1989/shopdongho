@@ -1,35 +1,149 @@
 <?php 
 
 class ImageModel extends BasicModel {
-    
-    
-    public function listImage($m_product_id){
-    	$arr_sql = array();
-		$arr_sql['m_product_id'] = $m_product_id;
-    	$result = $this->query("
-    		SELECT * FROM m_image 
-    		WHERE del_flg = 0 AND m_product_id = :m_product_id"
-    	,$arr_sql
-    	);
-		return $result;
+	
+	/**■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+	* Các Hàm Cơ Bản Truy Xuất DB
+	* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+	*/
+	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+	
+	public function selectRowById($m_image_id){
+		
+    	$db = $this->MedooDb();
+    	
+    	$data = $db->select("m_image",'*',
+    		[
+				"m_image_id" => $m_image_id
+			]
+		);
+		
+		if($data != NULL && count($data) > 0 ){
+			return $data;
+		}
+    	
+		return NULL;
+		
 	}
 	
-	public function insertImage($m_product_id, $image_path ,$isDefault = 0){
-		$arr_sql = array();
-		$arr_sql['m_product_id'] = $m_product_id;
-		$arr_sql['image_path'] = $image_path;
-		$arr_sql['default_flg'] = $isDefault;
-    	$result = $this->execute("
-    		INSERT INTO m_image(m_product_id, image_path, default_flg)
-		    VALUES (:m_product_id, :image_path, :default_flg);
-    	",$arr_sql);
+	public function selectRowsByMetaData($meta_type, $meta_id){
+		
+    	$db = $this->MedooDb();
+    	
+    	$data = $db->select("m_image",'*',
+    		[
+				"meta_type" => $meta_type,
+				"meta_id" => $meta_id
+			]
+		);
+    	
+		return $data;
+		
 	}
 	
-	public function deleteImage($m_product_id){
-		$this->execute("
-    		DELETE FROM m_image
-		    WHERE  m_product_id = $m_product_id;
-    	");
+	public function insertRow($sql_param){
+    	
+    	$db = $this->MedooDb();
+		$db->begin_transaction();
+		
+		try{
+			$db->insert('m_image',$sql_param);
+			$lastInsertId = $db->id();
+			$db->commit();
+			return $lastInsertId;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
+		}
+    	
 	}
-    
+	
+	public function updateRowById($sql_param, $m_image_id){
+    	
+    	$db = $this->MedooDb();
+		$db->begin_transaction();
+		
+		try{
+			$db->update('m_image',$sql_param,
+				[
+					'm_image_id'=>$m_image_id
+				]
+			);
+			$db->commit();
+			return TRUE;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
+		}
+    	
+	}
+	
+	public function updateRowsByMetaData($sql_param, $meta_type, $meta_id){
+    	
+    	$db = $this->MedooDb();
+		$db->begin_transaction();
+		
+		try{
+			$db->update('m_image',$sql_param,
+				[
+					'meta_type'=>$meta_type,
+					'meta_id'=>$meta_id
+				]		
+			);
+			$db->commit();
+			return TRUE;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
+		}
+    	
+	}
+	
+	public function deleteRowById($m_image_id){
+		
+		$db = $this->MedooDb();
+		$db->begin_transaction();
+		
+		try{
+			$db->delete("m_image",
+				[
+					'm_image_id' => $m_image_id
+				]
+			);
+			$db->commit();
+			return TRUE;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
+		}
+		
+	}
+	
+	public function deleteRowsByMetaData($meta_type, $meta_id){
+    	
+    	$db = $this->MedooDb();
+		$db->begin_transaction();
+		
+		try{
+			$db->delete("m_image",
+				[
+					'meta_type'=>$meta_type,
+					'meta_id'=>$meta_id
+				]
+			);
+			$db->commit();
+			return TRUE;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
+		}
+    	
+	}
+	
+	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
 }

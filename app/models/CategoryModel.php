@@ -4,55 +4,94 @@ class CategoryModel extends BasicModel {
     
     
     public function listCategory(){
-    	$result = $this->query("SELECT * FROM m_category WHERE del_flg = 0");
+    	$result = $this->query("SELECT * FROM m_category ");
 		return $result;
 	}
 	
-	public function listCategoryById($m_category_id){
-		$db = $this->MedooDb();
-		$result = $db->select('m_category','*',
-			[
-				'del_flg' => 0,
-				'm_category_id' => $m_category_id,
+	/**■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+	* Các Hàm Cơ Bản Truy Xuất DB
+	* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+	*/
+	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+	
+	public function selectRowById($m_category_id){
+		
+    	$db = $this->MedooDb();
+    	
+    	$data = $db->select("m_category",'*',
+    		[
+				"m_category_id" => $m_category_id
 			]
 		);
-		if($result != NULL && count($result) > 0 )
-		{
-			return $result[0];
+		
+		if($data != NULL && count($data) > 0 ){
+			return $data;
 		}
-		else{
-			return NULL;
+    	
+		return NULL;
+		
+	}
+	
+	public function insertRow($sql_param){
+    	
+    	$db = $this->MedooDb();
+		$db->begin_transaction();
+		
+		try{
+			$db->insert('m_category',$sql_param);
+			$lastInsertId = $db->id();
+			$db->commit();
+			return $lastInsertId;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
 		}
+    	
 	}
 	
-	public function insertCategory($category_name){
-		$arr_sql = array();
-		$arr_sql['category_name'] = $category_name;
-    	$result = $this->execute("
-    		INSERT INTO m_category(category_name)
-		    VALUES (:category_name);
-    	",$arr_sql);
+	public function updateRowById($sql_param, $m_category_id){
+    	
+    	$db = $this->MedooDb();
+		$db->begin_transaction();
+		
+		try{
+			$db->update('m_category',$sql_param,
+				[
+					'm_category_id'=>$m_category_id
+				]
+			);
+			$db->commit();
+			return TRUE;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
+		}
+    	
 	}
 	
-	public function deleteCategory($m_category_id){
-		$arr_sql = array();
-		$arr_sql['m_category_id'] = $m_category_id;
-    	$result = $this->execute("
-    		UPDATE m_category
-    		SET del_flg = 1
-		    WHERE  m_category_id = :m_category_id;
-    	",$arr_sql);
+	public function deleteRowById($m_image_id){
+		
+		$db = $this->MedooDb();
+		$db->begin_transaction();
+		
+		try{
+			$db->delete("m_category",
+				[
+					'm_category_id' => $m_image_id
+				]
+			);
+			$db->commit();
+			return TRUE;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
+		}
+		
 	}
 	
-	public function updateCategory($m_category_id, $category_name){
-		$arr_sql = array();
-		$arr_sql['category_name'] = $category_name;
-		$arr_sql['m_category_id'] = $m_category_id;
-    	$result = $this->execute("
-    		UPDATE m_category
-    		SET category_name = :category_name
-		    WHERE  m_category_id = :m_category_id;
-    	",$arr_sql);
-	}
+	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
     
 }

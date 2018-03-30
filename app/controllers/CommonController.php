@@ -102,36 +102,56 @@ class CommonController extends BasicController {
 	
 	public static function action_add_define()
 	{
-		$model = new PageSettingModel();
+		$modelPage = new PageSettingModel();
+		$modelImage = new ImageModel();
+		
 		$arrPost = Flight::request()->data->getData();
-		$path = self::copy_file_uploaded('upload_logo_site', 'site_define');
-		if($path != NULL){
-			$arrPost['path_logo'] = $path;
+		
+		//Copy file
+		$image_path = self::copy_file_uploaded('upload_logo_site', 'site_define');
+		
+		//Insert or Update m_site_setting
+		$param = Support_Array::filter($arrPost,array('site_name','phone','address'));
+		$m_site_setting_id = $modelPage->create_define($param);
+		
+		$arr_sql = array();
+		$arr_sql['meta_type'] = $modelImage->getMetaType(SYSTEM_META_SITE_SETTING);
+		$arr_sql['meta_id'] = $m_site_setting_id;
+		$arr_sql['image_path'] = $image_path;
+		
+		//Insert or Update m_image
+		$rows = $modelImage->selectRowsByMetaData($modelImage->getMetaType(SYSTEM_META_SITE_SETTING), $m_site_setting_id);
+		if($rows != NULL && count($rows) > 0 ){
+			$modelImage->updateRowById($arr_sql, $rows[0]['m_image_id']);
 		}
-		$param = Support_Array::filter($arrPost,array('site_name','phone','path_logo','address'));
-		$model->create_define($param);
+		else{
+			$modelImage->insertRow($arr_sql);
+		}
+		
 		Flight::redirect('/main');
 	}
 	
 	public static function action_addcategory()
 	{
 		$model = new CategoryModel();
-		$model->insertCategory($_POST['category_name']);
+		$model->insertRow(['category_name' => $_POST['category_name']]);
 		Flight::redirect('/main');
 	}
 	
 	public static function action_editcategory()
 	{
 		$model = new CategoryModel();
-		$arr_return = $model->listCategoryById($_POST['m_category_id']);
-		Flight::renderSmarty('dialog/category_edit.html',$arr_return);
+		$arr_return = $model->selectRowById($_POST['m_category_id']);
+		Flight::renderSmarty('dialog/category_edit.html',$arr_return[0]);
 	}
 	
 	public static function action_updatecategory()
 	{
 		$model = new CategoryModel();
 		if($_POST['m_category_id'] != ''){
-			$model->updateCategory($_POST['m_category_id'], $_POST['category_name']);
+			$m_category_id = $_POST['m_category_id'];
+			$category_name = $_POST['category_name'];
+			$model->updateRowById(['category_name'=>$category_name], $m_category_id);
 		}
 		
 		Flight::redirect('/main');
@@ -140,7 +160,7 @@ class CommonController extends BasicController {
 	public static function action_deletecategory()
 	{
 		$model = new CategoryModel();
-		$model->deleteCategory($_POST['m_category_id']);
+		$model->deleteRowById($_POST['m_category_id']);
 		Flight::json(array('status' => 'OK'));
 	}
 	
@@ -149,7 +169,7 @@ class CommonController extends BasicController {
 		if($_POST['m_product_id'] != ''){
 			$ProductModel = new ProductModel();
 			$arr_product = array();
-			$arr_product['m_product_id'] = $_POST['m_product_id'];
+			$m_product_id = $_POST['m_product_id'];
 			$arr_product['m_category_id'] = $_POST['m_category_id'];
 			$arr_product['product_name'] = $_POST['product_name'];
 			$arr_product['product_no'] = $_POST['product_no'];
@@ -162,11 +182,10 @@ class CommonController extends BasicController {
 			$arr_product['msg_notify'] = $_POST['msg_notify'];
 			$arr_product['product_info'] = $_POST['product_info'];
 			$arr_product['product_link'] = $_POST['product_link'];
-			$m_product_id = $ProductModel->updateProduct($arr_product);
+			$ProductModel->updateRowById($arr_product, $m_product_id);
 			
 			if($m_product_id != -1){
 				self::insertImagesUpload($m_product_id);
-				
 			}
 		}
 		
@@ -189,9 +208,9 @@ class CommonController extends BasicController {
 		$arr_product['msg_notify'] = $_POST['msg_notify'];
 		$arr_product['product_info'] = $_POST['product_info'];
 		$arr_product['product_link'] = $_POST['product_link'];
-		$m_product_id = $ProductModel->insertProduct($arr_product);
+		$m_product_id = $ProductModel->insertRow($arr_product);
 		
-		if($m_product_id != -1){
+		if($m_product_id !== FALSE){
 			self::insertImagesUpload($m_product_id);
 		}
 		
@@ -204,7 +223,7 @@ class CommonController extends BasicController {
 		$model = new ProductModel();
 		$CategoryModel = new CategoryModel();
 		$arr_return = array();
-		$arr_return = $model->listProductById($_POST['m_product_id']);
+		$arr_return = $model->selectRowById($_POST['m_product_id'])[0];
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		Flight::renderSmarty('dialog/product_edit.html',$arr_return);
 	}
@@ -229,24 +248,39 @@ class CommonController extends BasicController {
 		
 		$ImageModel = new ImageModel();
 		if(count($arr_images) > 0){
+			$meta_type = $ImageModel->getMetaType(SYSTEM_META_PRODUCT);
 			
 			//Xóa Hình Cũ
-			$listImage = $ImageModel->listImage($m_product_id);
+			$listImage = $ImageModel->selectRowsByMetaData($meta_type,$m_product_id);
 			if($listImage != NULL && count($listImage)>0){
 				foreach($listImage as $imageDelete){
 					Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$imageDelete['image_path']);
 				}
-				$ImageModel->deleteImage($m_product_id);
+				$ImageModel->deleteRowsByMetaData($meta_type,$m_product_id);
 				
 			}
 			
 			
 			foreach($arr_images as $k => $image){
 				if($k == $_POST['image_default']){
-					$ImageModel->insertImage($m_product_id, $image,1);
+					$ImageModel->insertRow(
+						[
+							'meta_type' => $meta_type,
+							'meta_id' => $m_product_id,
+							'image_path' => $image,
+							'default_flg' => 1
+						]					
+					);
 				}
 				else{
-					$ImageModel->insertImage($m_product_id, $image);
+					$ImageModel->insertRow(
+						[
+							'meta_type' => $meta_type,
+							'meta_id' => $m_product_id,
+							'image_path' => $image,
+							'default_flg' => 0
+						]					
+					);
 				}
 			}
 		}

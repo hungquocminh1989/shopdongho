@@ -74,7 +74,7 @@
                         <div class="form-group row">
                             <label for="ctg1" class="col-sm-2 form-control-label">Logo</label>
                             <div class="col-sm-5">
-                            	<img class="thumbnail thumbnail_grid" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$listDefine[0].path_logo%}">
+                            	<img class="thumbnail thumbnail_grid" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$listDefine[0].image_path%}">
                                 <input id="select_logo_site" class="form-control-file" name="upload_logo_site" type="file" accept="image/*" />
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="main/define/add" class="btn btn-primary">Cập Nhật</button>
+                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/define/add" class="btn btn-primary">Cập Nhật</button>
                             </div>
                         </div>
             		</form>
@@ -105,7 +105,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="main/define/add" class="btn btn-primary">Cập Nhật</button>
+                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/define/add" class="btn btn-primary">Cập Nhật</button>
                             </div>
                         </div>
             		</form>
@@ -121,26 +121,34 @@
             			<div class="form-group row">
                             <label for="ctg1" class="col-sm-2 form-control-label">Tên Trang</label>
                             <div class="col-sm-5">
-                                <input required name="site_name" type="text" class="form-control" id="" value="{%$listDefine[0].site_name%}" placeholder="Nhập Tên Website">
+                                <input required name="page_name" type="text" class="form-control" placeholder="Nhập Tên Trang">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="ctg1" class="col-sm-2 form-control-label">Link Truy Cập</label>
                             <div class="col-sm-5">
-                                <input required name="phone" type="text" class="form-control" id="" value="{%$listDefine[0].phone%}" placeholder="Nhập Số Điện Thoại">
+                                <input required name="page_link" type="text" class="form-control" placeholder="Nhập Link Truy Cập">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="ctg1" class="col-sm-2 form-control-label">Nội Dung</label>
-                            <div class="col-sm-5">
-                                <textarea class="summernote" name="product_info">{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT|nl2br nofilter%}</textarea>
+                            <label for="ctg1" class="col-sm-2 form-control-label">Thành Phần Trang</label>
+                            <div class="col-sm-4">
+                                <select required class="form-control" name="m_category_id">
+                                    <option value=""></option>
+                                    <option value="1">AAA</option>
+                                    <option value="2">BBB</option>
+                                    <option value="3">CCC</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-1">
+                            	<button class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="main/define/add" class="btn btn-primary">Cập Nhật</button>
+                                <button type="submit" formaction="" class="btn btn-primary">Tạo Trang</button>
                             </div>
                         </div>
             		</form>
@@ -163,7 +171,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="main/category/add" class="btn btn-primary">Thêm</button>
+                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/category/add" class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
                     </form>
@@ -277,7 +285,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="main/product/add" class="btn btn-primary">Thêm</button>
+                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/product/add" class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
                     </form>

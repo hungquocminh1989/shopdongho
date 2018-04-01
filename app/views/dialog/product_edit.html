@@ -3,10 +3,9 @@
     <div class="form-group row">
         <label class="col-sm-4 form-control-label">Chọn Danh Mục</label>
         <div class="col-sm-8">
-            <select required class="form-control" name="m_category_id">
-                <option value=""></option>
+            <select required class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" name="m_category_id">
                 {%foreach $listCategory as $value%}
-                <option {%if $value['m_category_id']== $m_category_id %} selected {%/if%} value="{%$value['m_category_id']%}">{%$value['category_name']%}</option>
+                <option data-tokens="{%$value['category_name']%}" {%if $value['m_category_id']== $m_category_id %} selected {%/if%} value="{%$value['m_category_id']%}">{%$value['category_name']%}</option>
                 {%/foreach%}
             </select>
         </div>
@@ -52,7 +51,7 @@
     <div class="form-group row">
         <label class="col-sm-4 form-control-label">Nhập Thông Tin</label>
         <div class="col-sm-8">
-            <textarea class="summernote1" name="product_info">{%$product_info%}</textarea>
+            <textarea id="txt_product_info_edit" class="summernote" name="product_info">{%$product_info%}</textarea>
         </div>
     </div>
     <div class="form-group row">

@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,21 @@
         <link rel="stylesheet" href="{%$smarty.const.SYSTEM_BASE_URL%}public/css/bootstrap.css">
         <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/jquery-1.10.2.js"></script>
         <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/bootstrap.js"></script>
-        <!-- include summernote css/js -->
+        
         <!--https://summernote.org/-->
 		<link href="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/summernote.css" rel="stylesheet">
 		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/summernote.js"></script>
 		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/summernote/lang/summernote-vi-VN.js"></script>
+		
+		<!--https://silviomoreto.github.io/bootstrap-select-->
+		<link href="{%$smarty.const.SYSTEM_BASE_URL%}public/bootstrap-combobox-search/css/bootstrap-select.min.css" rel="stylesheet">
+		<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/bootstrap-combobox-search/js/bootstrap-select.min.js"></script>
+		
         <style>
+        	.modal-body{
+			    max-height: calc(100vh - 180px);
+    			overflow-y: auto;
+			}
             .thumbnail {
             height: 50px;
             margin-bottom:auto;
@@ -21,6 +30,10 @@
             height: 100px !important;
             width: 100px !important;
             }
+            /*.thumbnail_combobox {
+            height: 50px !important;
+            width: 50px !important;
+            }*/
             .thumbnail_item{
             float: left;
             height:100%;
@@ -40,7 +53,75 @@
 			.table > thead > tr > th {
 			  vertical-align: middle !important;
 			}
-
+			
+			/*Panel header*/
+			.panel-heading{
+				background-color: #9393ff !important;
+				font-weight: bold !important;
+			}
+			
+			/*Callouts CSS*/
+			.bs-callout {
+			    padding: 20px;
+			    margin: 20px 0;
+			    border: 1px solid #eee;
+			    border-left-width: 5px;
+			    border-radius: 3px;
+			}
+			.bs-callout h4 {
+			    margin-top: 0;
+			    margin-bottom: 5px;
+			}
+			.bs-callout p:last-child {
+			    margin-bottom: 0;
+			}
+			.bs-callout code {
+			    border-radius: 3px;
+			}
+			.bs-callout+.bs-callout {
+			    margin-top: -5px;
+			}
+			.bs-callout-default {
+			    border-left-color: #777;
+			}
+			.bs-callout-default h4 {
+			    color: #777;
+			}
+			.bs-callout-primary {
+			    border-left-color: #428bca;
+			}
+			.bs-callout-primary h4 {
+			    color: #428bca;
+			}
+			.bs-callout-success {
+			    border-left-color: #5cb85c;
+			}
+			.bs-callout-success h4 {
+			    color: #5cb85c;
+			}
+			.bs-callout-danger {
+			    border-left-color: #d9534f;
+			}
+			.bs-callout-danger h4 {
+			    color: #d9534f;
+			}
+			.bs-callout-warning {
+			    border-left-color: #f0ad4e;
+			}
+			.bs-callout-warning h4 {
+			    color: #f0ad4e;
+			}
+			.bs-callout-info {
+			    border-left-color: #5bc0de;
+			}
+			.bs-callout-info h4 {
+			    color: #5bc0de;
+			}
+			
+			/*type search */
+			input[type="search"]::-webkit-search-cancel-button {
+				-webkit-appearance: searchfield-cancel-button;
+			}
         </style>
         {%include 'app/views/common/system.html'%}
     </head>
@@ -51,30 +132,32 @@
             	<div data-toggle="collapse" href="#infomation_form" class="panel-heading">
             		Thông Tin Chung
             	</div>
-            	<div id="infomation_form" class="panel-body collapse">
+            	<div id="infomation_form" class="panel-body collapse in">
             		<form action="" enctype="multipart/form-data" method="POST">
             			<div class="form-group row">
-                            <label for="ctg1" class="col-sm-2 form-control-label">Tên Website</label>
+                            <label class="col-sm-2 form-control-label">Tên Website</label>
                             <div class="col-sm-5">
                                 <input required name="site_name" type="text" class="form-control" id="" value="{%$listDefine[0].site_name%}" placeholder="Nhập Tên Website">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="ctg1" class="col-sm-2 form-control-label">Số Điện Thoại</label>
+                            <label class="col-sm-2 form-control-label">Số Điện Thoại</label>
                             <div class="col-sm-5">
                                 <input required name="phone" type="text" class="form-control" id="" value="{%$listDefine[0].phone%}" placeholder="Nhập Số Điện Thoại">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="ctg1" class="col-sm-2 form-control-label">Địa Chỉ Shop</label>
+                            <label class="col-sm-2 form-control-label">Địa Chỉ Shop</label>
                             <div class="col-sm-5">
                                 <input required name="address" type="text" class="form-control" id="" value="{%$listDefine[0].address%}" placeholder="Nhập Địa Chỉ">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="ctg1" class="col-sm-2 form-control-label">Logo</label>
+                            <label class="col-sm-2 form-control-label">Logo</label>
                             <div class="col-sm-5">
+                            	{%if isset($listDefine[0].image_path) == true %}
                             	<img class="thumbnail thumbnail_grid" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$listDefine[0].image_path%}">
+                            	{%/if%}
                                 <input id="select_logo_site" class="form-control-file" name="upload_logo_site" type="file" accept="image/*" />
                             </div>
                         </div>
@@ -93,19 +176,19 @@
             	<div data-toggle="collapse" href="#header_form" class="panel-heading">
             		Quản Lý Thanh Điều Hướng
             	</div>
-            	<div id="header_form" class="panel-body collapse">
+            	<div id="header_form" class="panel-body collapse in">
             		<form action="" enctype="multipart/form-data" method="POST">
             			<div class="form-group row">
-                            <label for="ctg1" class="col-sm-2 form-control-label">Tên Trang</label>
+                            <label class="col-sm-2 form-control-label">Tên Menu</label>
                             <div class="col-sm-5">
-                                <input required name="site_name" type="text" class="form-control" id="" value="{%$listDefine[0].site_name%}" placeholder="Nhập Tên Website">
+                                <input required name="site_name" type="text" class="form-control" id="" value="" placeholder="Nhập Tên Menu">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/define/add" class="btn btn-primary">Cập Nhật</button>
+                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}" class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
             		</form>
@@ -116,42 +199,51 @@
             	<div data-toggle="collapse" href="#page_form" class="panel-heading">
             		Quản Lý Trang
             	</div>
-            	<div id="page_form" class="panel-body collapse">
-            		<form action="" enctype="multipart/form-data" method="POST">
-            			<div class="form-group row">
-                            <label for="ctg1" class="col-sm-2 form-control-label">Tên Trang</label>
-                            <div class="col-sm-5">
-                                <input required name="page_name" type="text" class="form-control" placeholder="Nhập Tên Trang">
-                            </div>
+            	<div id="page_form" class="panel-body collapse in">
+            	<form action="" enctype="multipart/form-data" method="POST">
+        			<div class="form-group row">
+                        <label class="col-sm-2 form-control-label">Tên Trang</label>
+                        <div class="col-sm-5">
+                            <input required name="page_name" type="text" class="form-control" placeholder="Nhập Tên Trang">
                         </div>
-                        <div class="form-group row">
-                            <label for="ctg1" class="col-sm-2 form-control-label">Link Truy Cập</label>
-                            <div class="col-sm-5">
-                                <input required name="page_link" type="text" class="form-control" placeholder="Nhập Link Truy Cập">
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">Link Truy Cập</label>
+                        <div class="col-sm-5">
+                            <input required name="page_link" type="text" class="form-control" placeholder="Nhập Link Truy Cập">
                         </div>
-                        <div class="form-group row">
-                            <label for="ctg1" class="col-sm-2 form-control-label">Thành Phần Trang</label>
-                            <div class="col-sm-4">
-                                <select required class="form-control" name="m_category_id">
-                                    <option value=""></option>
-                                    <option value="1">AAA</option>
-                                    <option value="2">BBB</option>
-                                    <option value="3">CCC</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-1">
-                            	<button class="btn btn-primary">Thêm</button>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">Thành Phần Trang</label>
+                        <div class="col-sm-4">
+                            <select id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
+                                {%foreach $listPageType as $value%}
+                                <option data-tokens="{%$value['section_type_name']%}" value="{%$value['m_page_section_type_id']%}">{%$value['section_type_name']%}</option>
+                                {%/foreach%}
+                            </select>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-2">
-                            </div>
-                            <div class="col-sm-3">
-                                <button type="submit" formaction="" class="btn btn-primary">Tạo Trang</button>
-                            </div>
+                        <div class="col-sm-1">
+                        	<button class="btn btn-primary" type="button" id="add_section">Thêm</button>
                         </div>
-            		</form>
+                    </div>
+                    
+                    <div class="form-group row">
+					    <div class="col-sm-2"></div>
+					    <div class="col-sm-10">
+					    	<div id="section_contents">
+                    	
+                    		</div>
+					    </div>
+					</div>
+                    
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/page/update" class="btn btn-primary">Tạo Trang</button>
+                        </div>
+                    </div>
+                </form>
             	</div>
             </div>
             
@@ -159,10 +251,10 @@
                 <div data-toggle="collapse" href="#category_form" class="panel-heading">
                 	Cập Nhật Danh Mục
                 </div>
-                <div id="category_form" class="panel-body collapse">
+                <div id="category_form" class="panel-body collapse in">
                     <form action="" method="POST">
                         <div class="form-group row">
-                            <label for="ctg1" class="col-sm-2 form-control-label">Danh Mục</label>
+                            <label class="col-sm-2 form-control-label">Danh Mục</label>
                             <div class="col-sm-5">
                                 <input required name="category_name" type="text" class="form-control" id="ctg1" placeholder="Nhập Danh Mục">
                             </div>
@@ -171,7 +263,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/category/add" class="btn btn-primary">Thêm</button>
+                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/category/add" class="btn btn-primary">Tạo Danh Mục</button>
                             </div>
                         </div>
                     </form>
@@ -209,10 +301,9 @@
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Chọn Danh Mục</label>
                             <div class="col-sm-5">
-                                <select required class="form-control" name="m_category_id">
-                                    <option value=""></option>
+                                <select required class="form-control selectpicker"  title="Danh Mục" data-live-search="true" name="m_category_id">
                                     {%foreach $listCategory as $value%}
-                                    <option value="{%$value['m_category_id']%}">{%$value['category_name']%}</option>
+                                    <option data-tokens="{%$value['category_name']%}" value="{%$value['m_category_id']%}">{%$value['category_name']%}</option>
                                     {%/foreach%}
                                 </select>
                             </div>
@@ -260,7 +351,7 @@
                             <div class="col-sm-5">
                                 <!--<input required name="product_info" type="text" class="form-control" placeholder="Nhập Thông Tin">-->
                                 <!--<textarea name="product_info" class="form-control" rows="8" required>{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT%}</textarea>-->
-                                <textarea class="summernote" name="product_info">{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT|nl2br nofilter%}</textarea>
+                                <textarea id="txt_product_info" class="summernote" name="product_info">{%$smarty.const.SYSTEM_PRODUCT_INFO_DEFAULT|nl2br nofilter%}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -285,7 +376,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/product/add" class="btn btn-primary">Thêm</button>
+                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/product/add" class="btn btn-primary">Tạo Sản Phẩm</button>
                             </div>
                         </div>
                     </form>
@@ -321,20 +412,20 @@
                                 {%foreach $listProduct as $value%}
                                 <tr style="vertical-align:middle !important;">
                                     <td scope="row">{%$value@iteration%}</td>
-                                    <td id="grid_category_name_{%$value['m_product_id']%}" >{%$value['category_name']%}</td>
+                                    <td>{%$value['category_name']%}</td>
                                     <input id="grid_category_id_{%$value['m_product_id']%}" type="hidden" value="{%$value['m_category_id']%}"/>
-                                    <td id="grid_product_name_{%$value['m_product_id']%}" >{%$value['product_name']%}</td>
-                                    <td id="grid_product_no_{%$value['m_product_id']%}" >{%$value['product_no']%}</td>
+                                    <td>{%$value['product_name']%}</td>
+                                    <td>{%$value['product_no']%}</td>
                                     <td>{%$value['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
-                                    <input id="grid_product_price_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price']%}"/>
+                                    <input type="hidden" value="{%$value['product_price']%}"/>
                                     <td>{%$value['product_price_sale']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
-                                    <input id="grid_product_price_sale_{%$value['m_product_id']%}" type="hidden" value="{%$value['product_price_sale']%}"/>
+                                    <input type="hidden" value="{%$value['product_price_sale']%}"/>
                                     <td>
-	                                    <input class="checkbox" type="checkbox" disabled="disabled" value="1" id="grid_flg_notify_{%$value['m_product_id']%}" {%if $value['flg_notify'] == 1%}checked="checked"{%/if%}/>
-	                                    <span id="grid_msg_notify_{%$value['m_product_id']%}">{%$value['msg_notify']%}</span>
+	                                    <input class="checkbox" type="checkbox" disabled="disabled" value="1" {%if $value['flg_notify'] == 1%}checked="checked"{%/if%} />
+	                                    <span>{%$value['msg_notify']%}</span>
                                     </td>
                                     <!--<td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']|nl2br nofilter%}</td>-->
-                                    <td id=""><img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}"></td>
+                                    <td>{%if isset($value['image_path']) == true%}<img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}">{%/if%}</td>
                                     <!--<td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>-->
                                     <td>
                                         <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>

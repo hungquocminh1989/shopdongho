@@ -7,10 +7,10 @@ class CommonController extends BasicController {
 		$arr_return = array();
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
-		$PageSettingModel = new PageSettingModel();
+		$SiteSettingModel = new SiteSettingModel();
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['listProduct'] = $ProductModel->listProductImage();
-		$arr_return['listDefine'] = $PageSettingModel->get_define();
+		$arr_return['listDefine'] = $SiteSettingModel->get_define();
 	    Flight::renderSmarty('index.html',$arr_return);
 	}
 	
@@ -49,12 +49,12 @@ class CommonController extends BasicController {
 	{
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
-		$PageSettingModel = new PageSettingModel();
+		$SiteSettingModel = new SiteSettingModel();
 		$arr_return = array();
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['productInfo'] = $ProductModel->listProductDetailById($id, $product_link);
 		$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);
-		$arr_return['listDefine'] = $PageSettingModel->get_define();
+		$arr_return['listDefine'] = $SiteSettingModel->get_define();
 		if($arr_return['productInfo'] == NULL){
 			Flight::redirect('/');
 		}
@@ -66,12 +66,14 @@ class CommonController extends BasicController {
 		if(self::checklogin() == TRUE){
 			$CategoryModel = new CategoryModel();
 			$ProductModel = new ProductModel();
-			$PageSettingModel = new PageSettingModel();
+			$SiteSettingModel = new SiteSettingModel();
+			$PageSectionTypeModel = new PageSectionTypeModel();
 			
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
 			$arr_return['listProduct'] = $ProductModel->listProductImage();
-			$arr_return['listDefine'] = $PageSettingModel->get_define();
+			$arr_return['listDefine'] = $SiteSettingModel->get_define();
+			$arr_return['listPageType'] = $PageSectionTypeModel->selectAllRows();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
 		    Flight::renderSmarty('main.html',$arr_return);
 		}
@@ -100,15 +102,39 @@ class CommonController extends BasicController {
 		return NULL;
 	}
 	
+	public function copy_multi_file_uploaded($name, $folderRoot, $compress = FALSE){
+		$arr_images = array();
+		$countFile = count($_FILES[$name]['type']);
+		if($countFile > 0 && $_FILES[$name]['type'][0] != ''){
+			for($i = 0; $i < $countFile; $i++){
+				$file_src = $_FILES[$name]['tmp_name'][$i];
+				$filename = uniqid().'_'.$_FILES[$name]['name'][$i];
+				$folder_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$folderRoot;
+				$file_dest = $folder_dest.'/'.$filename;
+				
+				Support_File::CopyFile($file_src,$file_dest);
+				
+				//Nén hình
+				if($compress == TRUE){
+					Support_Image::imageCompress($file_dest,$file_dest);
+				}
+				
+				$arr_images[] = 'public/upload/'.$folderRoot.'/'.$filename;
+			}
+			return $arr_images;
+		}
+		return NULL;
+	}
+	
 	public static function action_add_define()
 	{
-		$modelPage = new PageSettingModel();
+		$modelPage = new SiteSettingModel();
 		$modelImage = new ImageModel();
 		
 		$arrPost = Flight::request()->data->getData();
 		
 		//Copy file
-		$image_path = self::copy_file_uploaded('upload_logo_site', 'site_define');
+		$image_path = self::copy_file_uploaded('upload_logo_site', 'site_images');
 		
 		//Insert or Update m_site_setting
 		$param = Support_Array::filter($arrPost,array('site_name','phone','address'));
@@ -117,7 +143,9 @@ class CommonController extends BasicController {
 		$arr_sql = array();
 		$arr_sql['meta_type'] = $modelImage->getMetaType(SYSTEM_META_SITE_SETTING);
 		$arr_sql['meta_id'] = $m_site_setting_id;
-		$arr_sql['image_path'] = $image_path;
+		if($image_path != NULL){
+			$arr_sql['image_path'] = $image_path;
+		}
 		
 		//Insert or Update m_image
 		$rows = $modelImage->selectRowsByMetaData($modelImage->getMetaType(SYSTEM_META_SITE_SETTING), $m_site_setting_id);
@@ -162,6 +190,61 @@ class CommonController extends BasicController {
 		$model = new CategoryModel();
 		$model->deleteRowById($_POST['m_category_id']);
 		Flight::json(array('status' => 'OK'));
+	}
+	
+	public static function action_add_section()
+	{
+		if(isset($_POST['section_type'])){
+			$m_page_section_type_id = $_POST['section_type'];
+			$PageSectionTypeModel = new PageSectionTypeModel();
+			$CategoryModel = new CategoryModel();
+			$ProductModel = new ProductModel();
+			
+			$arr_return = array();
+			$arr_return = $PageSectionTypeModel->selectRowById($m_page_section_type_id)[0];
+			$arr_return['section_index'] =  microtime(TRUE);
+			
+			if($m_page_section_type_id == 1){
+				$arr_return['listCategory'] = $CategoryModel->listCategory();	
+				Flight::renderSmarty('main/category_section.html',$arr_return);
+			}
+			else if($m_page_section_type_id == 2){
+				Flight::renderSmarty('main/slider_section.html',$arr_return);
+			}
+			else if($m_page_section_type_id == 3){
+				Flight::renderSmarty('main/free_section.html',$arr_return);
+			}
+			else if($m_page_section_type_id == 4){
+				$arr_return['listProduct'] = $ProductModel->listProductImage();
+				Flight::renderSmarty('main/product_section.html',$arr_return);
+			}
+		}
+	}
+	
+	public static function action_image_upload()
+	{
+		//Copy file
+		$image_path = self::copy_file_uploaded('file_upload', 'free_images');
+		$imgModel = new ImageModel();
+		$meta_type = $imgModel->getMetaType(SYSTEM_META_FREE_IMAGE);
+		$imgModel->insertRow(
+			[
+				'meta_type'=>$meta_type,
+				'image_path'=>$image_path
+			]
+		);
+		
+		Flight::json(array('url' => SYSTEM_BASE_URL.$image_path));
+	}
+	
+	public static function action_update_page()
+	{
+		
+		$postData = Flight::request()->data->getData();
+		$model = new PageModel();
+		$model->update_page($postData);
+		
+		Flight::redirect('/main');
 	}
 	
 	public static function action_updateproduct()
@@ -229,22 +312,10 @@ class CommonController extends BasicController {
 	}
 	
 	public function insertImagesUpload($m_product_id){
-		$arr_images = array();
-		//Get file upload
-		$countFile = count($_FILES['upload']['type']);
 		
-		if($countFile > 0&& $_FILES['upload']['type'][0] != ''){
-			for($i = 0; $i < $countFile; $i++){
-				$file_src = $_FILES['upload']['tmp_name'][$i];
-				$filename = uniqid().'_'.$_FILES['upload']['name'][$i];
-				$file_dest = SYSTEM_PUBLIC_UPLOAD.'/'.$m_product_id.'/'.$filename;
-				Support_File::CopyFile($file_src,$file_dest);
-				
-				//Nén hình
-				Support_Image::imageCompress($file_dest,$file_dest);
-				$arr_images[] = 'public/upload/'.$m_product_id.'/'.$filename;
-			}
-		}
+		$folderRoot = "product_images/$m_product_id";
+		
+		$arr_images = self::copy_multi_file_uploaded('upload', $folderRoot, TRUE);
 		
 		$ImageModel = new ImageModel();
 		if(count($arr_images) > 0){

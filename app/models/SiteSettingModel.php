@@ -1,6 +1,6 @@
 <?php 
 
-class PageSettingModel extends BasicModel {
+class SiteSettingModel extends BasicModel {
 	
 	public function create_define($sql_param){
 		

@@ -1,8 +1,66 @@
 $(function() {
 	
-	$('.summernote').summernote({
-		lang: 'vi-VN' 
+	$('#txt_product_info').summernote({
+		lang: 'vi-VN',
+		dialogsInBody: true,
+		dialogsFade: false,
+		callbacks: {
+			onImageUpload: function(files) {
+	            summernote_uploadimage(files[0], $('#txt_product_info'));
+	        }	
+		}
 	});
+	
+	function summernote_uploadimage(file, obj_this) {
+		var ajax = new System();
+		data = new FormData();
+        data.append("file_upload", file);
+    	
+    	$.ajax({
+            data: data,
+            type: "POST",
+            url: "{%$smarty.const.SYSTEM_BASE_URL%}main/image/upload",
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                System.loading(true);
+            },
+            success: function(data) {
+            	//console.log(data['url']);
+                obj_this.summernote('editor.insertImage', data['url']);
+                System.loading(false);
+            }
+        });
+    }
+	
+	// summernote.change
+	/*$('.summernote').on('summernote.change', function(we, contents, $editable) {
+	  console.log('summernote\'s content is changed.');
+	});*/
+	
+	$('.selectpicker').selectpicker();
+	
+	$(document).on('click', '#add_section', function() {
+    	var ajax = new System();
+    	ajax.done_func = function(html) {
+    		$('#section_contents').append(html);
+    		$('#txt_free_section').summernote({
+				lang: 'vi-VN',
+				dialogsInBody: true,
+				dialogsFade: false,
+				callbacks: {
+					onImageUpload: function(files) {
+			            summernote_uploadimage(files[0], $('#txt_free_section'));
+			        }	
+				}
+			});
+			$('.selectpicker').selectpicker();
+    	};
+    	ajax.connect("POST","main/section/add", {
+            		"section_type": $('#section_type').val()  
+	    });
+    });
     
     $(document).on('click', '.btn_edit_ctg', function() {
     	var ajax = new System();
@@ -38,9 +96,17 @@ $(function() {
     	ajax.done_func = function(html) {
     		System.show_dialog(html,'Cập Nhật Sản Phẩm',function(){
     			//Chạy sau khi dialog đã được open
-    			$('.summernote1').summernote({
-					lang: 'vi-VN' 
+    			$('#txt_product_info_edit').summernote({
+					lang: 'vi-VN' ,
+					dialogsInBody: true,
+					dialogsFade: true,
+					callbacks: {
+						onImageUpload: function(files) {
+				            summernote_uploadimage(files[0], $('#txt_product_info_edit'));
+				        }	
+					}
 				});
+				$('.selectpicker').selectpicker();
     			document.getElementById('select_image_popup').addEventListener('change', function(){
 				    handleFileSelect('img_review_popup','select_image_popup');
 				}, false);

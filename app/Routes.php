@@ -23,6 +23,13 @@ Flight::route('/main/product/delete', array($controller, 'action_deleteproduct')
 //Infomation
 Flight::route('/main/define/add', array($controller, 'action_add_define'));
 
+//Image
+Flight::route('/main/image/upload', array($controller, 'action_image_upload'));
+
+//Page
+Flight::route('/main/section/add', array($controller, 'action_add_section'));
+Flight::route('/main/page/update', array($controller, 'action_update_page'));
+
 //API
 Flight::route('/javascript-obfuscator', array($controller, 'action_obfuscator'));
 

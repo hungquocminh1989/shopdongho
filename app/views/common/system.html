@@ -65,6 +65,58 @@
         this.initialize.apply(this, arguments);
     }
     
+    function SystemUpload() {
+        this.initialize.apply(this, arguments);
+    }
+    
+    SystemUpload.prototype.initialize = function(data_type) {
+        this.ajax_option = {
+    		cache: false,
+    		dataType: data_type,
+    		contentType: false,
+            processData: false,
+    		statusCode: {
+    			401 : function () {
+    				//Edit start LIXD-614 TinVNIT 12022016
+    				//$('#modal_message').dialog('close');
+    				//System.sesstion_err_msg();
+    				//Edit end LIXD-614 TinVNIT 12022016
+    			}
+    		}
+    	};
+    };
+    
+    SystemUpload.prototype.connect = function (action_type, ajax_url, ajax_data) {
+    	var aa_this = this;
+    	var opt =　this.ajax_option;
+    	System.loading(true);
+    	opt.type =  action_type;
+    	opt.url = '{%$smarty.const.SYSTEM_BASE_URL%}' + ajax_url;
+    	if (ajax_data) {
+    		opt.data = ajax_data;
+    	} else if (opt.data) {
+    		delete opt.data;
+    	}
+    	$.ajax(opt)
+    		.always(function (data) {
+    			System.loading(false);
+    			aa_this.always_func(data);
+    		})	// alwaysを一番先に実行
+    		.done(aa_this.done_func)
+    		.fail(aa_this.fail_func);
+    };
+    
+    SystemUpload.prototype.always_func = function (data){
+    	//Do Nothing.
+    };
+    SystemUpload.prototype.done_func = function (data){
+    	
+    };
+    SystemUpload.prototype.fail_func = function (data) {
+    	System.message_error(data.responseText);
+    };
+    
+    
     System.prototype.initialize = function(data_type) {
         this.ajax_option = {
     		cache: false,

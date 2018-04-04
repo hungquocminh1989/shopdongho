@@ -8,6 +8,20 @@ class SitePageModel extends BasicModel {
 	*/
 	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 	
+	public function selectRowByConditions($param = array()){
+		
+    	$db = $this->MedooDb();
+    	
+    	$data = $db->select("m_site_page",'*',$param);
+		
+		if($data != NULL && count($data) > 0 ){
+			return $data;
+		}
+    	
+		return NULL;
+		
+	}
+	
 	public function selectRowById($id){
 		
     	$db = $this->MedooDb();

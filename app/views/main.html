@@ -218,7 +218,7 @@
                         <div class="col-sm-4">
                             <select id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
                                 {%foreach $listPageType as $value%}
-                                <option data-tokens="{%$value['section_type_name']%}" value="{%$value['m_page_section_type_id']%}">{%$value['section_type_name']%}</option>
+                                <option data-tokens="{%$value['meta_name_display']%}" value="{%$value['meta_type']%}">{%$value['meta_name_display']%}</option>
                                 {%/foreach%}
                             </select>
                         </div>

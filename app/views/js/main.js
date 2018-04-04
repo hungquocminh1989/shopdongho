@@ -11,33 +11,16 @@ $(function() {
 		}
 	});
 	
-	function summernote_uploadimage(file, obj_this) {
-		var ajax = new System();
+	function summernote_uploadimage(file, control) {
+		var ajax = new SystemUpload();
 		data = new FormData();
         data.append("file_upload", file);
     	
-    	$.ajax({
-            data: data,
-            type: "POST",
-            url: "{%$smarty.const.SYSTEM_BASE_URL%}main/image/upload",
-            cache: false,
-            contentType: false,
-            processData: false,
-            beforeSend: function(){
-                System.loading(true);
-            },
-            success: function(data) {
-            	//console.log(data['url']);
-                obj_this.summernote('editor.insertImage', data['url']);
-                System.loading(false);
-            }
-        });
+    	ajax.done_func = function(data) {
+    		control.summernote('editor.insertImage', data['url']);
+    	};
+    	ajax.connect("POST","main/image/upload", data);
     }
-	
-	// summernote.change
-	/*$('.summernote').on('summernote.change', function(we, contents, $editable) {
-	  console.log('summernote\'s content is changed.');
-	});*/
 	
 	$('.selectpicker').selectpicker();
 	

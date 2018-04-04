@@ -1,7 +1,12 @@
 <?php 
 
 class ProductModel extends BasicModel {
-    
+	
+	public function __construct() {
+    	
+        parent::__construct('m_product');
+
+    }
     
     public function listProduct(){
     	$result = $this->query(
@@ -97,92 +102,6 @@ class ProductModel extends BasicModel {
 			$modelImage = new ImageModel();
 			$modelImage->deleteRowsByMetaData($this->getMetaType(SYSTEM_META_PRODUCT),$m_product_id);
 		}
-	}
-	
-	/**■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-	* Các Hàm Cơ Bản Truy Xuất DB
-	* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-	*/
-	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-	
-	public function selectRowById($m_product_id){
-		
-    	$db = $this->MedooDb();
-    	
-    	$data = $db->select("m_product",'*',
-    		[
-				"m_product_id" => $m_product_id
-			]
-		);
-		
-		if($data != NULL && count($data) > 0 ){
-			return $data;
-		}
-    	
-		return NULL;
-		
-	}
-	
-	public function insertRow($sql_param){
-    	
-    	$db = $this->MedooDb();
-		$db->begin_transaction();
-		
-		try{
-			$db->insert('m_product',$sql_param);
-			$lastInsertId = $db->id();
-			$db->commit();
-			return $lastInsertId;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
-		}
-    	
-	}
-	
-	public function updateRowById($sql_param, $m_product_id){
-    	
-    	$db = $this->MedooDb();
-		$db->begin_transaction();
-		
-		try{
-			$db->update('m_product',$sql_param,
-				[
-					'm_product_id'=>$m_product_id
-				]
-			);
-			$db->commit();
-			return TRUE;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
-		}
-    	
-	}
-	
-	public function deleteRowById($m_product_id){
-		
-		$db = $this->MedooDb();
-		$db->begin_transaction();
-		
-		try{
-			$db->delete("m_product",
-				[
-					'm_product_id' => $m_product_id
-				]
-			);
-			$db->commit();
-			return TRUE;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
-		}
-		
-	}
-	
-	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+	} 
     
 }

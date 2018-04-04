@@ -2,6 +2,11 @@
 
 class SiteSettingModel extends BasicModel {
 	
+	function __construct() {
+        parent::__construct ('m_site_setting');
+
+    }
+	
 	public function create_define($sql_param){
 		
 		$db = $this->MedooDb();

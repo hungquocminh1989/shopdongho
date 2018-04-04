@@ -229,7 +229,7 @@ class CommonController extends BasicController {
 	{
 		
 		$postData = Flight::request()->data->getData();
-		$model = new PageModel();
+		$model = new SitePageModel();
 		$model->update_page($postData);
 		
 		Flight::redirect('/main');

@@ -7,8 +7,10 @@ class Model
 	private $_last_param;
 	private $_last_sql;
 	private $db_medoo;
+	protected $table_name;
+	protected $pk_id;
 	
-	public function __construct()
+	public function __construct($tablename = NULL)
 	{
 		/*
 		$dns = 'mysql:dbname=mail;host=127.0.0.1';
@@ -29,6 +31,9 @@ class Model
 			    'username' 		=> DATABASE_USER,
 			    'password' 		=> DATABASE_PASS
 			]);
+			
+			$this->table_name = $tablename;
+        	$this->pk_id = $tablename.'_id';
 			
 		} 
 		catch (PDOException $e) {

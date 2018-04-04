@@ -99,12 +99,14 @@ class CommonController extends BasicController {
 			$ProductModel = new ProductModel();
 			$SiteSettingModel = new SiteSettingModel();
 			$MetaModel = new MetaModel();
+			$SitePageModel = new SitePageModel();
 			
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
 			$arr_return['listProduct'] = $ProductModel->listProductImage();
 			$arr_return['listDefine'] = $SiteSettingModel->get_define();
 			$arr_return['listPageType'] = $MetaModel->selectSectionType();
+			$arr_return['listPage'] = $SitePageModel->selectAllRows();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
 		    Flight::renderSmarty('main.html',$arr_return);
 		}

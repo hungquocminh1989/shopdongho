@@ -242,8 +242,33 @@
                         <div class="col-sm-3">
                             <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/page/update" class="btn btn-primary">Tạo Trang</button>
                         </div>
-                    </div>
+                    </div> 
                 </form>
+            	<div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên Trang</th>
+                                <th>Link Truy Cập</th>
+                                <th>Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%foreach $listPage as $value%}
+                            <tr>
+                                <th scope="row">{%$value@iteration%}</th>
+                                <td>{%$value['page_name']%}</td>
+                                <td>{%$value['page_link']%}</td>
+                                <td>
+                                    <button class="btn btn-primary btn_edit_page" value="{%$value['m_category_id']%}">Sửa</button>
+                                    <button value="{%$value['m_category_id']%}" class="btn btn-danger btn_delete_page">Xóa</button>
+                                </td>
+                            </tr>
+                            {%/foreach%}
+                        </tbody>
+                    </table>
+                </div>
             	</div>
             </div>
             

@@ -25,6 +25,20 @@ class BasicModel extends Model {
 		
 	}
 	
+	public function selectAllRows(){
+		
+    	$db = $this->MedooDb();
+    	
+    	$data = $db->select($this->table_name,'*');
+		
+		if($data != NULL && count($data) > 0 ){
+			return $data;
+		}
+    	
+		return NULL;
+		
+	}
+	
 	public function selectRowByConditions($param = array()){
 		
     	$db = $this->MedooDb();

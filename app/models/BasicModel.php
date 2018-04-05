@@ -39,7 +39,7 @@ class BasicModel extends Model {
 		
 	}
 	
-	public function selectRowByConditions($param = array()){
+	public function selectRowsByConditions($param = array()){
 		
     	$db = $this->MedooDb();
     	
@@ -107,6 +107,23 @@ class BasicModel extends Model {
     	
 	}
 	
+	public function updateRowsByConditions($sql_param, $where_param){
+    	
+    	$db = $this->MedooDb();
+		$db->begin_transaction();
+		
+		try{
+			$db->update($this->table_name,$sql_param,$where_param);
+			$db->commit();
+			return TRUE;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
+		}
+    	
+	}
+	
 	public function updateRowsByMetaData($sql_param, $meta_type, $meta_id){
     	
     	$db = $this->MedooDb();
@@ -140,6 +157,23 @@ class BasicModel extends Model {
 					$this->pk_id => $id
 				]
 			);
+			$db->commit();
+			return TRUE;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
+		}
+		
+	}
+	
+	public function deleteRowsByConditions($param){
+		
+		$db = $this->MedooDb();
+		$db->begin_transaction();
+		
+		try{
+			$db->delete($this->table_name,$param);
 			$db->commit();
 			return TRUE;
 			

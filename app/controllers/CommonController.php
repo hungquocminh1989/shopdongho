@@ -18,7 +18,7 @@ class CommonController extends BasicController {
 		$pageModel = new SitePageModel();
 		$pageDetailModel = new SitePageDetailModel();
 		
-		$arr_site_page = $pageModel->selectRowByConditions([
+		$arr_site_page = $pageModel->selectRowsByConditions([
 			'page_link' => $page_link
 		]);
 		
@@ -26,7 +26,7 @@ class CommonController extends BasicController {
 		
 		if($arr_site_page != NULL && count($arr_site_page) == 1){
 			
-			$listPageDetail = $pageDetailModel->selectRowByConditions([
+			$listPageDetail = $pageDetailModel->selectRowsByConditions([
 				'm_site_page_id' => $arr_site_page[0]['m_site_page_id']
 			]);
 			
@@ -235,6 +235,25 @@ class CommonController extends BasicController {
 		$model->update_page($postData);
 		
 		Flight::redirect('/main');
+	}
+	
+	public static function action_delete_page()
+	{
+		
+		$postData = Flight::request()->data->getData();
+		$model = new SitePageModel();
+		$modelDetail = new SitePageDetailModel();
+		$model->deleteRowById($postData['m_site_page_id']);
+		$modelDetail->deleteRowsByConditions(['m_site_page_id'=>$postData['m_site_page_id']]);
+		
+		Flight::redirect('/main');
+	}
+	
+	public static function action_edit_page()
+	{
+		$model = new CategoryModel();
+		$arr_return = $model->selectRowById($_POST['m_site_page_id']);
+		Flight::renderSmarty('dialog/page_edit.html',$arr_return[0]);
 	}
 	
 	public static function action_updateproduct()

@@ -73,6 +73,34 @@ $(function() {
     	);
     });
     
+    $(document).on('click', '.btn_delete_page', function() {
+    	var id = this.value ;
+    	System.message_confirm('Xóa Trang Đã Chọn ?',
+    		function(){
+    			var ajax = new System();
+				ajax.done_func = function(html) {
+		    		System.message_success('Xóa Trang Thành Công.',function(){
+		    			System.reload();
+		    		});
+		    	};
+		    	ajax.connect("POST","main/page/delete",{
+		            		"m_site_page_id": id  
+			    });
+			}
+    	);
+    });
+    
+    $(document).on('click', '.btn_edit_page', function() {
+    	var ajax = new System();
+    	var id = this.value;
+    	ajax.done_func = function(html) {
+    		System.show_dialog(html,'Cập Nhật Trang');
+    	};
+    	ajax.connect("POST","main/category/edit",{
+            		"m_site_page_id": id  
+	    });
+    });
+    
     $(document).on('click', '.btn_edit_product', function() {
     	var ajax = new System();
     	var m_product_id = this.value;

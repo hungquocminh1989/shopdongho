@@ -2,7 +2,8 @@
 
 //Register Controller Request
 $controller = new CommonController();
-Flight::route('/(index)', array($controller, 'action_index'));
+$indexController = new IndexController();
+Flight::route('/(index)', array($indexController, 'action_index'));
 Flight::route('/detail/@id/@product_link', array($controller, 'action_detail'));
 Flight::route('/main', array($controller, 'action_main'));
 Flight::route('/admin', array($controller, 'action_admin'));
@@ -31,6 +32,7 @@ Flight::route('/main/section/add', array($controller, 'action_add_section'));
 Flight::route('/main/page/update', array($controller, 'action_update_page'));
 Flight::route('/main/page/delete', array($controller, 'action_delete_page'));
 Flight::route('/main/page/edit', array($controller, 'action_edit_page'));
+Flight::route('/'.SYSTEM_ROUTE_PAGE_REFIX.'/@refix', array($indexController, 'action_index'));
 
 //API
 Flight::route('/javascript-obfuscator', array($controller, 'action_obfuscator'));

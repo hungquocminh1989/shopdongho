@@ -2,58 +2,6 @@
 
 class CommonController extends BasicController {
 	
-	public static function action_index()
-	{
-		$arr_return = array();
-		$CategoryModel = new CategoryModel();
-		$ProductModel = new ProductModel();
-		$SiteSettingModel = new SiteSettingModel();
-		$arr_return['listCategory'] = $CategoryModel->listCategory();
-		$arr_return['listProduct'] = $ProductModel->listProductImage();
-		$arr_return['listDefine'] = $SiteSettingModel->get_define();
-		
-		//================
-		$requestData = Flight::request()->data->getData();
-		
-		$pageModel = new SitePageModel();
-		$pageDetailModel = new SitePageDetailModel();
-		
-		$arr_site_page = $pageModel->selectRowsByConditions([
-			'page_link' => $page_link
-		]);
-		
-		$arr_data_sections = array();
-		
-		if($arr_site_page != NULL && count($arr_site_page) == 1){
-			
-			$listPageDetail = $pageDetailModel->selectRowsByConditions([
-				'm_site_page_id' => $arr_site_page[0]['m_site_page_id']
-			]);
-			
-			if($listPageDetail != NULL && count($listPageDetail) > 0){
-				
-				foreach($listPageDetail as $key => $value){
-					$arr_section = array();
-					
-					$meta_type = $value['meta_type'];
-					if(true){
-						
-					}
-					
-					
-					$arr_section['title'] = '';
-					$arr_section['data'] = '';
-					
-					$arr_data_sections[] = $arr_section;
-				}
-				
-			}
-		}
-		//================
-		
-	    Flight::renderSmarty('index.html',$arr_return);
-	}
-	
 	public static function action_admin()
 	{
 		if(parent::checklogin() == TRUE){
@@ -66,13 +14,18 @@ class CommonController extends BasicController {
 	
 	public static function action_login()
 	{
-		if(isset($_POST['passcode'])==TRUE && md5($_POST['passcode']) == SYSTEM_PASSCODE)
-		{
-			$_SESSION["login_token"] = md5(SYSTEM_PASSCODE);
+		if(parent::checklogin() == TRUE){
 			Flight::redirect('/main');
 		}
 		else{
-			Flight::redirect('/admin');
+			if(isset($_POST['passcode'])==TRUE && md5($_POST['passcode']) == SYSTEM_PASSCODE)
+			{
+				$_SESSION["login_token"] = md5(SYSTEM_PASSCODE);
+				Flight::redirect('/main');
+			}
+			else{
+				Flight::redirect('/admin');
+			}
 		}
 	}
 	

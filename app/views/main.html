@@ -210,7 +210,11 @@
                     <div class="form-group row">
                         <label class="col-sm-2 form-control-label">Link Truy Cập</label>
                         <div class="col-sm-5">
-                            <input required name="page_link" type="text" class="form-control" placeholder="Nhập Link Truy Cập">
+	                        <div class="input-group">
+	                        	<span class="input-group-addon" id="basic-addon1">{%$smarty.const.SYSTEM_BASE_URL%}{%$smarty.const.SYSTEM_ROUTE_PAGE_REFIX%}/</span>
+
+	                            <input required name="page_link" type="text" class="form-control" placeholder="Nhập Link Truy Cập">
+	                        </div>
                         </div>
                     </div>
                     <div class="form-group row">

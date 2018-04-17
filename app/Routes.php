@@ -32,7 +32,7 @@ Flight::route('/main/section/add', array($controller, 'action_add_section'));
 Flight::route('/main/page/update', array($controller, 'action_update_page'));
 Flight::route('/main/page/delete', array($controller, 'action_delete_page'));
 Flight::route('/main/page/edit', array($controller, 'action_edit_page'));
-Flight::route('/'.SYSTEM_ROUTE_PAGE_REFIX.'/@refix', array($indexController, 'action_index'));
+Flight::route('/'.SYSTEM_ROUTE_PAGE_REFIX.'/@page_link', array($indexController, 'action_index'));
 
 //API
 Flight::route('/javascript-obfuscator', array($controller, 'action_obfuscator'));

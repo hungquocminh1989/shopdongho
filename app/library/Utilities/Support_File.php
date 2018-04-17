@@ -114,7 +114,7 @@ class Support_File
 			if($arr_path != NULL && count($arr_path) >0 ){
 				$path = $arr_path[0];
 				foreach($arr_path as $key => $value){
-					if($key != 0 && basename($source) != $value){
+					if($key != 0 && is_file($value) == FALSE){
 						$path = $path."/".$value;
 						if(file_exists($path) == FALSE){
 							mkdir($path, 0777, TRUE);

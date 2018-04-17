@@ -8,15 +8,15 @@ class SitePageDetailModel extends BasicModel {
 
     }
     
-    public function selectAllMetaType($m_site_page_id_id){
+    public function selectAllMetaType($m_site_page_id){
 		return $this->query(
 		"
 			SELECT meta_type 
 			FROM m_site_page_detail
-			WHERE m_site_page_id_id = :m_site_page_id_id
+			WHERE m_site_page_id = :m_site_page_id
 			GROUP BY meta_type 
 		"
-		,['m_site_page_id_id' => $m_site_page_id_id]);
+		,['m_site_page_id' => $m_site_page_id]);
 	}
     
 }

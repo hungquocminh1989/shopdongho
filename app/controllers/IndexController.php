@@ -2,7 +2,7 @@
 
 class IndexController extends BasicController {
 	
-	public static function action_index($refix)
+	public static function action_index($page_link)
 	{
 		/*$arr = array();
 		$item1 = 
@@ -51,7 +51,7 @@ class IndexController extends BasicController {
 		$pageDetailModel = new SitePageDetailModel();
 		
 		$arr_site_page = $pageModel->selectRowsByConditions([
-			'page_link' => SYSTEM_ROUTE_PAGE_REFIX.'/'.$refix
+			'page_link' => $page_link
 		]);
 		
 		$oData = new ObjectData();
@@ -62,9 +62,11 @@ class IndexController extends BasicController {
 			
 			if($listMetaTypeDetail != NULL && count($listMetaTypeDetail) > 0){
 				
-				$meta_type = $value['meta_type'];
+				
 				
 				foreach($listMetaTypeDetail as $value){
+					
+					$meta_type = $value['meta_type'];
 					
 					$listDetail = $pageDetailModel->selectRowsByConditions([
 						'm_site_page_id' => $m_site_page_id,
@@ -75,13 +77,7 @@ class IndexController extends BasicController {
 						
 						foreach($listDetail as $item){
 							
-							$arr_section = array(
-								'type' => '',
-								'title' => '',
-								'data' => NULL
-							);
-							
-							$meta_id = $value['meta_id'];
+							$meta_id = $item['meta_id'];
 							
 							$title = '';
 							$data = NULL;

@@ -146,6 +146,7 @@ class CommonController extends BasicController {
 			$arr_return = array();
 			$arr_return = $MetaModel->selectRowById($section_type)[0];
 			$arr_return['section_index'] =  microtime(TRUE);
+			$arr_return['meta_type'] =  $section_type;
 			
 			if($section_type == 4){
 				$arr_return['listCategory'] = $CategoryModel->listCategory();	

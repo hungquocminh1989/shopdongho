@@ -12,7 +12,7 @@ class Support_Log
 		$ip = Support_Common::get_client_ip();
 		$url = Support_Common::get_current_url();
 		
-		$contents = "\r\n【".Date('Y-m-d H:i:s')."】 Access from $ip - $url"."\r\n".$contents;
+		$contents = "\r\n【".Date('Y-m-d H:i:s')."】 Access from $ip - $url"."\r\n".var_export($contents,TRUE);
 		file_put_contents($filename, $contents, FILE_APPEND);
 		return;
 	}

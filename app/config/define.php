@@ -4,6 +4,7 @@ define('SMARTY_LEFT_DELIMITER', '{%');
 define('SMARTY_RIGHT_DELIMITER', '%}');
 define('SYSTEM_DEFAULT_TIMEZONE', 'Asia/Tokyo');
 define('SYSTEM_ROOT_DIR', str_replace("\\", '/', getcwd()));
+define('SYSTEM_TMP_DIR', SYSTEM_ROOT_DIR.'/tmp');
 define('SYSTEM_VIEW_JS', SYSTEM_ROOT_DIR.'/app/views/js');
 define('SYSTEM_JS_ENCRYTION', FALSE);
 define('SYSTEM_PASSCODE', 'bb8b067fa8aab806dc17e3087c8e3eab');
@@ -16,7 +17,6 @@ Chất liệu vỏ : Thép không gỉ
 Chất liệu kính : Kính Cứng
 Độ chịu nước : Chống nước sinh hoạt
 Chức năng khác : Lịch ngày');
-define('SYSTEM_TMP_DIR', SYSTEM_ROOT_DIR.'/tmp');
 define('SYSTEM_META_PRODUCT', 1);
 define('SYSTEM_META_SITE_SETTING', 2);
 define('SYSTEM_META_PAGE_SETTING', 3);

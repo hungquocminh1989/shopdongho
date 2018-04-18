@@ -17,10 +17,10 @@ Chất liệu kính : Kính Cứng
 Độ chịu nước : Chống nước sinh hoạt
 Chức năng khác : Lịch ngày');
 define('SYSTEM_TMP_DIR', SYSTEM_ROOT_DIR.'/tmp');
-define('SYSTEM_META_PRODUCT', 'PRODUCT');
-define('SYSTEM_META_CATEGORY', 'CATEGORY');
-define('SYSTEM_META_SITE_SETTING', 'SITE_SETTING');
-define('SYSTEM_META_PAGE_SETTING', 'PAGE_SETTING');
-define('SYSTEM_META_FREE_IMAGE', 'FREE_IMAGE');
-define('SYSTEM_META_FREE_SECTION', 'FREE_SECTION');
+define('SYSTEM_META_PRODUCT', 1);
+define('SYSTEM_META_SITE_SETTING', 2);
+define('SYSTEM_META_PAGE_SETTING', 3);
+define('SYSTEM_META_CATEGORY', 4);
+define('SYSTEM_META_FREE_IMAGE', 5);
+define('SYSTEM_META_FREE_SECTION', 6);
 define('SYSTEM_ROUTE_PAGE_REFIX', 'page');

@@ -40,10 +40,9 @@ class SiteSettingModel extends BasicModel {
 	
 	
 	public function get_define(){
-		$meta_type = $this->getMetaType(SYSTEM_META_SITE_SETTING);
 		return $this->query("
 			SELECT * FROM m_site_setting ss
-			LEFT JOIN m_image im ON im.meta_id = ss.m_site_setting_id AND im.meta_type = $meta_type
+			LEFT JOIN m_image im ON im.meta_id = ss.m_site_setting_id AND im.meta_type = ".SYSTEM_META_SITE_SETTING."
 		");
 	}
     

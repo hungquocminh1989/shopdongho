@@ -28,7 +28,7 @@ class SitePageModel extends BasicModel {
 			
 			$arr_page['page_link'] = $postData['page_link'];
 			$arr_page['page_name'] = $postData['page_name'];
-			
+			//Support_Common::var_dump($postData);die();
 			if(isset($postData['meta_type']) == TRUE){
 				$dataMeta = array_values($postData['meta_type']);
 				foreach($dataMeta as $index => $data){
@@ -38,19 +38,19 @@ class SitePageModel extends BasicModel {
 						$arr_add['meta_type'] = $meta_type;
 						$arr_add['sort_no'] = $index;
 						
-						if($meta_type == 3){//Free Data
+						$arr_add['section_title'] = $value['section_title'];
+						if($meta_type == SYSTEM_META_FREE_SECTION){//Free Data
 							//Insert m_site_content
 							$db->insert('m_site_content',
 								[
-									'content_name' => $value[0],
-									'html_data' => $value[1]
+									'html_data' => $value['html_data']
 								]
 							);
 							$m_site_content_id = $db->id();
 							$arr_add['meta_id'] = $m_site_content_id;
 						}
 						else{
-							$arr_add['meta_id'] = $value[0];
+							$arr_add['meta_id'] = $value['meta_id'];
 						}
 						
 						$arr_page_detail[] = $arr_add;

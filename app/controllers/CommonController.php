@@ -84,14 +84,14 @@ class CommonController extends BasicController {
 		$m_site_setting_id = $modelPage->create_define($param);
 		
 		$arr_sql = array();
-		$arr_sql['meta_type'] = $modelImage->getMetaType(SYSTEM_META_SITE_SETTING);
+		$arr_sql['meta_type'] = SYSTEM_META_SITE_SETTING;
 		$arr_sql['meta_id'] = $m_site_setting_id;
 		if($image_path != NULL){
 			$arr_sql['image_path'] = $image_path;
 		}
 		
 		//Insert or Update m_image
-		$rows = $modelImage->selectRowsByMetaData($modelImage->getMetaType(SYSTEM_META_SITE_SETTING), $m_site_setting_id);
+		$rows = $modelImage->selectRowsByMetaData(SYSTEM_META_SITE_SETTING, $m_site_setting_id);
 		if($rows != NULL && count($rows) > 0 ){
 			$modelImage->updateRowById($arr_sql, $rows[0]['m_image_id']);
 		}
@@ -148,17 +148,17 @@ class CommonController extends BasicController {
 			$arr_return['section_index'] =  microtime(TRUE);
 			$arr_return['meta_type'] =  $section_type;
 			
-			if($section_type == 4){
+			if($section_type == SYSTEM_META_CATEGORY){
 				$arr_return['listCategory'] = $CategoryModel->listCategory();	
 				Flight::renderSmarty('main/category_section.html',$arr_return);
 			}
 			else if($section_type == NULL){
 				Flight::renderSmarty('main/slider_section.html',$arr_return);
 			}
-			else if($section_type == 6){
+			else if($section_type == SYSTEM_META_FREE_SECTION){
 				Flight::renderSmarty('main/free_section.html',$arr_return);
 			}
-			else if($section_type == 1){
+			else if($section_type == SYSTEM_META_PRODUCT){
 				$arr_return['listProduct'] = $ProductModel->listProductImage();
 				Flight::renderSmarty('main/product_section.html',$arr_return);
 			}
@@ -170,10 +170,10 @@ class CommonController extends BasicController {
 		//Copy file
 		$image_path = self::copy_file_uploaded('file_upload', 'free_images');
 		$imgModel = new ImageModel();
-		$meta_type = $imgModel->getMetaType(SYSTEM_META_FREE_IMAGE);
+		
 		$imgModel->insertRow(
 			[
-				'meta_type'=>$meta_type,
+				'meta_type'=>SYSTEM_META_FREE_IMAGE,
 				'image_path'=>$image_path
 			]
 		);
@@ -282,7 +282,7 @@ class CommonController extends BasicController {
 		
 		$ImageModel = new ImageModel();
 		if(count($arr_images) > 0){
-			$meta_type = $ImageModel->getMetaType(SYSTEM_META_PRODUCT);
+			$meta_type = SYSTEM_META_PRODUCT;
 			
 			//Xóa Hình Cũ
 			$listImage = $ImageModel->selectRowsByMetaData($meta_type,$m_product_id);

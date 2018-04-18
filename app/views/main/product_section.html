@@ -7,7 +7,7 @@
     <div class="form-group row">
         <label class="col-sm-2 form-control-label">Chọn Sản Phẩm</label>
         <div class="col-sm-4">
-            <select required class="form-control selectpicker"  title="Sản Phẩm" data-live-search="true" name="meta_type[{%$section_index%}][{%$meta_type%}][]">
+            <select required class="form-control selectpicker"  title="Sản Phẩm" data-live-search="true" name="meta_type[{%$section_index%}][{%$meta_type%}][meta_id]">
                 {%foreach $listProduct as $value%}
                 <option data-tokens="{%$value['product_name']%}" value="{%$value['m_product_id']%}">{%$value['product_name']%}</option>
                 {%/foreach%}

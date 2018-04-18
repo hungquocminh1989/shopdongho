@@ -47,62 +47,11 @@ class IndexController extends BasicController {
 		//================
 		$requestData = Flight::request()->data->getData();
 		
-		$pageModel = new SitePageModel();
-		$pageDetailModel = new SitePageDetailModel();
-		
-		$arr_site_page = $pageModel->selectRowsByConditions([
-			'page_link' => $page_link
-		]);
-		
 		$oData = new ObjectData();
 		
-		if($arr_site_page != NULL && count($arr_site_page) == 1){
-			$m_site_page_id = $arr_site_page[0]['m_site_page_id'];
-			$listMetaTypeDetail = $pageDetailModel->selectAllMetaType($m_site_page_id);
-			
-			if($listMetaTypeDetail != NULL && count($listMetaTypeDetail) > 0){
-				
-				
-				
-				foreach($listMetaTypeDetail as $value){
-					
-					$meta_type = $value['meta_type'];
-					
-					$listDetail = $pageDetailModel->selectRowsByConditions([
-						'm_site_page_id' => $m_site_page_id,
-						'meta_type' => $meta_type
-					]);
-					
-					if($listDetail != NULL && count($listDetail) > 0){
-						
-						foreach($listDetail as $item){
-							
-							$meta_id = $item['meta_id'];
-							
-							$title = '';
-							$data = NULL;
-							
-							if($meta_type ==  $pageModel->getMetaType(SYSTEM_META_CATEGORY)){
-								$data = $CategoryModel->getDataCtg($meta_id);
-								$oData->appendData($data);
-							}
-							else if($meta_type ==  $pageModel->getMetaType(SYSTEM_META_PRODUCT)){
-								$data = $ProductModel->selectRowById($meta_id);
-								$oData->appendData($data);
-							}
-							else if($meta_type ==  $pageModel->getMetaType(SYSTEM_META_FREE_SECTION)){
-								$data = $ProductModel->selectRowById($meta_id);
-								$oData->appendData($data);
-							}
-						}
-						
-					}
-					
-				}
-				
-			}
-		}
-		$arr_return['listData'] = $oData->export();
+		$oData->getPageData($page_link);
+		
+		$arr_return['listData'] = $oData->exportPageData();
 		//================
 		
 	    Flight::renderSmarty('index.html',$arr_return);

@@ -23,7 +23,7 @@ class ProductModel extends BasicModel {
 		$arr_sql = array();
 		$arr_sql['m_product_id'] = $m_product_id;
 		$arr_sql['product_link'] = $product_link;
-		$meta_type = $this->getMetaType(SYSTEM_META_PRODUCT);
+		$arr_sql['meta_type'] = SYSTEM_META_PRODUCT;
     	$result = $this->query(
     	"
     	SELECT 
@@ -41,7 +41,7 @@ class ProductModel extends BasicModel {
     		im.image_path 
     	FROM m_product mp
     	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
-    	INNER JOIN m_image im ON im.meta_type = $meta_type AND im.meta_id = mp.m_product_id AND im.default_flg =1
+    	INNER JOIN m_image im ON im.meta_type = :meta_type AND im.meta_id = mp.m_product_id AND im.default_flg =1
     	WHERE mp.m_product_id = :m_product_id
     		AND mp.product_link = :product_link
     	"
@@ -52,14 +52,14 @@ class ProductModel extends BasicModel {
 	public function listProductImageDetailById($m_product_id){
 		$arr_sql = array();
 		$arr_sql['m_product_id'] = $m_product_id;
-		$meta_type = $this->getMetaType(SYSTEM_META_PRODUCT);
+		$arr_sql['meta_type'] = SYSTEM_META_PRODUCT;
 		
     	$result = $this->query(
     	"
     	SELECT im.image_path 
     	FROM m_product mp
     	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
-    	INNER JOIN m_image im ON im.meta_type = $meta_type AND im.meta_id = mp.m_product_id
+    	INNER JOIN m_image im ON im.meta_type = :meta_type AND im.meta_id = mp.m_product_id
     	WHERE mp.m_product_id = :m_product_id
     	"
     	,$arr_sql);
@@ -67,7 +67,6 @@ class ProductModel extends BasicModel {
 	}
 	
 	public function listProductImage($category_name = '%'){
-		$meta_type = $this->getMetaType(SYSTEM_META_PRODUCT);
     	$result = $this->query(
     	"
     	SELECT 
@@ -86,7 +85,7 @@ class ProductModel extends BasicModel {
     		
     	FROM m_product mp
     	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
-    	LEFT JOIN m_image im ON im.meta_id = mp.m_product_id  AND im.default_flg =1 AND im.meta_type = '$meta_type'
+    	LEFT JOIN m_image im ON im.meta_id = mp.m_product_id  AND im.default_flg =1 AND im.meta_type = '".SYSTEM_META_PRODUCT."'
     	WHERE mc.category_name LIKE '$category_name'
     	"
     	);

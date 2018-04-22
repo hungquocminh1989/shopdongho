@@ -143,7 +143,7 @@ class ObjectData {
 				//Support_Common::var_dump(${$value});
 			}
 			
-			Support_Common::var_dump($arr_return);die();
+			//Support_Common::var_dump($arr_return);die();
 			
 			return $arr_return;
 		}

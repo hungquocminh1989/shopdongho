@@ -40,9 +40,9 @@ class IndexController extends BasicController {
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
 		$SiteSettingModel = new SiteSettingModel();
-		/*$arr_return['listCategory'] = $CategoryModel->listCategory();
+		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['listProduct'] = $ProductModel->listProductImage();
-		$arr_return['listDefine'] = $SiteSettingModel->get_define();*/
+		$arr_return['listDefine'] = $SiteSettingModel->get_define();
 		
 		//================
 		$requestData = Flight::request()->data->getData();
@@ -52,9 +52,10 @@ class IndexController extends BasicController {
 		$oData->getPageData($page_link);
 		
 		$arr_return['listData'] = $oData->exportPageData();
+		//Support_Common::var_dump($arr_return['listData']);//die();
 		//================
 		
-	    Flight::renderSmarty('index.html',$arr_return);
+	    Flight::renderSmarty('page.html',$arr_return);
 	}
     
 }

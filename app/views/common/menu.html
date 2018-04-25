@@ -90,15 +90,11 @@
             <div id="navbar-collapse-1" class="navbar-collapse collapse mainnavigation">
                 <div class="container">
                     <ul class="nav navbar-nav mainnav">
+                        {%foreach $listPage as $value%}
                         <li class="">
-                            <a class="dropdown-toggle" href="{%$smarty.const.SYSTEM_BASE_URL%}">Trang Chủ</a>
-                        </li>
-                        {%foreach $listCategory as $value%}
-                        <li class="">
-                            <a class="dropdown-toggle"href="{%$smarty.const.SYSTEM_BASE_URL%}#{%$value['category_name']%}">{%$value['category_name']%}</a>
+                            <a class="dropdown-toggle"href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$value['page_name']%}</a>
                         </li>
                         {%/foreach%}
-                        <li class="dropdown"><a class="dropdown-toggle" href="blog.html">Liên Hệ</a> </li>
                     </ul>
                     <div class="new-arv pull-right"><a href="#"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="arrival-icon" alt="" title="">New arrivals</a></div>
                 </div>

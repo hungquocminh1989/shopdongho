@@ -1,0 +1,26 @@
+<form method="POST">
+	<input type="hidden" name="m_site_header_id" value="{%$m_site_header_id%}"/>
+	<div class="form-group row">
+        <label class="col-sm-2 form-control-label">Tên Menu</label>
+        <div class="col-sm-5">
+            <input required name="menu_name" type="text" class="form-control" id="" value="{%$menu_name%}" placeholder="Nhập Tên Menu">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 form-control-label">Chọn Trang</label>
+        <div class="col-sm-4">
+            <select name="m_site_page_id" class="form-control selectpicker"  title="Chọn Trang" data-live-search="true" >
+                {%foreach $listPage as $value%}
+                <option data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}" {%if $value['m_site_page_id']== $m_site_page_id %} selected {%/if%}>{%$value['page_name']%} - {%$smarty.const.SYSTEM_BASE_URL%}{%$smarty.const.SYSTEM_ROUTE_PAGE_REFIX%}/{%$value['page_link']%}</option>
+                {%/foreach%}
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-3">
+            <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/header/update" class="btn btn-primary">Thêm</button>
+        </div>
+    </div>
+</form>

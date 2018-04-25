@@ -38,13 +38,28 @@
                                     <div class="ratingstar pull-right"> <i class="fa fa-star green"> </i><i class="fa fa-star green"> </i><i class="fa fa-star-half-full green"> </i> <i class="fa fa-star-half-full green"></i> <i class="fa fa-star-o green"></i></div>
                                     <a href="product.html#"> Add Review </a> 
                                 </div>
-                                <div class="oldprice"><span class="save">Save: 25%</span><span class="productpageoldprice"> Old price : $345.00</span></div>
-                                <div class="productpageprice">
-                                	{%if isset($productInfo[0]['product_price'])%}{%$productInfo[0]['product_price']|number_format:0:".":","%}{%/if%}{%$smarty.const.SYSTEM_CURRENCY%}
+                                <div class="oldprice">
+                                
+                                	{%if isset($productInfo[0]['msg_notify'])%}
+                                		<span class="save">{%$productInfo[0]['msg_notify']%}</span>
+                                	{%/if%}
+                                	
+                                	{%if isset($productInfo[0]['product_price'])%}
+                                		<span class="productpageoldprice"> Giá Gốc : {%$productInfo[0]['product_price']|number_format:0:".":","%}{%$smarty.const.SYSTEM_CURRENCY%}</span>
+                                	{%/if%}
+                                	
                                 </div>
-                                <div class="availability in-stock">Availability: <span>In stock</span></div>
+                                <div class="productpageprice">
+                                	{%if isset($productInfo[0]['product_price_sale']) && $productInfo[0]['product_price_sale'] != ''%}
+                                		{%$productInfo[0]['product_price_sale']|number_format:0:".":","%}
+                                	{%else%}
+                                		{%$productInfo[0]['product_price']|number_format:0:".":","%}
+                                	{%/if%}
+                                	{%$smarty.const.SYSTEM_CURRENCY%}
+                                </div>
+                                <div class="availability in-stock">Tình Trạng: <span>Còn Hàng</span></div>
                                 <div class="productbtn">
-                                    <button data-toggle="tooltip" class="btn btn-new" data-original-title="Add to Cart"> <i class="fa fa-shopping-cart fa-white"></i> Add to Cart</button>
+                                    <button data-toggle="tooltip" class="btn btn-new" data-original-title="Add to Cart"> <i class="fa fa-shopping-cart fa-white"></i> Thêm Vào Giỏ</button>
                                 </div>
                             </div>
                         </div>

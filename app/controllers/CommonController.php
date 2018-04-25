@@ -34,11 +34,15 @@ class CommonController extends BasicController {
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
 		$SiteSettingModel = new SiteSettingModel();
+		$SitePageModel = new SitePageModel();
+		
 		$arr_return = array();
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['productInfo'] = $ProductModel->listProductDetailById($id, $product_link);
 		$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);
 		$arr_return['listDefine'] = $SiteSettingModel->get_define();
+		$arr_return['listPage'] = $SitePageModel->selectAllRows();
+		
 		if($arr_return['productInfo'] == NULL){
 			Flight::redirect('/');
 		}
@@ -53,6 +57,7 @@ class CommonController extends BasicController {
 			$SiteSettingModel = new SiteSettingModel();
 			$MetaModel = new MetaModel();
 			$SitePageModel = new SitePageModel();
+			$SiteHeader = new SiteHeaderModel();
 			
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
@@ -60,6 +65,7 @@ class CommonController extends BasicController {
 			$arr_return['listDefine'] = $SiteSettingModel->get_define();
 			$arr_return['listPageType'] = $MetaModel->selectSectionType();
 			$arr_return['listPage'] = $SitePageModel->selectAllRows();
+			$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
 		    Flight::renderSmarty('main.html',$arr_return);
 		}
@@ -116,6 +122,16 @@ class CommonController extends BasicController {
 		Flight::renderSmarty('dialog/category_edit.html',$arr_return[0]);
 	}
 	
+	public static function action_edit_header()
+	{
+		$model = new SiteHeaderModel();
+		$SitePageModel = new SitePageModel();
+		$arr_return = $model->selectRowById($_POST['m_site_header_id'])[0];
+		$arr_return['listPage'] = $SitePageModel->selectAllRows();
+		//Support_Common::var_dump($arr_return);
+		Flight::renderSmarty('dialog/header_edit.html',$arr_return);
+	}
+	
 	public static function action_updatecategory()
 	{
 		$model = new CategoryModel();
@@ -132,6 +148,13 @@ class CommonController extends BasicController {
 	{
 		$model = new CategoryModel();
 		$model->deleteRowById($_POST['m_category_id']);
+		Flight::json(array('status' => 'OK'));
+	}
+	
+	public static function action_delete_header()
+	{
+		$model = new SiteHeaderModel();
+		$model->deleteRowById($_POST['m_site_header_id']);
 		Flight::json(array('status' => 'OK'));
 	}
 	
@@ -187,6 +210,16 @@ class CommonController extends BasicController {
 		$postData = Flight::request()->data->getData();
 		$model = new SitePageModel();
 		$model->update_page($postData);
+		
+		Flight::redirect('/main');
+	}
+	
+	public static function action_update_header()
+	{
+		
+		$postData = Flight::request()->data->getData();
+		$model = new SiteHeaderModel();
+		$model->update_header($postData);
 		
 		Flight::redirect('/main');
 	}

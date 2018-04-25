@@ -181,17 +181,52 @@
             			<div class="form-group row">
                             <label class="col-sm-2 form-control-label">Tên Menu</label>
                             <div class="col-sm-5">
-                                <input required name="site_name" type="text" class="form-control" id="" value="" placeholder="Nhập Tên Menu">
+                                <input required name="menu_name" type="text" class="form-control" id="" value="" placeholder="Nhập Tên Menu">
                             </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Chọn Trang</label>
+                            <div class="col-sm-4">
+	                            <select name="m_site_page_id" class="form-control selectpicker"  title="Chọn Trang" data-live-search="true" >
+	                                {%foreach $listPage as $value%}
+	                                <option data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}">{%$value['page_name']%} - {%$smarty.const.SYSTEM_BASE_URL%}{%$smarty.const.SYSTEM_ROUTE_PAGE_REFIX%}/{%$value['page_link']%}</option>
+	                                {%/foreach%}
+	                            </select>
+	                        </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}" class="btn btn-primary">Thêm</button>
+                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/header/update" class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
             		</form>
+            		<div class="table-responsive">
+	                    <table class="table table-bordered">
+	                        <thead>
+	                            <tr>
+	                                <th>#</th>
+	                                <th>Tên Menu</th>
+	                                <th>Link Truy Cập</th>
+	                                <th>Thao Tác</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            {%foreach $listHeader as $value%}
+	                            <tr>
+	                                <th scope="row">{%$value@iteration%}</th>
+	                                <td>{%$value['menu_name']%}</td>
+	                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
+	                                <td>
+	                                    <button class="btn btn-primary btn_edit_header" value="{%$value['m_site_header_id']%}">Sửa</button>
+	                                    <button class="btn btn-danger btn_delete_header" value="{%$value['m_site_header_id']%}">Xóa</button>
+	                                </td>
+	                            </tr>
+	                            {%/foreach%}
+	                        </tbody>
+	                    </table>
+	                </div>
             	</div>
             </div>
             
@@ -200,79 +235,79 @@
             		Quản Lý Trang
             	</div>
             	<div id="page_form" class="panel-body collapse in">
-            	<form action="" enctype="multipart/form-data" method="POST">
-        			<div class="form-group row">
-                        <label class="col-sm-2 form-control-label">Tên Trang</label>
-                        <div class="col-sm-5">
-                            <input required name="page_name" type="text" class="form-control" placeholder="Nhập Tên Trang">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 form-control-label">Link Truy Cập</label>
-                        <div class="col-sm-5">
-	                        <div class="input-group">
-	                        	<span class="input-group-addon" id="basic-addon1">{%$smarty.const.SYSTEM_BASE_URL%}{%$smarty.const.SYSTEM_ROUTE_PAGE_REFIX%}/</span>
-
-	                            <input required name="page_link" type="text" class="form-control" placeholder="Nhập Link Truy Cập">
+	            	<form action="" enctype="multipart/form-data" method="POST">
+	        			<div class="form-group row">
+	                        <label class="col-sm-2 form-control-label">Tên Trang</label>
+	                        <div class="col-sm-5">
+	                            <input required name="page_name" type="text" class="form-control" placeholder="Nhập Tên Trang">
 	                        </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 form-control-label">Thành Phần Trang</label>
-                        <div class="col-sm-4">
-                            <select id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
-                                {%foreach $listPageType as $value%}
-                                <option data-tokens="{%$value['meta_name_display']%}" value="{%$value['meta_type']%}">{%$value['meta_name_display']%}</option>
-                                {%/foreach%}
-                            </select>
-                        </div>
-                        <div class="col-sm-1">
-                        	<button class="btn btn-primary" type="button" id="add_section">Thêm</button>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group row">
-					    <div class="col-sm-2"></div>
-					    <div class="col-sm-10">
-					    	<div id="section_contents">
-                    	
-                    		</div>
-					    </div>
-					</div>
-                    
-                    <div class="form-group row">
-                        <div class="col-sm-2">
-                        </div>
-                        <div class="col-sm-3">
-                            <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/page/update" class="btn btn-primary">Tạo Trang</button>
-                        </div>
-                    </div> 
-                </form>
-            	<div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Tên Trang</th>
-                                <th>Link Truy Cập</th>
-                                <th>Thao Tác</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {%foreach $listPage as $value%}
-                            <tr>
-                                <th scope="row">{%$value@iteration%}</th>
-                                <td>{%$value['page_name']%}</td>
-                                <td>{%$value['page_link']%}</td>
-                                <td>
-                                    <button class="btn btn-primary btn_edit_page" value="{%$value['m_site_page_id']%}">Sửa</button>
-                                    <button class="btn btn-danger btn_delete_page" value="{%$value['m_site_page_id']%}">Xóa</button>
-                                </td>
-                            </tr>
-                            {%/foreach%}
-                        </tbody>
-                    </table>
-                </div>
+	                    </div>
+	                    <div class="form-group row">
+	                        <label class="col-sm-2 form-control-label">Link Truy Cập</label>
+	                        <div class="col-sm-5">
+		                        <div class="input-group">
+		                        	<span class="input-group-addon" id="basic-addon1">{%$smarty.const.SYSTEM_BASE_URL%}</span>
+
+		                            <input required name="page_link" type="text" class="form-control" placeholder="Nhập Link Truy Cập">
+		                        </div>
+	                        </div>
+	                    </div>
+	                    <div class="form-group row">
+	                        <label class="col-sm-2 form-control-label">Thành Phần Trang</label>
+	                        <div class="col-sm-4">
+	                            <select id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
+	                                {%foreach $listPageType as $value%}
+	                                <option data-tokens="{%$value['meta_name_display']%}" value="{%$value['meta_type']%}">{%$value['meta_name_display']%}</option>
+	                                {%/foreach%}
+	                            </select>
+	                        </div>
+	                        <div class="col-sm-1">
+	                        	<button class="btn btn-primary" type="button" id="add_section">Thêm</button>
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="form-group row">
+						    <div class="col-sm-2"></div>
+						    <div class="col-sm-10">
+						    	<div id="section_contents">
+	                    	
+	                    		</div>
+						    </div>
+						</div>
+	                    
+	                    <div class="form-group row">
+	                        <div class="col-sm-2">
+	                        </div>
+	                        <div class="col-sm-3">
+	                            <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/page/update" class="btn btn-primary">Tạo Trang</button>
+	                        </div>
+	                    </div> 
+	                </form>
+	            	<div class="table-responsive">
+	                    <table class="table table-bordered">
+	                        <thead>
+	                            <tr>
+	                                <th>#</th>
+	                                <th>Tên Trang</th>
+	                                <th>Link Truy Cập</th>
+	                                <th>Thao Tác</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            {%foreach $listPage as $value%}
+	                            <tr>
+	                                <th scope="row">{%$value@iteration%}</th>
+	                                <td>{%$value['page_name']%}</td>
+	                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
+	                                <td>
+	                                    <button class="btn btn-primary btn_edit_page" value="{%$value['m_site_page_id']%}">Sửa</button>
+	                                    <button class="btn btn-danger btn_delete_page" value="{%$value['m_site_page_id']%}">Xóa</button>
+	                                </td>
+	                            </tr>
+	                            {%/foreach%}
+	                        </tbody>
+	                    </table>
+	                </div>
             	</div>
             </div>
             

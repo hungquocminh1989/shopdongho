@@ -32,9 +32,9 @@ class IndexController extends BasicController {
 			$arr_return['listData'] = $oData->exportPageData();
 			
 		    Flight::renderSmarty('page.html',$arr_return);
-		    return FALSE;
+		    return FALSE;//Stop Route
 		}
-		return TRUE;// Chạy tiếp qua các Routes khác
+		return TRUE;// Chạy tiếp qua các Route khác
 	}
     
 }

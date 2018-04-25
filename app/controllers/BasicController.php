@@ -7,6 +7,7 @@ class BasicController {
 		$arr_return = array();
 		$arr_return = Flight::request()->data->getData();
 		Flight::renderSmarty('obfuscator.html',$arr_return);
+		return FALSE;//Stop Route
 	}
 	
 	public function checklogin(){

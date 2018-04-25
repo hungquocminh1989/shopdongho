@@ -9,6 +9,7 @@ class CommonController extends BasicController {
 		}
 		else{
 			Flight::renderSmarty('adminlogin.html');
+			return FALSE;//Stop Route
 		}
 	}
 	
@@ -47,6 +48,7 @@ class CommonController extends BasicController {
 			Flight::redirect('/');
 		}
 	    Flight::renderSmarty('detail.html',$arr_return);
+	    return FALSE;//Stop Route
 	}
 
    	public static function action_main()
@@ -68,6 +70,7 @@ class CommonController extends BasicController {
 			$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
 		    Flight::renderSmarty('main.html',$arr_return);
+		    return FALSE;//Stop Route
 		}
 		else{
 			Flight::redirect('/admin');
@@ -120,6 +123,7 @@ class CommonController extends BasicController {
 		$model = new CategoryModel();
 		$arr_return = $model->selectRowById($_POST['m_category_id']);
 		Flight::renderSmarty('dialog/category_edit.html',$arr_return[0]);
+		return FALSE;//Stop Route
 	}
 	
 	public static function action_edit_header()
@@ -130,6 +134,7 @@ class CommonController extends BasicController {
 		$arr_return['listPage'] = $SitePageModel->selectAllRows();
 		//Support_Common::var_dump($arr_return);
 		Flight::renderSmarty('dialog/header_edit.html',$arr_return);
+		return FALSE;//Stop Route
 	}
 	
 	public static function action_updatecategory()
@@ -186,6 +191,7 @@ class CommonController extends BasicController {
 				Flight::renderSmarty('main/product_section.html',$arr_return);
 			}
 		}
+		return FALSE;//Stop Route
 	}
 	
 	public static function action_image_upload()
@@ -234,6 +240,7 @@ class CommonController extends BasicController {
 		$modelDetail->deleteRowsByConditions(['m_site_page_id'=>$postData['m_site_page_id']]);
 		
 		Flight::redirect('/main');
+		return FALSE;//Stop Route
 	}
 	
 	public static function action_edit_page()
@@ -305,6 +312,7 @@ class CommonController extends BasicController {
 		$arr_return = $model->selectRowById($_POST['m_product_id'])[0];
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		Flight::renderSmarty('dialog/product_edit.html',$arr_return);
+		return FALSE;//Stop Route
 	}
 	
 	public function insertImagesUpload($m_product_id){

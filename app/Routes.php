@@ -4,7 +4,7 @@
 $controller = new CommonController();
 $indexController = new IndexController();
 Flight::route('/(@page_link)', array($indexController, 'action_index'));
-//Flight::route('/(index)', array($indexController, 'action_index'));
+
 Flight::route('/detail/@id/@product_link', array($controller, 'action_detail'));
 Flight::route('/main', array($controller, 'action_main'));
 Flight::route('/admin', array($controller, 'action_admin'));

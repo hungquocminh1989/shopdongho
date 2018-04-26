@@ -25,7 +25,8 @@ class ProductController extends BasicController {
 		}
 		
 		
-		Flight::redirect('/main');return FALSE;#Stop Route
+		Flight::redirect('/main');
+		return FALSE;#Stop Route
 	}
 	
 	public static function action_deleteproduct()
@@ -71,7 +72,8 @@ class ProductController extends BasicController {
 			}
 		}
 		
-		Flight::redirect('/main');return FALSE;#Stop Route
+		Flight::redirect('/main');
+		return FALSE;#Stop Route
 	}
 	
 	public function insertImagesUpload($m_product_id){
@@ -82,7 +84,7 @@ class ProductController extends BasicController {
 		
 		$ImageModel = new ImageModel();
 		if(count($arr_images) > 0){
-			$meta_type = SYSTEM_META_PRODUCT;
+			$meta_type = SYSTEM_META_SECTION_PRODUCT;
 			
 			//Xóa Hình Cũ
 			$listImage = $ImageModel->selectRowsByMetaData($meta_type,$m_product_id);

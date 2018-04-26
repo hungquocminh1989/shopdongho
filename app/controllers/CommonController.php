@@ -5,12 +5,12 @@ class CommonController extends BasicController {
 	public static function action_admin()
 	{
 		if(parent::checklogin() == TRUE){
-			Flight::redirect('/main');return FALSE;#Stop Route
+			Flight::redirect('/main');
 		}
 		else{
 			Flight::renderSmarty('adminlogin.html');
-			return FALSE;//Stop Route
 		}
+		return FALSE;#Stop Route
 	}
 	
 	public static function action_login()
@@ -66,7 +66,8 @@ class CommonController extends BasicController {
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
 			$arr_return['listProduct'] = $ProductModel->listProductImage();
 			$arr_return['listDefine'] = $SiteSettingModel->get_define();
-			$arr_return['listPageType'] = $MetaModel->selectSectionType();
+			$arr_return['listSectionType'] = $MetaModel->selectSectionType();
+			$arr_return['listPageType'] = $MetaModel->selectPageType();
 			$arr_return['listPage'] = $SitePageModel->selectAllRows();
 			$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
@@ -109,7 +110,8 @@ class CommonController extends BasicController {
 			$modelImage->insertRow($arr_sql);
 		}
 		
-		Flight::redirect('/main');return FALSE;#Stop Route
+		Flight::redirect('/main');
+		return FALSE;#Stop Route
 	}
 	
 	public static function action_add_section()
@@ -125,17 +127,17 @@ class CommonController extends BasicController {
 			$arr_return['section_index'] =  microtime(TRUE);
 			$arr_return['meta_type'] =  $section_type;
 			
-			if($section_type == SYSTEM_META_CATEGORY){
+			if($section_type == SYSTEM_META_SECTION_CATEGORY){
 				$arr_return['listCategory'] = $CategoryModel->listCategory();	
 				Flight::renderSmarty('main/category_section.html',$arr_return);
 			}
 			else if($section_type == NULL){
 				Flight::renderSmarty('main/slider_section.html',$arr_return);
 			}
-			else if($section_type == SYSTEM_META_FREE_SECTION){
+			else if($section_type == SYSTEM_META_SECTION_FREE){
 				Flight::renderSmarty('main/free_section.html',$arr_return);
 			}
-			else if($section_type == SYSTEM_META_PRODUCT){
+			else if($section_type == SYSTEM_META_SECTION_PRODUCT){
 				$arr_return['listProduct'] = $ProductModel->listProductImage();
 				Flight::renderSmarty('main/product_section.html',$arr_return);
 			}

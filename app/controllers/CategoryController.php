@@ -5,7 +5,8 @@ class CategoryController extends BasicController {
 	{
 		$model = new CategoryModel();
 		$model->insertRow(['category_name' => $_POST['category_name']]);
-		Flight::redirect('/main');return FALSE;#Stop Route
+		Flight::redirect('/main');
+		return FALSE;#Stop Route
 	}
 	
 	public static function action_deletecategory()
@@ -32,7 +33,8 @@ class CategoryController extends BasicController {
 			$model->updateRowById(['category_name'=>$category_name], $m_category_id);
 		}
 		
-		Flight::redirect('/main');return FALSE;#Stop Route
+		Flight::redirect('/main');
+		return FALSE;#Stop Route
 	}
     
 }

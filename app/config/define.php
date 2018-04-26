@@ -17,10 +17,10 @@ Chất liệu vỏ : Thép không gỉ
 Chất liệu kính : Kính Cứng
 Độ chịu nước : Chống nước sinh hoạt
 Chức năng khác : Lịch ngày');
-define('SYSTEM_META_PRODUCT', 1);
+define('SYSTEM_META_SECTION_PRODUCT', 1);
 define('SYSTEM_META_SITE_SETTING', 2);
 define('SYSTEM_META_PAGE_SETTING', 3);
-define('SYSTEM_META_CATEGORY', 4);
+define('SYSTEM_META_SECTION_CATEGORY', 4);
 define('SYSTEM_META_FREE_IMAGE', 5);
-define('SYSTEM_META_FREE_SECTION', 6);
+define('SYSTEM_META_SECTION_FREE', 6);
 define('SYSTEM_ROUTE_PAGE_REFIX', 'page');

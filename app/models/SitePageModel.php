@@ -39,7 +39,7 @@ class SitePageModel extends BasicModel {
 						$arr_add['sort_no'] = $index;
 						
 						$arr_add['section_title'] = $value['section_title'];
-						if($meta_type == SYSTEM_META_FREE_SECTION){//Free Data
+						if($meta_type == SYSTEM_META_SECTION_FREE){//Free Data
 							//Insert m_site_content
 							$db->insert('m_site_content',
 								[

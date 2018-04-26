@@ -189,7 +189,7 @@
                             <div class="col-sm-4">
 	                            <select name="m_site_page_id" class="form-control selectpicker"  title="Chọn Trang" data-live-search="true" >
 	                                {%foreach $listPage as $value%}
-	                                <option data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}">{%$value['page_name']%} - {%$smarty.const.SYSTEM_BASE_URL%}{%$smarty.const.SYSTEM_ROUTE_PAGE_REFIX%}/{%$value['page_link']%}</option>
+	                                <option data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}">{%$value['page_name']%} - {%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</option>
 	                                {%/foreach%}
 	                            </select>
 	                        </div>
@@ -256,7 +256,7 @@
 	                        <label class="col-sm-2 form-control-label">Thành Phần Trang</label>
 	                        <div class="col-sm-4">
 	                            <select id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
-	                                {%foreach $listPageType as $value%}
+	                                {%foreach $listSectionType as $value%}
 	                                <option data-tokens="{%$value['meta_name_display']%}" value="{%$value['meta_type']%}">{%$value['meta_name_display']%}</option>
 	                                {%/foreach%}
 	                            </select>
@@ -316,7 +316,7 @@
                 	Cập Nhật Danh Mục
                 </div>
                 <div id="category_form" class="panel-body collapse in">
-                    <form action="" method="POST">
+                    <form id="abccc" method="POST">
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Danh Mục</label>
                             <div class="col-sm-5">

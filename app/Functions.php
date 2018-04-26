@@ -112,5 +112,6 @@ Flight::map('error', function(Exception $ex){
     var_dump($ex->getTraceAsString());
     var_dump($request);
     //Support_Log::Log('aaaa',1111);
-    //Flight::redirect('/main');return FALSE;#Stop Route
+    //Flight::redirect('/main');
+    //return FALSE;#Stop Route
 });

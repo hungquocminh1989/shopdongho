@@ -47,14 +47,14 @@ class ObjectData {
 							$data = NULL;
 							
 							//Lưu giữ cộng dồn vào class ObjectData
-							if($meta_type ==  SYSTEM_META_CATEGORY){
+							if($meta_type ==  SYSTEM_META_SECTION_CATEGORY){
 								$data = $PageHandle->selectPage_CategoryData($meta_id);
 								$this->appendData($data);
 							}
-							else if($meta_type ==  SYSTEM_META_PRODUCT){
+							else if($meta_type ==  SYSTEM_META_SECTION_PRODUCT){
 								
 							}
-							else if($meta_type ==  SYSTEM_META_FREE_SECTION){
+							else if($meta_type ==  SYSTEM_META_SECTION_FREE){
 								$data = $PageHandle->selectPage_FreeHtmlData($item['m_site_page_detail_id']);
 								$this->appendData($data);
 							}
@@ -116,17 +116,17 @@ class ObjectData {
 				${$name}['title'] = $value['section_title'];
 				
 				//Bắt đầu phân loại data
-				if($type == SYSTEM_META_CATEGORY){
+				if($type == SYSTEM_META_SECTION_CATEGORY){
 					
 					${$name}['data'][0] = $value;
 					
 				}
-				else if($type == SYSTEM_META_PRODUCT){
+				else if($type == SYSTEM_META_SECTION_PRODUCT){
 					/*${$name}['type'] = $type;
 					${$name}['title'] = $value['product_name'];
 					${$name}['data'][0] = $value;*/
 				}
-				else if($type == SYSTEM_META_FREE_SECTION){
+				else if($type == SYSTEM_META_SECTION_FREE){
 					
 					${$name}['data'][0] = $value;
 					

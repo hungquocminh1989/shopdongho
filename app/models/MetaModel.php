@@ -25,5 +25,23 @@ class MetaModel extends BasicModel {
 		return NULL;
 		
 	}
+	
+	public function selectPageType(){
+		
+    	$db = $this->MedooDb();
+    	
+    	$data = $db->select("m_metadata",'*',
+    		[
+    			'meta_type' => [7,8]
+    		]
+    	);
+		
+		if($data != NULL && count($data) > 0 ){
+			return $data;
+		}
+    	
+		return NULL;
+		
+	}
     
 }

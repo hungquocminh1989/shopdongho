@@ -5,7 +5,7 @@ class CommonController extends BasicController {
 	public static function action_admin()
 	{
 		if(parent::checklogin() == TRUE){
-			Flight::redirect('/main');
+			Flight::redirect('/main');return FALSE;#Stop Route
 		}
 		else{
 			Flight::renderSmarty('adminlogin.html');
@@ -28,6 +28,7 @@ class CommonController extends BasicController {
 				Flight::redirect('/admin');
 			}
 		}
+		return FALSE;#Stop Route
 	}
 	
 	public static function action_detail($id, $product_link)
@@ -70,11 +71,11 @@ class CommonController extends BasicController {
 			$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
 		    Flight::renderSmarty('main.html',$arr_return);
-		    return FALSE;//Stop Route
 		}
 		else{
 			Flight::redirect('/admin');
 		}
+		return FALSE;//Stop Route
 	}
 	
 	
@@ -108,7 +109,7 @@ class CommonController extends BasicController {
 			$modelImage->insertRow($arr_sql);
 		}
 		
-		Flight::redirect('/main');
+		Flight::redirect('/main');return FALSE;#Stop Route
 	}
 	
 	public static function action_add_section()

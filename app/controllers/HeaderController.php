@@ -27,7 +27,7 @@ class HeaderController extends BasicController {
 		$model = new SiteHeaderModel();
 		$model->update_header($postData);
 		
-		Flight::redirect('/main');
+		Flight::redirect('/main');return FALSE;#Stop Route
 	}
     
 }

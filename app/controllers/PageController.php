@@ -11,7 +11,7 @@ class PageController extends BasicController {
 		$model->deleteRowById($postData['m_site_page_id']);
 		$modelDetail->deleteRowsByConditions(['m_site_page_id'=>$postData['m_site_page_id']]);
 		
-		Flight::redirect('/main');
+		Flight::redirect('/main');return FALSE;#Stop Route
 		return FALSE;//Stop Route
 	}
 	
@@ -29,7 +29,7 @@ class PageController extends BasicController {
 		$model = new SitePageModel();
 		$model->update_page($postData);
 		
-		Flight::redirect('/main');
+		Flight::redirect('/main');return FALSE;#Stop Route
 	}
     
 }

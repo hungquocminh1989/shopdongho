@@ -25,7 +25,7 @@ class ProductController extends BasicController {
 		}
 		
 		
-		Flight::redirect('/main');
+		Flight::redirect('/main');return FALSE;#Stop Route
 	}
 	
 	public static function action_deleteproduct()
@@ -71,7 +71,7 @@ class ProductController extends BasicController {
 			}
 		}
 		
-		Flight::redirect('/main');
+		Flight::redirect('/main');return FALSE;#Stop Route
 	}
 	
 	public function insertImagesUpload($m_product_id){

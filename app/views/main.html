@@ -123,8 +123,8 @@
 				-webkit-appearance: searchfield-cancel-button;
 			}
         </style>
-        {%include 'app/views/common/system.html'%}
     </head>
+    {%include 'app/views/common/system.html'%}
     <body>
         <div class="container">
             <br>
@@ -133,7 +133,7 @@
             		Thông Tin Chung
             	</div>
             	<div id="infomation_form" class="panel-body collapse in">
-            		<form action="" enctype="multipart/form-data" method="POST">
+            		<form id="frm_setting_site" action="" enctype="multipart/form-data" method="POST">
             			<div class="form-group row">
                             <label class="col-sm-2 form-control-label">Tên Website</label>
                             <div class="col-sm-5">
@@ -165,7 +165,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/define/add" class="btn btn-primary">Cập Nhật</button>
+                                <button type="submit" class="btn btn-primary">Cập Nhật</button>
                             </div>
                         </div>
             		</form>
@@ -177,7 +177,7 @@
             		Quản Lý Thanh Điều Hướng
             	</div>
             	<div id="header_form" class="panel-body collapse in">
-            		<form action="" enctype="multipart/form-data" method="POST">
+            		<form id="frm_setting_header" action="" enctype="multipart/form-data" method="POST">
             			<div class="form-group row">
                             <label class="col-sm-2 form-control-label">Tên Menu</label>
                             <div class="col-sm-5">
@@ -188,7 +188,7 @@
                             <label class="col-sm-2 form-control-label">Chọn Trang</label>
                             <div class="col-sm-4">
 	                            <select name="m_site_page_id" class="form-control selectpicker"  title="Chọn Trang" data-live-search="true" >
-	                                {%foreach $listPage as $value%}
+	                                {%foreach $listPageCombo as $value%}
 	                                <option data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}">{%$value['page_name']%} - {%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</option>
 	                                {%/foreach%}
 	                            </select>
@@ -198,7 +198,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/header/update" class="btn btn-primary">Thêm</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
             		</form>
@@ -235,7 +235,7 @@
             		Quản Lý Trang
             	</div>
             	<div id="page_form" class="panel-body collapse in">
-	            	<form action="" enctype="multipart/form-data" method="POST">
+	            	<form id="frm_setting_page" action="" enctype="multipart/form-data" method="POST">
 	        			<div class="form-group row">
 	                        <label class="col-sm-2 form-control-label">Tên Trang</label>
 	                        <div class="col-sm-5">
@@ -250,6 +250,16 @@
 
 		                            <input required name="page_link" type="text" class="form-control" placeholder="Nhập Link Truy Cập">
 		                        </div>
+	                        </div>
+	                    </div>
+	                    <div class="form-group row">
+	                        <label class="col-sm-2 form-control-label">Loại Trang</label>
+	                        <div class="col-sm-4">
+	                            <select name="meta_page_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
+	                                {%foreach $listPageType as $value%}
+	                                <option data-tokens="{%$value['meta_name_display']%}" value="{%$value['meta_type']%}">{%$value['meta_name_display']%}</option>
+	                                {%/foreach%}
+	                            </select>
 	                        </div>
 	                    </div>
 	                    <div class="form-group row">
@@ -279,7 +289,7 @@
 	                        <div class="col-sm-2">
 	                        </div>
 	                        <div class="col-sm-3">
-	                            <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/page/update" class="btn btn-primary">Tạo Trang</button>
+	                            <button type="submit" class="btn btn-primary">Tạo Trang</button>
 	                        </div>
 	                    </div> 
 	                </form>
@@ -295,7 +305,7 @@
 	                        </thead>
 	                        <tbody>
 	                            {%foreach $listPage as $value%}
-	                            <tr>
+	                            <tr {%if $value.meta_page_type == $smarty.const.SYSTEM_META_PAGE_DETAIL%} class="warning" {%/if%}>
 	                                <th scope="row">{%$value@iteration%}</th>
 	                                <td>{%$value['page_name']%}</td>
 	                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
@@ -316,7 +326,7 @@
                 	Cập Nhật Danh Mục
                 </div>
                 <div id="category_form" class="panel-body collapse in">
-                    <form id="abccc" method="POST">
+                    <form id="frm_setting_category" method="POST">
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Danh Mục</label>
                             <div class="col-sm-5">
@@ -327,7 +337,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/category/add" class="btn btn-primary">Tạo Danh Mục</button>
+                                <button type="submit" class="btn btn-primary">Tạo Danh Mục</button>
                             </div>
                         </div>
                     </form>
@@ -361,7 +371,7 @@
                 	Cập Nhật Sản Phẩm
                 </div>
                 <div id="product_form" class="panel-body collapse in">
-                    <form action="" enctype="multipart/form-data" method="POST">
+                    <form id="frm_setting_product" action="" enctype="multipart/form-data" method="POST">
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Chọn Danh Mục</label>
                             <div class="col-sm-5">
@@ -440,7 +450,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" formaction="{%$smarty.const.SYSTEM_BASE_URL%}main/product/add" class="btn btn-primary">Tạo Sản Phẩm</button>
+                                <button type="submit" class="btn btn-primary">Tạo Sản Phẩm</button>
                             </div>
                         </div>
                     </form>
@@ -492,7 +502,7 @@
                                     <td>{%if isset($value['image_path']) == true%}<img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}">{%/if%}</td>
                                     <!--<td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>-->
                                     <td>
-                                        <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
+                                        <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['base_link']%}/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
                                         <button class="btn btn-primary btn_edit_product" value="{%$value['m_product_id']%}">Sửa</button>
                                         <button value="{%$value['m_product_id']%}" class="btn btn-danger btn_delete_product">Xóa</button>
                                     </td>

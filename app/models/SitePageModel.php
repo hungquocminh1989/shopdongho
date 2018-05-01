@@ -21,6 +21,24 @@ class SitePageModel extends BasicModel {
 		$db->begin_transaction();
 		
 		try{
+			
+			
+			if(isset($postData['old_id']) == TRUE && $postData['meta_page_type'] == SYSTEM_META_PAGE_DETAIL){#Xu ly ghi de
+			
+				$m_site_page_id_old = $postData['old_id'];
+				
+				$db->delete('m_site_page',
+					[
+						'm_site_page_id' => $m_site_page_id_old
+					]
+				);
+				
+				$db->delete('m_site_page_detail',
+					[
+						'm_site_page_id' => $m_site_page_id_old
+					]
+				);
+			}
 		
 			if(isset($postData['m_site_page_id']) == TRUE){
 				$m_site_page_id = $postData['m_site_page_id'];
@@ -28,6 +46,7 @@ class SitePageModel extends BasicModel {
 			
 			$arr_page['page_link'] = $postData['page_link'];
 			$arr_page['page_name'] = $postData['page_name'];
+			$arr_page['meta_page_type'] = $postData['meta_page_type'];
 			//Support_Common::var_dump($postData);die();
 			if(isset($postData['meta_type']) == TRUE){
 				$dataMeta = array_values($postData['meta_type']);

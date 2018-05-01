@@ -14,6 +14,7 @@ class CategoryController extends BasicController {
 		$model = new CategoryModel();
 		$model->deleteRowById($_POST['m_category_id']);
 		Flight::json(array('status' => 'OK'));
+		return FALSE;#Stop Route
 	}
 	
 	public static function action_editcategory()

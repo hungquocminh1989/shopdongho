@@ -90,7 +90,7 @@
             <div id="navbar-collapse-1" class="navbar-collapse collapse mainnavigation">
                 <div class="container">
                     <ul class="nav navbar-nav mainnav">
-                        {%foreach $listPage as $value%}
+                        {%foreach $listHeader as $value%}
                         <li class="">
                             <a class="dropdown-toggle"href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$value['page_name']%}</a>
                         </li>

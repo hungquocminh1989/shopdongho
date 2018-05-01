@@ -81,7 +81,11 @@ class ProductModel extends BasicModel {
     		mp.msg_notify,
     		mp.product_info,
     		mp.product_link,
-    		im.image_path
+    		im.image_path,
+    		(
+    			SELECT page_link FROM m_site_page
+    			WHERE meta_page_type = ".SYSTEM_META_PAGE_DETAIL."
+    		) as base_link
     		
     	FROM m_product mp
     	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id

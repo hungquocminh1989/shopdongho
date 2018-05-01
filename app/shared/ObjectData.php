@@ -7,13 +7,14 @@ class ObjectData {
     	$this->arr_data = array();
     }
     
-    public function getPageData($page_link){
+    public function getPageData($page_link, $meta_page_type){
 		$pageModel = new SitePageModel();
 		$pageDetailModel = new SitePageDetailModel();
 		$PageHandle = new PageHandle();
 		
 		$arr_site_page = $pageModel->selectRowsByConditions([
-			'page_link' => $page_link
+			'page_link' => $page_link,
+			'meta_page_type' => $meta_page_type
 		]);
 		
 		

@@ -161,6 +161,25 @@
     		.done(aa_this.done_func)
     		.fail(aa_this.fail_func);
     };
+    
+    
+    
+    System.get_form_data = function (form_id, type = false) {
+		var sArr = $("#"+form_id).serializeArray();
+		if(type == false){
+			var arr = {};
+		    $.each(sArr, function(i, field){
+		        arr[field.name] = field.value;
+		    });
+		}else{
+			var arr = new FormData();
+			$.each(sArr, function(i, field){
+		        arr.append(field.name, field.value);
+		    });	
+		}
+		
+	    return arr;
+    };
 	
 	System.show_dialog = function (content,titlte = '',exec_func , ok_func) {
 		//http://nakupanda.github.io/bootstrap3-dialog/
@@ -280,7 +299,7 @@
     
     //Lock screen when submit
     $(document).on('submit', 'form', function() {
-    	System.loading(true);
+    	//System.loading(true);
     });
     
     System.loading = function (flag) {

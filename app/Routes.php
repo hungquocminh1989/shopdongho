@@ -8,10 +8,10 @@ $productControler = new ProductController();
 $pageControler = new PageController();
 $headerControler = new HeaderController();
 
-Flight::route('/(@page_link)', array($indexController, 'action_index'));
+Flight::route('/(@page_link)(/@id/@product_link)', array($indexController, 'action_index'));
 
 //Common
-Flight::route('/detail/@id/@product_link', array($controller, 'action_detail'));
+//Flight::route('/detail/@id/@product_link', array($controller, 'action_detail'));
 Flight::route('/main', array($controller, 'action_main'));
 Flight::route('/admin', array($controller, 'action_admin'));
 Flight::route('/admin/login', array($controller, 'action_login'));
@@ -33,6 +33,7 @@ Flight::route('/main/product/delete', array($productControler, 'action_deletepro
 
 //Page
 Flight::route('/main/section/add', array($pageControler, 'action_add_section'));
+Flight::route('/main/page/checkexistpagetype', array($pageControler, 'action_checkexistpagetype'));
 Flight::route('/main/page/update', array($pageControler, 'action_update_page'));
 Flight::route('/main/page/delete', array($pageControler, 'action_delete_page'));
 Flight::route('/main/page/edit', array($pageControler, 'action_edit_page'));

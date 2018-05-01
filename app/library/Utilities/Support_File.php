@@ -107,14 +107,15 @@ class Support_File
 	public static function CreateFolder($source)
 	{
 		try{
-			$source = Support_File::RepairPath($source);
+			$info = pathinfo($source);
+			$source = Support_File::RepairPath($info['dirname']);
 			
 			$arr_path = explode("/",$source);
 			
 			if($arr_path != NULL && count($arr_path) >0 ){
 				$path = $arr_path[0];
 				foreach($arr_path as $key => $value){
-					if($key != 0 && is_file($value) == FALSE){
+					if($key != 0){
 						$path = $path."/".$value;
 						if(file_exists($path) == FALSE){
 							mkdir($path, 0777, TRUE);

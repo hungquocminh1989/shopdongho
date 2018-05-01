@@ -74,6 +74,25 @@
                     </div>
                 </div>
                 <section id="add-pro-box" class="mt50">
+		            <div class="container">
+		            	{%foreach $listData as $section%}
+		                	{%if $section.type == $smarty.const.SYSTEM_META_SECTION_CATEGORY %}
+		                	
+		                		{%include 'app/views/widget/product/product_widget.html'%}
+		                		
+		                	{%else if $section.type == $smarty.const.SYSTEM_META_SECTION_PRODUCT %}
+		                	
+		                		{%include 'app/views/widget/product/product_widget.html'%}
+		                		
+		                	{%else if $section.type == $smarty.const.SYSTEM_META_SECTION_FREE %}
+		                	
+		                		{%include 'app/views/widget/free/free_widget.html'%}
+		                		
+		                	{%/if%}
+		                {%/foreach%}
+		            </div>
+		        </section>
+                <section id="add-pro-box" class="mt50">
                     <h1 class="heading2">Just Added <span>Products</span></h1>
                     <div class="crflexslider carousel">
                         <div class="flex-viewport" style="overflow: hidden; position: relative;">

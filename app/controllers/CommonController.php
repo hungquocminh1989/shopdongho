@@ -30,27 +30,6 @@ class CommonController extends BasicController {
 		}
 		return FALSE;#Stop Route
 	}
-	
-	public static function action_detail($id, $product_link)
-	{
-		$CategoryModel = new CategoryModel();
-		$ProductModel = new ProductModel();
-		$SiteSettingModel = new SiteSettingModel();
-		$SitePageModel = new SitePageModel();
-		
-		$arr_return = array();
-		$arr_return['listCategory'] = $CategoryModel->listCategory();
-		$arr_return['productInfo'] = $ProductModel->listProductDetailById($id, $product_link);
-		$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);
-		$arr_return['listDefine'] = $SiteSettingModel->get_define();
-		$arr_return['listPage'] = $SitePageModel->selectAllRows();
-		
-		if($arr_return['productInfo'] == NULL){
-			Flight::redirect('/');
-		}
-	    Flight::renderSmarty('detail.html',$arr_return);
-	    return FALSE;//Stop Route
-	}
 
    	public static function action_main()
 	{
@@ -69,6 +48,7 @@ class CommonController extends BasicController {
 			$arr_return['listSectionType'] = $MetaModel->selectSectionType();
 			$arr_return['listPageType'] = $MetaModel->selectPageType();
 			$arr_return['listPage'] = $SitePageModel->selectAllRows();
+			$arr_return['listPageCombo'] = $SitePageModel->selectRowsByConditions(['meta_page_type[!]'=>SYSTEM_META_PAGE_DETAIL]);
 			$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
 		    Flight::renderSmarty('main.html',$arr_return);
@@ -112,37 +92,6 @@ class CommonController extends BasicController {
 		
 		Flight::redirect('/main');
 		return FALSE;#Stop Route
-	}
-	
-	public static function action_add_section()
-	{
-		if(isset($_POST['section_type'])){
-			$section_type = $_POST['section_type'];
-			$MetaModel = new MetaModel();
-			$CategoryModel = new CategoryModel();
-			$ProductModel = new ProductModel();
-			
-			$arr_return = array();
-			$arr_return = $MetaModel->selectRowById($section_type)[0];
-			$arr_return['section_index'] =  microtime(TRUE);
-			$arr_return['meta_type'] =  $section_type;
-			
-			if($section_type == SYSTEM_META_SECTION_CATEGORY){
-				$arr_return['listCategory'] = $CategoryModel->listCategory();	
-				Flight::renderSmarty('main/category_section.html',$arr_return);
-			}
-			else if($section_type == NULL){
-				Flight::renderSmarty('main/slider_section.html',$arr_return);
-			}
-			else if($section_type == SYSTEM_META_SECTION_FREE){
-				Flight::renderSmarty('main/free_section.html',$arr_return);
-			}
-			else if($section_type == SYSTEM_META_SECTION_PRODUCT){
-				$arr_return['listProduct'] = $ProductModel->listProductImage();
-				Flight::renderSmarty('main/product_section.html',$arr_return);
-			}
-		}
-		return FALSE;//Stop Route
 	}
 	
 	public static function action_image_upload()

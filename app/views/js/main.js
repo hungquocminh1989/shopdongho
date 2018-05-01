@@ -73,6 +73,163 @@ $(function() {
     	);
     });
     
+    $(document).on('submit', '#frm_setting_page', function(e) {
+		//ajax call here
+		var formData = System.get_form_data(this.id);
+    	var ajax = new System();
+    	var ajax_update = new System();
+    	System.loading(false);		
+    	System.message_confirm('Xác Nhận Lưu ?',
+    		function(){
+				ajax.done_func = function(data) {
+					var save = false;
+					if(data!= null && data.status == 'NG'){
+						System.message_confirm('Trang Chi Tiết Đã Tồn Tại. Xác Nhận Xử Lý Ghi Đè ?',
+							function(){
+								formData['old_id'] = data.old_id;
+								ajax_update.done_func = function(data) {
+									System.message_success('Lưu Trang Thành Công.',function(){
+						    			System.reload();
+						    		});
+								}
+								ajax_update.connect("POST","main/page/update",formData);
+							}
+						);
+					}
+					else{
+						ajax_update.done_func = function(data) {
+							System.message_success('Lưu Trang Thành Công.',function(){
+				    			System.reload();
+				    		});	
+						}
+						ajax_update.connect("POST","main/page/update",formData);
+					}
+		    	};
+		    	ajax.connect("POST","main/page/checkexistpagetype",formData);
+			}
+    	);
+
+		//stop form submission
+		e.preventDefault();
+	});
+	
+	$(document).on('submit', '#frm_setting_site', function(e) {
+		//ajax call here
+		var frm_id = this.id;
+		var formData = System.get_form_data(frm_id, true);
+		formData.append('upload_logo_site', $('#select_logo_site')[0].files[0]);
+		
+    	var ajax = new SystemUpload();
+    		
+    	System.message_confirm('Xác Nhận Lưu ?',
+    		function(){
+				ajax.done_func = function(data) {
+					System.message_success('Lưu Thong Tin Thành Công.',function(){
+		    			System.reload();
+		    		});
+		    	};
+		    	ajax.connect("POST","main/define/add",formData);
+		    	
+			}
+    	);
+
+		//stop form submission
+		e.preventDefault();
+	});
+	
+	$(document).on('submit', '#frm_setting_product,#frm_setting_product_dialog', function(e) {
+		//ajax call here
+		var frm_id = this.id;
+		var formData = System.get_form_data(frm_id, true);
+		if(frm_id == 'frm_setting_product'){
+			if( $('#select_image')[0].files.length > 0 ){
+	            for (i = 0; i < $('#select_image')[0].files.length; i++) {
+	                formData.append('upload[]',$('#select_image')[0].files[i] );
+	            }
+			}
+		}
+		else{
+			if( $('#select_image_popup')[0].files.length > 0 ){
+	            for (i = 0; i < $('#select_image_popup')[0].files.length; i++) {
+	                formData.append('upload[]',$('#select_image_popup')[0].files[i] );
+	            }
+			}
+		}
+		
+		
+    	var ajax = new SystemUpload();
+    		
+    	System.message_confirm('Xác Nhận Lưu ?',
+    		function(){
+				ajax.done_func = function(data) {
+					System.message_success('Lưu San Pham Thành Công.',function(){
+		    			System.reload();
+		    		});
+		    	};
+		    	
+		    	if(frm_id == 'frm_setting_product'){
+					ajax.connect("POST","main/product/add",formData);
+				}
+				else{
+					ajax.connect("POST","main/product/update",formData);
+				}
+		    	
+			}
+    	);
+
+		//stop form submission
+		e.preventDefault();
+	});
+	
+	$(document).on('submit', '#frm_setting_category,#frm_setting_category_dialog', function(e) {
+		//ajax call here
+		var frm_id = this.id;
+		var formData = System.get_form_data(frm_id);
+    	var ajax = new System();
+    		
+    	System.message_confirm('Xác Nhận Lưu ?',
+    		function(){
+				ajax.done_func = function(data) {
+					System.message_success('Lưu Danh Mục Thành Công.',function(){
+		    			System.reload();
+		    		});
+		    	};
+		    	if(frm_id == 'frm_setting_category'){
+					ajax.connect("POST","main/category/add",formData);
+				}
+				else{
+					ajax.connect("POST","main/category/update",formData);
+				}
+		    	
+			}
+    	);
+
+		//stop form submission
+		e.preventDefault();
+	});
+	
+	$(document).on('submit', '#frm_setting_header,#frm_setting_header_dialog', function(e) {
+		//ajax call here
+		var frm_id = this.id;
+		var formData = System.get_form_data(frm_id);
+    	var ajax = new System();	
+    		
+    	System.message_confirm('Xác Nhận Lưu ?',
+    		function(){
+				ajax.done_func = function(data) {
+					System.message_success('Lưu Header Thành Công.',function(){
+		    			System.reload();
+		    		});
+		    	};
+		    	ajax.connect("POST","main/header/update",formData);
+		    	
+			}
+    	);
+
+		//stop form submission
+		e.preventDefault();
+	});
+    
     $(document).on('click', '.btn_delete_page', function() {
     	var id = this.value ;
     	System.message_confirm('Xóa Trang Đã Chọn ?',

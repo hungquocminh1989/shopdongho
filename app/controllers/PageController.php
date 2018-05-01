@@ -17,9 +17,64 @@ class PageController extends BasicController {
 	
 	public static function action_edit_page()
 	{
-		$model = new CategoryModel();
+		$model = new SitePageModel();
 		$arr_return = $model->selectRowById($_POST['m_site_page_id']);
 		Flight::renderSmarty('dialog/page_edit.html',$arr_return[0]);
+		return FALSE;//Stop Route
+	}
+	
+	public static function action_add_section()
+	{
+		if(isset($_POST['section_type'])){
+			$section_type = $_POST['section_type'];
+			$MetaModel = new MetaModel();
+			$CategoryModel = new CategoryModel();
+			$ProductModel = new ProductModel();
+			
+			$arr_return = array();
+			$arr_return = $MetaModel->selectRowById($section_type)[0];
+			$arr_return['section_index'] =  microtime(TRUE);
+			$arr_return['meta_type'] =  $section_type;
+			
+			if($section_type == SYSTEM_META_SECTION_CATEGORY){
+				$arr_return['listCategory'] = $CategoryModel->listCategory();	
+				Flight::renderSmarty('main/category_section.html',$arr_return);
+			}
+			else if($section_type == NULL){
+				Flight::renderSmarty('main/slider_section.html',$arr_return);
+			}
+			else if($section_type == SYSTEM_META_SECTION_FREE){
+				Flight::renderSmarty('main/free_section.html',$arr_return);
+			}
+			else if($section_type == SYSTEM_META_SECTION_PRODUCT){
+				$arr_return['listProduct'] = $ProductModel->listProductImage();
+				Flight::renderSmarty('main/product_section.html',$arr_return);
+			}
+		}
+		return FALSE;//Stop Route
+	}
+	
+	public static function action_checkexistpagetype()
+	{
+		//Kiểm tra tồn tại cho loại trang chi tiết sản phẩm
+		if(isset($_POST['meta_page_type']) == TRUE && $_POST['meta_page_type'] == SYSTEM_META_PAGE_DETAIL){
+			
+			$model = new SitePageModel();
+			$rows = $model->selectRowsByConditions(['meta_page_type' => $_POST['meta_page_type']]);
+			Support_Common::var_dump($rows);
+			if($rows != NULL && count($rows) > 0){
+				$old_id = $rows[0]['m_site_page_id'];
+				Flight::json(['status' => 'NG', 'old_id' => $old_id]);
+			}
+			else{
+				Flight::json(['status' => 'OK']);
+			}
+			
+		}
+		else{
+			Flight::json(['status' => 'OK']);
+		}
+		return FALSE;#Stop Route
 	}
 	
 	public static function action_update_page()

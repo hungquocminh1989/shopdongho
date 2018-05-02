@@ -4,7 +4,7 @@ class MetaModel extends BasicModel {
 	
 	public function __construct() {
     	
-        parent::__construct('m_metadata');
+        parent::__construct('m_meta_data');
 
     }
     
@@ -12,7 +12,7 @@ class MetaModel extends BasicModel {
 		
     	$db = $this->MedooDb();
     	
-    	$data = $db->select("m_metadata",'*',
+    	$data = $db->select("m_meta_data",'*',
     		[
     			'meta_type' => [1,4,6]
     		]
@@ -30,7 +30,7 @@ class MetaModel extends BasicModel {
 		
     	$db = $this->MedooDb();
     	
-    	$data = $db->select("m_metadata",'*',
+    	$data = $db->select("m_meta_data",'*',
     		[
     			'meta_type' => [7,8]
     		]

@@ -108,10 +108,17 @@ Flight::map('javascript_obfuscator', function($file, $param = array()){
 Flight::map('error', function(Exception $ex){
     // Handle error
     $request = Flight::request();
-    echo '<pre>';
-    var_dump($ex->getTraceAsString());
-    var_dump($request);
-    //Support_Log::Log('aaaa',1111);
-    //Flight::redirect('/main');
-    //return FALSE;#Stop Route
+    
+    $arr_error = array();
+    $arr_error['error_msg'] = $ex->getMessage();
+    $arr_error['error_trace'] = $ex->getTraceAsString();
+    $arr_error['error_request'] = $request;
+    
+    //Write Log
+    //Support_Log::Log('ERROR_EXCEPTION',$arr_error['error_msg']);
+    //Support_Log::Log('ERROR_EXCEPTION',$arr_error['error_trace']);
+    //Support_Log::Log('ERROR_EXCEPTION',$arr_error['error_request']);
+    
+    Flight::renderSmarty('error.html',$arr_error);
+    return FALSE;#Stop Route
 });

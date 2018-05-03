@@ -41,7 +41,7 @@ class PageHandle extends BasicModel {
 				SELECT 
 					*
 				FROM m_site_page_detail spd
-				INNER JOIN m_site_content c ON c.m_site_content_id = spd.meta_id AND spd.meta_type = ".SYSTEM_META_SECTION_FREE."
+				INNER JOIN m_site_page_content c ON c.m_site_page_content_id = spd.meta_id AND spd.meta_type = ".SYSTEM_META_SECTION_FREE."
 				WHERE spd.m_site_page_detail_id = :m_site_page_detail_id
 			"
 			,

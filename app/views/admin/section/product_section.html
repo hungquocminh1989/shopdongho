@@ -4,13 +4,25 @@
  	</button>
  	<label>{%$meta_name_display%}</label>
  	<hr/>
+ 	<div class="form-group row">
+	    <label class="col-sm-2 form-control-label">Tiêu Đề</label>
+	    <div class="col-sm-10">
+	        <input required name="meta_type[{%$section_index%}][{%$meta_type%}][section_title]" type="text" class="form-control" placeholder="Nhập Tiêu Đề">
+	    </div>
+	</div>
     <div class="form-group row">
         <label class="col-sm-2 form-control-label">Chọn Sản Phẩm</label>
         <div class="col-sm-4">
-            <select required class="form-control selectpicker"  title="Sản Phẩm" data-live-search="true" name="meta_type[{%$section_index%}][{%$meta_type%}][meta_id]">
-                {%foreach $listProduct as $value%}
-                <option data-tokens="{%$value['product_name']%}" value="{%$value['m_product_id']%}">{%$value['product_name']%}</option>
-                {%/foreach%}
+            <select required class="form-control selectpicker"  title="Sản Phẩm" multiple data-live-search="true" name="meta_type[{%$section_index%}][{%$meta_type%}][meta_id]">
+            	{%foreach $listCategory as $category%}
+            		<optgroup label="{%$category.category_name%}">
+	            		{%foreach $listProduct as $value%}
+	            			{%if $category.m_category_id == $value.m_category_id%}
+		                	<option style="background-image: '{%$smarty.const.SYSTEM_BASE_URL%}{%$value.image_path%}';" data-tokens="{%$value['category_name']%} {%$value['product_name']%}" value="{%$value['m_product_id']%}">{%$value['product_name']%}</option>
+		                	{%/if%}
+		                {%/foreach%}
+	                </optgroup>
+            	{%/foreach%}
             </select>
         </div>
     </div>

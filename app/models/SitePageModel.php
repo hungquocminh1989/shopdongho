@@ -14,7 +14,7 @@ class SitePageModel extends BasicModel {
 		$arr_page_detail = array();
 		$m_site_page_id = NULL;
 		
-		$SiteContentModel = new SiteContentModel();
+		$SitePageContentModel = new SitePageContentModel();
 		
     	$db = $this->MedooDb();
     	
@@ -59,14 +59,14 @@ class SitePageModel extends BasicModel {
 						
 						$arr_add['section_title'] = $value['section_title'];
 						if($meta_type == SYSTEM_META_SECTION_FREE){//Free Data
-							//Insert m_site_content
-							$db->insert('m_site_content',
+							//Insert m_site_page_content
+							$db->insert('m_site_page_content',
 								[
 									'html_data' => $value['html_data']
 								]
 							);
-							$m_site_content_id = $db->id();
-							$arr_add['meta_id'] = $m_site_content_id;
+							$m_site_page_content_id = $db->id();
+							$arr_add['meta_id'] = $m_site_page_content_id;
 						}
 						else{
 							$arr_add['meta_id'] = $value['meta_id'];
@@ -78,22 +78,27 @@ class SitePageModel extends BasicModel {
 				}
 			}
 			
-			//Delete All
-			$db->delete('m_site_page',
+			//Check update m_site_page
+			$sp_row = $db->select('m_site_page',
 				[
 					'm_site_page_id' => $m_site_page_id
 				]
 			);
+			$lastInsertId = $m_site_page_id;
+			if($sp_row != NULL && count($sp_row) > 0){
+				$db->update('m_site_page',$arr_page);
+			}
+			else{
+				$db->insert('m_site_page',$arr_page);
+				$lastInsertId = $db->id();
+			}
 			
+			//Delete All m_site_page_detail
 			$db->delete('m_site_page_detail',
 				[
 					'm_site_page_id' => $m_site_page_id
 				]
 			);
-			
-			//Insert All
-			$db->insert('m_site_page',$arr_page);
-			$lastInsertId = $db->id();
 			
 			foreach($arr_page_detail as $value){
 				$value['m_site_page_id'] = $lastInsertId;

@@ -75,9 +75,10 @@
         <section id="add-pro-box">
             <div class="container">
             	{%foreach $listData as $section%}
+            	
                 	{%if $section.type == $smarty.const.SYSTEM_META_SECTION_CATEGORY %}
                 	
-                		{%include 'app/views/widget/product/product_widget.html'%}
+                		{%include 'app/views/widget/category/category_widget.html'%}
                 		
                 	{%else if $section.type == $smarty.const.SYSTEM_META_SECTION_PRODUCT %}
                 	
@@ -88,6 +89,7 @@
                 		{%include 'app/views/widget/free/free_widget.html'%}
                 		
                 	{%/if%}
+                	
                 {%/foreach%}
             </div>
         </section>

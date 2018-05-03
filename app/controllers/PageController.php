@@ -47,6 +47,7 @@ class PageController extends BasicController {
 				Flight::renderSmarty('admin/section/free_section.html',$arr_return);
 			}
 			else if($section_type == SYSTEM_META_SECTION_PRODUCT){
+				$arr_return['listCategory'] = $CategoryModel->listCategory();
 				$arr_return['listProduct'] = $ProductModel->listProductImage();
 				Flight::renderSmarty('admin/section/product_section.html',$arr_return);
 			}

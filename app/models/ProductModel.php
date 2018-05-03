@@ -91,6 +91,7 @@ class ProductModel extends BasicModel {
     	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
     	LEFT JOIN m_image im ON im.meta_id = mp.m_product_id  AND im.default_flg =1 AND im.meta_type = '".SYSTEM_META_SECTION_PRODUCT."'
     	WHERE mc.category_name LIKE '$category_name'
+    	ORDER BY mc.m_category_id
     	"
     	);
 		return $result;

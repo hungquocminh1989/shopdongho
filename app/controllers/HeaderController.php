@@ -16,7 +16,7 @@ class HeaderController extends BasicController {
 		$arr_return = $model->selectRowById($_POST['m_site_header_id'])[0];
 		$arr_return['listPage'] = $SitePageModel->selectAllRows();
 		//Support_Common::var_dump($arr_return);
-		Flight::renderSmarty('dialog/header_edit.html',$arr_return);
+		Flight::renderSmarty('admin/dialog/header_edit.html',$arr_return);
 		return FALSE;//Stop Route
 	}
 	

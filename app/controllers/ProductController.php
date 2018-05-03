@@ -43,7 +43,7 @@ class ProductController extends BasicController {
 		$arr_return = array();
 		$arr_return = $model->selectRowById($_POST['m_product_id'])[0];
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
-		Flight::renderSmarty('dialog/product_edit.html',$arr_return);
+		Flight::renderSmarty('admin/dialog/product_edit.html',$arr_return);
 		return FALSE;//Stop Route
 	}
 	

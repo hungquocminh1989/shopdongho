@@ -8,7 +8,7 @@ class CommonController extends BasicController {
 			Flight::redirect('/main');
 		}
 		else{
-			Flight::renderSmarty('adminlogin.html');
+			Flight::renderSmarty('admin/adminlogin.html');
 		}
 		return FALSE;#Stop Route
 	}
@@ -51,7 +51,7 @@ class CommonController extends BasicController {
 			$arr_return['listPageCombo'] = $SitePageModel->selectRowsByConditions(['meta_page_type[!]'=>SYSTEM_META_PAGE_DETAIL]);
 			$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
-		    Flight::renderSmarty('main.html',$arr_return);
+		    Flight::renderSmarty('admin/main.html',$arr_return);
 		}
 		else{
 			Flight::redirect('/admin');

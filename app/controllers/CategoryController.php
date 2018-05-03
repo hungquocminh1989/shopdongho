@@ -21,7 +21,7 @@ class CategoryController extends BasicController {
 	{
 		$model = new CategoryModel();
 		$arr_return = $model->selectRowById($_POST['m_category_id']);
-		Flight::renderSmarty('dialog/category_edit.html',$arr_return[0]);
+		Flight::renderSmarty('admin/dialog/category_edit.html',$arr_return[0]);
 		return FALSE;//Stop Route
 	}
 	

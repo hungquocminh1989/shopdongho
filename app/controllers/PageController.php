@@ -19,7 +19,7 @@ class PageController extends BasicController {
 	{
 		$model = new SitePageModel();
 		$arr_return = $model->selectRowById($_POST['m_site_page_id']);
-		Flight::renderSmarty('dialog/page_edit.html',$arr_return[0]);
+		Flight::renderSmarty('admin/dialog/page_edit.html',$arr_return[0]);
 		return FALSE;//Stop Route
 	}
 	
@@ -38,17 +38,17 @@ class PageController extends BasicController {
 			
 			if($section_type == SYSTEM_META_SECTION_CATEGORY){
 				$arr_return['listCategory'] = $CategoryModel->listCategory();	
-				Flight::renderSmarty('main/category_section.html',$arr_return);
+				Flight::renderSmarty('admin/section/category_section.html',$arr_return);
 			}
 			else if($section_type == NULL){
-				Flight::renderSmarty('main/slider_section.html',$arr_return);
+				Flight::renderSmarty('admin/section/slider_section.html',$arr_return);
 			}
 			else if($section_type == SYSTEM_META_SECTION_FREE){
-				Flight::renderSmarty('main/free_section.html',$arr_return);
+				Flight::renderSmarty('admin/section/free_section.html',$arr_return);
 			}
 			else if($section_type == SYSTEM_META_SECTION_PRODUCT){
 				$arr_return['listProduct'] = $ProductModel->listProductImage();
-				Flight::renderSmarty('main/product_section.html',$arr_return);
+				Flight::renderSmarty('admin/section/product_section.html',$arr_return);
 			}
 		}
 		return FALSE;//Stop Route

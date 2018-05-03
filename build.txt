@@ -3,4 +3,8 @@ cd /usr/share/httpd/html/
 rm -rf shopdongho
 git clone https://github.com/hungquocminh1989/shopdongho.git
 chmod -R 777 /usr/share/httpd/html/shopdongho/public
+mkdir --mode=0777 /usr/share/httpd/html/shopdongho/tmp
+mkdir --mode=0777 /usr/share/httpd/html/shopdongho/tmp/cache
+mkdir --mode=0777 /usr/share/httpd/html/shopdongho/tmp/log
 sudo service httpd start
+

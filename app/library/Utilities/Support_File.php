@@ -107,8 +107,11 @@ class Support_File
 	public static function CreateFolder($source)
 	{
 		try{
+			$source = Support_File::RepairPath($source);
 			$info = pathinfo($source);
-			$source = Support_File::RepairPath($info['dirname']);
+			if(isset($info["extension"]) == TRUE && $info["extension"] != ""){
+				$source = $info['dirname'];
+			}
 			
 			$arr_path = explode("/",$source);
 			

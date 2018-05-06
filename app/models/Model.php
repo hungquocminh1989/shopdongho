@@ -32,6 +32,11 @@ class Model
 			    'password' 		=> DATABASE_PASS
 			]);
 			
+			//Active debug sql log
+			if(SYSTEM_DEVELOPMENT_MODE == TRUE){
+				$this->db_medoo->debug();
+			}
+			
 			$this->table_name = $tablename;
         	$this->pk_id = $tablename.'_id';
 			
@@ -75,6 +80,9 @@ class Model
 		}
 	}
 	protected function query($sql, $param=null) {
+		
+		Support_Log::Log('SYSTEM_DEBUG_SQL',$sql."\r\n".var_export($param,TRUE));
+		
 		// PREPARE
 		$stmt = $this->_internal_prepare($sql);
 		
@@ -83,6 +91,9 @@ class Model
 		return $this->_internal_fetch($stmt);
 	}
 	protected function execute($sql, $param=null) {
+		
+		Support_Log::Log('SYSTEM_DEBUG_SQL',$sql."\r\n".var_export($param,TRUE));
+		
 		// PREPARE
 		$stmt = $this->_internal_prepare($sql);
 		

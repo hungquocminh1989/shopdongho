@@ -256,11 +256,13 @@ class Medoo
 	{
 		if ($this->debug_mode)
 		{
-			echo $this->generate($query, $map);
+			$sql_log = $this->generate($query, $map);
 
-			$this->debug_mode = false;
-
-			return false;
+			//$this->debug_mode = false;
+			
+			Support_Log::Log('SYSTEM_MEDOO_DEBUG_SQL',$sql_log);
+			
+			//return false;
 		}
 
 		if ($this->logging)
@@ -1247,7 +1249,7 @@ class Medoo
 		{
 			$fields[] = $this->columnQuote(preg_replace("/(\s*\[JSON\]$)/i", '', $key));
 		}
-
+		$aa = 'INSERT INTO ' . $this->tableQuote($table) . ' (' . implode(', ', $fields) . ') VALUES ' . implode(', ', $stack);
 		return $this->exec('INSERT INTO ' . $this->tableQuote($table) . ' (' . implode(', ', $fields) . ') VALUES ' . implode(', ', $stack), $map);
 	}
 
@@ -1444,7 +1446,7 @@ class Medoo
 		$this->pdo->commit();
 	}
 
-	function rollback(){
+	public function rollback(){
 		$this->pdo->rollBack();
 	}
 

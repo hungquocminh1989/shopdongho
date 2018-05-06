@@ -9,7 +9,7 @@ class ObjectData {
     
     public function getPageData($page_link, $meta_page_type){
 		$pageModel = new SitePageModel();
-		$pageDetailModel = new SitePageDetailModel();
+		$pageDetailModel = new SitePageSectionModel();
 		$PageHandle = new PageHandle();
 		
 		$arr_site_page = $pageModel->selectRowsByConditions([
@@ -56,7 +56,7 @@ class ObjectData {
 								
 							}
 							else if($meta_type ==  SYSTEM_META_SECTION_FREE){
-								$data = $PageHandle->selectPage_FreeHtmlData($item['m_site_page_detail_id']);
+								$data = $PageHandle->selectPage_FreeHtmlData($item['m_site_page_section_id']);
 								$this->appendData($data);
 							}
 						}
@@ -103,7 +103,7 @@ class ObjectData {
 			foreach($this->arr_data as $key => $value){
 				
 				$type = $value['meta_type'];
-				$id = $value['m_site_page_detail_id'];
+				$id = $value['m_site_page_section_id'];
 				$sort_no = $value['sort_no'];
 				
 				//Tạo tên mảng dùng để sắp xếp theo thứ tự data trên page

@@ -20,7 +20,7 @@ class PageHandle extends BasicModel {
 		    		mp.product_info,
 		    		mp.product_link,
 		    		im.image_path
-				FROM m_site_page_detail spd
+				FROM m_site_page_section spd
 				INNER JOIN m_category mc ON mc.m_category_id = spd.meta_id AND spd.meta_type = ".SYSTEM_META_SECTION_CATEGORY."
 				INNER JOIN m_product mp ON mp.m_category_id = mc.m_category_id
 				LEFT JOIN m_image im ON im.meta_id = mp.m_product_id AND im.default_flg =1 AND im.meta_type = ".SYSTEM_META_SECTION_PRODUCT."
@@ -34,19 +34,19 @@ class PageHandle extends BasicModel {
 		
 	}
 	
-	public function selectPage_FreeHtmlData($m_site_page_detail_id){
+	public function selectPage_FreeHtmlData($m_site_page_section_id){
     	
 		return $this->query(
 			"
 				SELECT 
 					*
-				FROM m_site_page_detail spd
+				FROM m_site_page_section spd
 				INNER JOIN m_site_page_content c ON c.m_site_page_content_id = spd.meta_id AND spd.meta_type = ".SYSTEM_META_SECTION_FREE."
-				WHERE spd.m_site_page_detail_id = :m_site_page_detail_id
+				WHERE spd.m_site_page_section_id = :m_site_page_section_id
 			"
 			,
 			[
-				'm_site_page_detail_id' => $m_site_page_detail_id
+				'm_site_page_section_id' => $m_site_page_section_id
 			]
 		);
 		

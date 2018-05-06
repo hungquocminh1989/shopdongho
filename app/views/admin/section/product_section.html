@@ -13,7 +13,7 @@
     <div class="form-group row">
         <label class="col-sm-2 form-control-label">Chọn Sản Phẩm</label>
         <div class="col-sm-4">
-            <select required class="form-control selectpicker"  title="Sản Phẩm" multiple data-live-search="true" name="meta_type[{%$section_index%}][{%$meta_type%}][meta_id]">
+            <select required class="form-control selectpicker"  title="Sản Phẩm" multiple data-live-search="true" name="meta_type[{%$section_index%}][{%$meta_type%}][m_product_id]">
             	{%foreach $listCategory as $category%}
             		<optgroup label="{%$category.category_name%}">
 	            		{%foreach $listProduct as $value%}

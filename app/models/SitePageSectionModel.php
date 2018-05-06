@@ -1,10 +1,10 @@
 <?php 
 
-class SitePageDetailModel extends BasicModel {
+class SitePageSectionModel extends BasicModel {
 	
 	public function __construct() {
     	
-        parent::__construct('m_site_page_detail');
+        parent::__construct('m_site_page_section');
 
     }
     
@@ -12,7 +12,7 @@ class SitePageDetailModel extends BasicModel {
 		return $this->query(
 		"
 			SELECT meta_type 
-			FROM m_site_page_detail
+			FROM m_site_page_section
 			WHERE m_site_page_id = :m_site_page_id
 			GROUP BY meta_type 
 		"

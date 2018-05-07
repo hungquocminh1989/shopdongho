@@ -38,7 +38,7 @@ class ObjectData {
 						'section_type' => $section_type
 					]);*/
 					
-					$listDetail = $pageSectionModel->selectSectionData($m_site_page_id, $section_type);
+					$listDetail = $pageSectionModel->selectSectionData($m_site_page_id, $section_type, $page_type);
 					
 					if($listDetail != NULL && count($listDetail) > 0){
 						
@@ -47,7 +47,7 @@ class ObjectData {
 							//Lưu giữ cộng dồn vào class ObjectData
 							if($section_type ==  SYSTEM_META_SECTION_CATEGORY){
 								$m_category_id = $item['m_category_id'];
-								$data = $PageHandle->selectPage_CategoryData($m_category_id);
+								$data = $PageHandle->selectPage_CategoryData($m_category_id, $page_type);
 								$this->appendData($data);
 							}
 							else if($section_type ==  SYSTEM_META_SECTION_PRODUCT){

@@ -224,7 +224,7 @@ class Model
 		if (is_null($this->_last_param) == false) {
 			$line .= var_export($this->_last_param, true) . "\r\n";
 		}
-		Support_Log::Log('SYSTEM_ERROR_SQL',$sql."\r\n".$line);
+		Support_Log::Log('SYSTEM_ERROR_SQL',$line);
 		
 		throw $e;
 		

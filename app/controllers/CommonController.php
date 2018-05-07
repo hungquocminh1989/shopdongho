@@ -84,7 +84,7 @@ class CommonController extends BasicController {
 		//Insert or Update m_image
 		$rows = $modelImage->selectRowsByConditions(
 			[
-				'image_type' => $image_type,
+				'image_type' => SYSTEM_META_SITE_SETTING,
 				'm_site_setting_id' => $m_site_setting_id
 			]
 		);

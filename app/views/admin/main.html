@@ -137,19 +137,19 @@
             			<div class="form-group row">
                             <label class="col-sm-2 form-control-label">Tên Website</label>
                             <div class="col-sm-5">
-                                <input required name="site_name" type="text" class="form-control" id="" value="{%$listDefine[0].site_name%}" placeholder="Nhập Tên Website">
+                                <input required name="site_name" type="text" class="form-control" id="" value="{%if isset($listDefine[0])%}{%$listDefine[0].site_name%}{%/if%}" placeholder="Nhập Tên Website">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Số Điện Thoại</label>
                             <div class="col-sm-5">
-                                <input required name="phone" type="text" class="form-control" id="" value="{%$listDefine[0].phone%}" placeholder="Nhập Số Điện Thoại">
+                                <input required name="phone" type="text" class="form-control" id="" value="{%if isset($listDefine[0])%}{%$listDefine[0].phone%}{%/if%}" placeholder="Nhập Số Điện Thoại">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Địa Chỉ Shop</label>
                             <div class="col-sm-5">
-                                <input required name="address" type="text" class="form-control" id="" value="{%$listDefine[0].address%}" placeholder="Nhập Địa Chỉ">
+                                <input required name="address" type="text" class="form-control" id="" value="{%if isset($listDefine[0])%}{%$listDefine[0].address%}{%/if%}" placeholder="Nhập Địa Chỉ">
                             </div>
                         </div>
                         <div class="form-group row">

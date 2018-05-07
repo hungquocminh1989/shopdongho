@@ -53,21 +53,6 @@ class BasicModel extends Model {
 		
 	}
 	
-	public function selectRowsByMetaData($meta_type, $meta_id){
-		
-    	$db = $this->MedooDb();
-    	
-    	$data = $db->select($this->table_name,'*',
-    		[
-				"meta_type" => $meta_type,
-				"meta_id" => $meta_id
-			]
-		);
-    	
-		return $data;
-		
-	}
-	
 	public function insertRow($sql_param){
     	
     	$db = $this->MedooDb();
@@ -124,28 +109,6 @@ class BasicModel extends Model {
     	
 	}
 	
-	public function updateRowsByMetaData($sql_param, $meta_type, $meta_id){
-    	
-    	$db = $this->MedooDb();
-		$db->begin_transaction();
-		
-		try{
-			$db->update($this->table_name,$sql_param,
-				[
-					'meta_type'=>$meta_type,
-					'meta_id'=>$meta_id
-				]		
-			);
-			$db->commit();
-			return TRUE;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
-		}
-    	
-	}
-	
 	public function deleteRowById($id){
 		
 		$db = $this->MedooDb();
@@ -184,47 +147,4 @@ class BasicModel extends Model {
 		
 	}
 	
-	public function deleteRowsByMetaData($meta_type, $meta_id){
-    	
-    	$db = $this->MedooDb();
-		$db->begin_transaction();
-		
-		try{
-			$db->delete($this->table_name,
-				[
-					'meta_type'=>$meta_type,
-					'meta_id'=>$meta_id
-				]
-			);
-			$db->commit();
-			return TRUE;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
-		}
-    	
-	}
-	
-	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-	
-	public function getMetaType($meta_name){
-		$result = $this->query("SELECT meta_type FROM m_meta_data WHERE meta_name = '$meta_name' LIMIT 1");
-		if($result != NULL && count($result) > 0){
-			return $result[0]['meta_type'];
-		}
-		else{
-			return NULL;
-		}
-	}
-	
-	public function getMetaKey($meta_name){
-		$result = $this->query("SELECT meta_key FROM m_meta_data WHERE meta_name = '$meta_name' LIMIT 1");
-		if($result != NULL && count($result) > 0){
-			return $result[0]['meta_key'];
-		}
-		else{
-			return NULL;
-		}
-	}
 }

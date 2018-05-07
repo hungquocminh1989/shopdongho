@@ -1,0 +1,37 @@
+<div class="panel panel-info" style="padding: 5px;">
+    <h3><span id="{%$section['title']%}" class="label" style="background-color:#ee2a7c;">{%$section['title']%}</span></h3>
+    <br/>
+    <div class="row">
+    	{%foreach $section.data as $item%}
+		<div class="col-lg-4 col-md-6 mb-4">
+		    <div class="pro-box">
+		        <div class="img-box">
+		        	{%if $item.flg_notify == 1 %}
+		            	<div class="green-box"><i class="fa fa-gift"></i><span> {%$item.msg_notify%}</span></div>
+		            {%/if%}
+		            <div class="add-btn-box">
+		            	<a href="#"><i class="fa fa-shopping-cart"></i>Đặt Mua</a>
+		            </div>
+		            <a href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$item['m_product_id']%}/{%$item['product_link']%}">
+		            	<img style="width: 320px;height: 350px;" src="{%$item['image_path']%}" alt="" title="" draggable="false"/>
+		            </a>
+		        </div>
+		        <div class="pro-desc">
+		            <div class="pro-name"><a href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$item['m_product_id']%}/{%$item['product_link']%}">{%$item['product_name']%}</a></div>
+		            <div class="clearfix">
+		                <div class="price">
+		                {%if $item.product_price_sale != '' %}
+		                    <span class="old-price">{%$item.product_price|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</span>
+		                    {%$item.product_price_sale|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}
+		                {%else%}
+		                	{%$item.product_price|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}
+		                {%/if%}
+		                </div>
+		                <div class="ratingstar pull-right"> <i class="fa fa-star green"> </i><i class="fa fa-star green"> </i><i class="fa fa-star-half-full green"> </i> <i class="fa fa-star-half-full green"></i> <i class="fa fa-star-o green"></i></div>
+		            </div>
+		        </div> 
+		    </div>
+		</div>
+		{%/foreach%}
+	</div>
+</div>

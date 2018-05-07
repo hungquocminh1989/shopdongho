@@ -21,9 +21,10 @@ class PageHandle extends BasicModel {
 		    		mp.product_link,
 		    		im.image_path
 				FROM m_site_page_section spd
-				INNER JOIN m_category mc ON mc.m_category_id = spd.meta_id AND spd.meta_type = ".SYSTEM_META_SECTION_CATEGORY."
+				INNER JOIN m_site_page_section_data spdd ON spd.m_site_page_section_id = spdd.m_site_page_section_id
+				INNER JOIN m_category mc ON mc.m_category_id = spdd.m_category_id
 				INNER JOIN m_product mp ON mp.m_category_id = mc.m_category_id
-				LEFT JOIN m_image im ON im.meta_id = mp.m_product_id AND im.default_flg =1 AND im.meta_type = ".SYSTEM_META_SECTION_PRODUCT."
+				LEFT JOIN m_image im ON im.m_product_id = mp.m_product_id AND im.default_flg =1 AND im.image_type = ".SYSTEM_META_SECTION_PRODUCT."
 				WHERE mc.m_category_id = :m_category_id
 			"
 			,
@@ -41,7 +42,8 @@ class PageHandle extends BasicModel {
 				SELECT 
 					*
 				FROM m_site_page_section spd
-				INNER JOIN m_site_page_content c ON c.m_site_page_content_id = spd.meta_id AND spd.meta_type = ".SYSTEM_META_SECTION_FREE."
+				INNER JOIN m_site_page_section_data spdd ON spd.m_site_page_section_id = spdd.m_site_page_section_id
+				INNER JOIN m_html_data hd ON hd.m_html_data_id = spdd.m_html_data_id AND spdd.section_type = ".SYSTEM_META_SECTION_FREE."
 				WHERE spd.m_site_page_section_id = :m_site_page_section_id
 			"
 			,

@@ -255,9 +255,9 @@
 	                    <div class="form-group row">
 	                        <label class="col-sm-2 form-control-label">Loại Trang</label>
 	                        <div class="col-sm-4">
-	                            <select name="meta_page_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
+	                            <select name="page_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
 	                                {%foreach $listPageType as $value%}
-	                                <option data-tokens="{%$value['meta_name_display']%}" value="{%$value['meta_type']%}">{%$value['meta_name_display']%}</option>
+	                                <option data-tokens="{%$value['display_value']%}" value="{%$value['define_key']%}">{%$value['display_value']%}</option>
 	                                {%/foreach%}
 	                            </select>
 	                        </div>
@@ -267,7 +267,7 @@
 	                        <div class="col-sm-4">
 	                            <select id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
 	                                {%foreach $listSectionType as $value%}
-	                                <option data-tokens="{%$value['meta_name_display']%}" value="{%$value['meta_type']%}">{%$value['meta_name_display']%}</option>
+	                                <option data-tokens="{%$value['display_value']%}" value="{%$value['define_key']%}">{%$value['display_value']%}</option>
 	                                {%/foreach%}
 	                            </select>
 	                        </div>
@@ -305,7 +305,7 @@
 	                        </thead>
 	                        <tbody>
 	                            {%foreach $listPage as $value%}
-	                            <tr {%if $value.meta_page_type == $smarty.const.SYSTEM_META_PAGE_DETAIL%} class="warning" {%/if%}>
+	                            <tr {%if $value.page_type == $smarty.const.SYSTEM_META_PAGE_DETAIL%} class="warning" {%/if%}>
 	                                <th scope="row">{%$value@iteration%}</th>
 	                                <td>{%$value['page_name']%}</td>
 	                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>

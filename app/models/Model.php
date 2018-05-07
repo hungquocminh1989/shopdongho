@@ -179,6 +179,10 @@ class Model
 		
 		$line = $e->getMessage();
 		$line .= $this->_last_sql . "\r\n";
+		if (is_null($this->_last_param) == false) {
+			$line .= var_export($this->_last_param, true) . "\r\n";
+		}
+		Support_Log::Log('SYSTEM_ERROR_SQL',$sql."\r\n".$line);
 		
 		throw $e;
 	}

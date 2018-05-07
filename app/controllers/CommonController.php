@@ -37,7 +37,7 @@ class CommonController extends BasicController {
 			$CategoryModel = new CategoryModel();
 			$ProductModel = new ProductModel();
 			$SiteSettingModel = new SiteSettingModel();
-			$MetaModel = new MetaModel();
+			$DefineModel = new DefineModel();
 			$SitePageModel = new SitePageModel();
 			$SiteHeader = new SiteHeaderModel();
 			
@@ -45,10 +45,10 @@ class CommonController extends BasicController {
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
 			$arr_return['listProduct'] = $ProductModel->listProductImage();
 			$arr_return['listDefine'] = $SiteSettingModel->get_define();
-			$arr_return['listSectionType'] = $MetaModel->selectSectionType();
-			$arr_return['listPageType'] = $MetaModel->selectPageType();
+			$arr_return['listSectionType'] = $DefineModel->selectSectionType();
+			$arr_return['listPageType'] = $DefineModel->selectPageType();
 			$arr_return['listPage'] = $SitePageModel->selectAllRows();
-			$arr_return['listPageCombo'] = $SitePageModel->selectRowsByConditions(['meta_page_type[!]'=>SYSTEM_META_PAGE_DETAIL]);
+			$arr_return['listPageCombo'] = $SitePageModel->selectRowsByConditions(['page_type[!]'=>SYSTEM_META_PAGE_DETAIL]);
 			$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
 		    Flight::renderSmarty('admin/main.html',$arr_return);
@@ -75,14 +75,19 @@ class CommonController extends BasicController {
 		$m_site_setting_id = $modelPage->create_define($param);
 		
 		$arr_sql = array();
-		$arr_sql['meta_type'] = SYSTEM_META_SITE_SETTING;
-		$arr_sql['meta_id'] = $m_site_setting_id;
+		$arr_sql['image_type'] = SYSTEM_META_SITE_SETTING;
+		$arr_sql['m_site_setting_id'] = $m_site_setting_id;
 		if($image_path != NULL){
 			$arr_sql['image_path'] = $image_path;
 		}
 		
 		//Insert or Update m_image
-		$rows = $modelImage->selectRowsByMetaData(SYSTEM_META_SITE_SETTING, $m_site_setting_id);
+		$rows = $modelImage->selectRowsByConditions(
+			[
+				'image_type' => $image_type,
+				'm_site_setting_id' => $m_site_setting_id
+			]
+		);
 		if($rows != NULL && count($rows) > 0 ){
 			$modelImage->updateRowById($arr_sql, $rows[0]['m_image_id']);
 		}
@@ -102,7 +107,7 @@ class CommonController extends BasicController {
 		
 		$imgModel->insertRow(
 			[
-				'meta_type'=>SYSTEM_META_FREE_IMAGE,
+				'image_type'=>SYSTEM_META_FREE_IMAGE,
 				'image_path'=>$image_path
 			]
 		);

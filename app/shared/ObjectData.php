@@ -7,14 +7,14 @@ class ObjectData {
     	$this->arr_data = array();
     }
     
-    public function getPageData($page_link, $meta_page_type){
+    public function getPageData($page_link, $page_type){
 		$pageModel = new SitePageModel();
-		$pageDetailModel = new SitePageSectionModel();
+		$pageSectionModel = new SitePageSectionModel();
 		$PageHandle = new PageHandle();
 		
 		$arr_site_page = $pageModel->selectRowsByConditions([
 			'page_link' => $page_link,
-			'meta_page_type' => $meta_page_type
+			'page_type' => $page_type
 		]);
 		
 		
@@ -23,42 +23,42 @@ class ObjectData {
 			
 			//Select tất cả các type có trong trang chỉ định
 			$m_site_page_id = $arr_site_page[0]['m_site_page_id'];
-			$listMetaTypeDetail = $pageDetailModel->selectAllMetaType($m_site_page_id);
+			$listMetaTypeDetail = $pageSectionModel->selectAllSectionType($m_site_page_id);
 			
 			
 			if($listMetaTypeDetail != NULL && count($listMetaTypeDetail) > 0){
 				
 				foreach($listMetaTypeDetail as $value){
 					
-					$meta_type = $value['meta_type'];
+					$section_type = $value['section_type'];
 					
 					//Lấy data theo từng type
-					$listDetail = $pageDetailModel->selectRowsByConditions([
+					/*$listDetail = $pageSectionModel->selectRowsByConditions([
 						'm_site_page_id' => $m_site_page_id,
-						'meta_type' => $meta_type
-					]);
+						'section_type' => $section_type
+					]);*/
+					
+					$listDetail = $pageSectionModel->selectSectionData($m_site_page_id, $section_type);
 					
 					if($listDetail != NULL && count($listDetail) > 0){
 						
 						foreach($listDetail as $item){
 							
-							$meta_id = $item['meta_id'];
-							
-							$title = '';
-							$data = NULL;
-							
 							//Lưu giữ cộng dồn vào class ObjectData
-							if($meta_type ==  SYSTEM_META_SECTION_CATEGORY){
-								$data = $PageHandle->selectPage_CategoryData($meta_id);
+							if($section_type ==  SYSTEM_META_SECTION_CATEGORY){
+								$m_category_id = $item['m_category_id'];
+								$data = $PageHandle->selectPage_CategoryData($m_category_id);
 								$this->appendData($data);
 							}
-							else if($meta_type ==  SYSTEM_META_SECTION_PRODUCT){
-								
+							else if($section_type ==  SYSTEM_META_SECTION_PRODUCT){
+								$m_product_id = $item['m_product_id'];
 							}
-							else if($meta_type ==  SYSTEM_META_SECTION_FREE){
+							else if($section_type ==  SYSTEM_META_SECTION_FREE){
+								$m_html_data_id = $item['m_html_data_id'];
 								$data = $PageHandle->selectPage_FreeHtmlData($item['m_site_page_section_id']);
 								$this->appendData($data);
 							}
+							
 						}
 						
 					}
@@ -92,7 +92,7 @@ class ObjectData {
 		*	]
 		* 
 		*/
-		$pageModel = new SitePageModel();
+		
 		if($this->arr_data != NULL && count($this->arr_data) > 0){
 			$arr_return = array();
 			$arr_name = array();
@@ -102,7 +102,7 @@ class ObjectData {
 			//Phân loại data thành từng mảng riêng biệt
 			foreach($this->arr_data as $key => $value){
 				
-				$type = $value['meta_type'];
+				$type = $value['section_type'];
 				$id = $value['m_site_page_section_id'];
 				$sort_no = $value['sort_no'];
 				

@@ -42,7 +42,7 @@ class SiteSettingModel extends BasicModel {
 	public function get_define(){
 		return $this->query("
 			SELECT * FROM m_site_setting ss
-			LEFT JOIN m_image im ON im.meta_id = ss.m_site_setting_id AND im.meta_type = ".SYSTEM_META_SITE_SETTING."
+			LEFT JOIN m_image im ON im.m_site_setting_id = ss.m_site_setting_id AND im.image_type = ".SYSTEM_META_SITE_SETTING."
 		");
 	}
     

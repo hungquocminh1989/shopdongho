@@ -84,15 +84,26 @@ class ProductController extends BasicController {
 		
 		$ImageModel = new ImageModel();
 		if(count($arr_images) > 0){
-			$meta_type = SYSTEM_META_SECTION_PRODUCT;
+			
+			$image_type = SYSTEM_META_SECTION_PRODUCT;
 			
 			//Xóa Hình Cũ
-			$listImage = $ImageModel->selectRowsByMetaData($meta_type,$m_product_id);
+			$listImage = $ImageModel->selectRowsByConditions(
+				[
+					'image_type' => $image_type,
+					'm_product_id' => $m_product_id
+				]
+			);
 			if($listImage != NULL && count($listImage)>0){
 				foreach($listImage as $imageDelete){
 					Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$imageDelete['image_path']);
 				}
-				$ImageModel->deleteRowsByMetaData($meta_type,$m_product_id);
+				$ImageModel->deleteRowsByConditions(
+					[
+						'image_type' => $image_type,
+						'm_product_id' => $m_product_id
+					]
+				);
 				
 			}
 			
@@ -100,8 +111,8 @@ class ProductController extends BasicController {
 				if($k == $_POST['image_default']){
 					$ImageModel->insertRow(
 						[
-							'meta_type' => $meta_type,
-							'meta_id' => $m_product_id,
+							'image_type' => $image_type,
+							'm_product_id' => $m_product_id,
 							'image_path' => $image,
 							'default_flg' => 1
 						]					
@@ -110,14 +121,15 @@ class ProductController extends BasicController {
 				else{
 					$ImageModel->insertRow(
 						[
-							'meta_type' => $meta_type,
-							'meta_id' => $m_product_id,
+							'image_type' => $image_type,
+							'm_product_id' => $m_product_id,
 							'image_path' => $image,
 							'default_flg' => 0
 						]					
 					);
 				}
 			}
+			
 		}
 	}
     

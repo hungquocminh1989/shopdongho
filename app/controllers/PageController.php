@@ -25,14 +25,14 @@ class PageController extends BasicController {
 	{
 		if(isset($_POST['section_type'])){
 			$section_type = $_POST['section_type'];
-			$MetaModel = new MetaModel();
+			$DefineModel = new DefineModel();
 			$CategoryModel = new CategoryModel();
 			$ProductModel = new ProductModel();
 			
 			$arr_return = array();
-			$arr_return = $MetaModel->selectRowById($section_type)[0];
+			$arr_return = $DefineModel->selectRowById($section_type)[0];
 			$arr_return['section_index'] =  microtime(TRUE);
-			$arr_return['meta_type'] =  $section_type;
+			$arr_return['define_key'] =  $section_type;
 			
 			if($section_type == SYSTEM_META_SECTION_CATEGORY){
 				$arr_return['listCategory'] = $CategoryModel->listCategory();	
@@ -56,10 +56,10 @@ class PageController extends BasicController {
 	public static function action_checkexistpagetype()
 	{
 		//Kiểm tra tồn tại cho loại trang chi tiết sản phẩm
-		if(isset($_POST['meta_page_type']) == TRUE && $_POST['meta_page_type'] == SYSTEM_META_PAGE_DETAIL){
+		if(isset($_POST['page_type']) == TRUE && $_POST['page_type'] == SYSTEM_META_PAGE_DETAIL){
 			
 			$model = new SitePageModel();
-			$rows = $model->selectRowsByConditions(['meta_page_type' => $_POST['meta_page_type']]);
+			$rows = $model->selectRowsByConditions(['page_type' => $_POST['page_type']]);
 			Support_Common::var_dump($rows);
 			if($rows != NULL && count($rows) > 0){
 				$old_id = $rows[0]['m_site_page_id'];

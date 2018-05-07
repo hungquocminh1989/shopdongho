@@ -254,43 +254,61 @@ class Medoo
 
 	public function exec($query, $map = [])
 	{
-		if ($this->debug_mode)
-		{
-			$sql_log = $this->generate($query, $map);
-
-			//$this->debug_mode = false;
+		try{
 			
-			Support_Log::Log('SYSTEM_MEDOO_DEBUG_SQL',$sql_log);
-			
-			//return false;
-		}
-
-		if ($this->logging)
-		{
-			$this->logs[] = [$query, $map];
-		}
-		else
-		{
-			$this->logs = [[$query, $map]];
-		}
-
-		$statement = $this->pdo->prepare($query);
-
-		if ($statement)
-		{
-			foreach ($map as $key => $value)
+			if ($this->debug_mode)
 			{
-				$statement->bindValue($key, $value[ 0 ], $value[ 1 ]);
+				$sql_log = $this->generate($query, $map);
+
+				//$this->debug_mode = false;
+				
+				Support_Log::Log('SYSTEM_MEDOO_DEBUG_SQL',$sql_log);
+				
+				//return false;
 			}
 
-			$statement->execute();
+			if ($this->logging)
+			{
+				$this->logs[] = [$query, $map];
+			}
+			else
+			{
+				$this->logs = [[$query, $map]];
+			}
 
-			$this->statement = $statement;
+			$statement = $this->pdo->prepare($query);
 
-			return $statement;
+			if ($statement)
+			{
+				foreach ($map as $key => $value)
+				{
+					$statement->bindValue($key, $value[ 0 ], $value[ 1 ]);
+				}
+
+				$statement->execute();
+
+				$this->statement = $statement;
+
+				return $statement;
+			}
+			
+			$error_info = var_export($this->error(), true);
+			$error_info .= "\r\n" . var_export($this->log(), true);
+			Support_Log::Log('SYSTEM_MEDOO_ERROR_SQL',$error_info);
+	
+			return false;
+			
+		} catch (Exception $ex) {
+			
+			$error_info = $e->getMessage();
+			$error_info .= "\r\n" . var_export($this->error(), true);
+			$error_info .= "\r\n" . var_export($this->log(), true);
+			Support_Log::Log('SYSTEM_MEDOO_ERROR_SQL',$error_info);
+			
+			return false;
+			
 		}
-
-		return false;
+		
 	}
 
 	protected function generate($query, $map)

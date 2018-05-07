@@ -26,7 +26,7 @@ class IndexController extends BasicController {
 			
 			$oData = new ObjectData();
 			
-			if($row[0]['meta_page_type'] == SYSTEM_META_PAGE_LIST){
+			if($row[0]['page_type'] == SYSTEM_META_PAGE_LIST){
 				
 				$oData->getPageData($page_link, SYSTEM_META_PAGE_LIST);
 				$arr_return['listData'] = $oData->exportPageData();
@@ -35,7 +35,7 @@ class IndexController extends BasicController {
 			    return FALSE;//Stop Route
 			    
 			}
-			else if($row[0]['meta_page_type'] == SYSTEM_META_PAGE_DETAIL){
+			else if($row[0]['page_type'] == SYSTEM_META_PAGE_DETAIL){
 				
 				$arr_return['productInfo'] = $ProductModel->listProductDetailById($id, $product_link);
 				$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);

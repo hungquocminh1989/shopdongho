@@ -151,9 +151,6 @@ class SitePageModel extends BasicModel {
 						$arr_section['section_type'] = $section_type;
 						
 						$db->insert('m_site_page_section',$arr_section);
-						$log = $db->log();
-						$error = $db->error();
-						$last = $db->last();
 						$m_site_page_section_id = $db->id();
 						
 						//Insert m_site_page_section_data

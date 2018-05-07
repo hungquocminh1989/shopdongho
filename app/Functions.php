@@ -112,11 +112,11 @@ Flight::map('error', function(Exception $ex){
     $arr_error = array();
     $arr_error['error_msg'] = $ex->getMessage();
     $arr_error['error_trace'] = $ex->getTraceAsString();
+    $arr_error['error_request'] = var_export($request,TRUE);
     
     //Write Log
-    //Support_Log::Log('ERROR_EXCEPTION',$arr_error['error_msg']);
-    //Support_Log::Log('ERROR_EXCEPTION',$arr_error['error_trace']);
-    //Support_Log::Log('ERROR_EXCEPTION',$arr_error['error_request']);
+    $log_info = $arr_error['error_msg'] . "\r\n" . $arr_error['error_trace'] . "\r\n" . $arr_error['error_request'];
+    Support_Log::Log('SYSTEM_ERROR',$log_info);
     
     Flight::renderSmarty('error.html',$arr_error);
     return FALSE;#Stop Route

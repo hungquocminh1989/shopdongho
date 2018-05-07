@@ -20,6 +20,7 @@ class Model
 		$driver_options = array(PDO::ATTR_PERSISTENT => false);
 		
 		try {
+			
 			$this->dbh = new PDO(DATABASE_DNS, DATABASE_USER, DATABASE_PASS, $driver_options);
 			$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			
@@ -42,46 +43,64 @@ class Model
 			
 		} 
 		catch (PDOException $e) {
+			
 			$this->_db_error($e);
+			
 		}
 		
 		$this->in_transaction = false;
 	}
 	
 	public function MedooDb() {
+		
 		return $this->db_medoo;
+		
 	}
 	
 	protected function begin_transaction() {
+		
 		try {
 			$this->dbh->beginTransaction();
 		} catch (PDOException $e) {
 			$this->_db_error($e);
 		}
+		
 		$this->in_transaction = true;
+		
 	}
 	protected function commit() {
+		
 		try {
 			$this->dbh->commit();
 		} catch (PDOException $e) {
 			$this->_db_error($e);
 		}
+		
 		$this->in_transaction = false;
+		
 	}
 	protected function rollback() {
+		
 		if ($this->in_transaction == false) {
 			return;
 		}
+		
 		$this->in_transaction = false;
+		
 		try {
 			$this->dbh->rollBack();
 		} catch (PDOException $e) {
 			$this->_db_error($e);
 		}
+		
 	}
 	protected function query($sql, $param=null) {
 		
-		Support_Log::Log('SYSTEM_DEBUG_SQL',$sql."\r\n".var_export($param,TRUE));
+		$sql_log = $sql;
+		if($param != NULL ){
+			$sql_log .= "\r\n".var_export($param,TRUE);
+		}
+		Support_Log::Log('SYSTEM_DEBUG_SQL',$sql_log);
 		
 		// PREPARE
 		$stmt = $this->_internal_prepare($sql);
@@ -89,30 +108,42 @@ class Model
 		$this->_internal_execute($stmt, $param);
 		// FETCH
 		return $this->_internal_fetch($stmt);
+		
 	}
 	protected function execute($sql, $param=null) {
 		
-		Support_Log::Log('SYSTEM_DEBUG_SQL',$sql."\r\n".var_export($param,TRUE));
+		$sql_log = $sql;
+		if($param != NULL ){
+			$sql_log .= "\r\n".var_export($param,TRUE);
+		}
+		Support_Log::Log('SYSTEM_DEBUG_SQL',$sql_log);
 		
 		// PREPARE
 		$stmt = $this->_internal_prepare($sql);
 		
 		$this->_internal_execute($stmt, $param);
+		
 	}
 	
 	protected function prepare($sql) {
+		
 		return $this->_internal_prepare($sql);
+		
 	}
 	protected function prepared_execute($stmt, $param=null) {
+		
 		$this->_internal_execute($stmt, $param);
+		
 	}
 	protected function prepared_query($stmt, $param=null) {
 		
 		$this->_internal_execute($stmt, $param);
 		// FETCH
 		return $this->_internal_fetch($stmt);
+		
 	}
 	private function _internal_prepare($sql) {
+		
 		try {
 			$this->_last_sql = $sql;
 			$this->_last_param = null;
@@ -120,9 +151,12 @@ class Model
 		} catch (PDOException $e) {
 			$this->_db_error($e);
 		}
+		
 		return $stmt;
+		
 	}
 	private function _internal_execute($stmt, $param) {
+		
 		try {
 			if (is_null($param) == false) {
 				$this->_last_param = $param;
@@ -138,9 +172,12 @@ class Model
 		} catch (PDOException $e) {
 			$this->_db_error($e);
 		}
+		
 	}
 	private function _internal_fetch($stmt) {
+		
 		$all = array();
+		
 		try {
 			for (;;) {
 				$result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -152,10 +189,13 @@ class Model
 		} catch (PDOException $e) {
 			$this->_db_error($e);
 		}
+		
 		return $all;
+		
 	}
 	
 	private function _is_db_null($value) {
+		
 		if (is_null($value)) {
 			return true;
 		}
@@ -169,9 +209,11 @@ class Model
 		}
 		
 		return false;
+		
 	}
 	
 	private function _db_error($e) {
+		
 		if ($this->in_transaction == true) {
 			$this->in_transaction = false;
 			$this->dbh->rollBack();
@@ -185,6 +227,7 @@ class Model
 		Support_Log::Log('SYSTEM_ERROR_SQL',$sql."\r\n".$line);
 		
 		throw $e;
+		
 	}
 }	
 ?>

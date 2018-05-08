@@ -119,7 +119,7 @@ class ObjectData {
 				//Bắt đầu phân loại data
 				if($type == SYSTEM_META_SECTION_CATEGORY){
 					
-					${$name}['data'][0] = $value;
+					${$name}['data'][] = $value;
 					
 				}
 				else if($type == SYSTEM_META_SECTION_PRODUCT){
@@ -129,7 +129,7 @@ class ObjectData {
 				}
 				else if($type == SYSTEM_META_SECTION_FREE){
 					
-					${$name}['data'][0] = $value;
+					${$name}['data'][] = $value;
 					
 				}
 				
@@ -143,7 +143,7 @@ class ObjectData {
 				//Support_Common::var_dump($value);
 				//Support_Common::var_dump(${$value});
 			}
-			
+			//Support_Common::var_dump($this->arr_data);
 			//Support_Common::var_dump($arr_return);die();
 			
 			return $arr_return;

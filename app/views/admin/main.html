@@ -187,7 +187,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Chọn Trang</label>
                             <div class="col-sm-4">
-	                            <select name="m_site_page_id" class="form-control selectpicker"  title="Chọn Trang" data-show-subtext="true" data-live-search="true" >
+	                            <select required name="m_site_page_id" class="form-control selectpicker"  title="Chọn Trang" data-show-subtext="true" data-live-search="true" >
 	                                {%foreach $listPageCombo as $value%}
 	                                <option data-subtext="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}" data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}">{%$value['page_name']%}</option>
 	                                {%/foreach%}
@@ -255,7 +255,7 @@
 	                    <div class="form-group row">
 	                        <label class="col-sm-2 form-control-label">Loại Trang</label>
 	                        <div class="col-sm-4">
-	                            <select name="page_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
+	                            <select required name="page_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
 	                                {%foreach $listPageType as $value%}
 	                                <option data-tokens="{%$value['display_value']%}" value="{%$value['define_key']%}">{%$value['display_value']%}</option>
 	                                {%/foreach%}
@@ -265,7 +265,7 @@
 	                    <div class="form-group row">
 	                        <label class="col-sm-2 form-control-label">Thành Phần Trang</label>
 	                        <div class="col-sm-4">
-	                            <select id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
+	                            <select required id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
 	                                {%foreach $listSectionType as $value%}
 	                                <option data-tokens="{%$value['display_value']%}" value="{%$value['define_key']%}">{%$value['display_value']%}</option>
 	                                {%/foreach%}

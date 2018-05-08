@@ -21,6 +21,16 @@ class IndexController extends BasicController {
 		$arr_return['listDefine'] = $SiteSettingModel->get_define();
 		$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
 		
+		//Get link detail
+		$row_detail = $SitePageModel->selectRowsByConditions(
+			[
+				'page_type' => SYSTEM_META_PAGE_DETAIL
+			]
+		);
+		if($row_detail != NULL && count($row_detail) > 0){
+			$arr_return['refix_link_detail'] = $row_detail[0]['page_link'];
+		}
+		
 		
 		if($row != NULL && count($row) > 0){
 			
@@ -41,7 +51,6 @@ class IndexController extends BasicController {
 				$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);
 				$oData->getPageData($page_link, SYSTEM_META_PAGE_DETAIL);
 				$arr_return['listData'] = $oData->exportPageData();
-				$arr_return['refix_link_detail'] = $page_link;
 				
 				if($arr_return['productInfo'] == NULL){
 					Flight::redirect('/');

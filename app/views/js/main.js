@@ -25,24 +25,29 @@ $(function() {
 	$('.selectpicker').selectpicker();
 	
 	$(document).on('click', '#add_section', function() {
-    	var ajax = new System();
-    	ajax.done_func = function(html) {
-    		$('#section_contents').append(html);
-    		$('#txt_free_section').summernote({
-				lang: 'vi-VN',
-				dialogsInBody: true,
-				dialogsFade: false,
-				callbacks: {
-					onImageUpload: function(files) {
-			            summernote_uploadimage(files[0], $('#txt_free_section'));
-			        }	
-				}
-			});
-			$('.selectpicker').selectpicker();
-    	};
-    	ajax.connect("POST","main/section/add", {
-            		"section_type": $('#section_type').val()  
-	    });
+		if($('#section_type').val() != ''){
+			var ajax = new System();
+	    	ajax.done_func = function(html) {
+	    		$('#section_contents').append(html);
+	    		$('#txt_free_section').summernote({
+					lang: 'vi-VN',
+					dialogsInBody: true,
+					dialogsFade: false,
+					callbacks: {
+						onImageUpload: function(files) {
+				            summernote_uploadimage(files[0], $('#txt_free_section'));
+				        }	
+					}
+				});
+				$('.selectpicker').selectpicker();
+	    	};
+	    	ajax.connect("POST","main/section/add", {
+	            		"section_type": $('#section_type').val()  
+		    });
+		}
+		else{
+			System.message_error('Chưa chọn loại trang.');
+		}
     });
     
     $(document).on('click', '.btn_edit_ctg', function() {

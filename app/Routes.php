@@ -1,4 +1,12 @@
 <?php
+/**
+* 
+* Cùng 1 Url có thể cho chạy nhiều route
+* Thời gian check các route ko match rất nhanh
+* Chạy qua route tiếp theo -> return TRUE
+* Dừng tại route hiện tại -> return FAlSE
+* 
+*/
 
 //Register Controller Request
 $controller = new CommonController();
@@ -8,10 +16,10 @@ $productControler = new ProductController();
 $pageControler = new PageController();
 $headerControler = new HeaderController();
 
+//Index & Detail
 Flight::route('/(@page_link)(/@id/@product_link)', array($indexController, 'action_index'));
 
 //Common
-//Flight::route('/detail/@id/@product_link', array($controller, 'action_detail'));
 Flight::route('/main', array($controller, 'action_main'));
 Flight::route('/admin', array($controller, 'action_admin'));
 Flight::route('/admin/login', array($controller, 'action_login'));
@@ -44,8 +52,7 @@ Flight::route('/main/header/edit', array($headerControler, 'action_edit_header')
 Flight::route('/main/header/delete', array($headerControler, 'action_delete_header'));
 
 
-
-// Membership Controller
+// Sample
 /*$membership = new MembershipController();
 Flight::route('GET /login', array($membership, 'login'));
 Flight::route('POST /login', array($membership, 'loginAttempt'));
@@ -56,5 +63,5 @@ Flight::route('POST /profile/@name/edit', array($membership, 'profileEditAttempt
 Flight::route('GET /sign-up', array($membership, 'register'));
 Flight::route('POST /sign-up', array($membership, 'registerAttempt'));*/
 
-// catch everything
+// Route mặc định khi không match toàn bộ
 Flight::route('/*', array($controller, 'index'));

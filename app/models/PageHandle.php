@@ -36,20 +36,21 @@ class PageHandle extends BasicModel {
 		
 	}
 	
-	public function selectPage_FreeHtmlData($m_site_page_section_id){
+	public function selectPage_FreeHtmlData($m_html_data_id){
     	
 		return $this->query(
 			"
 				SELECT 
 					*
-				FROM m_site_page_section spd
-				INNER JOIN m_site_page_section_data spdd ON spd.m_site_page_section_id = spdd.m_site_page_section_id
-				INNER JOIN m_html_data hd ON hd.m_html_data_id = spdd.m_html_data_id AND spdd.section_type = ".SYSTEM_META_SECTION_FREE."
+				FROM m_site_page p
+				INNER JOIN m_site_page_section spd ON p.m_site_page_id = spd.m_site_page_id
+				INNER JOIN m_site_page_section_data spdd ON spd.m_site_page_section_id = spdd.m_site_page_section_id AND spd.section_type = ".SYSTEM_META_SECTION_FREE."
+				INNER JOIN m_html_data hd ON hd.m_html_data_id = spdd.m_html_data_id 
 				WHERE spd.m_site_page_section_id = :m_site_page_section_id
 			"
 			,
 			[
-				'm_site_page_section_id' => $m_site_page_section_id
+				'm_html_data_id' => $m_html_data_id
 			]
 		);
 		

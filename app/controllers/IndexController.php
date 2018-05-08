@@ -11,7 +11,6 @@ class IndexController extends BasicController {
 		$SitePageModel = new SitePageModel();
 		$SiteHeader = new SiteHeaderModel();
 		
-		
 		$row = $SitePageModel->selectRowsByConditions(
 			[
 				'page_link' => $page_link

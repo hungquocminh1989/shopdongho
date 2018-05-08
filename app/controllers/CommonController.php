@@ -40,6 +40,7 @@ class CommonController extends BasicController {
 			$DefineModel = new DefineModel();
 			$SitePageModel = new SitePageModel();
 			$SiteHeader = new SiteHeaderModel();
+			$HtmlModel = new HtmlDataModel();
 			
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();
@@ -50,6 +51,7 @@ class CommonController extends BasicController {
 			$arr_return['listPage'] = $SitePageModel->selectAllRows();
 			$arr_return['listPageCombo'] = $SitePageModel->selectRowsByConditions(['page_type[!]'=>SYSTEM_META_PAGE_DETAIL]);
 			$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
+			$arr_return['listHtml'] = $HtmlModel->selectAllRows();
 			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js',$arr_return);
 		    Flight::renderSmarty('admin/main.html',$arr_return);
 		}

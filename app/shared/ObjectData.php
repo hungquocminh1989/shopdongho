@@ -55,7 +55,7 @@ class ObjectData {
 							}
 							else if($section_type ==  SYSTEM_META_SECTION_FREE){
 								$m_html_data_id = $item['m_html_data_id'];
-								$data = $PageHandle->selectPage_FreeHtmlData($item['m_site_page_section_id']);
+								$data = $PageHandle->selectPage_FreeHtmlData($m_html_data_id);
 								$this->appendData($data);
 							}
 							

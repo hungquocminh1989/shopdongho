@@ -25,13 +25,15 @@ class Model
 			$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			
 			//Connect Medoo
-			$this->db_medoo = new Medoo([
-			    'database_type' => DATABASE_TYPE,
-			    'database_name' => DATABASE_NAME,
-			    'server' 		=> DATABASE_HOST,
-			    'username' 		=> DATABASE_USER,
-			    'password' 		=> DATABASE_PASS
-			]);
+			$this->db_medoo = new Medoo(
+				[
+				    'database_type' => DATABASE_TYPE,
+				    'database_name' => DATABASE_NAME,
+				    'server' 		=> DATABASE_HOST,
+				    'username' 		=> DATABASE_USER,
+				    'password' 		=> DATABASE_PASS
+				]
+			);
 			
 			//Active debug sql log
 			if(SYSTEM_DEVELOPMENT_MODE == TRUE){

@@ -51,6 +51,11 @@ Flight::route('/main/header/update', array($headerControler, 'action_update_head
 Flight::route('/main/header/edit', array($headerControler, 'action_edit_header'));
 Flight::route('/main/header/delete', array($headerControler, 'action_delete_header'));
 
+//HTML From
+Flight::route('/main/html/update', array($headerControler, 'action_update_html'));
+Flight::route('/main/html/edit', array($headerControler, 'action_edit_html'));
+Flight::route('/main/html/delete', array($headerControler, 'action_delete_html'));
+
 
 // Sample
 /*$membership = new MembershipController();

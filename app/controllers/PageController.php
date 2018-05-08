@@ -28,6 +28,7 @@ class PageController extends BasicController {
 			$DefineModel = new DefineModel();
 			$CategoryModel = new CategoryModel();
 			$ProductModel = new ProductModel();
+			$HtmlModel = new HtmlDataModel();
 			
 			$arr_return = array();
 			$arr_return = $DefineModel->selectRowById($section_type)[0];
@@ -42,6 +43,7 @@ class PageController extends BasicController {
 				Flight::renderSmarty('admin/section/slider_section.html',$arr_return);
 			}
 			else if($section_type == SYSTEM_META_SECTION_FREE){
+				$arr_return['listHtml'] = $HtmlModel->selectAllRows();
 				Flight::renderSmarty('admin/section/free_section.html',$arr_return);
 			}
 			else if($section_type == SYSTEM_META_SECTION_PRODUCT){

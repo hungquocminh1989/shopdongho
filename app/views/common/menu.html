@@ -92,7 +92,7 @@
                     <ul class="nav navbar-nav mainnav">
                         {%foreach $listHeader as $value%}
                         <li class="">
-                            <a class="dropdown-toggle"href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$value['page_name']%}</a>
+                            <a class="dropdown-toggle"href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$value['header_name']%}</a>
                         </li>
                         {%/foreach%}
                     </ul>

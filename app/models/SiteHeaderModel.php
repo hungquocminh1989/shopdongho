@@ -29,7 +29,7 @@ class SiteHeaderModel extends BasicModel {
 			if(isset($postData['m_site_header_id']) == TRUE){
 				$db->update('m_site_header',
 					[
-						'menu_name' => $postData['menu_name'],
+						'header_name' => $postData['header_name'],
 						'display_flg' => 1,
 						'm_site_page_id' => $postData['m_site_page_id']
 					],
@@ -41,7 +41,7 @@ class SiteHeaderModel extends BasicModel {
 			else{
 				$db->insert('m_site_header',
 					[
-						'menu_name' => $postData['menu_name'],
+						'header_name' => $postData['header_name'],
 						'display_flg' => 1,
 						'm_site_page_id' => $postData['m_site_page_id']
 					]

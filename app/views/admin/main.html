@@ -181,7 +181,7 @@
             			<div class="form-group row">
                             <label class="col-sm-2 form-control-label">Tên Menu</label>
                             <div class="col-sm-5">
-                                <input required name="menu_name" type="text" class="form-control" id="" value="" placeholder="Nhập Tên Menu">
+                                <input required name="header_name" type="text" class="form-control" id="" value="" placeholder="Nhập Tên Menu">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -216,7 +216,7 @@
 	                            {%foreach $listHeader as $value%}
 	                            <tr>
 	                                <th scope="row">{%$value@iteration%}</th>
-	                                <td>{%$value['menu_name']%}</td>
+	                                <td>{%$value['header_name']%}</td>
 	                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
 	                                <td>
 	                                    <button class="btn btn-primary btn_edit_header" value="{%$value['m_site_header_id']%}">Sửa</button>

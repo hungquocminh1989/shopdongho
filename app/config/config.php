@@ -1,5 +1,5 @@
 <?php
-define('SYSTEM_BASE_URL', 'http://192.168.1.15/sdh/');
+define('SYSTEM_BASE_URL', 'http://45.76.180.116/shopdongho/');
 define('DATABASE_TYPE', 'pgsql');
 define('DATABASE_NAME', 'sdh_2018');
 define('DATABASE_HOST', '45.76.180.116');

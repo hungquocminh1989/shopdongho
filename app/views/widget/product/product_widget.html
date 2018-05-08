@@ -12,12 +12,12 @@
 		            <div class="add-btn-box">
 		            	<a href="#"><i class="fa fa-shopping-cart"></i>Đặt Mua</a>
 		            </div>
-		            <a href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$item['m_product_id']%}/{%$item['product_link']%}">
+		            <a href="{%$smarty.const.SYSTEM_BASE_URL%}{%$refix_link_detail%}/{%$item['m_product_id']%}/{%$item['product_link']%}">
 		            	<img style="width: 320px;height: 350px;" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$item['image_path']%}" alt="" title="" draggable="false"/>
 		            </a>
 		        </div>
 		        <div class="pro-desc">
-		            <div class="pro-name"><a href="{%$smarty.const.SYSTEM_BASE_URL%}detail/{%$item['m_product_id']%}/{%$item['product_link']%}">{%$item['product_name']%}</a></div>
+		            <div class="pro-name"><a href="{%$smarty.const.SYSTEM_BASE_URL%}{%$refix_link_detail%}/{%$item['m_product_id']%}/{%$item['product_link']%}">{%$item['product_name']%}</a></div>
 		            <div class="clearfix">
 		                <div class="price">
 		                {%if $item.product_price_sale != '' %}

@@ -41,6 +41,7 @@ class IndexController extends BasicController {
 				$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);
 				$oData->getPageData($page_link, SYSTEM_META_PAGE_DETAIL);
 				$arr_return['listData'] = $oData->exportPageData();
+				$arr_return['refix_link_detail'] = $page_link;
 				
 				if($arr_return['productInfo'] == NULL){
 					Flight::redirect('/');

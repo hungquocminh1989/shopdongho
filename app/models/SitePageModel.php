@@ -8,12 +8,33 @@ class SitePageModel extends BasicModel {
 
     }
     
+    public function get_edit_data($m_site_page_id){
+		
+		$sql = "
+			SELECT * 
+			FROM m_site_page p 
+			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
+			INNER JOIN m_site_page_section_data psd ON ps.m_site_page_section_id = psd.m_site_page_section_id
+			WHERE p.m_site_page_id = :m_site_page_id
+			ORDER BY ps.sort_no
+		";
+		
+		return $this->query($sql
+			,
+			[
+				'm_site_page_id' => $m_site_page_id
+			]
+		);
+		
+	}
+    
     public function delete_page_data($m_site_page_id, $db = NULL){
     	
     	$transaction = FALSE;
     	
     	if($db == NULL){
 			$db = $this->MedooDb();
+			$db->begin_transaction();
 			$transaction = TRUE;
 		}
 		

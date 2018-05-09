@@ -2669,12 +2669,11 @@ class Support_Common
     	
     	$request = Flight::request();
     	
-    	$arr_error = array();
-	    $arr_error['error_msg'] = $error_info->getMessage();
-	    $arr_error['error_trace'] = $error_info->getTraceAsString();
-	    $arr_error['error_request'] = var_export($request,TRUE);
-    	
     	if($request != NULL && $request->ajax == FALSE){//Request load trang bình thường
+		    
+		    $arr_error['error_msg'] = $error_info->getMessage();
+		    $arr_error['error_trace'] = $error_info->getTraceAsString();
+		    $arr_error['error_request'] = var_export($request,TRUE);
 		    
 		    //Write Log
 		    $log_info = $arr_error['error_msg'] . "\r\n" . $arr_error['error_trace'] . "\r\n" . $arr_error['error_request'];
@@ -2692,11 +2691,15 @@ class Support_Common
 		    header('Content-Type: application/json; charset=UTF-8');
 		    if (is_a($error_info, 'Exception')) 
 		    {
+			    $arr_error['error_msg'] = $error_info->getMessage();
+			    $arr_error['error_trace'] = $error_info->getTraceAsString();
+			    $arr_error['error_request'] = var_export($request,TRUE);
+		    	
 		    	$log_info = $arr_error['error_msg'] . "\r\n" . $arr_error['error_trace'] . "\r\n" . $arr_error['error_request'];
 		    	die("<pre>".$log_info);
 		    }
 		    else if(is_array($error_info) == TRUE){
-				die($this->var_dump($error_info));
+				die(self::var_dump($error_info));
 			}
 			else{
 				die("<pre>".$error_info);

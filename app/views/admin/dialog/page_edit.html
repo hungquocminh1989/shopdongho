@@ -1,0 +1,75 @@
+<form id="frm_setting_page_dialog" method="POST">
+	<input type="hidden" name="m_site_page_id" value="{%$m_site_page_id%}"/>
+	<div class="form-group row">
+        <label class="col-sm-2 form-control-label">Tên Trang</label>
+        <div class="col-sm-10">
+            <input required name="page_name" type="text" class="form-control" placeholder="Nhập Tên Trang" value="{%$page_name%}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 form-control-label">Link Truy Cập</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+            	<span class="input-group-addon" id="basic-addon1">{%$smarty.const.SYSTEM_BASE_URL%}</span>
+
+                <input required name="page_link" type="text" class="form-control" placeholder="Nhập Link Truy Cập" value="{%$page_link%}">
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 form-control-label">Loại Trang</label>
+        <div class="col-sm-10">
+            <select required name="page_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
+                {%foreach $listPageType as $value%}
+                <option data-tokens="{%$value['display_value']%}" value="{%$value['define_key']%}" {%if $value['define_key']== $page_type %} selected {%/if%} >{%$value['display_value']%}</option>
+                {%/foreach%}
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 form-control-label">Thành Phần Trang</label>
+        <div class="col-sm-8">
+            <select required id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
+                {%foreach $listSectionType as $value%}
+                <option data-tokens="{%$value['display_value']%}" value="{%$value['define_key']%}">{%$value['display_value']%}</option>
+                {%/foreach%}
+            </select>
+        </div>
+        <div class="col-sm-1">
+        	<button class="btn btn-primary" type="button" id="add_section">Thêm</button>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-10">
+	    	<div id="section_contents">
+    			{%foreach $listData as $section%}
+            	
+                	{%if $section.type == $smarty.const.SYSTEM_META_SECTION_CATEGORY %}
+                	
+                		{%include $smarty.const.SYSTEM_BASE_URL 'app/views/admin/section/category_section.html'%}
+                		
+                	{%else if $section.type == $smarty.const.SYSTEM_META_SECTION_PRODUCT %}
+                	
+                		{%include 'app/views/admin/section/product_section.html'%}
+                		
+                	{%else if $section.type == $smarty.const.SYSTEM_META_SECTION_FREE %}
+                	
+                		{%include 'app/views/admin/section/free_section.html'%}
+                		
+                	{%/if%}
+                	
+                {%/foreach%}
+    		</div>
+	    </div>
+	</div>
+    
+    <div class="form-group row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-8">
+            <button type="submit" class="btn btn-primary">Cập Nhật</button>
+        </div>
+    </div>
+</form>

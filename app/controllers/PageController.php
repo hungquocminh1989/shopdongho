@@ -16,8 +16,16 @@ class PageController extends BasicController {
 	public static function action_edit_page()
 	{
 		$model = new SitePageModel();
-		$arr_return = $model->selectRowById($_POST['m_site_page_id']);
-		Flight::renderSmarty('admin/dialog/page_edit.html',$arr_return[0]);
+		$DefineModel = new DefineModel();
+		
+		$arr_return = $model->selectRowById($_POST['m_site_page_id'])[0];
+		$arr_return['listSectionType'] = $DefineModel->selectSectionType();
+		$arr_return['listPageType'] = $DefineModel->selectPageType();
+		$arr_return['listData'] = $model->get_edit_data($_POST['m_site_page_id']);
+		
+		//Support_Common::RequestError($arr_return);
+		
+		Flight::renderSmarty('admin/dialog/page_edit.html',$arr_return);
 		return FALSE;//Stop Route
 	}
 	

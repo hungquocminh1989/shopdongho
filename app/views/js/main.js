@@ -95,6 +95,27 @@ $(function() {
     	);
     });
     
+    $(document).on('submit', '#frm_setting_page_dialog', function(e) {
+		//ajax call here
+		var formData = System.get_form_data(this.id);
+    	var ajax = new System();
+    	var ajax_update = new System();
+    	System.loading(false);		
+    	System.message_confirm('Xác Nhận Lưu ?',
+    		function(){
+				ajax_update.done_func = function(data) {
+					System.message_success('Lưu Trang Thành Công.',function(){
+		    			System.reload();
+		    		});	
+				}
+				ajax_update.connect("POST","main/page/update",formData);
+			}
+    	);
+
+		//stop form submission
+		e.preventDefault();
+	});
+    
     $(document).on('submit', '#frm_setting_page', function(e) {
 		//ajax call here
 		var formData = System.get_form_data(this.id);
@@ -311,17 +332,6 @@ $(function() {
     	);
     });
     
-    $(document).on('click', '.btn_edit_page', function() {
-    	var ajax = new System();
-    	var id = this.value;
-    	ajax.done_func = function(html) {
-    		System.show_dialog(html,'Cập Nhật Trang');
-    	};
-    	ajax.connect("POST","main/category/edit",{
-            		"m_site_page_id": id  
-	    });
-    });
-    
     $(document).on('click', '.btn_edit_header', function() {
     	var ajax = new System();
     	var id = this.value;
@@ -332,6 +342,19 @@ $(function() {
     	};
     	ajax.connect("POST","main/header/edit",{
             		"m_site_header_id": id  
+	    });
+    });
+    
+    $(document).on('click', '.btn_edit_page', function() {
+    	var ajax = new System();
+    	var id = this.value;
+    	ajax.done_func = function(html) {
+    		System.show_dialog(html,'Cập Nhật Trang',function(){
+    			$('.selectpicker').selectpicker();
+			});
+    	};
+    	ajax.connect("POST","main/page/edit",{
+            		"m_site_page_id": id  
 	    });
     });
     

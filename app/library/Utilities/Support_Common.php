@@ -2664,4 +2664,47 @@ class Support_Common
         natsort($contents);
         return $contents;
     }
+    
+    public static function RequestError($error_info){
+    	
+    	$request = Flight::request();
+    	
+    	$arr_error = array();
+	    $arr_error['error_msg'] = $error_info->getMessage();
+	    $arr_error['error_trace'] = $error_info->getTraceAsString();
+	    $arr_error['error_request'] = var_export($request,TRUE);
+    	
+    	if($request != NULL && $request->ajax == FALSE){//Request load trang bình thường
+		    
+		    //Write Log
+		    $log_info = $arr_error['error_msg'] . "\r\n" . $arr_error['error_trace'] . "\r\n" . $arr_error['error_request'];
+		    Support_Log::Log('SYSTEM_ERROR',$log_info);
+		
+			//Redirect to Error Page
+		    Flight::renderSmarty('error.html',$arr_error);
+		    return FALSE;#Stop Route
+		    
+		}
+		else {//Request từ AJAX
+			
+			//End request AJAX
+			header('HTTP/1.1 500 Internal Server Error');
+		    header('Content-Type: application/json; charset=UTF-8');
+		    if (is_a($error_info, 'Exception')) 
+		    {
+		    	$log_info = $arr_error['error_msg'] . "\r\n" . $arr_error['error_trace'] . "\r\n" . $arr_error['error_request'];
+		    	die("<pre>".$log_info);
+		    }
+		    else if(is_array($error_info) == TRUE){
+				die($this->var_dump($error_info));
+			}
+			else{
+				die("<pre>".$error_info);
+			}
+			
+		}
+    	
+		
+	    
+	}
 }

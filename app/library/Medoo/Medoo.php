@@ -220,6 +220,7 @@ class Medoo
 				isset($options[ 'password' ]) ? $options[ 'password' ] : null,
 				$this->option
 			);
+			$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 			foreach ($commands as $value)
 			{
@@ -262,7 +263,7 @@ class Medoo
 
 				//$this->debug_mode = false;
 				
-				Support_Log::Log('SYSTEM_MEDOO_DEBUG_SQL',$sql_log);
+				Support_Log::Log('SYSTEM_DEBUG_SQL',$sql_log);
 				
 				//return false;
 			}
@@ -284,28 +285,31 @@ class Medoo
 				{
 					$statement->bindValue($key, $value[ 0 ], $value[ 1 ]);
 				}
-
+				
 				$statement->execute();
-
+				
 				$this->statement = $statement;
+				
+				if($this->error() != NULL && $this->error()[2] != ''){
+					$error_info = var_export($this->error()[2], true);
+					$error_info .= "\r\n" . var_export($this->log(), true);
+					Support_Log::Log('SYSTEM_ERROR_SQL',$error_info);
+			
+					Support_Common::RequestError($error_info);
+					
+				}
 
 				return $statement;
 			}
 			
-			$error_info = var_export($this->error(), true);
-			$error_info .= "\r\n" . var_export($this->log(), true);
-			Support_Log::Log('SYSTEM_MEDOO_ERROR_SQL',$error_info);
-	
-			return false;
-			
-		} catch (Exception $ex) {
+		} catch (PDOException $e) {
 			
 			$error_info = $e->getMessage();
-			$error_info .= "\r\n" . var_export($this->error(), true);
 			$error_info .= "\r\n" . var_export($this->log(), true);
-			Support_Log::Log('SYSTEM_MEDOO_ERROR_SQL',$error_info);
+			$error_info .= "\r\n" . $e->getTraceAsString();
+			Support_Log::Log('SYSTEM_ERROR_EXCEPTION_SQL',$error_info);
 			
-			return false;
+			Support_Common::RequestError($error_info);
 			
 		}
 		

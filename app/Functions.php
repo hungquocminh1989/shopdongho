@@ -105,19 +105,9 @@ Flight::map('javascript_obfuscator', function($file, $param = array()){
 });
 
 //Override Flight's default error method
-Flight::map('error', function(Exception $ex){
+Flight::map('error', function($ex){
+	
     // Handle error
-    $request = Flight::request();
+    Support_Common::RequestError($ex);
     
-    $arr_error = array();
-    $arr_error['error_msg'] = $ex->getMessage();
-    $arr_error['error_trace'] = $ex->getTraceAsString();
-    $arr_error['error_request'] = var_export($request,TRUE);
-    
-    //Write Log
-    $log_info = $arr_error['error_msg'] . "\r\n" . $arr_error['error_trace'] . "\r\n" . $arr_error['error_request'];
-    Support_Log::Log('SYSTEM_ERROR',$log_info);
-    
-    Flight::renderSmarty('error.html',$arr_error);
-    return FALSE;#Stop Route
 });

@@ -29,7 +29,7 @@ class SiteHeaderModel extends BasicModel {
 			if(isset($postData['m_site_header_id']) == TRUE){
 				$db->update('m_site_header',
 					[
-						'header_name' => $postData['header_name'],
+						'header_name1' => $postData['header_name'],
 						'display_flg' => 1,
 						'm_site_page_id' => $postData['m_site_page_id']
 					],
@@ -53,7 +53,7 @@ class SiteHeaderModel extends BasicModel {
 		} catch (Exception $ex) {
 			
 			$db->rollback();
-			return FALSE;
+			Support_Common::RequestError($ex);
 			
 		}
 		

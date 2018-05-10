@@ -8,13 +8,34 @@ class SitePageModel extends BasicModel {
 
     }
     
-    public function get_edit_data($m_site_page_id){
+    public function get_edit_page($m_site_page_id){
 		
 		$sql = "
 			SELECT * 
-			FROM m_site_page p 
+			FROM m_site_page p
+			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
+			INNER JOIN m_define df ON df.define_key = ps.section_type
+			WHERE p.m_site_page_id = :m_site_page_id
+			ORDER BY ps.sort_no
+		";
+		
+		return $this->query($sql
+			,
+			[
+				'm_site_page_id' => $m_site_page_id
+			]
+		);
+		
+	}
+    
+    public function get_edit_page_data($m_site_page_id){
+		
+		$sql = "
+			SELECT * 
+			FROM m_site_page p
 			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
 			INNER JOIN m_site_page_section_data psd ON ps.m_site_page_section_id = psd.m_site_page_section_id
+			INNER JOIN m_define df ON df.define_key = ps.section_type
 			WHERE p.m_site_page_id = :m_site_page_id
 			ORDER BY ps.sort_no
 		";
@@ -48,6 +69,39 @@ class SitePageModel extends BasicModel {
 			
 			if($rows_section != NULL && count($rows_section) > 0){
 				foreach($rows_section as $value){
+					
+					
+					$rows_data = $db->select('m_site_page_section_data','*',
+						[
+							'm_site_page_section_id' => $value['m_site_page_section_id']
+						]
+					);
+					
+					if($rows_data != NULL && count($rows_data)> 0){
+						
+						foreach($rows_data as $value_data){
+							
+							if($value_data['m_group_data_id'] != ''){
+								
+								//delete m_group_data + m_group_data_detail
+								$db->delete('m_group_data_detail',
+									[
+										'm_group_data_id' => $value_data['m_group_data_id']
+									]
+								);
+								
+								$db->delete('m_group_data',
+									[
+										'm_group_data_id' => $value_data['m_group_data_id']
+									]
+								);
+								
+							}
+							
+						}
+						
+					}
+					
 					$db->delete('m_site_page_section_data',
 						[
 							'm_site_page_section_id' => $value['m_site_page_section_id']
@@ -142,11 +196,45 @@ class SitePageModel extends BasicModel {
 					
 					if($rows_section != NULL && count($rows_section) > 0){
 						foreach($rows_section as $value){
+							
+							$rows_data = $db->select('m_site_page_section_data','*',
+								[
+									'm_site_page_section_id' => $value['m_site_page_section_id']
+								]
+							);
+							
+							if($rows_data != NULL && count($rows_data)> 0){
+								
+								foreach($rows_data as $value_data){
+									
+									if($value_data['m_group_data_id'] != ''){
+										
+										//delete m_group_data + m_group_data_detail
+										$db->delete('m_group_data_detail',
+											[
+												'm_group_data_id' => $value_data['m_group_data_id']
+											]
+										);
+										
+										$db->delete('m_group_data',
+											[
+												'm_group_data_id' => $value_data['m_group_data_id']
+											]
+										);
+										
+									}
+									
+								}
+								
+							}
+							
+							
 							$db->delete('m_site_page_section_data',
 								[
 									'm_site_page_section_id' => $value['m_site_page_section_id']
 								]
 							);
+							
 						}
 					}
 					
@@ -185,7 +273,32 @@ class SitePageModel extends BasicModel {
 						}
 						else if($section_type == SYSTEM_META_SECTION_PRODUCT){//Product Data
 							
-							$arr_section_data['m_product_id'] = $value['m_product_id'];
+							$arr_ids = $value['m_product_id'];
+							
+							if($arr_ids != NULL && count($arr_ids) > 0){
+								
+								$db->insert('m_group_data'
+									,
+									[
+										'group_type' => SYSTEM_META_SECTION_PRODUCT
+									]
+								);
+								$m_group_data_id = $db->id();
+								
+								foreach($arr_ids as $m_product_id){
+									
+									$db->insert('m_group_data_detail'
+										,
+										[
+											'm_group_data_id' => $m_group_data_id,
+											'm_product_id' => $m_product_id
+										]
+									);
+									
+								}
+								
+							}
+							$arr_section_data['m_group_data_id'] = $m_group_data_id;
 							
 						}
 						else if($section_type == SYSTEM_META_SECTION_CATEGORY){//Category Data

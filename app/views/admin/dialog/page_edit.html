@@ -44,17 +44,17 @@
 	    <div class="col-sm-2"></div>
 	    <div class="col-sm-10">
 	    	<div id="section_contents">
-    			{%foreach $listData as $section%}
+    			{%foreach $listPage as $section%}
             	
-                	{%if $section.type == $smarty.const.SYSTEM_META_SECTION_CATEGORY %}
+                	{%if $section.section_type == $smarty.const.SYSTEM_META_SECTION_CATEGORY %}
                 	
-                		{%include $smarty.const.SYSTEM_BASE_URL 'app/views/admin/section/category_section.html'%}
+                		{%include 'app/views/admin/section/category_section.html'%}
                 		
-                	{%else if $section.type == $smarty.const.SYSTEM_META_SECTION_PRODUCT %}
+                	{%else if $section.section_type == $smarty.const.SYSTEM_META_SECTION_PRODUCT %}
                 	
                 		{%include 'app/views/admin/section/product_section.html'%}
                 		
-                	{%else if $section.type == $smarty.const.SYSTEM_META_SECTION_FREE %}
+                	{%else if $section.section_type == $smarty.const.SYSTEM_META_SECTION_FREE %}
                 	
                 		{%include 'app/views/admin/section/free_section.html'%}
                 		

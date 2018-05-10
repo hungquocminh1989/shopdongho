@@ -167,18 +167,25 @@
     System.get_form_data = function (form_id, type = false) {
 		var sArr = $("#"+form_id).serializeArray();
 		if(type == false){
-			var arr = {};
-		    $.each(sArr, function(i, field){
-		        arr[field.name] = field.value;
-		    });
+			
+			//Trả ra dạng mảng bình thường để ajax
+			return sArr;
+			
 		}else{
+			
+			//Trả ra dạng FormData ajax có upload file
 			var arr = new FormData();
+			console.log(arr);
 			$.each(sArr, function(i, field){
+				console.log(field.value);
 		        arr.append(field.name, field.value);
 		    });	
+		    return arr;
+		    
 		}
 		
-	    return arr;
+		return null;
+	    
     };
 	
 	System.show_dialog = function (content,titlte = '',exec_func , ok_func) {

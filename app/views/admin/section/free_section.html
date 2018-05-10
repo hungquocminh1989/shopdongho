@@ -2,7 +2,7 @@
  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
  		<span aria-hidden="true">&times;</span>
  	</button>
- 	<label>{%$display_value%}</label>
+ 	<label>{%$section.display_value%}</label>
  	<hr/>
  	<div class="form-group row">
 	    <label class="col-sm-2 form-control-label">Tiêu Đề</label>
@@ -15,7 +15,7 @@
 	    <div class="col-sm-4">
 	        <select required class="form-control selectpicker"  title="HTML" data-live-search="true" name="section_type[{%$section_index%}][{%$section_type%}][m_html_data_id]">
                 {%foreach $listHtml as $value%}
-                <option data-tokens="{%$value['html_name']%}" value="{%$value['m_html_data_id']%}">{%$value['html_name']%}</option>
+                <option data-tokens="{%$value['html_name']%}" value="{%$value['m_html_data_id']%}" {%if $value['m_html_data_id']== $section.m_html_data_id %} selected {%/if%} >{%$value['html_name']%}</option>
                 {%/foreach%}
             </select>
 	    </div>

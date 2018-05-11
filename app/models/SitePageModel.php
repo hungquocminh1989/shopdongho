@@ -8,14 +8,18 @@ class SitePageModel extends BasicModel {
 
     }
     
-    public function get_edit_page($m_site_page_id){
+    public function get_list_product_selected($m_site_page_id){
 		
 		$sql = "
 			SELECT * 
 			FROM m_site_page p
 			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
-			INNER JOIN m_define df ON df.define_key = ps.section_type
-			WHERE p.m_site_page_id = :m_site_page_id
+			INNER JOIN m_site_page_section_data psd ON ps.m_site_page_section_id = psd.m_site_page_section_id
+			INNER JOIN m_group_data gd ON gd.m_group_data_id = psd.m_group_data_id
+			INNER JOIN m_group_data_detail gdd ON gd.m_group_data_id = gdd.m_group_data_id
+			WHERE p.m_site_page_id = :m_site_page_id 
+				AND ps.section_type = ".SYSTEM_META_SECTION_PRODUCT."
+				AND psd.m_group_data_id IS NOT NULL
 			ORDER BY ps.sort_no
 		";
 		
@@ -28,7 +32,7 @@ class SitePageModel extends BasicModel {
 		
 	}
     
-    public function get_edit_page_data($m_site_page_id){
+    public function get_edit_page($m_site_page_id){
 		
 		$sql = "
 			SELECT * 
@@ -159,7 +163,7 @@ class SitePageModel extends BasicModel {
 			}
 			
 			//Start create page
-			if(isset($postData['m_site_page_id']) == TRUE){
+			if(isset($postData['m_site_page_id']) == TRUE && $postData['m_site_page_id'] != ''){
 				$m_site_page_id = $postData['m_site_page_id'];
 			}
 			
@@ -171,7 +175,11 @@ class SitePageModel extends BasicModel {
 			if($m_site_page_id != NULL){
 				
 				//Update
-				$db->update('m_site_page',$arr_page);
+				$db->update('m_site_page',$arr_page,
+					[
+						'm_site_page_id' => $m_site_page_id
+					]
+				);
 				
 			}
 			else{

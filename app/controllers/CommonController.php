@@ -43,7 +43,7 @@ class CommonController extends BasicController {
 			$HtmlModel = new HtmlDataModel();
 			
 			$arr_return = array();
-			$arr_return['listCategory'] = $CategoryModel->listCategory();
+			$arr_return['listCategory'] = $CategoryModel->listCategory();			
 			$arr_return['listProduct'] = $ProductModel->listProductImage();
 			$arr_return['listDefine'] = $SiteSettingModel->get_define();
 			$arr_return['listSectionType'] = $DefineModel->selectSectionType();

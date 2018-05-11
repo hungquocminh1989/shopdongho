@@ -23,12 +23,12 @@ class PageController extends BasicController {
 		$arr_return = $model->selectRowById($_POST['m_site_page_id'])[0];
 		$arr_return['listSectionType'] = $DefineModel->selectSectionType();
 		$arr_return['listPageType'] = $DefineModel->selectPageType();
-		$arr_return['listPage'] = $model->get_edit_data($_POST['m_site_page_id']);
-		$arr_return['listPageData'] = $model->get_edit_page_data($_POST['m_site_page_id']);
+		$arr_return['listPage'] = $model->get_edit_page($_POST['m_site_page_id']);
+		$arr_return['listProductSelected'] = $model->get_list_product_selected($_POST['m_site_page_id']);
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['listProduct'] = $ProductModel->listProductImage();
 		
-		//Support_Common::RequestError($arr_return['listData']);
+		//Support_Common::RequestError($arr_return['listProductSelected']);
 		
 		Flight::renderSmarty('admin/dialog/page_edit.html',$arr_return);
 		return FALSE;//Stop Route
@@ -95,7 +95,7 @@ class PageController extends BasicController {
 	{
 		
 		$postData = Flight::request()->data->getData();
-		
+		//Support_Common::RequestError($postData);
 		$model = new SitePageModel();
 		$model->update_page($postData);
 		

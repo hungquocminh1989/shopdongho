@@ -4,6 +4,7 @@
  	</button>
  	<label>{%$section.display_value%}</label>
  	<hr/>
+ 	<input type="hidden" name="m_html_data_id" value="{%$section.m_html_data_id%}"/>
  	<div class="form-group row">
 	    <label class="col-sm-2 form-control-label">Tiêu Đề</label>
 	    <div class="col-sm-10">
@@ -12,12 +13,41 @@
 	</div>
 	<div class="form-group row">
 	    <label class="col-sm-2 form-control-label">Nội Dung</label>
-	    <div class="col-sm-4">
-	        <select required class="form-control selectpicker"  title="HTML" data-live-search="true" name="section_type[{%$sort_no%}][{%$section_type%}][m_html_data_id]">
+	    <div class="col-sm-10">
+	        <!--<select required class="form-control selectpicker"  title="HTML" data-live-search="true" name="section_type[{%$sort_no%}][{%$section_type%}][m_html_data_id]">
                 {%foreach $listHtml as $value%}
                 <option data-tokens="{%$value['html_name']%}" value="{%$value['m_html_data_id']%}" {%if $value['m_html_data_id']== $section.m_html_data_id %} selected {%/if%} >{%$value['html_name']%}</option>
                 {%/foreach%}
-            </select>
+            </select>-->
+            <textarea id="txt_free_section_{%$sort_no%}" class="summernote" name="section_type[{%$sort_no%}][{%$section_type%}][html_data]">{%$section.html_data%}</textarea>
 	    </div>
 	</div>
 </div>
+
+<script>
+$(function() {
+	
+	$('#txt_free_section_{%$sort_no%}').summernote({
+		lang: 'vi-VN',
+		dialogsInBody: true,
+		dialogsFade: false,
+		callbacks: {
+			onImageUpload: function(files) {
+	            summernote_uploadimage_dialog(files[0], $('#txt_free_section_{%$sort_no%}'));
+	        }	
+		}
+	});
+	
+	function summernote_uploadimage_dialog(file, control) {
+		var ajax = new SystemUpload();
+		data = new FormData();
+        data.append("file_upload", file);
+    	
+    	ajax.done_func = function(data) {
+    		control.summernote('editor.insertImage', data['url']);
+    	};
+    	ajax.connect("POST","main/image/upload", data);
+    }
+	
+});
+</script>

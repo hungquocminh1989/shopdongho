@@ -35,11 +35,12 @@ class SitePageModel extends BasicModel {
     public function get_edit_page($m_site_page_id){
 		
 		$sql = "
-			SELECT p.*, ps.*, psd.*, df.define_key, df.display_value
+			SELECT p.*, ps.*, psd.*, df.define_key, df.display_value, hd.html_data
 			FROM m_site_page p
 			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
 			INNER JOIN m_site_page_section_data psd ON ps.m_site_page_section_id = psd.m_site_page_section_id
 			INNER JOIN m_define df ON df.define_key = ps.section_type
+			INNER JOIN m_html_data hd ON hd.m_html_data_id = psd.m_html_data_id
 			WHERE p.m_site_page_id = :m_site_page_id
 			ORDER BY ps.sort_no
 		";
@@ -277,7 +278,28 @@ class SitePageModel extends BasicModel {
 						
 						if($section_type == SYSTEM_META_SECTION_FREE){//Free Data
 							
-							$arr_section_data['m_html_data_id'] = $value['m_html_data_id'];
+							$HtmlDataModel = new HtmlDataModel();
+		
+							$arr_html = array();
+							$arr_html['html_name'] = $value['section_title'];
+							$arr_html['html_data'] = $value['html_data'];
+							
+							if(isset($postData['m_html_data_id']) == TRUE && $postData['m_html_data_id'] != ''){
+								
+								$m_html_data_id = $postData['m_html_data_id'];
+								$db->update('m_html_data',$arr_html, ['m_html_data_id'=>$m_html_data_id]);
+								
+							}
+							else{
+								
+								$db->insert('m_html_data',$arr_html);
+								$m_html_data_id = $db->id();
+								
+							}
+							
+							//$arr_section_data['m_html_data_id'] = $value['m_html_data_id'];
+							$arr_section_data['m_html_data_id'] = $m_html_data_id;
+							
 							
 						}
 						else if($section_type == SYSTEM_META_SECTION_PRODUCT){//Product Data

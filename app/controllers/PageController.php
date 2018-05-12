@@ -47,7 +47,7 @@ class PageController extends BasicController {
 			
 			$arr_return = array();
 			$arr_return = $DefineModel->selectRowById($section_type)[0];
-			$arr_return['sort_no'] =  microtime(TRUE);
+			$arr_return['sort_no'] =  str_replace('.','',microtime(TRUE));
 			$arr_return['section_type'] =  $section_type;
 			
 			if($section_type == SYSTEM_META_SECTION_CATEGORY){

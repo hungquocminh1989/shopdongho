@@ -29,16 +29,6 @@ $(function() {
 			var ajax = new System();
 	    	ajax.done_func = function(html) {
 	    		$('#section_contents').append(html);
-	    		$('#txt_free_section').summernote({
-					lang: 'vi-VN',
-					dialogsInBody: true,
-					dialogsFade: false,
-					callbacks: {
-						onImageUpload: function(files) {
-				            summernote_uploadimage(files[0], $('#txt_free_section'));
-				        }	
-					}
-				});
 				$('.selectpicker').selectpicker();
 	    	};
 	    	ajax.connect("POST","main/section/add", {
@@ -55,16 +45,6 @@ $(function() {
 			var ajax = new System();
 	    	ajax.done_func = function(html) {
 	    		$('#section_contents_dialog').append(html);
-	    		$('#txt_free_section').summernote({
-					lang: 'vi-VN',
-					dialogsInBody: true,
-					dialogsFade: false,
-					callbacks: {
-						onImageUpload: function(files) {
-				            summernote_uploadimage(files[0], $('#txt_free_section'));
-				        }	
-					}
-				});
 				$('.selectpicker').selectpicker();
 	    	};
 	    	ajax.connect("POST","main/section/add", {
@@ -376,6 +356,17 @@ $(function() {
     	var id = this.value;
     	ajax.done_func = function(html) {
     		System.show_dialog(html,'Cập Nhật Trang',function(){
+    			//Chạy sau khi dialog đã được open
+    			$('#txt_free_section_dialog').summernote({
+					lang: 'vi-VN' ,
+					dialogsInBody: true,
+					dialogsFade: true,
+					callbacks: {
+						onImageUpload: function(files) {
+				            summernote_uploadimage(files[0], $('#'+this.id));
+				        }	
+					}
+				});
     			$('.selectpicker').selectpicker();
 			});
     	};

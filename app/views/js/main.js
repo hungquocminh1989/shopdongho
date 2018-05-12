@@ -6,7 +6,7 @@ $(function() {
 		dialogsFade: false,
 		callbacks: {
 			onImageUpload: function(files) {
-	            summernote_uploadimage(files[0], this);
+	            summernote_uploadimage(files[0], $('#'+this.id));
 	        }	
 		}
 	});
@@ -43,6 +43,32 @@ $(function() {
 	    	};
 	    	ajax.connect("POST","main/section/add", {
 	            		"section_type": $('#section_type').val()  
+		    });
+		}
+		else{
+			System.message_error('Chưa chọn loại trang.');
+		}
+    });
+    
+    $(document).on('click', '#add_section_dialog', function() {
+		if($('#section_type_dialog').val() != ''){
+			var ajax = new System();
+	    	ajax.done_func = function(html) {
+	    		$('#section_contents_dialog').append(html);
+	    		$('#txt_free_section').summernote({
+					lang: 'vi-VN',
+					dialogsInBody: true,
+					dialogsFade: false,
+					callbacks: {
+						onImageUpload: function(files) {
+				            summernote_uploadimage(files[0], $('#txt_free_section'));
+				        }	
+					}
+				});
+				$('.selectpicker').selectpicker();
+	    	};
+	    	ajax.connect("POST","main/section/add", {
+	            		"section_type": $('#section_type_dialog').val()  
 		    });
 		}
 		else{

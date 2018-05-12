@@ -19,6 +19,7 @@ class PageController extends BasicController {
 		$DefineModel = new DefineModel();
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
+		$HtmlModel = new HtmlDataModel();
 		
 		$arr_return = $model->selectRowById($_POST['m_site_page_id'])[0];
 		$arr_return['listSectionType'] = $DefineModel->selectSectionType();
@@ -27,6 +28,7 @@ class PageController extends BasicController {
 		$arr_return['listProductSelected'] = $model->get_list_product_selected($_POST['m_site_page_id']);
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['listProduct'] = $ProductModel->listProductImage();
+		$arr_return['listHtml'] = $HtmlModel->selectAllRows();
 		
 		//Support_Common::RequestError($arr_return['listProductSelected']);
 		
@@ -45,7 +47,7 @@ class PageController extends BasicController {
 			
 			$arr_return = array();
 			$arr_return = $DefineModel->selectRowById($section_type)[0];
-			$arr_return['section_index'] =  microtime(TRUE);
+			$arr_return['sort_no'] =  microtime(TRUE);
 			$arr_return['section_type'] =  $section_type;
 			
 			if($section_type == SYSTEM_META_SECTION_CATEGORY){

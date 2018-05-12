@@ -107,7 +107,7 @@ class ObjectData {
 				$sort_no = $value['sort_no'];
 				
 				//Tạo tên mảng dùng để sắp xếp theo thứ tự data trên page
-				$name = "arr_".$type."_".$id."_".$sort_no;
+				$name = "arr_".$sort_no."_".$type."_".$id;
 				
 				if(in_array($name,$arr_name)=== FALSE){
 					$arr_name[] = $name;

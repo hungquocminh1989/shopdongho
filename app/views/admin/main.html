@@ -317,7 +317,7 @@
 	                    <div class="form-group row">
 	                        <label class="col-sm-2 form-control-label">Thành Phần Trang</label>
 	                        <div class="col-sm-4">
-	                            <select required id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
+	                            <select id="section_type" class="form-control selectpicker"  title="Chọn Loại" data-live-search="true" >
 	                                {%foreach $listSectionType as $value%}
 	                                <option data-tokens="{%$value['display_value']%}" value="{%$value['define_key']%}">{%$value['display_value']%}</option>
 	                                {%/foreach%}

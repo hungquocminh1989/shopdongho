@@ -10,7 +10,9 @@ class ProductController extends BasicController {
 		$arr_product['product_name'] = $_POST['product_name'];
 		$arr_product['product_no'] = $_POST['product_no'];
 		$arr_product['product_price'] = $_POST['product_price'];
-		$arr_product['product_price_sale'] = $_POST['product_price_sale'];
+		if(isset($_POST['product_price_sale']) && $_POST['product_price_sale'] != ''){
+			$arr_product['product_price_sale'] = $_POST['product_price_sale'];
+		}
 		$arr_product['flg_notify'] = 0;
 		if(isset($_POST['flg_notify']) == TRUE){
 			$arr_product['flg_notify'] = $_POST['flg_notify'];
@@ -57,7 +59,9 @@ class ProductController extends BasicController {
 			$arr_product['product_name'] = $_POST['product_name'];
 			$arr_product['product_no'] = $_POST['product_no'];
 			$arr_product['product_price'] = $_POST['product_price'];
-			$arr_product['product_price_sale'] = $_POST['product_price_sale'];
+			if(isset($_POST['product_price_sale']) && $_POST['product_price_sale'] != ''){
+				$arr_product['product_price_sale'] = $_POST['product_price_sale'];
+			}
 			$arr_product['flg_notify'] = 0;
 			if(isset($_POST['flg_notify']) == TRUE){
 				$arr_product['flg_notify'] = $_POST['flg_notify'];

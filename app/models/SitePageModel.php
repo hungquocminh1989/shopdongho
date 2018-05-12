@@ -35,7 +35,7 @@ class SitePageModel extends BasicModel {
     public function get_edit_page($m_site_page_id){
 		
 		$sql = "
-			SELECT * 
+			SELECT p.*, ps.*, psd.*, df.define_key, df.display_value
 			FROM m_site_page p
 			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
 			INNER JOIN m_site_page_section_data psd ON ps.m_site_page_section_id = psd.m_site_page_section_id
@@ -191,68 +191,69 @@ class SitePageModel extends BasicModel {
 			}
 			
 			//luon luon delete va insert lai m_site_page_section + m_site_page_section_data
-			if(isset($postData['section_type']) == TRUE){
+			if($m_site_page_id != NULL){
 				
-				//delete 
-				if($m_site_page_id != NULL){
+				$rows_section = $db->select('m_site_page_section','*',
+					[
+						'm_site_page_id' => $m_site_page_id
+					]
+				);
 				
-					$rows_section = $db->select('m_site_page_section','*',
-						[
-							'm_site_page_id' => $m_site_page_id
-						]
-					);
-					
-					if($rows_section != NULL && count($rows_section) > 0){
-						foreach($rows_section as $value){
+				if($rows_section != NULL && count($rows_section) > 0){
+					foreach($rows_section as $value){
+						
+						$rows_data = $db->select('m_site_page_section_data','*',
+							[
+								'm_site_page_section_id' => $value['m_site_page_section_id']
+							]
+						);
+						
+						if($rows_data != NULL && count($rows_data)> 0){
 							
-							$rows_data = $db->select('m_site_page_section_data','*',
-								[
-									'm_site_page_section_id' => $value['m_site_page_section_id']
-								]
-							);
-							
-							if($rows_data != NULL && count($rows_data)> 0){
+							foreach($rows_data as $value_data){
 								
-								foreach($rows_data as $value_data){
+								if($value_data['m_group_data_id'] != ''){
 									
-									if($value_data['m_group_data_id'] != ''){
-										
-										//delete m_group_data + m_group_data_detail
-										$db->delete('m_group_data_detail',
-											[
-												'm_group_data_id' => $value_data['m_group_data_id']
-											]
-										);
-										
-										$db->delete('m_group_data',
-											[
-												'm_group_data_id' => $value_data['m_group_data_id']
-											]
-										);
-										
-									}
+									//delete m_group_data + m_group_data_detail
+									$db->delete('m_group_data_detail',
+										[
+											'm_group_data_id' => $value_data['m_group_data_id']
+										]
+									);
+									
+									$db->delete('m_group_data',
+										[
+											'm_group_data_id' => $value_data['m_group_data_id']
+										]
+									);
 									
 								}
 								
 							}
 							
-							
-							$db->delete('m_site_page_section_data',
-								[
-									'm_site_page_section_id' => $value['m_site_page_section_id']
-								]
-							);
-							
 						}
+						
+						
+						$db->delete('m_site_page_section_data',
+							[
+								'm_site_page_section_id' => $value['m_site_page_section_id']
+							]
+						);
+						
 					}
-					
-					$db->delete('m_site_page_section',
-						[
-							'm_site_page_id' => $m_site_page_id
-						]
-					);
-				
 				}
+				
+				$db->delete('m_site_page_section',
+					[
+						'm_site_page_id' => $m_site_page_id
+					]
+				);
+			
+			}
+			
+			
+			//Insert lai toan bo
+			if(isset($postData['section_type']) == TRUE){
 				
 				$dataMeta = array_values($postData['section_type']);
 				

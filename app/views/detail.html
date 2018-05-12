@@ -40,11 +40,11 @@
                                 </div>
                                 <div class="oldprice">
                                 
-                                	{%if isset($productInfo[0]['msg_notify'])%}
+                                	{%if $productInfo[0]['flg_notify'] == 1 && $productInfo[0]['msg_notify'] != ''%}
                                 		<span class="save">{%$productInfo[0]['msg_notify']%}</span>
                                 	{%/if%}
                                 	
-                                	{%if isset($productInfo[0]['product_price'])%}
+                                	{%if $productInfo[0]['product_price_sale'] != ''%}
                                 		<span class="productpageoldprice"> Giá Gốc : {%$productInfo[0]['product_price']|number_format:0:".":","%}{%$smarty.const.SYSTEM_CURRENCY%}</span>
                                 	{%/if%}
                                 	

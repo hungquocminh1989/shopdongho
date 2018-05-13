@@ -8,7 +8,7 @@
  	<div class="form-group row">
 	    <label class="col-sm-2 form-control-label">Tiêu Đề</label>
 	    <div class="col-sm-10">
-	        <input required name="section_type[{%$sort_no%}][{%$section_type%}][section_title]" type="text" class="form-control" placeholder="Nhập Tiêu Đề" value="{%$section_title%}">
+	        <input required name="section_type[{%$sort_no%}][{%$section_type%}][section_title]" type="text" class="form-control" placeholder="Nhập Tiêu Đề" value="{%if isset($section_title)%} {%$section_title%} {%/if%}">
 	    </div>
 	</div>
 	<div class="form-group row">

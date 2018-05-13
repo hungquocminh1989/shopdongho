@@ -4,7 +4,7 @@
  	</button>
  	<label>{%$display_value%}</label>
  	<hr/>
- 	<input type="hidden" name="m_html_data_id" value="{%$m_html_data_id%}"/>
+ 	<input type="hidden" name="m_html_data_id" value="{%if isset($m_html_data_id)%} {%$m_html_data_id%} {%/if%}"/>
  	<div class="form-group row">
 	    <label class="col-sm-2 form-control-label">Tiêu Đề</label>
 	    <div class="col-sm-10">

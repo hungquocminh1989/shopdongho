@@ -32,12 +32,13 @@
 $(function() {
 	
 	//Load value selected into combobox product
-	var arr_product = new Array();
-	{%foreach $listProductSelected as $item_data%}
-		arr_product.push({%$item_data.m_product_id%});
-	{%/foreach%}
-	
-	$('#cb_select_product').selectpicker('val', arr_product);
-	
+	{%if isset($listProductSelected)%}
+		var arr_product = new Array();
+		{%foreach $listProductSelected as $item_data%}
+			arr_product.push({%$item_data.m_product_id%});
+		{%/foreach%}
+		
+		$('#cb_select_product').selectpicker('val', arr_product);
+	{%/if%}
 });
 </script>

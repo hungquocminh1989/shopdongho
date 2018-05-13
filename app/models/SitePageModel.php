@@ -40,7 +40,7 @@ class SitePageModel extends BasicModel {
 			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
 			INNER JOIN m_site_page_section_data psd ON ps.m_site_page_section_id = psd.m_site_page_section_id
 			INNER JOIN m_define df ON df.define_key = ps.section_type
-			INNER JOIN m_html_data hd ON hd.m_html_data_id = psd.m_html_data_id
+			LEFT JOIN m_html_data hd ON hd.m_html_data_id = psd.m_html_data_id
 			WHERE p.m_site_page_id = :m_site_page_id
 			ORDER BY ps.sort_no
 		";

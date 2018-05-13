@@ -5,17 +5,17 @@
  	<label>{%$display_value%}</label>
  	<hr/>
  	<div class="form-group row">
-	    <label class="col-sm-2 form-control-label">Tiêu Đề</label>
-	    <div class="col-sm-10">
+	    <label class="col-sm-3 form-control-label">Tiêu Đề</label>
+	    <div class="col-sm-9">
 	        <input required name="section_type[{%$sort_no%}][{%$section_type%}][section_title]" type="text" class="form-control" placeholder="Nhập Tiêu Đề" value="{%if isset($section_title)%} {%$section_title%} {%/if%}">
 	    </div>
 	</div>
 	<div class="form-group row">
-	    <label class="col-sm-2 form-control-label">Chọn Danh Mục</label>
-	    <div class="col-sm-4">
+	    <label class="col-sm-3 form-control-label">Chọn Danh Mục</label>
+	    <div class="col-sm-9">
 	        <select required class="form-control selectpicker"  title="Danh Mục" data-live-search="true" name="section_type[{%$sort_no%}][{%$section_type%}][m_category_id]">
                 {%foreach $listCategory as $value%}
-                <option data-tokens="{%$value['category_name']%}" value="{%$value['m_category_id']%}" {%if $value['m_category_id']== $m_category_id %} selected {%/if%} >{%$value['category_name']%}</option>
+                <option data-tokens="{%$value['category_name']%}" value="{%$value['m_category_id']%}" {%if isset($m_category_id) && $value['m_category_id']== $m_category_id %} selected {%/if%} >{%$value['category_name']%}</option>
                 {%/foreach%}
             </select>
 	    </div>

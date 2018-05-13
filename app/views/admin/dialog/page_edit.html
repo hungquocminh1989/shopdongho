@@ -48,9 +48,13 @@
             		
             		{%$sort_no = $section.sort_no%}
             		{%$section_type = $section.section_type%}
+            		{%$display_value = $section.display_value%}
+            		{%$section_title = $section.section_title%}            		
             		
                 	{%if $section.section_type == $smarty.const.SYSTEM_META_SECTION_CATEGORY %}
                 	
+                		{%$m_category_id = $section.m_category_id%}
+                		
                 		{%include 'app/views/admin/section/category_section.html'%}
                 		
                 	{%else if $section.section_type == $smarty.const.SYSTEM_META_SECTION_PRODUCT %}
@@ -59,6 +63,9 @@
                 		
                 	{%else if $section.section_type == $smarty.const.SYSTEM_META_SECTION_FREE %}
                 	
+                		{%$m_html_data_id = $section.m_html_data_id%}
+                		{%$html_data = $section.html_data%}
+                		
                 		{%include 'app/views/admin/section/free_section.html'%}
                 		
                 	{%/if%}

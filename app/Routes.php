@@ -15,6 +15,7 @@ $categoryControler = new CategoryController();
 $productControler = new ProductController();
 $pageControler = new PageController();
 $headerControler = new HeaderController();
+$htmlControler = new HtmlController();
 
 //Index & Detail
 Flight::route('/(@page_link)(/@id/@product_link)', array($indexController, 'action_index'));
@@ -52,9 +53,9 @@ Flight::route('/main/header/edit', array($headerControler, 'action_edit_header')
 Flight::route('/main/header/delete', array($headerControler, 'action_delete_header'));
 
 //HTML From
-Flight::route('/main/html/update', array($headerControler, 'action_update_html'));
-Flight::route('/main/html/edit', array($headerControler, 'action_edit_html'));
-Flight::route('/main/html/delete', array($headerControler, 'action_delete_html'));
+Flight::route('/main/html/update', array($htmlControler, 'action_update_html'));
+Flight::route('/main/html/edit', array($htmlControler, 'action_edit_html'));
+Flight::route('/main/html/delete', array($htmlControler, 'action_delete_html'));
 
 
 // Sample

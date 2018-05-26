@@ -84,7 +84,7 @@ class ProductController extends BasicController {
 		
 		$folderRoot = "product_images/$m_product_id";
 		
-		$arr_images = parent::copy_multi_file_uploaded('upload', $folderRoot, TRUE);
+		$arr_images = Support_Common::copy_multi_file_uploaded('upload', $folderRoot, TRUE);
 		
 		$ImageModel = new ImageModel();
 		if(count($arr_images) > 0){

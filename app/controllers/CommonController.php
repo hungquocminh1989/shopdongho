@@ -70,7 +70,7 @@ class CommonController extends BasicController {
 		$arrPost = Flight::request()->data->getData();
 		
 		//Copy file
-		$image_path = parent::copy_file_uploaded('upload_logo_site', 'site_images');
+		$image_path = Support_Common::copy_file_uploaded('upload_logo_site', 'site_images');
 		
 		//Insert or Update m_site_setting
 		$param = Support_Array::filter($arrPost,array('site_name','phone','address'));
@@ -104,7 +104,7 @@ class CommonController extends BasicController {
 	public static function action_image_upload()
 	{
 		//Copy file
-		$image_path = self::copy_file_uploaded('file_upload', 'free_images');
+		$image_path = Support_Common::copy_file_uploaded('file_upload', 'free_images');
 		$imgModel = new ImageModel();
 		
 		$imgModel->insertRow(

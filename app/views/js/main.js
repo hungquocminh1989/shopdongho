@@ -124,10 +124,30 @@ $(function() {
     
     $(document).on('submit', '#frm_setting_page', function(e) {
 		//ajax call here
-		var formData = System.get_form_data(this.id);
-    	var ajax = new System();
-    	var ajax_update = new System();
-    	System.loading(false);		
+		var formData = System.get_form_data(this.id, true);
+    	var ajax = new SystemUpload();
+    	var ajax_update = new SystemUpload();
+    	System.loading(false);	
+    	
+    	//get image
+    	if($('#upload_1').length > 0 && $('#upload_1')[0].files.length > 0 ){
+            for (i = 0; i < $('#upload_1')[0].files.length; i++) {
+                formData.append('section_image_upload[]',$('#upload_1')[0].files[i] );
+            }
+		}
+		
+		if($('#upload_2').length > 0 && $('#upload_2')[0].files.length > 0 ){
+            for (i = 0; i < $('#upload_2')[0].files.length; i++) {
+                formData.append('section_image_upload[]',$('#upload_2')[0].files[i] );
+            }
+		}
+		
+		if($('#upload_3').length > 0 && $('#upload_3')[0].files.length > 0 ){
+            for (i = 0; i < $('#upload_3')[0].files.length; i++) {
+                formData.append('section_image_upload[]',$('#upload_3')[0].files[i] );
+            }
+		}
+    	console.log(formData);	
     	System.message_confirm('Xác Nhận Lưu ?',
     		function(){
 				ajax.done_func = function(data) {

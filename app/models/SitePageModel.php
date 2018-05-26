@@ -215,6 +215,30 @@ class SitePageModel extends BasicModel {
 								
 								if($value_data['m_group_data_id'] != ''){
 									
+									//select image
+									$rows_group_detail = $db->select('m_group_data_detail','*',
+										[
+											'm_group_data_id' => $value_data['m_group_data_id']
+										]
+									);
+									
+									if($rows_group_detail != NULL && count($rows_group_detail) > 0){
+										foreach($rows_group_detail as $row_group_detail){
+											$m_image_id = $row_group_detail['m_image_id'];
+											$path_image = $row_group_detail['image_path'];
+											
+											//delete data image file
+											Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$path_image);
+											
+											//delete data image
+											$db->delete('m_image',
+												[
+													'm_image_id' => $m_image_id
+												]
+											);
+										}
+									}
+									
 									//delete m_group_data + m_group_data_detail
 									$db->delete('m_group_data_detail',
 										[
@@ -339,27 +363,56 @@ class SitePageModel extends BasicModel {
 						}
 						else if($section_type == SYSTEM_META_SECTION_IMAGE){
 							
-							$HtmlDataModel = new HtmlDataModel();
-		
-							$arr_html = array();
-							$arr_html['html_name'] = $value['section_title'];
-							$arr_html['html_data'] = $value['html_data'];
+							$arr_image_ids = array();
 							
-							if(isset($postData['m_html_data_id']) == TRUE && $postData['m_html_data_id'] != ''){
+							//Copy image
+							$arr_images = Support_Common::copy_multi_file_uploaded('section_image_upload', 'section_images');
+							
+							//Insert image db
+							if($arr_images != NULL && count($arr_images) > 0){
 								
-								$m_html_data_id = $postData['m_html_data_id'];
-								$db->update('m_html_data',$arr_html, ['m_html_data_id'=>$m_html_data_id]);
+								foreach($arr_images as $k => $image){
+									$db->insert('m_image'
+										,
+										[
+											'image_type' => SYSTEM_META_SECTION_IMAGE,
+											'image_path' => $image,
+											'default_flg' => 0
+										]
+									);
+									$arr_image_ids[] = $db->id();
+								}
 								
 							}
-							else{
+							
+							if($arr_image_ids != NULL && count($arr_image_ids) > 0){
 								
-								$db->insert('m_html_data',$arr_html);
-								$m_html_data_id = $db->id();
+								$db->insert('m_group_data'
+									,
+									[
+										'group_type' => SYSTEM_META_SECTION_IMAGE
+									]
+								);
+								$m_group_data_id = $db->id();
+								
+								foreach($arr_image_ids as $key => $m_image_id){
+									
+									$m_site_page_id_select = $value['m_site_page_id'][$key];
+									
+									$db->insert('m_group_data_detail'
+										,
+										[
+											'm_group_data_id' => $m_group_data_id,
+											'm_image_id' => $m_image_id,
+											'm_site_page_id' => $m_site_page_id_select
+										]
+									);
+									
+								}
 								
 							}
-							
-							//$arr_section_data['m_html_data_id'] = $value['m_html_data_id'];
-							$arr_section_data['m_html_data_id'] = $m_html_data_id;
+							$arr_section_data['m_group_data_id'] = $m_group_data_id;
+							//Support_Common::RequestError($arr_image_ids);
 							
 						}
 						

@@ -14,7 +14,7 @@ class DefineModel extends BasicModel {
     	
     	$data = $db->select("m_define",'*',
     		[
-    			'define_key' => [1,4,6]
+    			'define_key' => [1,4,6,9,10]
     		]
     	);
 		

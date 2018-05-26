@@ -44,6 +44,7 @@ class PageController extends BasicController {
 			$CategoryModel = new CategoryModel();
 			$ProductModel = new ProductModel();
 			$HtmlModel = new HtmlDataModel();
+			$SitePageModel = new SitePageModel();
 			
 			$arr_return = array();
 			$arr_return = $DefineModel->selectRowById($section_type)[0];
@@ -65,6 +66,13 @@ class PageController extends BasicController {
 				$arr_return['listCategory'] = $CategoryModel->listCategory();
 				$arr_return['listProduct'] = $ProductModel->listProductImage();
 				Flight::renderSmarty('admin/section/product_section.html',$arr_return);
+			}
+			else if ($section_type == SYSTEM_META_SECTION_SLIDER){
+				Flight::renderSmarty('admin/section/slider_section.html',$arr_return);
+			}
+			else if ($section_type == SYSTEM_META_SECTION_IMAGE){
+				$arr_return['listPageCombo'] = $SitePageModel->selectRowsByConditions(['page_type[!]'=>SYSTEM_META_PAGE_DETAIL]);
+				Flight::renderSmarty('admin/section/image_section.html',$arr_return);
 			}
 		}
 		return FALSE;//Stop Route

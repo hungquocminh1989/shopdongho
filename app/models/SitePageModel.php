@@ -337,6 +337,31 @@ class SitePageModel extends BasicModel {
 							$arr_section_data['m_category_id'] = $value['m_category_id'];
 							
 						}
+						else if($section_type == SYSTEM_META_SECTION_IMAGE){
+							
+							$HtmlDataModel = new HtmlDataModel();
+		
+							$arr_html = array();
+							$arr_html['html_name'] = $value['section_title'];
+							$arr_html['html_data'] = $value['html_data'];
+							
+							if(isset($postData['m_html_data_id']) == TRUE && $postData['m_html_data_id'] != ''){
+								
+								$m_html_data_id = $postData['m_html_data_id'];
+								$db->update('m_html_data',$arr_html, ['m_html_data_id'=>$m_html_data_id]);
+								
+							}
+							else{
+								
+								$db->insert('m_html_data',$arr_html);
+								$m_html_data_id = $db->id();
+								
+							}
+							
+							//$arr_section_data['m_html_data_id'] = $value['m_html_data_id'];
+							$arr_section_data['m_html_data_id'] = $m_html_data_id;
+							
+						}
 						
 						$db->insert('m_site_page_section_data',$arr_section_data);
 						

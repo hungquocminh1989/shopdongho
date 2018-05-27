@@ -31,6 +31,29 @@ class SitePageModel extends BasicModel {
 		);
 		
 	}
+	
+	public function get_list_image_section($m_site_page_id){
+		$sql = "
+			SELECT * 
+			FROM m_site_page p
+			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
+			INNER JOIN m_site_page_section_data psd ON ps.m_site_page_section_id = psd.m_site_page_section_id
+			INNER JOIN m_group_data gd ON gd.m_group_data_id = psd.m_group_data_id
+			INNER JOIN m_group_data_detail gdd ON gd.m_group_data_id = gdd.m_group_data_id
+			INNER JOIN m_image im ON im.m_image_id = gdd.m_image_id
+			WHERE p.m_site_page_id = :m_site_page_id 
+				AND ps.section_type = ".SYSTEM_META_SECTION_IMAGE."
+				AND psd.m_group_data_id IS NOT NULL
+			ORDER BY gdd.m_group_data_detail_id
+		";
+		
+		return $this->query($sql
+			,
+			[
+				'm_site_page_id' => $m_site_page_id
+			]
+		);
+	}
     
     public function get_edit_page($m_site_page_id){
 		
@@ -88,6 +111,34 @@ class SitePageModel extends BasicModel {
 							
 							if($value_data['m_group_data_id'] != ''){
 								
+								//select image
+								$rows_group_detail = $db->select('m_group_data_detail','*',
+									[
+										'm_group_data_id' => $value_data['m_group_data_id']
+									]
+								);
+								
+								if($rows_group_detail != NULL && count($rows_group_detail) > 0){
+									foreach($rows_group_detail as $row_group_detail){
+										$m_image_id = $row_group_detail['m_image_id'];
+										
+										$imageModel = new ImageModel();
+										$img_row = $imageModel->selectRowById($m_image_id);
+										if($img_row != NULL && count($img_row) > 0 ){
+											$path_image = $img_row[0]['image_path'];
+											//delete data image file
+											Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$path_image);
+										}
+										
+										//delete data image
+										$db->delete('m_image',
+											[
+												'm_image_id' => $m_image_id
+											]
+										);
+									}
+								}
+								
 								//delete m_group_data + m_group_data_detail
 								$db->delete('m_group_data_detail',
 									[
@@ -126,7 +177,7 @@ class SitePageModel extends BasicModel {
 					'm_site_page_id' => $m_site_page_id
 				]
 			);
-			
+			//Support_Common::RequestError(111);
 			if($transaction == TRUE){
 				$db->commit();
 			}
@@ -225,10 +276,14 @@ class SitePageModel extends BasicModel {
 									if($rows_group_detail != NULL && count($rows_group_detail) > 0){
 										foreach($rows_group_detail as $row_group_detail){
 											$m_image_id = $row_group_detail['m_image_id'];
-											$path_image = $row_group_detail['image_path'];
 											
-											//delete data image file
-											Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$path_image);
+											$imageModel = new ImageModel();
+											$img_row = $imageModel->selectRowById($m_image_id);
+											if($img_row != NULL && count($img_row) > 0 ){
+												$path_image = $img_row[0]['image_path'];
+												//delete data image file
+												Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$path_image);
+											}
 											
 											//delete data image
 											$db->delete('m_image',
@@ -361,7 +416,7 @@ class SitePageModel extends BasicModel {
 							$arr_section_data['m_category_id'] = $value['m_category_id'];
 							
 						}
-						else if($section_type == SYSTEM_META_SECTION_IMAGE){
+						else if($section_type == SYSTEM_META_SECTION_IMAGE){//Section Image
 							
 							$arr_image_ids = array();
 							

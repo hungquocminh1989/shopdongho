@@ -7,7 +7,7 @@
 	<div class="form-group row">
 	    <label class="col-sm-2 form-control-label">Tiêu Đề</label>
 	    <div class="col-sm-10">
-	        <input required name="section_type[{%$sort_no%}][{%$section_type%}][section_title]" type="text" class="form-control" placeholder="Nhập Tiêu Đề" value="{%if isset($section_title)%} {%$section_title%} {%/if%}">
+	        <input required name="section_type[{%$sort_no%}][{%$section_type%}][section_title]" type="text" class="form-control" placeholder="Nhập Tiêu Đề" value="{%if isset($section_title)%}{%$section_title%}{%/if%}">
 	    </div>
 	</div>
 	
@@ -15,15 +15,15 @@
         <label class="col-sm-2 form-control-label">Image 1</label>
         <div class="col-sm-10">
         
-        	{%if isset($listDefine[0].image_path) == true %}
-        		<img class="thumbnail thumbnail_grid" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$listDefine[0].image_path%}">
+        	{%if isset($listImageSection[0].image_path) == true %}
+        		<img class="thumbnail thumbnail_grid" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$listImageSection[0].image_path%}">
         	{%/if%}
         	
             <input id="upload_1" class="form-control-file select_file_upload" type="file" accept="image/*" />
             
             <select required name="section_type[{%$sort_no%}][{%$section_type%}][m_site_page_id][]" class="form-control selectpicker"  title="Chọn Trang" data-show-subtext="true" data-live-search="true" >
                 {%foreach $listPageCombo as $value%}
-                <option data-subtext="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}" data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}">{%$value['page_name']%}</option>
+                <option data-subtext="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}" data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}" {%if isset($listImageSection[0].m_site_page_id) && $listImageSection[0].m_site_page_id== $value['m_site_page_id'] %} selected {%/if%}>{%$value['page_name']%}</option>
                 {%/foreach%}
             </select>
             
@@ -34,15 +34,15 @@
         <label class="col-sm-2 form-control-label">Image 2</label>
         <div class="col-sm-10">
         
-        	{%if isset($listDefine[0].image_path) == true %}
-        		<img class="thumbnail thumbnail_grid" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$listDefine[0].image_path%}">
+        	{%if isset($listImageSection[1].image_path) == true %}
+        		<img class="thumbnail thumbnail_grid" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$listImageSection[1].image_path%}">
         	{%/if%}
         	
             <input id="upload_2" class="form-control-file select_file_upload" type="file" accept="image/*" />
             
             <select required name="section_type[{%$sort_no%}][{%$section_type%}][m_site_page_id][]" class="form-control selectpicker"  title="Chọn Trang" data-show-subtext="true" data-live-search="true" >
                 {%foreach $listPageCombo as $value%}
-                <option data-subtext="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}" data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}">{%$value['page_name']%}</option>
+                <option data-subtext="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}" data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}" {%if isset($listImageSection[1].m_site_page_id) && $listImageSection[1].m_site_page_id== $value['m_site_page_id'] %} selected {%/if%}>{%$value['page_name']%}</option>
                 {%/foreach%}
             </select>
             
@@ -53,15 +53,15 @@
         <label class="col-sm-2 form-control-label">Image 3</label>
         <div class="col-sm-10">
         
-        	{%if isset($listDefine[0].image_path) == true %}
-        		<img class="thumbnail thumbnail_grid" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$listDefine[0].image_path%}">
+        	{%if isset($listImageSection[2].image_path) == true %}
+        		<img class="thumbnail thumbnail_grid" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$listImageSection[2].image_path%}">
         	{%/if%}
         	
             <input id="upload_3" class="form-control-file select_file_upload" type="file" accept="image/*" />
             
             <select required name="section_type[{%$sort_no%}][{%$section_type%}][m_site_page_id][]" class="form-control selectpicker"  title="Chọn Trang" data-show-subtext="true" data-live-search="true" >
                 {%foreach $listPageCombo as $value%}
-                <option data-subtext="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}" data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}">{%$value['page_name']%}</option>
+                <option data-subtext="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}" data-tokens="{%$value['page_name']%} {%$value['page_link']%}" value="{%$value['m_site_page_id']%}" {%if isset($listImageSection[2].m_site_page_id) && $listImageSection[2].m_site_page_id== $value['m_site_page_id'] %} selected {%/if%}>{%$value['page_name']%}</option>
                 {%/foreach%}
             </select>
             

@@ -68,6 +68,10 @@
                 		
                 		{%include 'app/views/admin/section/free_section.html'%}
                 		
+                	{%else if $section.section_type == $smarty.const.SYSTEM_META_SECTION_IMAGE %}
+                	
+                		{%include 'app/views/admin/section/image_section.html'%}
+                			
                 	{%/if%}
                 	
                 {%/foreach%}

@@ -57,5 +57,30 @@ class PageHandle extends BasicModel {
 		);
 		
 	}
+	
+	public function selectPage_ImageSectionData($m_site_page_id, $m_group_data_id){
+    	
+		return $this->query(
+			"
+				SELECT 
+					*
+				FROM m_site_page p
+				INNER JOIN m_site_page_section spd ON p.m_site_page_id = spd.m_site_page_id
+				INNER JOIN m_site_page_section_data spdd ON spd.m_site_page_section_id = spdd.m_site_page_section_id AND spd.section_type = ".SYSTEM_META_SECTION_IMAGE."
+				INNER JOIN m_group_data g ON g.m_group_data_id = spdd.m_group_data_id 
+				INNER JOIN m_group_data_detail gd ON g.m_group_data_id = gd.m_group_data_id
+				INNER JOIN m_image im ON im.m_image_id = gd.m_image_id
+				WHERE g.m_group_data_id = :m_group_data_id 
+					AND p.m_site_page_id = :m_site_page_id
+					AND g.group_type = ".SYSTEM_META_SECTION_IMAGE."
+			"
+			,
+			[
+				'm_group_data_id' => $m_group_data_id,
+				'm_site_page_id' => $m_site_page_id
+			]
+		);
+		
+	}
     
 }

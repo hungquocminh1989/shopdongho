@@ -39,7 +39,7 @@ class IndexController extends BasicController {
 				
 				$oData->getPageData($page_link, SYSTEM_META_PAGE_LIST);
 				$arr_return['listData'] = $oData->exportPageData();
-				//Support_Common::var_dump($arr_return['listData']);
+				#Support_Common::var_dump($arr_return['listData']);
 			    Flight::renderSmarty('index.html',$arr_return);
 			    return FALSE;//Stop Route
 			    

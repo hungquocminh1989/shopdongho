@@ -53,6 +53,11 @@ class ObjectData {
 							else if($section_type ==  SYSTEM_META_SECTION_PRODUCT){
 								$m_product_id = $item['m_product_id'];
 							}
+							else if($section_type ==  SYSTEM_META_SECTION_IMAGE){
+								$m_group_data_id = $item['m_group_data_id'];
+								$data = $PageHandle->selectPage_ImageSectionData($m_site_page_id, $m_group_data_id);
+								$this->appendData($data);
+							}
 							else if($section_type ==  SYSTEM_META_SECTION_FREE){
 								$m_html_data_id = $item['m_html_data_id'];
 								$data = $PageHandle->selectPage_FreeHtmlData($m_site_page_id, $m_html_data_id);
@@ -126,6 +131,11 @@ class ObjectData {
 					/*${$name}['type'] = $type;
 					${$name}['title'] = $value['product_name'];
 					${$name}['data'][0] = $value;*/
+				}
+				else if($type == SYSTEM_META_SECTION_IMAGE){
+					
+					${$name}['data'][] = $value;
+					
 				}
 				else if($type == SYSTEM_META_SECTION_FREE){
 					

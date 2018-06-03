@@ -51,24 +51,16 @@
         <section id="add-banner">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="add-banner1 clearfix">
-                            <div class="img-box"> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/strip-new.png" class="strip-img" alt="" title=""> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/pro-thumb1.jpg" class="pro-img" alt="" title=""> </div>
-                            <div class="cpart-box"> <span class="text-row">New Fancy</span> <span class="text-row1">Tshirt</span> <span class="text-row2">Fresh Arrivals</span> <a href="#" class="shop-link"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="larrow-icon" alt="" title="">Shop Now</a> </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="add-banner1 clearfix">
-                            <div class="img-box"> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/strip-exc.png" class="strip-img" alt="" title=""> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/pro-thumb2.jpg" class="pro-img" alt="" title=""> </div>
-                            <div class="cpart-box"> <span class="text-row">Black Border</span> <span class="text-row1">Shoes</span> <span class="text-row2">Starting $ <em>2599</em></span> <a href="#" class="shop-link"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="larrow-icon" alt="" title="">Shop Now</a> </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="add-banner1 clearfix">
-                            <div class="img-box"> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/strip-sale.png" class="strip-img" alt="" title=""> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/pro-thumb3.jpg" class="pro-img" alt="" title=""> </div>
-                            <div class="cpart-box"> <span class="text-row">Black Trandy</span> <span class="text-row1"> Jeans</span> <span class="text-row2">Starting $ <em>2599</em></span> <a href="#" class="shop-link"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="larrow-icon" alt="" title="">Shop Now</a> </div>
-                        </div>
-                    </div>
+                {%foreach $listData as $section%}
+            	
+                	{%if $section.type == $smarty.const.SYSTEM_META_SECTION_IMAGE %}
+                	
+                		{%include 'app/views/widget/image_section/image_widget.html' %}
+                		
+                	{%/if%}
+                	
+                {%/foreach%}
+                    
                 </div>
             </div>
         </section>

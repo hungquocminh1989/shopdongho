@@ -677,3 +677,8 @@ img.bot-arrow-icon { float: right; margin-top: 7px; }
 	width: 75px;
 	height: 60px;
 }
+
+.img_logo_setting{
+	max-width: 50px;
+	max-height: 50px;
+}

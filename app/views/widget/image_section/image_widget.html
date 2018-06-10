@@ -1,8 +1,11 @@
 {%foreach $section.data as $item%}
 	<div class="col-md-4">
 	    <div class="add-banner1 clearfix">
-	        <div class="img-box"> <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/strip-new.png" class="strip-img" alt="" title=""> <img src="{%$smarty.const.SYSTEM_BASE_URL%}{%$item.image_path%}" class="pro-img" alt="" title=""> </div>
-	        <div class="cpart-box"> <span class="text-row">New Fancy</span> <span class="text-row1">Tshirt</span> <span class="text-row2">Fresh Arrivals</span> <a href="#" class="shop-link"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="larrow-icon" alt="" title="">Shop Now</a> </div>
+	        <div class="img-box">
+	        	<a href="{%$smarty.const.SYSTEM_BASE_URL%}{%$item.page_link%}">
+	        		<img src="{%$smarty.const.SYSTEM_BASE_URL%}{%$item.image_path%}" class="pro-img">
+	        	</a>
+	        </div>
 	    </div>
 	</div>
 {%/foreach%}

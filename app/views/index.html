@@ -2,52 +2,17 @@
 <html>
     {%include 'app/views/common/header.html'%}
     <body style="">
+    
+    	<!--################################################################-->
     	{%include 'app/views/common/menu.html'%}
-        <section id="services-box">
-            <div class="container">
-                <ul class="services-part">
-                    <li>
-                        <a href="#">
-                            <div class="icon-box"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="exclusive-icon" alt="" title=""></div>
-                            <div class="text-box">Exclusive <span>Collectaion</span></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="icon-box"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="shipping-icon" alt="" title=""></div>
-                            <div class="text-box">Free Shipping &amp; <span>Easy Return</span></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="icon-box"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="cashon-icon" alt="" title=""></div>
-                            <div class="text-box">Cash on <span>Delivery Option</span></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="icon-box"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="best-price-icon" alt="" title=""></div>
-                            <div class="text-box">Best Price <span>Guarantee</span></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="icon-box"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/blank-img.png" class="genuine-icon" alt="" title=""></div>
-                            <div class="text-box">100% Genuine <span> Products</span></div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <section id="banner-box">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9">
-                        <!--de sau-->
-                    </div>
-                </div>
-            </div>
-        </section>
+        
+        <!--################################################################-->
+        {%include 'app/views/widget/slider/slider_widget.html' %}
+        
+        <!--################################################################-->
+    	{%include 'app/views/widget/information/icon_widget.html' %}
+        
+        <!--################################################################-->
         <section id="add-banner">
             <div class="container">
                 <div class="row">
@@ -64,6 +29,8 @@
                 </div>
             </div>
         </section>
+        
+        <!--################################################################-->
         <section id="add-pro-box">
             <div class="container">
             	{%foreach $listData as $section%}
@@ -85,15 +52,19 @@
                 {%/foreach%}
             </div>
         </section>
-        <section id="add-big-banner">
+        
+        <!--################################################################-->
+        <!--<section id="add-big-banner">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-xs-12 text-left"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/banner-580.jpg" class="img-responsive" alt="" title=""></div>
                     <div class="col-md-6 col-xs-12 text-right"><img src="{%$smarty.const.SYSTEM_BASE_URL%}public/build1/images/banner1-580.jpg" class="img-responsive" alt="" title=""></div>
                 </div>
             </div>
-        </section>
-        <section id="mpart">
+        </section>-->
+        
+        <!--################################################################-->
+        <!--<section id="mpart">
             <div class="container">
                 <h1 class="heading2 brand-title">Top <span>Brands</span></h1>
                 <div class="brandflexsliderfull carousel">
@@ -118,7 +89,10 @@
                     </ul>
                 </div>
             </div>
-        </section>
+        </section>-->
+        
+        <!--################################################################-->
         {%include 'app/views/common/footer.html'%}
+        
     </body>
 </html>

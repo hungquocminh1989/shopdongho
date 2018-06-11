@@ -4,6 +4,7 @@ class IndexController extends BasicController {
 	
 	public static function action_index($page_link, $id = '', $product_link = '')
 	{
+		
 		$arr_return = array();
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
@@ -32,6 +33,10 @@ class IndexController extends BasicController {
 		
 		
 		if($row != NULL && count($row) > 0){
+			
+			//Set path folder template
+			Flight::set('flight.views.path', 'app/views_001/');
+			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.'/app/views_001/');
 			
 			$oData = new ObjectData();
 			

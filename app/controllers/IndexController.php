@@ -35,8 +35,8 @@ class IndexController extends BasicController {
 		if($row != NULL && count($row) > 0){
 			
 			//Set path folder template
-			Flight::set('flight.views.path', 'app/views_001/');
-			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.'/app/views_001/');
+			Flight::set('flight.views.path', 'app/views/mistore_layout/');
+			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.'/app/views/mistore_layout/');
 			
 			$oData = new ObjectData();
 			
@@ -45,7 +45,7 @@ class IndexController extends BasicController {
 				$oData->getPageData($page_link, SYSTEM_META_PAGE_LIST);
 				$arr_return['listData'] = $oData->exportPageData();
 				#Support_Common::var_dump($arr_return['listData']);
-			    Flight::renderSmarty('index01.html',$arr_return);
+			    Flight::renderSmarty('index.html',$arr_return);
 			    return FALSE;//Stop Route
 			    
 			}

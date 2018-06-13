@@ -71,6 +71,29 @@ class BasicModel extends Model {
     	
 	}
 	
+	public function insertRows($sql_params){
+    	
+    	$db = $this->MedooDb();
+		$db->begin_transaction();		
+		
+		try{
+			
+			$arr_ids = array();
+			foreach($sql_params as $key => $sql_param){
+				$db->insert($this->table_name,$sql_param);
+				$lastInsertId = $db->id();
+				$arr_ids[] = $lastInsertId;
+			}
+			$db->commit();
+			return $arr_ids;
+			
+		} catch (Exception $ex) {
+			$db->rollback();
+			return FALSE;
+		}
+    	
+	}
+	
 	public function updateRowById($sql_param, $id){
     	
     	$db = $this->MedooDb();

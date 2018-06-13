@@ -98,11 +98,15 @@ class Model
 	}
 	protected function query($sql, $param=null) {
 		
-		$sql_log = $sql;
-		if($param != NULL ){
-			$sql_log .= "\r\n".var_export($param,TRUE);
+		//Active debug sql log
+		if(SYSTEM_DEVELOPMENT_MODE == TRUE){
+			$sql_log = $sql;
+			if($param != NULL ){
+				$sql_log .= "\r\n".var_export($param,TRUE);
+			}
+			Support_Log::Log('SYSTEM_DEBUG_SQL',$sql_log);
 		}
-		Support_Log::Log('SYSTEM_DEBUG_SQL',$sql_log);
+		
 		
 		// PREPARE
 		$stmt = $this->_internal_prepare($sql);
@@ -114,11 +118,14 @@ class Model
 	}
 	protected function execute($sql, $param=null) {
 		
-		$sql_log = $sql;
-		if($param != NULL ){
-			$sql_log .= "\r\n".var_export($param,TRUE);
+		//Active debug sql log
+		if(SYSTEM_DEVELOPMENT_MODE == TRUE){
+			$sql_log = $sql;
+			if($param != NULL ){
+				$sql_log .= "\r\n".var_export($param,TRUE);
+			}
+			Support_Log::Log('SYSTEM_DEBUG_SQL',$sql_log);
 		}
-		Support_Log::Log('SYSTEM_DEBUG_SQL',$sql_log);
 		
 		// PREPARE
 		$stmt = $this->_internal_prepare($sql);

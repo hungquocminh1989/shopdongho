@@ -35,8 +35,8 @@ class IndexController extends BasicController {
 		if($row != NULL && count($row) > 0){
 			
 			//Set path folder template
-			Flight::set('flight.views.path', 'app/views/mistore_layout/');
-			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.'/app/views/mistore_layout/');
+			Flight::set('flight.views.path', 'app/views/mistore-layout/');
+			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.'/app/views/mistore-layout/');
 			
 			$oData = new ObjectData();
 			

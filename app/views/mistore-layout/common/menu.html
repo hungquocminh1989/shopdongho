@@ -1,0 +1,145 @@
+<header class="header" id="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 header__top__logo">
+                    <a class="logo" href="http://mistore.com.vn/">
+                    <img src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/logo-mistore.png">
+                    </a>
+                </div>
+                <div class="col-md-7 header__top__menu">
+                    <nav class="navbar navbar-default">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="tel:1900565606"><b>Hotline: 1900 565606</b></a>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                            <ul id="menu-menu-1" class="nav navbar-nav">
+                                <li id="menu-item-56" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-56 dropdown">
+                                    <a title="GIỚI THIỆU" href="http://mistore.com.vn/gioi-thieu/" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">GIỚI THIỆU <span class="caret"></span></a>
+                                    <ul role="menu" class=" dropdown-menu" style="display: none; height: 119px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                                        <li id="menu-item-3423" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3423"><a title="THÔNG TIN CÔNG TY" href="http://mistore.com.vn/gioi-thieu/">THÔNG TIN CÔNG TY</a></li>
+                                        <li id="menu-item-3424" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3424"><a title="ĐỐI TÁC" href="http://mistore.com.vn/#">ĐỐI TÁC</a></li>
+                                        <li id="menu-item-7644" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7644"><a title="Tuyển Dụng" href="http://mistore.com.vn/tuyen-dung/">Tuyển Dụng</a></li>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-7" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7 dropdown">
+                                    <a title="SẢN PHẨM" href="http://mistore.com.vn/#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">SẢN PHẨM <span class="caret"></span></a>
+                                    <ul role="menu" class=" dropdown-menu" style="display: none; height: auto; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                                    	{%foreach $listHeader as $value%}
+				                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$value['header_name']%}</a></li>
+				                        {%/foreach%}
+                                    </ul>
+                                </li>
+                                <li id="menu-item-383" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-383"><a title="QUY ĐỊNH BẢO HÀNH" href="http://mistore.com.vn/quy-dinh-bao-hanh/">QUY ĐỊNH BẢO HÀNH</a></li>
+                                <li id="menu-item-803" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-803 dropdown">
+                                    <a title="TIN TỨC" href="http://mistore.com.vn/#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">TIN TỨC <span class="caret"></span></a>
+                                    <ul role="menu" class=" dropdown-menu" style="display: none; height: 236px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                                        <li id="menu-item-804" class="menu-item menu-item-type-taxonomy menu-item-object-news_category menu-item-804"><a title="Bản tin" href="http://mistore.com.vn/tin-tuc/ban-tin/">Bản tin</a></li>
+                                        <li id="menu-item-805" class="menu-item menu-item-type-taxonomy menu-item-object-news_category menu-item-805"><a title="Khuyến mãi" href="http://mistore.com.vn/tin-tuc/khuyen-mai/">Khuyến mãi</a></li>
+                                        <li id="menu-item-808" class="menu-item menu-item-type-taxonomy menu-item-object-news_category menu-item-808"><a title="Thủ thuật" href="http://mistore.com.vn/tin-tuc/thu-thuat/">Thủ thuật</a></li>
+                                        <li id="menu-item-807" class="menu-item menu-item-type-taxonomy menu-item-object-news_category menu-item-807"><a title="Review" href="http://mistore.com.vn/tin-tuc/review/">Review</a></li>
+                                        <li id="menu-item-806" class="menu-item menu-item-type-taxonomy menu-item-object-news_category menu-item-806"><a title="Mistore&#39;s channel" href="http://mistore.com.vn/tin-tuc/mistore-channel/">Mistore’s channel</a></li>
+                                        <li id="menu-item-809" class="menu-item menu-item-type-taxonomy menu-item-object-news_category menu-item-809"><a title="Về mistore" href="http://mistore.com.vn/tin-tuc/ve-mistore/">Về mistore</a></li>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-364" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-364"><a title="LIÊN HỆ" href="http://mistore.com.vn/lien-he/">LIÊN HỆ</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-md-3 header__top__right">
+                    <div class="header__top__right__text">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> Bạn đang ở TP.HCM 
+                    </div>
+                    <!--<a href="http://mistore.com.vn/kiem-tra-thong-tin-bao-hanh/"><img class="img-responsive" src="http://mistore.com.vn/wp-content/themes/pridio/assets/images/icon2.png"></a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header__middle">
+        <div class="container">
+            <div class="row">
+                <div class="header__middle__menu col-md-3 col-sm-3">
+                    <span class="header__middle__menu__item"><i class="fa fa-bars" aria-hidden="true"></i>MENU</span>
+                </div>
+                <div class="header__middle__search col-md-6 col-sm-6">
+                    <form role="search" method="get" class="search-form" action="http://mistore.com.vn/">
+                        <label for="email" class="sr-only">Email address:</label>
+                        <div class="input-group">
+                            <input type="search" class="form-control search-field" placeholder="Nhập sản phẩm cần tìm..." value="" name="s">
+                            <div class="input-group-btn">
+                                <button class="btn btn-info search-submit" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="header__middle__hotline col-md-3 hidden-sm">
+                    <img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/icon1.png">
+                    <span>1900 565606</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header__bottom">
+        <div class="container">
+            <div class="row">
+                <div class="header__bottom__menu col-md-3">
+                    <div class="header__bottom__menu__content">
+                    	{%foreach $listHeader as $value%}
+                        <div class="header__bottom__menu__content__item">
+                            <a class="header__bottom__menu__content__item__link" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$value['header_name']%}</a>
+                        </div>
+                        {%/foreach%}
+                    </div>
+                </div>
+                <div class="header__bottom__content col-md-9">
+                    <div class="header__bottom__content__menu"></div>
+                    <div class="header__bottom__content__slide">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+                                <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+                                <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                                <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+                                <li data-target="#myCarousel" data-slide-to="4" class=""></li>
+                                <li data-target="#myCarousel" data-slide-to="5" class=""></li>
+                            </ol>
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" role="listbox">
+                                <div class="item active left">
+                                    <a href="http://bit.ly/2JhIrH9"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/bann-khai-truong-hn.jpg"></a>
+                                </div>
+                                <div class="item next left">
+                                    <a href="http://bit.ly/2kGqmrz"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/banner-mi8se.png"></a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://bit.ly/2kGqmrz"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/mb3.png"></a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://bit.ly/2IhFE3n"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/banner-tra-gop-18.png"></a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://mistore.com.vn/redmi-note-5-pro/"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/banner-t5-note5.png"></a>
+                                </div>
+                                <div class="item">
+                                    <a href="https://goo.gl/AvFa9u"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/tuyen-dung-banner-1.png"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,352 @@
+<style type="text/css">
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
+.lds-ring > div{
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  border: 5px solid #9edafe;
+  border-color: #9edafe transparent transparent transparent;
+  animation: lds-ring 1.5s cubic-bezier(0.5,0,0.5,1) infinite;
+}
+.lds-ring > div:nth-child(2) {
+  animation-delay: .195s;
+}
+.lds-ring > div:nth-child(3) {
+  animation-delay: .39s;
+}
+.lds-ring > div:nth-child(4) {
+  animation-delay: .585s;
+}
+.loading_screen
+{   
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    background-color: rgb(220,220,220);
+    background-color: rgba(220,220,220, 0.8);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display:none;
+}
+.loading_dialog{
+	min-width: 10px;
+	min-height: 10px;
+	max-width: 100px;
+	max-height: 100px;
+	/*background-color: blue;*/
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+</style>
+<!-- bootstrap3-dialog -->
+<!--https://github.com/nakupanda/bootstrap3-dialog-->
+<!--https://nakupanda.github.io/bootstrap3-dialog/-->
+<link href="{%$smarty.const.SYSTEM_BASE_URL%}public/bootstrap3-dialog/css/bootstrap-dialog.css" rel="stylesheet"/>
+<script src="{%$smarty.const.SYSTEM_BASE_URL%}public/bootstrap3-dialog/js/bootstrap-dialog.js"></script>
+<script type="text/javascript">
+    function System() {
+        this.initialize.apply(this, arguments);
+    }
+    
+    function SystemUpload() {
+        this.initialize.apply(this, arguments);
+    }
+    
+    SystemUpload.prototype.initialize = function(data_type) {
+        this.ajax_option = {
+    		cache: false,
+    		dataType: data_type,
+    		contentType: false,
+            processData: false,
+    		statusCode: {
+    			401 : function () {
+    				//Edit start LIXD-614 TinVNIT 12022016
+    				//$('#modal_message').dialog('close');
+    				//System.sesstion_err_msg();
+    				//Edit end LIXD-614 TinVNIT 12022016
+    			}
+    		}
+    	};
+    };
+    
+    SystemUpload.prototype.connect = function (action_type, ajax_url, ajax_data) {
+    	var aa_this = this;
+    	var opt =　this.ajax_option;
+    	System.loading(true);
+    	opt.type =  action_type;
+    	opt.url = '{%$smarty.const.SYSTEM_BASE_URL%}' + ajax_url;
+    	if (ajax_data) {
+    		opt.data = ajax_data;
+    	} else if (opt.data) {
+    		delete opt.data;
+    	}
+    	$.ajax(opt)
+    		.always(function (data) {
+    			System.loading(false);
+    			aa_this.always_func(data);
+    		})	// alwaysを一番先に実行
+    		.done(aa_this.done_func)
+    		.fail(aa_this.fail_func);
+    };
+    
+    SystemUpload.prototype.always_func = function (data){
+    	//Do Nothing.
+    };
+    SystemUpload.prototype.done_func = function (data){
+    	
+    };
+    SystemUpload.prototype.fail_func = function (data) {
+    	System.message_error(data.responseText);
+    };
+    
+    
+    System.prototype.initialize = function(data_type) {
+        this.ajax_option = {
+    		cache: false,
+    		dataType: data_type,
+    		statusCode: {
+    			401 : function () {
+    				//Edit start LIXD-614 TinVNIT 12022016
+    				//$('#modal_message').dialog('close');
+    				//System.sesstion_err_msg();
+    				//Edit end LIXD-614 TinVNIT 12022016
+    			}
+    		}
+    	};
+    };
+    
+    System.prototype.always_func = function (data){
+    	//Do Nothing.
+    };
+    System.prototype.done_func = function (data){
+    	//System.message_success('Thuc hien thanh cong');
+    };
+    System.prototype.fail_func = function (data) {
+    	System.message_error(data.responseText);
+    };
+    
+    System.prototype.connect = function (action_type, ajax_url, ajax_data) {
+    	var aa_this = this;
+    	var opt =　this.ajax_option;
+    	System.loading(true);
+    	opt.type =  action_type;
+    	opt.url = '{%$smarty.const.SYSTEM_BASE_URL%}' + ajax_url;
+    	if (ajax_data) {
+    		opt.data = ajax_data;
+    	} else if (opt.data) {
+    		delete opt.data;
+    	}
+    	$.ajax(opt)
+    		.always(function (data) {
+    			System.loading(false);
+    			aa_this.always_func(data);
+    		})	// alwaysを一番先に実行
+    		.done(aa_this.done_func)
+    		.fail(aa_this.fail_func);
+    };
+    
+    
+    
+    System.get_form_data = function (form_id, type = false) {
+		var sArr = $("#"+form_id).serializeArray();
+		if(type == false){
+			
+			//Trả ra dạng mảng bình thường để ajax
+			return sArr;
+			
+		}else{
+			
+			//Trả ra dạng FormData ajax có upload file
+			var arr = new FormData();
+			//console.log(arr);
+			$.each(sArr, function(i, field){
+				//console.log(field.value);
+		        arr.append(field.name, field.value);
+		    });	
+		    return arr;
+		    
+		}
+		
+		return null;
+	    
+    };
+	
+	System.show_dialog = function (content,titlte = '',exec_func , ok_func) {
+		//http://nakupanda.github.io/bootstrap3-dialog/
+		BootstrapDialog.show({
+			title: titlte,
+			message: content,
+			nl2br : false,
+			type: BootstrapDialog.TYPE_PRIMARY,
+			onshown: function(dialog) {//Chạy hàm sau khi load dialog
+                if (exec_func) {
+					exec_func();
+				}
+            },
+			closable: true,
+            closeByBackdrop: false,
+            closeByKeyboard: false,
+			buttons: [{
+                label: 'Đóng',
+                action: function(dialog) {
+                	dialog.close();
+                	if (ok_func) {
+						ok_func();
+					}
+                }
+            }]
+        });
+    };
+    
+    System.message_success = function (msg,ok_func) {
+    	//http://nakupanda.github.io/bootstrap3-dialog/
+		BootstrapDialog.show({
+            title: 'Thông Báo',
+            message: msg,
+            nl2br : false,
+			type: BootstrapDialog.TYPE_SUCCESS,
+			closable: false,
+            closeByBackdrop: false,
+            closeByKeyboard: false,
+            buttons: [{
+                label: 'Đóng',
+                action: function(dialog) {
+                	dialog.close();
+                	if (ok_func) {
+						ok_func();
+					}
+                }
+            }]
+        });
+    };
+    
+    System.message_confirm = function (msg, ok_func, cancel_func) {
+    	//http://nakupanda.github.io/bootstrap3-dialog/
+		BootstrapDialog.show({
+            title: 'Thông Báo Xác Nhận',
+            message: msg,
+            nl2br : false,
+			type: BootstrapDialog.TYPE_WARNING,
+			closable: false,
+            closeByBackdrop: false,
+            closeByKeyboard: false,
+            buttons: [{
+                label: 'OK',
+                action: function(dialog) {
+                	dialog.close();
+                	if (ok_func) {
+						ok_func();
+					}
+                }
+            }, {
+                label: 'Đóng',
+                action: function(dialog) {
+                	dialog.close();
+                	if (cancel_func) {
+						cancel_func();
+					}
+                }
+            }]
+        });
+    };
+    
+    System.message_error = function (msg,ok_func) {
+    	//http://nakupanda.github.io/bootstrap3-dialog/
+    	BootstrapDialog.show({
+            title: 'Cảnh Báo',
+            message: msg,
+            nl2br : false,
+			type: BootstrapDialog.TYPE_DANGER,
+			closable: false,
+            closeByBackdrop: false,
+            closeByKeyboard: false,
+            buttons: [{
+                label: 'Đóng',
+                action: function(dialog) {
+                	dialog.close();
+                	if (ok_func) {
+						ok_func();
+					}
+                }
+            }]
+        });
+    };
+    
+    //Reload Page
+    System.reload = function () {
+    	System.loading(true);
+		location.reload();
+    };
+    
+    /*$(document).on('click', '[type="submit"]', function() {
+    	System.message_confirm('Thực Hiện Xử Lý Này ?',
+    		function(){
+    			return true;
+			}
+    	);
+    	return false;
+    });*/
+    
+    //Lock screen when submit
+    $(document).on('submit', 'form', function() {
+    	//System.loading(true);
+    });
+    
+    System.loading = function (flag) {
+    	if (flag) {
+    		$("#loading_screen").show();
+    	} else {
+    		$("#loading_screen").hide();
+    	}
+    };
+    
+</script>
+<div id="loading_screen" class="loading_screen">
+    <div class="loading_dialog center">
+        <!--Preloader-->
+        <div class="lds-css">
+            <div class="lds-ring" style="width:100%;height:100%">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- http://nakupanda.github.io/bootstrap3-dialog/ -->
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body…</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="products__header col-md-12">
+        <a href="http://mistore.com.vn/category/tivi-androidbox/">
+            <h3 class="main__item__heading pull-left">{%$section['title']%}</h3>
+        </a>
+        <!--<ul class="products__header__tab nav nav-pills pull-right">
+            <li class="active"><a data-toggle="pill" href="http://mistore.com.vn/#sp_hot_box_tivi">Sản phẩm hot</a></li>
+            <li><a data-toggle="pill" href="http://mistore.com.vn/#sp_new_box_tivi">Sản phẩm mới</a></li>
+            <li><a href="http://mistore.com.vn/category/tivi-androidbox/">Xem tất cả</a>
+            </li>
+        </ul>-->
+        <div class="clearfix"></div>
+    </div>
+    <div class="products__content tab-content">
+        <div id="sp_hot_box_tivi" class="tab-pane fade in active">
+        	{%foreach $section.data as $item%}
+            <div class="products__content__item col-md-2-4 col-sm-4 col-xs-6">
+                <a class="products__content__item__link" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$refix_link_detail%}/{%$item['m_product_id']%}/{%$item['product_link']%}">
+                    <div class="products__content__item__link__img">
+                        <img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$item['image_path']%}">
+                    </div>
+                    
+                    {%if $item.flg_notify == 1 %}
+		            	<div class="products__content__item__link__flag">{%$item.msg_notify%}</div>
+		            {%/if%}
+                    <div class="products__content__item__link__title text-center">{%$item['product_name']%}</div>
+                    <div class="products__content__item__link__price text-center">
+                    	{%if $item.product_price_sale != '' %}
+		                    <span class="old-price">{%$item.product_price|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</span>
+		                    {%$item.product_price_sale|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}
+		                {%else%}
+		                	{%$item.product_price|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}
+		                {%/if%}
+                    </div>
+                </a>
+            </div>
+            {%/foreach%}
+        </div>
+    </div>
+</div>

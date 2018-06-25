@@ -4,7 +4,7 @@ class CategoryController extends BasicController {
 	public static function action_addcategory()
 	{
 		$model = new CategoryModel();
-		$model->insertRow(['category_name' => $_POST['category_name']]);
+		$model->upsertRow(['category_name' => $_POST['category_name']]);
 		Flight::redirect('/main');
 		return FALSE;#Stop Route
 	}
@@ -31,7 +31,7 @@ class CategoryController extends BasicController {
 		if($_POST['m_category_id'] != ''){
 			$m_category_id = $_POST['m_category_id'];
 			$category_name = $_POST['category_name'];
-			$model->updateRowById(['category_name'=>$category_name], $m_category_id);
+			$model->upsertRow(['category_name'=>$category_name], $m_category_id);
 		}
 		
 		Flight::redirect('/main');

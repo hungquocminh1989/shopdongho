@@ -21,12 +21,14 @@ class SiteHeaderModel extends BasicModel {
     
     public function update_header($postData){
     	
-		$db = $this->MedooDb();
+    	$this->begin_transaction();
+    	
+		/*$db = $this->MedooDb();
 		
-		$db->begin_transaction();
+		$db->begin_transaction();*/
 		
 		try{
-			if(isset($postData['m_site_header_id']) == TRUE){
+			/*if(isset($postData['m_site_header_id']) == TRUE){
 				$db->update('m_site_header',
 					[
 						'header_name' => $postData['header_name'],
@@ -46,13 +48,22 @@ class SiteHeaderModel extends BasicModel {
 						'm_site_page_id' => $postData['m_site_page_id']
 					]
 				);
-			}
+			}*/
 			
-			$db->commit();
+			$this->upsertRow(
+	    		[
+					'header_name' => $postData['header_name'],
+					'display_flg' => 1,
+					'm_site_page_id' => $postData['m_site_page_id']
+				],
+				$postData['m_site_header_id']
+	    	);
+    	
+			$this->commit();
 			
 		} catch (Exception $ex) {
 			
-			$db->rollback();
+			$this->rollback();
 			Support_Common::RequestError($ex);
 			
 		}

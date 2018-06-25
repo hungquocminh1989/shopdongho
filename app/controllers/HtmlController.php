@@ -22,12 +22,13 @@ class HtmlController extends BasicController {
 		$arr_return['html_data'] = $postData['html_data'];
 		
 		
-		if(isset($postData['m_html_data_id']) == TRUE && $postData['m_html_data_id'] != ''){
+		/*if(isset($postData['m_html_data_id']) == TRUE && $postData['m_html_data_id'] != ''){
 			$model->updateRowById($arr_return,$postData['m_html_data_id']);
 		}
 		else{
 			$model->insertRow($arr_return);
-		}
+		}*/
+		$model->upsertRow($arr_return,$postData['m_html_data_id']);
 		
 		
 		Flight::redirect('/main');

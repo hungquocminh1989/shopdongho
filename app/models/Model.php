@@ -31,7 +31,8 @@ class Model
 				    'database_name' => DATABASE_NAME,
 				    'server' 		=> DATABASE_HOST,
 				    'username' 		=> DATABASE_USER,
-				    'password' 		=> DATABASE_PASS
+				    'password' 		=> DATABASE_PASS,
+				    'port' 			=> DATABASE_PORT
 				]
 			);
 			
@@ -236,6 +237,67 @@ class Model
 		Support_Log::Log('SYSTEM_ERROR_EXCEPTION_SQL',$line);
 		
 		throw $e;
+		
+	}
+	
+	//Auto INSERT or UPDATE ( Avaliable >= Postgres 9.5)
+	public function upsertRow($sql_param, $id = 'null'){
+		
+		$table_name = $this->table_name;
+		$primary_key = $this->pk_id;
+		
+		if($id == '' || $id == NULL || empty($id) == TRUE){
+			$id = 'null';
+		}
+		
+		$arr_cols = array();
+		$arr_vals = array();
+		$arr_field_update = array();
+		foreach($sql_param as $col=> $value){
+			$arr_cols[] = $col;
+			$arr_vals[] = ":".$col;
+			$arr_field_update[] = $col.'=excluded.'.$col;
+		}
+		
+		$sql_column = implode(",",$arr_cols);
+		$sql_value = implode(",",$arr_vals);
+		$sql_update = implode(",",$arr_field_update);
+		
+		$sql = "
+			INSERT INTO $table_name (
+					$primary_key , $sql_column
+				)
+			VALUES ( 
+					--Nếu không truyền id thì tăng tự động để INSERT , có id thì tự động INSERT/UPDATE
+					COALESCE($id,NEXTVAL(
+						(
+							SELECT               
+								pg_class.relname || '_' || pg_attribute.attname || '_seq' AS pk_constraint
+								--,format_type(pg_attribute.atttypid, pg_attribute.atttypmod) 
+							FROM pg_index, pg_class, pg_attribute, pg_namespace 
+							WHERE 
+								pg_class.oid = '$table_name'::regclass 
+								AND indrelid = pg_class.oid 
+								AND nspname = 'public' 
+								AND pg_class.relnamespace = pg_namespace.oid 
+								AND pg_attribute.attrelid = pg_class.oid 
+								AND pg_attribute.attnum = any(pg_index.indkey)
+								AND indisprimary
+						)
+					)),
+					$sql_value
+				)
+			ON CONFLICT (
+					$primary_key
+				) DO UPDATE
+			SET 
+				$sql_update 
+			RETURNING $sql_column
+		";
+		
+		$this->execute($sql, $sql_param);
+		
+		return TRUE;
 		
 	}
 }	

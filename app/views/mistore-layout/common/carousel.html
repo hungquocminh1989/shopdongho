@@ -1,0 +1,52 @@
+<div class="header__bottom">
+    <div class="container">
+        <div class="row">
+            <div class="header__bottom__menu col-md-3">
+                <div class="header__bottom__menu__content">
+                	{%foreach $listHeader as $value%}
+                    <div class="header__bottom__menu__content__item">
+                        <a class="header__bottom__menu__content__item__link" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$value['header_name']%}</a>
+                    </div>
+                    {%/foreach%}
+                </div>
+            </div>
+            <div class="header__bottom__content col-md-9">
+                <div class="header__bottom__content__menu"></div>
+                <div class="header__bottom__content__slide">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+                            <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                            <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+                            <li data-target="#myCarousel" data-slide-to="4" class=""></li>
+                            <li data-target="#myCarousel" data-slide-to="5" class=""></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active left">
+                                <a href="http://bit.ly/2JhIrH9"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/bann-khai-truong-hn.jpg"></a>
+                            </div>
+                            <div class="item next left">
+                                <a href="http://bit.ly/2kGqmrz"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/banner-mi8se.png"></a>
+                            </div>
+                            <div class="item">
+                                <a href="http://bit.ly/2kGqmrz"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/mb3.png"></a>
+                            </div>
+                            <div class="item">
+                                <a href="http://bit.ly/2IhFE3n"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/banner-tra-gop-18.png"></a>
+                            </div>
+                            <div class="item">
+                                <a href="http://mistore.com.vn/redmi-note-5-pro/"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/banner-t5-note5.png"></a>
+                            </div>
+                            <div class="item">
+                                <a href="https://goo.gl/AvFa9u"><img class="img-responsive" src="{%$smarty.const.SYSTEM_BASE_URL%}public/layout_001/assets/img/tuyen-dung-banner-1.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

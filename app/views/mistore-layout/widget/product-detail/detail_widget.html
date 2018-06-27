@@ -1,0 +1,319 @@
+<div class="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 product__gallery">
+                <div class="product__gallery__slide">
+                    <div class="product__gallery__slide__top flexslider">
+                        <div class="flex-viewport">
+                            <ul class="slides" id="zoom_03">
+                                {%foreach $productInfoImage as $value%}
+                                <li>
+                                    <img style="height: 365px;width: auto; margin: 0 auto" class="img-01" src="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['image_path']%}" data-zoom-image="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['image_path']%}" draggable="false">
+                                </li>
+		                        {%/foreach%}
+                            </ul>
+                        </div>
+                        <ul class="flex-direction-nav">
+                            <li class="flex-nav-prev"><a class="flex-prev" href="http://mistore.com.vn/xiaomi-mi-8-se/#">Previous</a></li>
+                            <li class="flex-nav-next"><a class="flex-next" href="http://mistore.com.vn/xiaomi-mi-8-se/#">Next</a></li>
+                        </ul>
+                    </div>
+                    <div class="product__gallery__slide__bottom flexslider">
+                        <div class="flex-viewport">
+                            <ul class="slides">
+                                {%foreach $productInfoImage as $value%}
+		                        <li>
+                                    <img src="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['image_path']%}" draggable="false">
+                                </li>
+		                        {%/foreach%}
+                                
+                            </ul>
+                        </div>
+                        <ul class="flex-direction-nav">
+                            <li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="{%$smarty.const.SYSTEM_BASE_URL%}#" tabindex="-1">Previous</a></li>
+                            <li class="flex-nav-next"><a class="flex-next" href="{%$smarty.const.SYSTEM_BASE_URL%}#" tabindex="-1">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="product__right col-md-5">
+                <h1 class="product__right__name">Xiaomi Mi 8 SE</h1>
+                <div class="product__right__price">
+                    <span class="product__right__price__new">8.390.000 VND</span>
+                </div>
+                <div class="product__right__color">
+                    <span class="product__right__color__item active" data-price="7.990.000">4GB/64GB</span>
+                    <span class="product__right__color__item " data-price="8.590.000">6GB/64GB</span>
+                </div>
+                <!--<div class="product__right__color__1 ">
+                    <div class="product__right__color__heading">Chọn màu sắc: </div>
+                    <span class="product__right__color__item__1 text-center" data-price-color="0"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    <span class="product__right__color__item__1 text-center" data-price-color="200000"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    <span class="product__right__color__item__1 text-center" data-price-color="200000"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    <span class="product__right__color__item__1 text-center active" data-price-color="400000"><i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>-->
+                <!--<div class="product__right__content">
+                    <p><img class="alignnone size-full" src="./Xiaomi Mi 8 SE _ MiStore _ Showroom cửa hàng Xiaomi chính hãng tại Việt Nam_files/thang-1.png" width="458" height="19"></p>
+                    <p><strong><a href="http://mistore.com.vn/news/chuong-trinh-mua-hang-tra-gop-lai-suat-0-sacombank/">Trả góp 0%</a></strong></p>
+                    <p><img class="alignnone size-full" src="./Xiaomi Mi 8 SE _ MiStore _ Showroom cửa hàng Xiaomi chính hãng tại Việt Nam_files/chuong-trinh-ban-hang-mistore.png" width="458" height="132"></p>
+                    <p><img class="alignnone size-full" src="./Xiaomi Mi 8 SE _ MiStore _ Showroom cửa hàng Xiaomi chính hãng tại Việt Nam_files/agree12.png" width="458" height="70"></p>
+                    <p>&nbsp;</p>
+                </div>-->
+                <div class="product__right__button">
+                    <div class="row">
+                        <div class="product__right__button__dh col-md-4 col-sm-4">
+                            <div class="product__right__button__dh__heading text-center" data-toggle="modal" data-target="#product__right__button__dh__modal">
+                                <strong>mua hàng ngay</strong>
+                                <span>Thanh toán tại nhà</span>
+                            </div>
+                            <!-- Modal -->
+                            <div id="product__right__button__dh__modal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h4 class="modal-title">Đặt hàng</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div role="form" class="wpcf7" id="wpcf7-f45-p9693-o1" lang="vi" dir="ltr">
+                                                    <div class="screen-reader-response"></div>
+                                                    <form action="http://mistore.com.vn/xiaomi-mi-8-se/#wpcf7-f45-p9693-o1" method="post" class="wpcf7-form" novalidate="novalidate">
+                                                        <div>
+                                                            <input type="hidden" name="_wpcf7" value="45">
+                                                            <input type="hidden" name="_wpcf7_version" value="4.9">
+                                                            <input type="hidden" name="_wpcf7_locale" value="vi">
+                                                            <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f45-p9693-o1">
+                                                            <input type="hidden" name="_wpcf7_container_post" value="9693">
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text form-control" aria-invalid="false" placeholder="Họ và tên"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <span class="wpcf7-form-control-wrap phone"><input type="tel" name="phone" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel form-control" aria-required="true" aria-invalid="false" placeholder="Số điện thoại"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <span class="wpcf7-form-control-wrap diachi"><input type="text" name="diachi" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Địa chỉ"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <span class="wpcf7-form-control-wrap message"><textarea name="message" cols="40" rows="3" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Yêu cầu khác"></textarea></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <span class="wpcf7-form-control-wrap product"><textarea name="product" cols="40" rows="3" class="wpcf7-form-control wpcf7-textarea form-control" aria-invalid="false" placeholder="Danh sách sản phẩm"></textarea></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 col-sm-offset-9">
+                                                            <input type="submit" value="Gửi" class="wpcf7-form-control wpcf7-submit"><span class="ajax-loader"></span>
+                                                            <p></p>
+                                                        </div>
+                                                        <p style="text-align:center;">Tổng giá trị đơn hàng chưa bao gồm phí giao hàng và phí thu hộ (nếu có)</p>
+                                                        <div class="wpcf7-response-output wpcf7-display-none"></div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product__right__button__dh  col-md-4 col-sm-4">
+                            <div class="product__right__button__dh__heading text-center" data-toggle="modal" data-target="#product__right__button__dh__modal">
+                                <strong>mua trả góp</strong>
+                                <span>Lãi suất 0%</span>
+                            </div>
+                            <!-- Modal -->
+                            <div id="product__right__button__dh__modal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h4 class="modal-title">Đặt hàng</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div role="form" class="wpcf7" id="wpcf7-f45-p9693-o2" lang="vi" dir="ltr">
+                                                    <div class="screen-reader-response"></div>
+                                                    <form action="http://mistore.com.vn/xiaomi-mi-8-se/#wpcf7-f45-p9693-o2" method="post" class="wpcf7-form" novalidate="novalidate">
+                                                        <div>
+                                                            <input type="hidden" name="_wpcf7" value="45">
+                                                            <input type="hidden" name="_wpcf7_version" value="4.9">
+                                                            <input type="hidden" name="_wpcf7_locale" value="vi">
+                                                            <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f45-p9693-o2">
+                                                            <input type="hidden" name="_wpcf7_container_post" value="9693">
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text form-control" aria-invalid="false" placeholder="Họ và tên"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <span class="wpcf7-form-control-wrap phone"><input type="tel" name="phone" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel form-control" aria-required="true" aria-invalid="false" placeholder="Số điện thoại"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <span class="wpcf7-form-control-wrap diachi"><input type="text" name="diachi" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Địa chỉ"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <span class="wpcf7-form-control-wrap message"><textarea name="message" cols="40" rows="3" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Yêu cầu khác"></textarea></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <span class="wpcf7-form-control-wrap product"><textarea name="product" cols="40" rows="3" class="wpcf7-form-control wpcf7-textarea form-control" aria-invalid="false" placeholder="Danh sách sản phẩm"></textarea></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 col-sm-offset-9">
+                                                            <input type="submit" value="Gửi" class="wpcf7-form-control wpcf7-submit"><span class="ajax-loader"></span>
+                                                            <p></p>
+                                                        </div>
+                                                        <p style="text-align:center;">Tổng giá trị đơn hàng chưa bao gồm phí giao hàng và phí thu hộ (nếu có)</p>
+                                                        <div class="wpcf7-response-output wpcf7-display-none"></div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product__right__button__cart col-md-4 col-sm-4">
+                            <div class="product__right__button__cart__heading text-center" data-toggle="modal" data-target="#cart__modal" data-id="9693" data-image="http://mistore.com.vn/wp-content/uploads/2018/06/xiami-8-SE-1-150x150.png">
+                                <strong>Thêm vào giỏ hàng</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <!--nut like-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product__bottom col-md-12">
+                <div class="row">
+                    <div class="product__bottom__left col-md-9">
+                        <ul class="product__bottom__left__nav nav nav-pills">
+                            <li><a data-toggle="pill" href="http://mistore.com.vn/xiaomi-mi-8-se/#dacdiem">Đặc điểm</a></li>
+                        </ul>
+                        <div class="product__bottom__left__tab__content tab-content">
+                            <div id="dacdiem" class="dacdiem tab-pane fade in active" style="margin-top: 15px">
+                                {%if isset($productInfo[0]['product_info'])%}{%$productInfo[0]['product_info']|unescape: "html" nofilter%}{%/if%}
+                                <p class="product__bottom__left__tab__content__viewmore">
+                                    <a>Đọc thêm <span class="caret"></span></a>
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="product__bottom__left__nav nav nav-pills">
+                            <li><a data-toggle="pill" href="http://mistore.com.vn/xiaomi-mi-8-se/#nhanxet">Nhận xét</a></li>
+                        </ul>
+                        <div class="product__bottom__left__tab__content tab-content">
+                            <div id="nhanxet" class="comment tab-pane fade in active">
+                                <!--tab nhan xet-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar col-md-3">
+                        <div class="sidebar__box">
+                            <div class="sidebar__box__heading color"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Thông số kỹ thuật</div>
+                            <div class="sidebar__box__content">
+                                {%if isset($productInfo[0]['product_info'])%}{%$productInfo[0]['product_info']|unescape: "html" nofilter%}{%/if%}
+                            </div>
+                            <div class="sidebar__box__heading color"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Sản phẩm liên quan</div>
+                            <div class="sidebar__box__content">
+                                <div class="sidebar__box__content__item">
+                                    <a class="sidebar__box__content__item__link" href="http://mistore.com.vn/xiaomi-redmi-4-prime-32gb-3gb/">
+                                        <div class="sidebar__box__content__item__link__img pull-left">
+                                            <img class="img-responsive" src="./Xiaomi Mi 8 SE _ MiStore _ Showroom cửa hàng Xiaomi chính hãng tại Việt Nam_files/redmi-4-150x150.jpg">
+                                        </div>
+                                        <div class="sidebar__box__content__item__link__right pull-left">
+                                            <div class="sidebar__box__content__item__link__right__title">Xiaomi Redmi 4 Prime</div>
+                                            <div class="sidebar__box__content__item__link__right__price">
+                                                Liên hệ đ
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </a>
+                                </div>
+                                <div class="sidebar__box__content__item">
+                                    <a class="sidebar__box__content__item__link" href="http://mistore.com.vn/xiaomi-redmi-4a-32gb2gb/">
+                                        <div class="sidebar__box__content__item__link__img pull-left">
+                                            <img class="img-responsive" src="./Xiaomi Mi 8 SE _ MiStore _ Showroom cửa hàng Xiaomi chính hãng tại Việt Nam_files/xiaomi-redmi-4a-150x150.png">
+                                        </div>
+                                        <div class="sidebar__box__content__item__link__right pull-left">
+                                            <div class="sidebar__box__content__item__link__right__title">Xiaomi Redmi 4A (32GB/2GB)</div>
+                                            <div class="sidebar__box__content__item__link__right__price">
+                                                2.990.000 đ
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </a>
+                                </div>
+                                <div class="sidebar__box__content__item">
+                                    <a class="sidebar__box__content__item__link" href="http://mistore.com.vn/xiaomi-redmi-4x-32gb3gb-hang-dgw/">
+                                        <div class="sidebar__box__content__item__link__img pull-left">
+                                            <img class="img-responsive" src="./Xiaomi Mi 8 SE _ MiStore _ Showroom cửa hàng Xiaomi chính hãng tại Việt Nam_files/xiaomi-redmi-4x-32gb-3gb-chinh-hang-xiaomi-mistore-vn-150x150.png">
+                                        </div>
+                                        <div class="sidebar__box__content__item__link__right pull-left">
+                                            <div class="sidebar__box__content__item__link__right__title">Xiaomi Redmi 4X 32GB/3GB DGW</div>
+                                            <div class="sidebar__box__content__item__link__right__price">
+                                                3.690.000 đ
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </a>
+                                </div>
+                                <div class="sidebar__box__content__item">
+                                    <a class="sidebar__box__content__item__link" href="http://mistore.com.vn/redmi-6a/">
+                                        <div class="sidebar__box__content__item__link__img pull-left">
+                                            <img class="img-responsive" src="./Xiaomi Mi 8 SE _ MiStore _ Showroom cửa hàng Xiaomi chính hãng tại Việt Nam_files/logo-redmi-6a-150x150.png">
+                                        </div>
+                                        <div class="sidebar__box__content__item__link__right pull-left">
+                                            <div class="sidebar__box__content__item__link__right__title">Redmi 6A</div>
+                                            <div class="sidebar__box__content__item__link__right__price">
+                                                2.590.000 đ
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </a>
+                                </div>
+                                <div class="sidebar__box__content__item">
+                                    <a class="sidebar__box__content__item__link" href="http://mistore.com.vn/xiaomi-mi6-ram-6gb-chinh-hang/">
+                                        <div class="sidebar__box__content__item__link__img pull-left">
+                                            <img class="img-responsive" src="./Xiaomi Mi 8 SE _ MiStore _ Showroom cửa hàng Xiaomi chính hãng tại Việt Nam_files/xiaomi-mi-6-chinh-hang-gia-re-vn-dgw-phan-phoi-150x150.png">
+                                        </div>
+                                        <div class="sidebar__box__content__item__link__right pull-left">
+                                            <div class="sidebar__box__content__item__link__right__title">Xiaomi Mi 6</div>
+                                            <div class="sidebar__box__content__item__link__right__price">
+                                                8.599.000 đ
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

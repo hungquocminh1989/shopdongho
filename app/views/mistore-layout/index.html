@@ -32,7 +32,7 @@
                 <div class="container">
                     {%foreach $listData as $section%}
             	
-	                	{%if $section.type == $smarty.const.SYSTEM_META_SECTION_CATEGORY %}
+	                	{%if $section.type == $smarty.const.SYSTEM_META_SECTION_CATEGORY || $section.type == $smarty.const.SYSTEM_META_SECTION_PRODUCT%}
 	                	
 	                		{%include 'app/views/mistore-layout/widget/category/category_widget.html'%}
 	                	

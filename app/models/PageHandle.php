@@ -1,7 +1,7 @@
 <?php 
 
 class PageHandle extends BasicModel {
-    
+	
     public function selectPage_CategoryData($m_site_page_section_id, $m_category_id, $page_type){
     	
 		return $this->query(
@@ -37,7 +37,7 @@ class PageHandle extends BasicModel {
 		
 	}
 	
-	public function selectPage_ProductData($m_site_page_section_id, $m_category_id, $page_type){
+	public function selectPage_ProductData($m_site_page_section_id, $m_group_data_id, $page_type){
     	
 		return $this->query(
 			"
@@ -58,14 +58,16 @@ class PageHandle extends BasicModel {
 				FROM m_site_page p
 				INNER JOIN m_site_page_section spd ON p.m_site_page_id = spd.m_site_page_id
 				INNER JOIN m_site_page_section_data spdd ON spd.m_site_page_section_id = spdd.m_site_page_section_id
-				INNER JOIN m_group_data_detail gr ON gr.m_group_data_id = spdd.m_group_data_id
-				INNER JOIN m_product mp ON mp.m_product_id = gr.m_product_id
+				INNER JOIN m_group_data gr ON gr.m_group_data_id = spdd.m_group_data_id AND gr.group_type = ".SYSTEM_META_SECTION_PRODUCT."
+				INNER JOIN m_group_data_detail grd ON grd.m_group_data_id = gr.m_group_data_id
+				INNER JOIN m_product mp ON mp.m_product_id = grd.m_product_id
+				INNER JOIN m_category mc ON mc.m_category_id = mp.m_category_id
 				LEFT JOIN m_image im ON im.m_product_id = mp.m_product_id AND im.default_flg =1 AND im.image_type = ".SYSTEM_META_SECTION_PRODUCT."
-				WHERE mc.m_category_id = :m_category_id AND p.page_type = ".$page_type." AND spdd.m_site_page_section_id = :m_site_page_section_id
+				WHERE gr.m_group_data_id = :m_group_data_id AND p.page_type = ".$page_type." AND spdd.m_site_page_section_id = :m_site_page_section_id
 			"
 			,
 			[
-				'm_category_id' => $m_category_id,
+				'm_group_data_id' => $m_group_data_id,
 				'm_site_page_section_id' => $m_site_page_section_id
 			]
 		);

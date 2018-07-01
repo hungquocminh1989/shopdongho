@@ -51,7 +51,9 @@ class ObjectData {
 								$this->appendData($data);
 							}
 							else if($section_type ==  SYSTEM_META_SECTION_PRODUCT){
-								$m_product_id = $item['m_product_id'];
+								$m_group_data_id = $item['m_group_data_id'];
+								$data = $PageHandle->selectPage_ProductData($m_site_page_section_id, $m_group_data_id, $page_type);
+								$this->appendData($data);
 							}
 							else if($section_type ==  SYSTEM_META_SECTION_IMAGE){
 								$m_group_data_id = $item['m_group_data_id'];
@@ -128,9 +130,9 @@ class ObjectData {
 					
 				}
 				else if($type == SYSTEM_META_SECTION_PRODUCT){
-					/*${$name}['type'] = $type;
-					${$name}['title'] = $value['product_name'];
-					${$name}['data'][0] = $value;*/
+					${$name}['type'] = $type;
+					${$name}['title'] = $value['section_title'];
+					${$name}['data'][] = $value;
 				}
 				else if($type == SYSTEM_META_SECTION_IMAGE){
 					

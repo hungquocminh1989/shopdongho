@@ -43,11 +43,11 @@ class ObjectData {
 					if($listDetail != NULL && count($listDetail) > 0){
 						
 						foreach($listDetail as $item){
-							
+							$m_site_page_section_id = $item['m_site_page_section_id'];
 							//Lưu giữ cộng dồn vào class ObjectData
 							if($section_type ==  SYSTEM_META_SECTION_CATEGORY){
 								$m_category_id = $item['m_category_id'];
-								$data = $PageHandle->selectPage_CategoryData($m_site_page_id, $m_category_id, $page_type);
+								$data = $PageHandle->selectPage_CategoryData($m_site_page_section_id, $m_category_id, $page_type);
 								$this->appendData($data);
 							}
 							else if($section_type ==  SYSTEM_META_SECTION_PRODUCT){
@@ -55,12 +55,12 @@ class ObjectData {
 							}
 							else if($section_type ==  SYSTEM_META_SECTION_IMAGE){
 								$m_group_data_id = $item['m_group_data_id'];
-								$data = $PageHandle->selectPage_ImageSectionData($m_site_page_id, $m_group_data_id);
+								$data = $PageHandle->selectPage_ImageSectionData($m_site_page_section_id, $m_group_data_id);
 								$this->appendData($data);
 							}
 							else if($section_type ==  SYSTEM_META_SECTION_FREE){
 								$m_html_data_id = $item['m_html_data_id'];
-								$data = $PageHandle->selectPage_FreeHtmlData($m_site_page_id, $m_html_data_id);
+								$data = $PageHandle->selectPage_FreeHtmlData($m_site_page_section_id, $m_html_data_id);
 								$this->appendData($data);
 							}
 							

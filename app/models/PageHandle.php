@@ -2,9 +2,39 @@
 
 class PageHandle extends BasicModel {
 	
+	private $arr_sql = array();
+	private $arr_sql_param = array();
+	
+	public function appendSql($sql,$arr){
+		
+		$sql = "
+		
+		".$sql."
+		
+		";
+		
+		//Generate index param
+		$index = count($this->arr_sql_param) +1;
+		foreach($arr as $key => $value){
+			$col_org = ':'.$key;
+			$col_generate = ':'.$key.'_'.$index;
+			
+			$this->arr_sql_param[$col_generate] = $value;
+			$sql = str_replace($col_org,$col_generate,$sql);
+		}		
+		
+		//Add sql
+		$this->arr_sql[] = $sql;
+	}
+	
+	public function getPageData(){
+		$sql = implode(" UNION ", $this->arr_sql);
+		return $this->query($sql,$this->arr_sql_param);
+	}
+	
     public function selectPage_CategoryData($m_site_page_section_id, $m_category_id, $page_type){
     	
-		return $this->query(
+		$this->appendSql(
 			"
 				SELECT 
 					spd.*,
@@ -39,7 +69,7 @@ class PageHandle extends BasicModel {
 	
 	public function selectPage_ProductData($m_site_page_section_id, $m_group_data_id, $page_type){
     	
-		return $this->query(
+		$this->appendSql(
 			"
 				SELECT 
 					spd.*,
@@ -76,7 +106,7 @@ class PageHandle extends BasicModel {
 	
 	public function selectPage_FreeHtmlData($m_site_page_section_id, $m_html_data_id){
     	
-		return $this->query(
+		$this->appendSql(
 			"
 				SELECT 
 					*
@@ -97,7 +127,7 @@ class PageHandle extends BasicModel {
 	
 	public function selectPage_ImageSectionData($m_site_page_section_id, $m_group_data_id){
     	
-		return $this->query(
+		$this->appendSql(
 			"
 				SELECT 
 					*

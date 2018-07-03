@@ -47,27 +47,26 @@ class ObjectData {
 							//Lưu giữ cộng dồn vào class ObjectData
 							if($section_type ==  SYSTEM_META_SECTION_CATEGORY){
 								$m_category_id = $item['m_category_id'];
-								$data = $PageHandle->selectPage_CategoryData($m_site_page_section_id, $m_category_id, $page_type);
-								$this->appendData($data);
+								$PageHandle->selectPage_CategoryData($m_site_page_section_id, $m_category_id, $page_type);
 							}
 							else if($section_type ==  SYSTEM_META_SECTION_PRODUCT){
 								$m_group_data_id = $item['m_group_data_id'];
-								$data = $PageHandle->selectPage_ProductData($m_site_page_section_id, $m_group_data_id, $page_type);
-								$this->appendData($data);
+								$PageHandle->selectPage_ProductData($m_site_page_section_id, $m_group_data_id, $page_type);
 							}
 							else if($section_type ==  SYSTEM_META_SECTION_IMAGE){
 								$m_group_data_id = $item['m_group_data_id'];
-								$data = $PageHandle->selectPage_ImageSectionData($m_site_page_section_id, $m_group_data_id);
-								$this->appendData($data);
+								$PageHandle->selectPage_ImageSectionData($m_site_page_section_id, $m_group_data_id);
 							}
 							else if($section_type ==  SYSTEM_META_SECTION_FREE){
 								$m_html_data_id = $item['m_html_data_id'];
-								$data = $PageHandle->selectPage_FreeHtmlData($m_site_page_section_id, $m_html_data_id);
-								$this->appendData($data);
+								$PageHandle->selectPage_FreeHtmlData($m_site_page_section_id, $m_html_data_id);
 							}
 							
 						}
 						
+						//Chạy sql cho toàn bộ
+						$data = $PageHandle->getPageData();
+						$this->appendData($data);
 					}
 					
 				}

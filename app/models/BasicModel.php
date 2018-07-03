@@ -29,7 +29,11 @@ class BasicModel extends Model {
 		
     	$db = $this->MedooDb();
     	
-    	$data = $db->select($this->table_name,'*');
+    	$data = $db->select($this->table_name,'*',
+    			[
+	    			"ORDER" => [$this->pk_id => "ASC"]
+	    		]
+    	);
 		
 		if($data != NULL && count($data) > 0 ){
 			return $data;

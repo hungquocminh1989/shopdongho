@@ -22,7 +22,7 @@
                         <div class="flex-viewport">
                             <ul class="slides">
                                 {%foreach $productInfoImage as $value%}
-		                        <li>
+		                        <li style="height:100%;">
                                     <img src="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['image_path']%}" draggable="false">
                                 </li>
 		                        {%/foreach%}

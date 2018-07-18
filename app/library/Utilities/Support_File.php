@@ -136,8 +136,13 @@ class Support_File
 	//===================
 	public static function RepairPath($source)
 	{
+		if(strpos($source,'\\') !== FALSE || strpos($source,'//') !== FALSE){
+			do{
 		$source = str_replace("\\", '/', $source);
 		$source = str_replace("//", '/', $source);
+			} while(strpos($source,'\\') !== FALSE || strpos($source,'//') !== FALSE);
+		}
+		
 		return $source;
 	}
 }

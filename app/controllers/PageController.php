@@ -7,7 +7,7 @@ class PageController extends BasicController {
 		
 		$postData = Flight::request()->data->getData();
 		$model = new SitePageModel();
-		$model->delete_page_data($postData['m_site_page_id']);
+		$model->delete_page($postData['m_site_page_id']);
 		
 		Flight::redirect('/main');
 		return FALSE;//Stop Route

@@ -241,10 +241,18 @@ class Model
 	}
 	
 	//Auto INSERT or UPDATE ( Avaliable >= Postgres 9.5)
-	public function upsertRow($sql_param, $id = 'null'){
+	public function upsertRow($sql_param, $id = 'null', $table_name = NULL){
 		
-		$table_name = $this->table_name;
-		$primary_key = $this->pk_id;
+		$primary_key = "";
+		
+		if($table_name == NULL ){
+			$table_name = $this->table_name;
+			$primary_key = $this->pk_id;
+		}
+		else{
+			$primary_key = $table_name . "_id";
+		}
+		
 		
 		if($id == '' || $id == NULL || empty($id) == TRUE){
 			$id = 'null';
@@ -292,12 +300,12 @@ class Model
 				) DO UPDATE
 			SET 
 				$sql_update 
-			RETURNING $sql_column
+			RETURNING $primary_key , $sql_column
 		";
 		
-		$this->execute($sql, $sql_param);
+		$result = $this->query($sql, $sql_param);
 		
-		return TRUE;
+		return $result;
 		
 	}
 }	

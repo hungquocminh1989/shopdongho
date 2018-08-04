@@ -2,7 +2,7 @@
 
 class IndexController extends BasicController {
 	
-	public static function action_index($page_link, $id = '', $product_link = '')
+	public static function action_index($page_link = '', $id = '', $product_link = '')
 	{
 		
 		$arr_return = array();
@@ -35,8 +35,8 @@ class IndexController extends BasicController {
 		if($row != NULL && count($row) > 0){
 			
 			//Set path folder template
-			Flight::set('flight.views.path', 'app/views/mistore-layout/');
-			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.'/app/views/mistore-layout/');
+			Flight::set('flight.views.path', 'app/views/bushido-layout/');
+			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.'/app/views/bushido-layout/');
 			
 			$oData = new ObjectData();
 			
@@ -44,7 +44,7 @@ class IndexController extends BasicController {
 				
 				$oData->getPageData($page_link, SYSTEM_META_PAGE_LIST);
 				$arr_return['listData'] = $oData->exportPageData();
-				#Support_Common::var_dump($arr_return['listData']);
+				//Support_Common::var_dump($arr_return['listData']);
 			    Flight::renderSmarty('index.html',$arr_return);
 			    return FALSE;//Stop Route
 			    
@@ -66,7 +66,13 @@ class IndexController extends BasicController {
 			}
 			
 		}
-		return TRUE;// Chạy tiếp qua các Route khác
+		if(SYSTEM_DEVELOPMENT_MODE == TRUE){
+			return TRUE;// Chạy tiếp qua các Route khác
+		}
+		else{
+			return FALSE;//Stop Route
+		}
+		
 	}
     
 }

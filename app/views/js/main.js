@@ -245,12 +245,7 @@ $(function() {
 		    		});
 		    	};
 		    	
-		    	if(frm_id == 'frm_setting_product'){
-					ajax.connect("POST","main/product/add",formData);
-				}
-				else{
-					ajax.connect("POST","main/product/update",formData);
-				}
+		    	ajax.connect("POST","main/product/update",formData);
 		    	
 			}
     	);

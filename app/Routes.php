@@ -35,7 +35,6 @@ Flight::route('/main/category/update', array($categoryControler, 'action_updatec
 Flight::route('/main/category/delete', array($categoryControler, 'action_deletecategory'));
 
 //Product
-Flight::route('/main/product/add', array($productControler, 'action_addproduct'));
 Flight::route('/main/product/edit', array($productControler, 'action_editproduct'));
 Flight::route('/main/product/update', array($productControler, 'action_updateproduct'));
 Flight::route('/main/product/delete', array($productControler, 'action_deleteproduct'));

@@ -8,6 +8,115 @@ class ProductModel extends BasicModel {
 
     }
     
+    public function delete_before_update($m_product_id){
+		
+		$sql = "
+			DELETE FROM t_image_manager
+			WHERE m_product_id = $m_product_id
+			RETURNING m_image_id
+			;
+		";
+		$result1 = $this->query($sql);
+		
+		if($result1 != NULL && count($result1) > 0){
+			$arr_id = array();
+			
+			foreach($result1 as $key => $value){
+				$arr_id[] = $value['m_image_id'];
+			}
+			
+			$str_image_id = explode(',', $arr_id);
+			$sql = "
+				DELETE FROM m_image
+				WHERE m_image_id IN ($str_image_id)
+				RETURNING image_path
+				;
+			";
+			$result2 = $this->query($sql);
+			if($result2 != NULL && count($result2) > 0){
+				
+				$arr_path = array();
+				
+				foreach($result2 as $key2 => $value2){
+					$arr_path[] = $value2['image_path'];
+				}
+				
+				return $arr_path;
+				
+			}
+		}
+		
+		return NULL;
+		
+	}
+    
+    public function update_product($arr_product, $m_product_id = NULL){
+		
+		$this->begin_transaction();
+		$listImageDelete = NULL;
+		
+		//Insert m_product
+		$rowProduct = $this->upsertRow($arr_product,$m_product_id,'m_product');
+		
+		if($rowProduct != NULL && count($rowProduct) == 1){
+			
+			$m_product_id = $rowProduct[0]['m_product_id'];
+			
+			//Insert and Copy image uploaded
+			$folderRoot = "product_images/$m_product_id";
+		
+			$arr_images = Support_Common::copy_multi_file_uploaded('upload', $folderRoot, TRUE);
+			
+			if(count($arr_images) > 0){
+				
+				//Xóa Hình Cũ
+				$listImageDelete = $this->delete_before_update($m_product_id);
+				
+				foreach($arr_images as $k => $image){
+										
+					$arr_image = array(
+							'image_path' => $image
+					);
+					
+					//Insert m_image
+					$rowImg = $this->upsertRow($arr_image,NULL,'m_image');
+					
+					if($rowImg != NULL && count($rowImg) == 1){
+						
+						$m_image_id = $rowImg[0]['m_image_id'];
+						
+						$arr_mn = array();
+						$arr_mn['m_product_id'] = $m_product_id;
+						$arr_mn['m_image_id'] = $m_image_id;
+						$arr_mn['default_flg'] = 0;
+						
+						if($k == $_POST['image_default']){
+							$arr_mn['default_flg'] = 1;
+						}
+						
+						//Insert t_image_manager
+						$this->upsertRow($arr_mn,NULL,'t_image_manager');
+						
+					}
+					
+				}
+				
+			}
+			
+			$this->commit();
+				
+			if($listImageDelete != NULL && count($listImageDelete)>0){
+				
+				foreach($listImageDelete as $imagePathDelete){
+					Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$imagePathDelete);
+				}
+				
+			}
+			
+		}
+		
+	}
+    
     public function listProduct(){
     	$result = $this->query(
     	"
@@ -23,7 +132,6 @@ class ProductModel extends BasicModel {
 		$arr_sql = array();
 		$arr_sql['m_product_id'] = $m_product_id;
 		$arr_sql['product_link'] = $product_link;
-		$arr_sql['image_type'] = SYSTEM_META_SECTION_PRODUCT;
     	$result = $this->query(
     	"
     	SELECT 
@@ -41,7 +149,10 @@ class ProductModel extends BasicModel {
     		im.image_path 
     	FROM m_product mp
     	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
-    	INNER JOIN m_image im ON im.image_type = :image_type AND im.m_product_id = mp.m_product_id AND im.default_flg =1
+    	INNER JOIN t_image_manager imn 
+    		ON imn.m_product_id = mp.m_product_id AND imn.default_flg =1
+    	LEFT JOIN m_image im 
+    		ON im.m_image_id = imn.m_image_id
     	WHERE mp.m_product_id = :m_product_id
     		AND mp.product_link = :product_link
     	"
@@ -52,14 +163,17 @@ class ProductModel extends BasicModel {
 	public function listProductImageDetailById($m_product_id){
 		$arr_sql = array();
 		$arr_sql['m_product_id'] = $m_product_id;
-		$arr_sql['image_type'] = SYSTEM_META_SECTION_PRODUCT;
 		
     	$result = $this->query(
     	"
     	SELECT im.image_path 
     	FROM m_product mp
-    	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
-    	INNER JOIN m_image im ON im.image_type = :image_type AND im.m_product_id = mp.m_product_id
+    	INNER JOIN m_category mc 
+    		ON mp.m_category_id = mc.m_category_id
+    	INNER JOIN t_image_manager imn 
+    		ON imn.m_product_id = mp.m_product_id
+    	LEFT JOIN m_image im 
+    		ON im.m_image_id = imn.m_image_id
     	WHERE mp.m_product_id = :m_product_id
     	"
     	,$arr_sql);
@@ -88,8 +202,12 @@ class ProductModel extends BasicModel {
     		) as base_link
     		
     	FROM m_product mp
-    	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
-    	LEFT JOIN m_image im ON im.m_product_id = mp.m_product_id  AND im.default_flg =1 AND im.image_type = '".SYSTEM_META_SECTION_PRODUCT."'
+    	INNER JOIN m_category mc 
+    		ON mp.m_category_id = mc.m_category_id
+    	INNER JOIN t_image_manager imn 
+    		ON imn.m_product_id = mp.m_product_id AND imn.default_flg =1
+    	LEFT JOIN m_image im 
+    		ON im.m_image_id = imn.m_image_id
     	WHERE mc.category_name LIKE '$category_name'
     	ORDER BY mc.m_category_id
     	"

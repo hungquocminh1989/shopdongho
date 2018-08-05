@@ -130,170 +130,166 @@ class SitePageModel extends BasicModel {
 		
 		$this->begin_transaction();
 		
-		try{
+		if(isset($postData['old_id']) == TRUE && $postData['page_type'] == SYSTEM_META_PAGE_DETAIL){#Xu ly ghi de
 			
-			if(isset($postData['old_id']) == TRUE && $postData['page_type'] == SYSTEM_META_PAGE_DETAIL){#Xu ly ghi de
+			$m_site_page_id_old = $postData['old_id'];
 			
-				$m_site_page_id_old = $postData['old_id'];
+			$this->delete_page($m_site_page_id_old);
+			
+		}
+		
+		//Start create page
+		$m_site_page_id = NULL;
+		if(isset($postData['m_site_page_id']) == TRUE && $postData['m_site_page_id'] != ''){
+			$m_site_page_id = $postData['m_site_page_id'];
+		}
+		
+		$arr_page['page_link'] = $postData['page_link'];
+		$arr_page['page_name'] = $postData['page_name'];
+		$arr_page['page_type'] = $postData['page_type'];
+		
+		//Update m_site_page
+		$rowSitePage = $this->upsertRow($arr_page,$m_site_page_id,'m_site_page');			
+		
+		if($rowSitePage != NULL && count($rowSitePage) == 1){
+			
+			$m_site_page_id = $rowSitePage[0]['m_site_page_id'];
+			
+			if(isset($postData['section_type']) == TRUE){
 				
-				$this->delete_page($m_site_page_id_old);
+				//Delete all at m_site_page_section, t_category_section, t_product_section
+				$this->delete_before_update($m_site_page_id);
+			
+				$dataMeta = array_values($postData['section_type']);
 				
-			}
-			
-			//Start create page
-			$m_site_page_id = NULL;
-			if(isset($postData['m_site_page_id']) == TRUE && $postData['m_site_page_id'] != ''){
-				$m_site_page_id = $postData['m_site_page_id'];
-			}
-			
-			$arr_page['page_link'] = $postData['page_link'];
-			$arr_page['page_name'] = $postData['page_name'];
-			$arr_page['page_type'] = $postData['page_type'];
-			
-			//Update m_site_page
-			$rowSitePage = $this->upsertRow($arr_page,$m_site_page_id,'m_site_page');			
-			
-			if($rowSitePage != NULL && count($rowSitePage) == 1){
-				
-				$m_site_page_id = $rowSitePage[0]['m_site_page_id'];
-				
-				if(isset($postData['section_type']) == TRUE){
+				foreach($dataMeta as $index => $data){
 					
-					//Delete all at m_site_page_section, t_category_section, t_product_section
-					$this->delete_before_update($m_site_page_id);
-				
-					$dataMeta = array_values($postData['section_type']);
-					
-					foreach($dataMeta as $index => $data){
+					foreach($data as $section_type => $value){
 						
-						foreach($data as $section_type => $value){
+						$arr_section = array();
+						$arr_section['m_site_page_id'] = $m_site_page_id;
+						$arr_section['sort_no'] = $index;
+						$arr_section['section_title'] = $value['section_title'];
+						$arr_section['section_type'] = $section_type;
+						
+						//Insert m_site_page_section
+						$rowSitePageSection = $this->upsertRow($arr_section,NULL,'m_site_page_section');
+						
+						if($rowSitePageSection != NULL && count($rowSitePageSection) == 1){
 							
-							$arr_section = array();
-							$arr_section['m_site_page_id'] = $m_site_page_id;
-							$arr_section['sort_no'] = $index;
-							$arr_section['section_title'] = $value['section_title'];
-							$arr_section['section_type'] = $section_type;
+							$m_site_page_section_id = $rowSitePageSection[0]['m_site_page_section_id'];
 							
-							//Insert m_site_page_section
-							$rowSitePageSection = $this->upsertRow($arr_section,NULL,'m_site_page_section');
-							
-							if($rowSitePageSection != NULL && count($rowSitePageSection) == 1){
+							if($section_type == SYSTEM_META_SECTION_FREE){//Free Data
 								
-								$m_site_page_section_id = $rowSitePageSection[0]['m_site_page_section_id'];
+								$arr_html = array();
+								$arr_html['html_name'] = $value['section_title'];
+								$arr_html['html_data'] = $value['html_data'];
+								$m_html_data_id = NULL;
 								
-								if($section_type == SYSTEM_META_SECTION_FREE){//Free Data
+								if(isset($postData['m_html_data_id']) == TRUE && $postData['m_html_data_id'] != ''){
 									
-									$arr_html = array();
-									$arr_html['html_name'] = $value['section_title'];
-									$arr_html['html_data'] = $value['html_data'];
-									$m_html_data_id = NULL;
-									
-									if(isset($postData['m_html_data_id']) == TRUE && $postData['m_html_data_id'] != ''){
-										
-										$m_html_data_id = $postData['m_html_data_id'];
-										
-									}
-									
-									//Update or Insert t_category_section
-									$rowHtml = $this->upsertRow($arr_html,$m_html_data_id,'m_html_data');
-									
-									if($rowHtml != NULL && count($rowHtml) == 1){
-										$m_html_data_id = $rowHtml[0]['m_html_data_id'];
-										
-										$arr_html_section['m_site_page_id'] = $m_site_page_id;
-										$arr_html_section['m_site_page_section_id'] = $m_site_page_section_id;
-										$arr_html_section['m_html_data_id'] = $m_html_data_id;
-										
-										//Insert t_category_section
-										$this->upsertRow($arr_html_section,NULL,'t_html_section');
-									
-									}
+									$m_html_data_id = $postData['m_html_data_id'];
 									
 								}
-								else if($section_type == SYSTEM_META_SECTION_PRODUCT){//Product Data
+								
+								//Update or Insert t_category_section
+								$rowHtml = $this->upsertRow($arr_html,$m_html_data_id,'m_html_data');
+								
+								if($rowHtml != NULL && count($rowHtml) == 1){
+									$m_html_data_id = $rowHtml[0]['m_html_data_id'];
 									
-									$arr_ids = $value['m_product_id'];
-									
-									if($arr_ids != NULL && count($arr_ids) > 0){
-										
-										foreach($arr_ids as $m_product_id){
-											
-											$arr_product_section['m_site_page_id'] = $m_site_page_id;
-											$arr_product_section['m_site_page_section_id'] = $m_site_page_section_id;
-											$arr_product_section['m_product_id'] = $m_product_id;
-											
-											//Insert t_product_section
-											$this->upsertRow($arr_product_section,NULL,'t_product_section');
-											
-										}
-										
-									}
-									
-								}
-								else if($section_type == SYSTEM_META_SECTION_CATEGORY){//Category Data
-									
-									$arr_category_section['m_site_page_id'] = $m_site_page_id;
-									$arr_category_section['m_site_page_section_id'] = $m_site_page_section_id;
-									$arr_category_section['m_category_id'] = $value['m_category_id'];
+									$arr_html_section['m_site_page_id'] = $m_site_page_id;
+									$arr_html_section['m_site_page_section_id'] = $m_site_page_section_id;
+									$arr_html_section['m_html_data_id'] = $m_html_data_id;
 									
 									//Insert t_category_section
-									$this->upsertRow($arr_category_section,NULL,'t_category_section');
-									
+									$this->upsertRow($arr_html_section,NULL,'t_html_section');
+								
 								}
-								else if($section_type == SYSTEM_META_SECTION_IMAGE){//Section Image
+								
+							}
+							else if($section_type == SYSTEM_META_SECTION_PRODUCT){//Product Data
+								
+								$arr_ids = $value['m_product_id'];
+								
+								if($arr_ids != NULL && count($arr_ids) > 0){
 									
-									/*$arr_image_ids = array();
-									
-									//Copy image
-									$arr_images = Support_Common::copy_multi_file_uploaded('section_image_upload', 'section_images');
-									
-									//Insert image db
-									if($arr_images != NULL && count($arr_images) > 0){
+									foreach($arr_ids as $m_product_id){
 										
-										foreach($arr_images as $k => $image){
-											$db->insert('m_image'
-												,
-												[
-													'image_type' => SYSTEM_META_SECTION_IMAGE,
-													'image_path' => $image,
-													'default_flg' => 0
-												]
-											);
-											$arr_image_ids[] = $db->id();
-										}
+										$arr_product_section['m_site_page_id'] = $m_site_page_id;
+										$arr_product_section['m_site_page_section_id'] = $m_site_page_section_id;
+										$arr_product_section['m_product_id'] = $m_product_id;
+										
+										//Insert t_product_section
+										$this->upsertRow($arr_product_section,NULL,'t_product_section');
 										
 									}
 									
-									if($arr_image_ids != NULL && count($arr_image_ids) > 0){
-										
-										$db->insert('m_group_data'
+								}
+								
+							}
+							else if($section_type == SYSTEM_META_SECTION_CATEGORY){//Category Data
+								
+								$arr_category_section['m_site_page_id'] = $m_site_page_id;
+								$arr_category_section['m_site_page_section_id'] = $m_site_page_section_id;
+								$arr_category_section['m_category_id'] = $value['m_category_id'];
+								
+								//Insert t_category_section
+								$this->upsertRow($arr_category_section,NULL,'t_category_section');
+								
+							}
+							else if($section_type == SYSTEM_META_SECTION_IMAGE){//Section Image
+								
+								/*$arr_image_ids = array();
+								
+								//Copy image
+								$arr_images = Support_Common::copy_multi_file_uploaded('section_image_upload', 'section_images');
+								
+								//Insert image db
+								if($arr_images != NULL && count($arr_images) > 0){
+									
+									foreach($arr_images as $k => $image){
+										$db->insert('m_image'
 											,
 											[
-												'group_type' => SYSTEM_META_SECTION_IMAGE
+												'image_type' => SYSTEM_META_SECTION_IMAGE,
+												'image_path' => $image,
+												'default_flg' => 0
 											]
 										);
-										$m_group_data_id = $db->id();
-										
-										foreach($arr_image_ids as $key => $m_image_id){
-											
-											$m_site_page_id_select = $value['m_site_page_id'][$key];
-											
-											$db->insert('m_group_data_detail'
-												,
-												[
-													'm_group_data_id' => $m_group_data_id,
-													'm_image_id' => $m_image_id,
-													'm_site_page_id' => $m_site_page_id_select
-												]
-											);
-											
-										}
-										
+										$arr_image_ids[] = $db->id();
 									}
-									$arr_section_data['m_group_data_id'] = $m_group_data_id;
-									//Support_Common::RequestError($arr_image_ids);*/
 									
 								}
+								
+								if($arr_image_ids != NULL && count($arr_image_ids) > 0){
+									
+									$db->insert('m_group_data'
+										,
+										[
+											'group_type' => SYSTEM_META_SECTION_IMAGE
+										]
+									);
+									$m_group_data_id = $db->id();
+									
+									foreach($arr_image_ids as $key => $m_image_id){
+										
+										$m_site_page_id_select = $value['m_site_page_id'][$key];
+										
+										$db->insert('m_group_data_detail'
+											,
+											[
+												'm_group_data_id' => $m_group_data_id,
+												'm_image_id' => $m_image_id,
+												'm_site_page_id' => $m_site_page_id_select
+											]
+										);
+										
+									}
+									
+								}
+								$arr_section_data['m_group_data_id'] = $m_group_data_id;
+								//Support_Common::RequestError($arr_image_ids);*/
 								
 							}
 							
@@ -303,15 +299,11 @@ class SitePageModel extends BasicModel {
 					
 				}
 				
-			}			
+			}
 			
-			$this->commit();
-			
-		} 
-		catch (Exception $ex) {
-			$this->rollback();
-			return FALSE;
-		}
+		}			
+		
+		$this->commit();
 		
 	}
 	

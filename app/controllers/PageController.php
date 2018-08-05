@@ -32,7 +32,7 @@ class PageController extends BasicController {
 			]
 		);
 		$arr_return['listProductSelected'] = $model->get_list_product_selected($_POST['m_site_page_id']);
-		$arr_return['listImageSection'] = $model->get_list_image_section($_POST['m_site_page_id']);
+		//$arr_return['listImageSection'] = $model->get_list_image_section($_POST['m_site_page_id']);
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['listProduct'] = $ProductModel->listProductImage();
 		$arr_return['listHtml'] = $HtmlModel->selectAllRows();

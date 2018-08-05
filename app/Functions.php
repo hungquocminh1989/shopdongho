@@ -105,7 +105,7 @@ Flight::map('javascript_obfuscator', function($file, $param = array()){
 });
 
 //Override Flight's default error method
-Flight::map('error', function($ex){
+Flight::map('error', function(Exception $ex){
 	
     // Handle error
     Support_Common::RequestError($ex);

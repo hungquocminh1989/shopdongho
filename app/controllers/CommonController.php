@@ -72,30 +72,10 @@ class CommonController extends BasicController {
 		//Copy file
 		$image_path = Support_Common::copy_file_uploaded('upload_logo_site', 'site_images');
 		
-		//Insert or Update m_site_setting
 		$param = Support_Array::filter($arrPost,array('site_name','phone','address'));
-		$m_site_setting_id = $modelPage->create_define($param);
+		$image_path_delete = $modelPage->create_define($param, $image_path);
 		
-		$arr_sql = array();
-		$arr_sql['image_type'] = SYSTEM_META_SITE_SETTING;
-		$arr_sql['m_site_setting_id'] = $m_site_setting_id;
-		if($image_path != NULL){
-			$arr_sql['image_path'] = $image_path;
-		}
-		
-		//Insert or Update m_image
-		$rows = $modelImage->selectRowsByConditions(
-			[
-				'image_type' => SYSTEM_META_SITE_SETTING,
-				'm_site_setting_id' => $m_site_setting_id
-			]
-		);
-		if($rows != NULL && count($rows) > 0 ){
-			$modelImage->updateRowById($arr_sql, $rows[0]['m_image_id']);
-		}
-		else{
-			$modelImage->insertRow($arr_sql);
-		}
+		Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$image_path_delete);
 		
 		Flight::redirect('/main');
 		return FALSE;#Stop Route

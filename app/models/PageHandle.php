@@ -26,7 +26,10 @@ class PageHandle extends BasicModel {
 												AND cs.m_site_page_section_id = spd.m_site_page_section_id
 				INNER JOIN m_category mc ON mc.m_category_id = cs.m_category_id
 				INNER JOIN m_product mp ON mp.m_category_id = mc.m_category_id
-				LEFT JOIN m_image im ON im.m_product_id = mp.m_product_id AND im.default_flg =1 AND im.image_type = ".SYSTEM_META_SECTION_PRODUCT."
+				LEFT JOIN t_image_manager ig 
+					ON ig.m_product_id = mp.m_product_id AND ig.default_flg =1
+				LEFT JOIN m_image im 
+					ON im.m_image_id = ig.m_image_id
 				WHERE p.page_type = :page_type AND cs.m_site_page_section_id = :m_site_page_section_id
 			"
 			,
@@ -62,7 +65,10 @@ class PageHandle extends BasicModel {
 												AND ps.m_site_page_section_id = spd.m_site_page_section_id
 				INNER JOIN m_product mp ON mp.m_product_id = ps.m_product_id
 				INNER JOIN m_category mc ON mc.m_category_id = mp.m_category_id
-				LEFT JOIN m_image im ON im.m_product_id = mp.m_product_id AND im.default_flg =1 AND im.image_type = ".SYSTEM_META_SECTION_PRODUCT."
+				LEFT JOIN t_image_manager ig 
+					ON ig.m_product_id = mp.m_product_id AND ig.default_flg =1
+				LEFT JOIN m_image im 
+					ON im.m_image_id = ig.m_image_id
 				WHERE p.page_type = :page_type AND ps.m_site_page_section_id = :m_site_page_section_id
 			"
 			,

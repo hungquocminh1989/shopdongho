@@ -35,8 +35,15 @@ class IndexController extends BasicController {
 		if($row != NULL && count($row) > 0){
 			
 			//Set path folder template
-			Flight::set('flight.views.path', 'app/views/bushido-layout/');
-			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.'/app/views/bushido-layout/');
+			$layout_template_name = 'bushido-layout';
+			$layout_template_folder = "app/views/frontend/$layout_template_name/";
+			/**
+			* m_layout_template
+			* m_layout_template_id
+			* layout_template_name
+			*/
+			Flight::set('flight.views.path', $layout_template_folder);
+			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.$layout_template_folder);
 			
 			$oData = new ObjectData();
 			

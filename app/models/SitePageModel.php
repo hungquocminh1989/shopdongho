@@ -13,8 +13,10 @@ class SitePageModel extends BasicModel {
 		$sql = "
 			SELECT * 
 			FROM m_site_page p
-			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
-			INNER JOIN t_product_section tps ON tps.m_site_page_id = ps.m_site_page_id AND tps.m_site_page_section_id = ps.m_site_page_section_id
+			INNER JOIN m_site_page_section ps 
+				ON p.m_site_page_id = ps.m_site_page_id
+			INNER JOIN t_product_section tps 
+				ON tps.m_site_page_id = ps.m_site_page_id AND tps.m_site_page_section_id = ps.m_site_page_section_id
 			WHERE p.m_site_page_id = :m_site_page_id 
 				AND ps.section_type = ".SYSTEM_META_SECTION_PRODUCT."
 			ORDER BY ps.sort_no
@@ -33,11 +35,16 @@ class SitePageModel extends BasicModel {
 		$sql = "
 			SELECT * 
 			FROM m_site_page p
-			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
-			INNER JOIN m_site_page_section_data psd ON ps.m_site_page_section_id = psd.m_site_page_section_id
-			INNER JOIN m_group_data gd ON gd.m_group_data_id = psd.m_group_data_id
-			INNER JOIN m_group_data_detail gdd ON gd.m_group_data_id = gdd.m_group_data_id
-			INNER JOIN m_image im ON im.m_image_id = gdd.m_image_id
+			INNER JOIN m_site_page_section ps 
+				ON p.m_site_page_id = ps.m_site_page_id
+			INNER JOIN m_site_page_section_data psd 
+				ON ps.m_site_page_section_id = psd.m_site_page_section_id
+			INNER JOIN m_group_data gd 
+				ON gd.m_group_data_id = psd.m_group_data_id
+			INNER JOIN m_group_data_detail gdd 
+				ON gd.m_group_data_id = gdd.m_group_data_id
+			INNER JOIN m_image im 
+				ON im.m_image_id = gdd.m_image_id
 			WHERE p.m_site_page_id = :m_site_page_id 
 				AND ps.section_type = ".SYSTEM_META_SECTION_IMAGE."
 				AND psd.m_group_data_id IS NOT NULL
@@ -57,12 +64,18 @@ class SitePageModel extends BasicModel {
 		$sql = "
 			SELECT DISTINCT p.*, ps.*, cs.*, hs.*, df.define_key, df.display_value, hd.html_data
 			FROM m_site_page p
-			INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
-			LEFT JOIN t_category_section cs ON cs.m_site_page_id = ps.m_site_page_id AND cs.m_site_page_section_id = ps.m_site_page_section_id
-			LEFT JOIN t_product_section tps ON tps.m_site_page_id = ps.m_site_page_id AND tps.m_site_page_section_id = ps.m_site_page_section_id
-			LEFT JOIN t_html_section hs ON hs.m_site_page_id = ps.m_site_page_id AND hs.m_site_page_section_id = ps.m_site_page_section_id
-			INNER JOIN m_define df ON df.define_key = ps.section_type
-			LEFT JOIN m_html_data hd ON hd.m_html_data_id = hs.m_html_data_id
+			INNER JOIN m_site_page_section ps 
+				ON p.m_site_page_id = ps.m_site_page_id
+			LEFT JOIN t_category_section cs 
+				ON cs.m_site_page_id = ps.m_site_page_id AND cs.m_site_page_section_id = ps.m_site_page_section_id
+			LEFT JOIN t_product_section tps 
+				ON tps.m_site_page_id = ps.m_site_page_id AND tps.m_site_page_section_id = ps.m_site_page_section_id
+			LEFT JOIN t_html_section hs 
+				ON hs.m_site_page_id = ps.m_site_page_id AND hs.m_site_page_section_id = ps.m_site_page_section_id
+			INNER JOIN m_define df 
+				ON df.define_key = ps.section_type
+			LEFT JOIN m_html_data hd 
+				ON hd.m_html_data_id = hs.m_html_data_id
 			WHERE p.m_site_page_id = :m_site_page_id
 			ORDER BY ps.sort_no
 		";

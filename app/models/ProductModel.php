@@ -121,7 +121,8 @@ class ProductModel extends BasicModel {
     	$result = $this->query(
     	"
     	SELECT * FROM m_product mp
-    	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
+    	INNER JOIN m_category mc 
+    		ON mp.m_category_id = mc.m_category_id
     	ORDER BY m_product_id
     	"
     	);
@@ -148,7 +149,8 @@ class ProductModel extends BasicModel {
     		mp.product_link,
     		im.image_path 
     	FROM m_product mp
-    	INNER JOIN m_category mc ON mp.m_category_id = mc.m_category_id
+    	INNER JOIN m_category mc 
+    		ON mp.m_category_id = mc.m_category_id
     	INNER JOIN t_image_manager imn 
     		ON imn.m_product_id = mp.m_product_id AND imn.default_flg =1
     	LEFT JOIN m_image im 

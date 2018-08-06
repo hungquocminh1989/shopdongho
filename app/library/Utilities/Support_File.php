@@ -8,7 +8,7 @@ class Support_File
 			$source = Support_File::RepairPath($source);
 			$destination = Support_File::RepairPath($destination);
 			
-			if(file_exists($source) == TRUE){
+			if(self::FileExists($source) == TRUE){
 				Support_File::CreateFolder($destination);
 				copy($source,$destination);
 				
@@ -27,7 +27,7 @@ class Support_File
 		try{
 			
 			$source = Support_File::RepairPath($source);
-			if(file_exists($source) == TRUE){
+			if(self::FileExists($source) == TRUE){
 				unlink($source);
 				return TRUE;
 			}

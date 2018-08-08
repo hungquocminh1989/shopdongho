@@ -9,39 +9,28 @@ class SiteSettingModel extends BasicModel {
     }
     
     public function delete_before_update(){
-		
-		$sql = "
-			DELETE FROM m_site_setting
-			RETURNING m_site_setting_id
-			;
-		";
+    	
+    	$sql = "
+	    	WITH d2 AS (
+	    		WITH d1 AS (
+	    			DELETE FROM m_site_setting
+					RETURNING m_site_setting_id
+	    		)
+	    		DELETE FROM t_image_manager
+				WHERE m_site_setting_id IN (SELECT * FROM d1)
+				RETURNING m_image_id
+	    	)
+    		DELETE FROM m_image
+			WHERE m_image_id IN (SELECT * FROM d2)
+			RETURNING image_path
+    	";
+    	
 		$result = $this->query($sql);
 		
 		if($result != NULL && count($result) > 0){
-			$m_site_setting_id = $result[0]['m_site_setting_id'];
-			$sql = "
-				DELETE FROM t_image_manager
-				WHERE m_site_setting_id = $m_site_setting_id
-				RETURNING m_image_id
-				;
-			";
-			$result1 = $this->query($sql);
-			
-			if($result1 != NULL && count($result1) > 0){
-				$m_image_id = $result1[0]['m_image_id'];
-				$sql = "
-					DELETE FROM m_image
-					WHERE m_image_id = $m_image_id
-					RETURNING image_path
-					;
-				";
-				$result2 = $this->query($sql);
-				if($result2 != NULL && count($result2) > 0){
-					$image_path = $result2[0]['image_path'];
+			$image_path = $result[0]['image_path'];
 					
-					return $image_path;
-				}
-			}
+			return $image_path;
 		
 		}
 		

@@ -9,41 +9,27 @@ class ProductModel extends BasicModel {
     }
     
     public function delete_before_update($m_product_id){
+    	
+    	$sql = "
+    		WITH d1 AS (
+    			DELETE FROM t_image_manager
+				WHERE m_product_id = $m_product_id
+				RETURNING m_image_id
+    		)
+    		DELETE FROM m_image
+			WHERE m_image_id IN (SELECT * FROM d1)
+			RETURNING image_path
+    	";
 		
-		$sql = "
-			DELETE FROM t_image_manager
-			WHERE m_product_id = $m_product_id
-			RETURNING m_image_id
-			;
-		";
-		$result1 = $this->query($sql);
+		$result = $this->query($sql);
 		
-		if($result1 != NULL && count($result1) > 0){
-			$arr_id = array();
-			
-			foreach($result1 as $key => $value){
-				$arr_id[] = $value['m_image_id'];
+		if($result != NULL && count($result) > 0){
+			$arr_path = array();
+			foreach($result as $key => $value){
+				$arr_path[] = $value['image_path'];
 			}
 			
-			$str_image_id = explode(',', $arr_id);
-			$sql = "
-				DELETE FROM m_image
-				WHERE m_image_id IN ($str_image_id)
-				RETURNING image_path
-				;
-			";
-			$result2 = $this->query($sql);
-			if($result2 != NULL && count($result2) > 0){
-				
-				$arr_path = array();
-				
-				foreach($result2 as $key2 => $value2){
-					$arr_path[] = $value2['image_path'];
-				}
-				
-				return $arr_path;
-				
-			}
+			return $arr_path;
 		}
 		
 		return NULL;

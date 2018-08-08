@@ -305,22 +305,13 @@ class Model
 		
 		$result = $this->query($sql, $sql_param);
 		
-		return $result;
+		if($result != NULL && count($result) > 0){
+			
+			return $result;
+			
+		}
 		
-	}
-	
-	public function postgres_sql_backup(){
-		
-		//Setting
-		$dbname  = DATABASE_NAME;
-		$dbport  = DATABASE_PORT;
-		$data_dir  = SYSTEM_DB_DIR;
-		$pg_dump_dir = DATABASE_PG_DIR;
-
-		//Process backup
-		$dump_date = date("YmdHis");
-		$file_name = $data_dir . "/".$dbname."_" . $dump_date . ".backup";
-		system("\"$pg_dump_dir/pg_dump\" -U postgres --format=c -h localhost -p $dbport $dbname >> \"$file_name\"");
+		return FALSE;
 		
 	}
 	

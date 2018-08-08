@@ -47,7 +47,7 @@ class SiteSettingModel extends BasicModel {
 		//Insert m_site_setting
 		$rowSiteSetting = $this->upsertRow($sql_param,NULL,'m_site_setting');
 		
-		if($rowSiteSetting != NULL && count($rowSiteSetting) == 1){
+		if($rowSiteSetting != FALSE){
 			
 			$m_site_setting_id = $rowSiteSetting[0]['m_site_setting_id'];
 			
@@ -59,7 +59,7 @@ class SiteSettingModel extends BasicModel {
 				//Insert m_image
 				$rowImage = $this->upsertRow($arr_img,NULL,'m_image');
 				
-				if($rowImage != NULL && count($rowImage) == 1){
+				if($rowImage != FALSE){
 					
 					$m_image_id = $rowImage[0]['m_image_id'];
 					

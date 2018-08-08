@@ -44,7 +44,7 @@ class ProductModel extends BasicModel {
 		//Insert m_product
 		$rowProduct = $this->upsertRow($arr_product,$m_product_id,'m_product');
 		
-		if($rowProduct != NULL && count($rowProduct) == 1){
+		if($rowProduct != FALSE){
 			
 			$m_product_id = $rowProduct[0]['m_product_id'];
 			
@@ -67,7 +67,7 @@ class ProductModel extends BasicModel {
 					//Insert m_image
 					$rowImg = $this->upsertRow($arr_image,NULL,'m_image');
 					
-					if($rowImg != NULL && count($rowImg) == 1){
+					if($rowImg != FALSE){
 						
 						$m_image_id = $rowImg[0]['m_image_id'];
 						

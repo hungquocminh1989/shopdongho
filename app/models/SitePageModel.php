@@ -164,7 +164,7 @@ class SitePageModel extends BasicModel {
 		//Update m_site_page
 		$rowSitePage = $this->upsertRow($arr_page,$m_site_page_id,'m_site_page');			
 		
-		if($rowSitePage != NULL && count($rowSitePage) == 1){
+		if($rowSitePage != FALSE){
 			
 			$m_site_page_id = $rowSitePage[0]['m_site_page_id'];
 			
@@ -208,7 +208,7 @@ class SitePageModel extends BasicModel {
 								//Update or Insert t_category_section
 								$rowHtml = $this->upsertRow($arr_html,$m_html_data_id,'m_html_data');
 								
-								if($rowHtml != NULL && count($rowHtml) == 1){
+								if($rowHtml != FALSE){
 									$m_html_data_id = $rowHtml[0]['m_html_data_id'];
 									
 									$arr_html_section['m_site_page_id'] = $m_site_page_id;

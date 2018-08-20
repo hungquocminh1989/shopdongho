@@ -1,6 +1,6 @@
 <?php 
 
-class GroupDataModel extends BasicModel {
+class GroupDataModel extends Model {
 	
 	public function __construct() {
     	

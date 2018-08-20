@@ -1,6 +1,6 @@
 <?php
 
-class CommonController extends BasicController {
+class CommonController extends Controller {
 	
 	public static function action_admin()
 	{

@@ -1,6 +1,6 @@
 <?php 
 
-class SitePageSectionModel extends BasicModel {
+class SitePageSectionModel extends Model {
 	
 	public function __construct() {
     	

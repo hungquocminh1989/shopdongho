@@ -1,6 +1,6 @@
 <?php 
 
-class DefineModel extends BasicModel {
+class DefineModel extends Model {
 	
 	public function __construct() {
     	

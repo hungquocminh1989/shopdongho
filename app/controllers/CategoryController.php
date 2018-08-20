@@ -1,6 +1,6 @@
 <?php
 
-class CategoryController extends BasicController {
+class CategoryController extends Controller {
 	public static function action_addcategory()
 	{
 		$model = new CategoryModel();

@@ -1,6 +1,6 @@
 <?php
 
-class PageController extends BasicController {
+class PageController extends Controller {
 	
 	public static function action_delete_page()
 	{

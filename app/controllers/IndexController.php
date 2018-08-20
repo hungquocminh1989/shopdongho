@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends BasicController {
+class IndexController extends Controller {
 	
 	public static function action_index($page_link = '', $id = '', $product_link = '')
 	{

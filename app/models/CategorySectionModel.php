@@ -1,6 +1,6 @@
 <?php 
 
-class CategorySectionModel extends BasicModel {
+class CategorySectionModel extends Model {
 	
 	public function __construct() {
     	

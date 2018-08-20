@@ -1,6 +1,6 @@
 <?php 
 
-class PageHandle extends BasicModel {
+class PageHandle extends Model {
 	
     public function selectPage_CategoryData($m_site_page_section_id, $page_type){
     	

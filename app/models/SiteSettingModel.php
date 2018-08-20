@@ -1,6 +1,6 @@
 <?php 
 
-class SiteSettingModel extends BasicModel {
+class SiteSettingModel extends Model {
 	
 	function __construct() {
 		

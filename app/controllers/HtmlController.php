@@ -1,6 +1,6 @@
 <?php
 
-class HtmlController extends BasicController {
+class HtmlController extends Controller {
     
 	public static function action_edit_html()
 	{

@@ -1,6 +1,6 @@
 <?php 
 
-class ImageModel extends BasicModel {
+class ImageModel extends Model {
 	
 	public function __construct() {
     	

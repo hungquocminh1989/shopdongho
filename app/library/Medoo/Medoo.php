@@ -291,11 +291,12 @@ class Medoo
 				$this->statement = $statement;
 				
 				if($this->error() != NULL && $this->error()[2] != ''){
+					
 					$error_info = var_export($this->error()[2], true);
 					$error_info .= "\r\n" . var_export($this->log(), true);
 					Support_Log::Log('SYSTEM_ERROR_SQL',$error_info);
 			
-					Support_Common::RequestError($error_info);
+					//Support_Common::RequestError($error_info);
 					
 				}
 
@@ -309,7 +310,7 @@ class Medoo
 			$error_info .= "\r\n" . $e->getTraceAsString();
 			Support_Log::Log('SYSTEM_ERROR_EXCEPTION_SQL',$error_info);
 			
-			Support_Common::RequestError($error_info);
+			Support_Common::RequestError($e);
 			
 		}
 		

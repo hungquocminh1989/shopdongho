@@ -7,6 +7,20 @@ Flight::map('renderSmarty', function($template, $data = NULL){
     Flight::viewSmarty()->display($template);
 });
 
+//Create postgresSqlBackup method
+Flight::map('postgresSqlBackup', function(){
+    //Load Setting
+	$dbname  = DATABASE_NAME;
+	$dbport  = DATABASE_PORT;
+	$data_dir  = SYSTEM_DB_DIR;
+	$pg_dump_dir = DATABASE_PG_DIR;
+
+	//Process backup
+	$dump_date = date("YmdHis");
+	$file_name = $data_dir . "/".$dbname."_" . $dump_date . ".backup";
+	system("\"$pg_dump_dir/pg_dump\" -U postgres --format=c -h localhost -p $dbport $dbname >> \"$file_name\"");
+});
+
 //Create smartyVars method (get smarty variable)
 Flight::map('smartyVars', function($keyName = NULL){
     if (is_null($keyName) == false) {

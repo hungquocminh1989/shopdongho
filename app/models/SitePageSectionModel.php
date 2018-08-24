@@ -1,6 +1,6 @@
 <?php 
 
-class SitePageSectionModel extends BasicModel {
+class SitePageSectionModel extends Model {
 	
 	public function __construct() {
     	
@@ -28,7 +28,8 @@ class SitePageSectionModel extends BasicModel {
 			"
 				SELECT * 
 				FROM m_site_page p 
-				INNER JOIN m_site_page_section ps ON p.m_site_page_id = ps.m_site_page_id
+				INNER JOIN m_site_page_section ps 
+					ON p.m_site_page_id = ps.m_site_page_id
 				WHERE ps.m_site_page_id = :m_site_page_id 
 					AND ps.section_type = :section_type
 					AND p.page_type = :page_type

@@ -1,6 +1,6 @@
 <?php 
 
-class HtmlDataModel extends BasicModel {
+class HtmlDataModel extends Model {
 	
 	public function __construct() {
     	

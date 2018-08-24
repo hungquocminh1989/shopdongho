@@ -1,6 +1,6 @@
 <?php
 
-class ProductController extends BasicController {
+class ProductController extends Controller {
 	
 	public static function action_deleteproduct()
 	{

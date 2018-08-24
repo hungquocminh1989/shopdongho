@@ -1,6 +1,6 @@
 <?php 
 
-class SiteHeaderModel extends BasicModel {
+class SiteHeaderModel extends Model {
 	
 	public function __construct() {
     	
@@ -12,7 +12,8 @@ class SiteHeaderModel extends BasicModel {
 		return $this->query(
 			"
 				SELECT * FROM m_site_header sh
-				INNER JOIN m_site_page sp ON sp.m_site_page_id = sh.m_site_page_id
+				INNER JOIN m_site_page sp 
+					ON sp.m_site_page_id = sh.m_site_page_id
 				WHERE sp.page_type != ".SYSTEM_META_PAGE_DETAIL."
 				ORDER BY sort_no, m_site_header_id
 			"

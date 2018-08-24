@@ -68,5 +68,9 @@ Flight::route('POST /profile/@name/edit', array($membership, 'profileEditAttempt
 Flight::route('GET /sign-up', array($membership, 'register'));
 Flight::route('POST /sign-up', array($membership, 'registerAttempt'));*/
 
+//Register Crontabs Request
+$cron = new CommonCrontab();
+Flight::route('/cron', array($cron, 'cron'));
+
 // Route mặc định khi không match toàn bộ
 Flight::route('/*', array($controller, 'index'));

@@ -1,6 +1,6 @@
 <?php
 
-class SliderController extends BasicController {
+class SliderController extends Controller {
     
 	public static function action_edit_html()
 	{

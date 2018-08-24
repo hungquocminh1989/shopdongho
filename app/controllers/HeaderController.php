@@ -1,6 +1,6 @@
 <?php
 
-class HeaderController extends BasicController {
+class HeaderController extends Controller {
 	
 	public static function action_delete_header()
 	{

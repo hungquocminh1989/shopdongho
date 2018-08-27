@@ -9,7 +9,13 @@ class CategoryModel extends Model {
     }
     
     public function listCategory(){
-    	$result = $this->query("SELECT * FROM m_category ");
+    	$result = $this->query(
+    		"
+    			SELECT * 
+    			FROM m_category 
+    			ORDER BY sort_no
+    	"
+    	);
 		return $result;
 	}
     

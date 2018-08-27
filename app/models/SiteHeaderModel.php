@@ -15,7 +15,7 @@ class SiteHeaderModel extends Model {
 				INNER JOIN m_site_page sp 
 					ON sp.m_site_page_id = sh.m_site_page_id
 				WHERE sp.page_type != ".SYSTEM_META_PAGE_DETAIL."
-				ORDER BY sort_no, m_site_header_id
+				ORDER BY sh.sort_no, sh.m_site_header_id
 			"
 		);
 	}

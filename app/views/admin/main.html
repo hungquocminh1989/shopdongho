@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Quản Lý Sản Phẩm</title>
         <link rel="stylesheet" href="{%$smarty.const.SYSTEM_BASE_URL%}public/css/bootstrap.css">
+        <link rel="stylesheet" href="{%$smarty.const.SYSTEM_BASE_URL%}public/css/font-awesome.css">
         <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/jquery-1.10.2.js"></script>
-        <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script> 
+        <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/jquery-ui.min.js"></script>
         <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/bootstrap.js"></script>
         
         <!--https://summernote.org/-->
@@ -123,6 +124,10 @@
 			input[type="search"]::-webkit-search-cancel-button {
 				-webkit-appearance: searchfield-cancel-button;
 			}
+			
+			.col_drag_sort{
+				cursor: move;
+			}
         </style>
     </head>
     {%include 'app/views/core-ajax/system.html'%}
@@ -203,15 +208,16 @@
                             </div>
                         </div>
             		</form>
-            		<div class="table-responsive table_result">
+            		<div class="table-responsive grid_table_result">
             			<div class="form-group row">
             				<div class="col-sm-3">
-            					<input type="text" class="form-control" placeholder="Tìm Kiếm">
+            					<input type="text" class="form-control txt_fulltextsearch" placeholder="Tìm Kiếm">
             				</div>
             			</div>
-	                    <table class="table table-bordered">
+	                    <table class="table table-bordered table_drag_sort table_fulltextsearch">
 	                        <thead>
 	                            <tr>
+	                                <th></th>
 	                                <th>#</th>
 	                                <th>Tên Menu</th>
 	                                <th>Link Truy Cập</th>
@@ -221,10 +227,11 @@
 	                        <tbody>
 	                            {%foreach $listHeader as $value%}
 	                            <tr>
-	                                <th scope="row">{%$value@iteration%}</th>
+	                            	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
+	                                <td class="col_sort_exclude col_order_no" scope="row">{%$value@iteration%}</td>
 	                                <td>{%$value['header_name']%}</td>
 	                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
-	                                <td>
+	                                <td class="col_sort_exclude">
 	                                    <button class="btn btn-primary btn_edit_header" value="{%$value['m_site_header_id']%}">Sửa</button>
 	                                    <button class="btn btn-danger btn_delete_header" value="{%$value['m_site_header_id']%}">Xóa</button>
 	                                </td>
@@ -262,10 +269,16 @@
                             </div>
                         </div>
             		</form>
-            		<div class="table-responsive">
-	                    <table class="table table-bordered">
+            		<div class="table-responsive grid_table_result">
+            			<div class="form-group row">
+            				<div class="col-sm-3">
+            					<input type="text" class="form-control txt_fulltextsearch" placeholder="Tìm Kiếm">
+            				</div>
+            			</div>
+	                    <table class="table table-bordered table_drag_sort table_fulltextsearch">
 	                        <thead>
 	                            <tr>
+	                                <th></th>
 	                                <th>#</th>
 	                                <th>Tên HTML</th>
 	                                <th>Thao Tác</th>
@@ -274,9 +287,10 @@
 	                        <tbody>
 	                            {%foreach $listHtml as $value%}
 	                            <tr>
-	                                <th scope="row">{%$value@iteration%}</th>
+	                            	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
+	                                <td class="col_sort_exclude" scope="row">{%$value@iteration%}</td>
 	                                <td>{%$value['html_name']%}</td>
-	                                <td>
+	                                <td class="col_sort_exclude">
 	                                    <button class="btn btn-primary btn_edit_html" value="{%$value['m_html_data_id']%}">Sửa</button>
 	                                    <button class="btn btn-danger btn_delete_html" value="{%$value['m_html_data_id']%}">Xóa</button>
 	                                </td>
@@ -351,10 +365,16 @@
 	                        </div>
 	                    </div> 
 	                </form>
-	            	<div class="table-responsive">
-	                    <table class="table table-bordered">
+	            	<div class="table-responsive grid_table_result">
+	                    <div class="form-group row">
+            				<div class="col-sm-3">
+            					<input type="text" class="form-control txt_fulltextsearch" placeholder="Tìm Kiếm">
+            				</div>
+            			</div>
+	                    <table class="table table-bordered table_drag_sort table_fulltextsearch">
 	                        <thead>
 	                            <tr>
+	                                <th></th>
 	                                <th>#</th>
 	                                <th>Tên Trang</th>
 	                                <th>Link Truy Cập</th>
@@ -364,10 +384,11 @@
 	                        <tbody>
 	                            {%foreach $listPage as $value%}
 	                            <tr {%if $value.page_type == $smarty.const.SYSTEM_META_PAGE_DETAIL%} class="warning" {%/if%}>
-	                                <th scope="row">{%$value@iteration%}</th>
+	                            	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
+	                                <td class="col_sort_exclude" scope="row">{%$value@iteration%}</td>
 	                                <td>{%$value['page_name']%}</td>
 	                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
-	                                <td>
+	                                <td class="col_sort_exclude">
 	                                    <button class="btn btn-primary btn_edit_page" value="{%$value['m_site_page_id']%}">Sửa</button>
 	                                    <button class="btn btn-danger btn_delete_page" value="{%$value['m_site_page_id']%}">Xóa</button>
 	                                </td>
@@ -399,10 +420,16 @@
                             </div>
                         </div>
                     </form>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
+                    <div class="table-responsive grid_table_result">
+                        <div class="form-group row">
+            				<div class="col-sm-3">
+            					<input type="text" class="form-control txt_fulltextsearch" placeholder="Tìm Kiếm">
+            				</div>
+            			</div>
+	                    <table class="table table-bordered table_drag_sort table_fulltextsearch">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>#</th>
                                     <th>Danh Mục</th>
                                     <th>Thao Tác</th>
@@ -411,9 +438,10 @@
                             <tbody>
                                 {%foreach $listCategory as $value%}
                                 <tr>
-                                    <th scope="row">{%$value@iteration%}</th>
+                                	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
+                                    <td class="col_sort_exclude" scope="row">{%$value@iteration%}</td>
                                     <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
-                                    <td>
+                                    <td class="col_sort_exclude">
                                         <button class="btn btn-primary btn_edit_ctg" value="{%$value['m_category_id']%}">Sửa</button>
                                         <button value="{%$value['m_category_id']%}" class="btn btn-danger btn_delete_ctg">Xóa</button>
                                     </td>

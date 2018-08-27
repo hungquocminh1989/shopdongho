@@ -197,7 +197,7 @@ class ProductModel extends Model {
     	LEFT JOIN m_image im 
     		ON im.m_image_id = imn.m_image_id
     	WHERE mc.category_name LIKE '$category_name'
-    	ORDER BY mc.m_category_id
+    	ORDER BY mc.sort_no, mp.sort_no
     	"
     	);
 		return $result;

@@ -11,16 +11,16 @@ class SiteSettingModel extends Model {
     public function delete_before_update(){
     	
     	$sql = "
-	    	WITH d2 AS (
-	    		WITH d1 AS (
-	    			DELETE FROM m_site_setting
+	    	WITH d1 AS (
+				DELETE FROM m_site_setting
 					RETURNING m_site_setting_id
-	    		)
-	    		DELETE FROM t_image_manager
+			)
+			,d2 AS (
+				DELETE FROM t_image_manager
 				WHERE m_site_setting_id IN (SELECT * FROM d1)
 				RETURNING m_image_id
-	    	)
-    		DELETE FROM m_image
+			)
+			DELETE FROM m_image
 			WHERE m_image_id IN (SELECT * FROM d2)
 			RETURNING image_path
     	";

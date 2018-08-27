@@ -43,7 +43,7 @@ class IndexController extends Controller {
 			* layout_template_name
 			*/
 			Flight::set('flight.views.path', $layout_template_folder);
-			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.$layout_template_folder);
+			Flight::viewSmarty()->setTemplateDir(SYSTEM_ROOT_DIR.'/'.$layout_template_folder);
 			
 			$oData = new ObjectData();
 			

@@ -6,6 +6,7 @@
         <title>Quản Lý Sản Phẩm</title>
         <link rel="stylesheet" href="{%$smarty.const.SYSTEM_BASE_URL%}public/css/bootstrap.css">
         <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script> 
         <script src="{%$smarty.const.SYSTEM_BASE_URL%}public/js/bootstrap.js"></script>
         
         <!--https://summernote.org/-->
@@ -202,7 +203,12 @@
                             </div>
                         </div>
             		</form>
-            		<div class="table-responsive">
+            		<div class="table-responsive table_result">
+            			<div class="form-group row">
+            				<div class="col-sm-3">
+            					<input type="text" class="form-control" placeholder="Tìm Kiếm">
+            				</div>
+            			</div>
 	                    <table class="table table-bordered">
 	                        <thead>
 	                            <tr>

@@ -99,7 +99,7 @@ class PageHandle extends Model {
 					ON hs.m_site_page_id = spd.m_site_page_id AND hs.m_site_page_section_id = spd.m_site_page_section_id
 				INNER JOIN m_html_data hd 
 					ON hd.m_html_data_id = hs.m_html_data_id 
-				WHERE spd.section_type = ".SYSTEM_META_SECTION_FREE."
+				WHERE  p.page_type = :page_type AND spd.section_type = ".SYSTEM_META_SECTION_FREE."
 					AND spd.m_site_page_section_id = :m_site_page_section_id
 			"
 			,

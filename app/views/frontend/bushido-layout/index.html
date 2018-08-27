@@ -1,24 +1,24 @@
 <!doctype html>
 <html>
-    {%include 'app/views/bushido-layout/common/header.html'%}
+    {%include 'app/views/frontend/bushido-layout/common/header.html'%}
     <!--Body-->
     <body>
-        {%include 'app/views/bushido-layout/common/menu.html'%}
+        {%include 'app/views/frontend/bushido-layout/common/menu.html'%}
         <!--Page Content-->
         <div class="page-content">
-            {%include 'app/views/bushido-layout/common/slider.html'%}
-            {%include 'app/views/bushido-layout/modules/category/category_menu.html'%}
+            {%include 'app/views/frontend/bushido-layout/common/slider.html'%}
+            {%include 'app/views/frontend/bushido-layout/modules/category/category_menu.html'%}
             
             
             {%foreach $listData as $section%}
             	
             	{%if $section.type == $smarty.const.SYSTEM_META_SECTION_CATEGORY || $section.type == $smarty.const.SYSTEM_META_SECTION_PRODUCT %}
             	
-            		{%include 'app/views/bushido-layout/modules/category/category_data_list.html'%}
+            		{%include 'app/views/frontend/bushido-layout/modules/category/category_data_list.html'%}
             		
             	{%else if $section.type == $smarty.const.SYSTEM_META_SECTION_FREE %}
             	
-            		{%include 'app/views/bushido-layout/modules/free/free_widget.html'%}
+            		{%include 'app/views/frontend/bushido-layout/modules/free/free_widget.html'%}
             		
             	{%/if%}
             	
@@ -314,7 +314,7 @@
             <!--Brands Carousel Close-->
         </div>
         <!--Page Content Close-->
-        {%include 'app/views/bushido-layout/common/footer.html'%}
+        {%include 'app/views/frontend/bushido-layout/common/footer.html'%}
     </body>
     <!--Body Close-->
 	<!--Javascript (jQuery) Libraries and Plugins-->

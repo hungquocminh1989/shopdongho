@@ -1,5 +1,32 @@
 $(function() {
 	
+	$(".table_result input[type='text']").keyup(function(){
+		var input, filter, table, tr, td, i;
+		input = document.getElementById(".table_result input[type='text']");
+		filter = input.value.toUpperCase();
+		table = document.getElementById(".table_result table");
+		tr = table.getElementsByTagName("tr");
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td");
+			if (td) {
+				var rowDisp = false;
+				for (c = 1; c < td.length; c++) {//Bỏ column order ra
+					if (td[c].innerHTML.toUpperCase().indexOf(filter) > -1) {
+						rowDisp = true;
+						//console.log(td[c].innerHTML);
+					}
+				}
+				if(rowDisp == true){
+					tr[i].style.display = "";
+				}
+				else{
+					tr[i].style.display = "none";
+				}
+			}       
+		}
+		$('.table_result table thead tr').show();
+	});
+	
 	$('#txt_product_info,#txt_content_html').summernote({
 		lang: 'vi-VN',
 		dialogsInBody: true,

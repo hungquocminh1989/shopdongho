@@ -1,13 +1,6 @@
 <?php
 
 class CategoryController extends Controller {
-	public static function action_addcategory()
-	{
-		$model = new CategoryModel();
-		$model->upsertRow(['category_name' => $_POST['category_name']]);
-		Flight::redirect('/main');
-		return FALSE;#Stop Route
-	}
 	
 	public static function action_deletecategory()
 	{
@@ -28,14 +21,21 @@ class CategoryController extends Controller {
 	public static function action_updatecategory()
 	{
 		$model = new CategoryModel();
-		if($_POST['m_category_id'] != ''){
-			$m_category_id = $_POST['m_category_id'];
-			$category_name = $_POST['category_name'];
-			$model->upsertRow(['category_name'=>$category_name], $m_category_id);
-		}
+		$m_category_id = $_POST['m_category_id'];
+		$category_name = $_POST['category_name'];
+		$model->upsertRow(['category_name'=>$category_name], $m_category_id);
+		$model->generateSortNo('m_category');
 		
 		Flight::redirect('/main');
 		return FALSE;#Stop Route
+	}
+	
+	public static function action_dragsort(){
+		
+		self::update_sort_no('m_category');
+		Flight::json(array('status' => 'OK'));
+		return FALSE;#Stop Route
+		
 	}
     
 }

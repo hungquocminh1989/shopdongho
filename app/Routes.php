@@ -28,8 +28,15 @@ Flight::route('/main/define/add', array($controller, 'action_add_define'));
 Flight::route('/main/image/upload', array($controller, 'action_image_upload'));
 Flight::route('/javascript-obfuscator', array($controller, 'action_obfuscator'));//API
 
+//Drag sort table
+Flight::route('/main/category/dragsort', array($categoryControler, 'action_dragsort'));
+Flight::route('/main/html/dragsort', array($htmlControler, 'action_dragsort'));
+Flight::route('/main/product/dragsort', array($productControler, 'action_dragsort'));
+Flight::route('/main/header/dragsort', array($headerControler, 'action_dragsort'));
+Flight::route('/main/page/dragsort', array($pageControler, 'action_dragsort'));
+Flight::route('/main/pagesection/dragsort', array($pageControler, 'action_dragsort'));
+
 //Category
-Flight::route('/main/category/add', array($categoryControler, 'action_addcategory'));
 Flight::route('/main/category/edit', array($categoryControler, 'action_editcategory'));
 Flight::route('/main/category/update', array($categoryControler, 'action_updatecategory'));
 Flight::route('/main/category/delete', array($categoryControler, 'action_deletecategory'));
@@ -55,6 +62,9 @@ Flight::route('/main/header/delete', array($headerControler, 'action_delete_head
 Flight::route('/main/html/update', array($htmlControler, 'action_update_html'));
 Flight::route('/main/html/edit', array($htmlControler, 'action_edit_html'));
 Flight::route('/main/html/delete', array($htmlControler, 'action_delete_html'));
+
+//Backup Database Request
+Flight::route('/createbackup', array($controller, 'action_createbackup'));
 
 
 // Sample

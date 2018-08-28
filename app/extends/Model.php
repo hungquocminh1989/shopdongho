@@ -62,16 +62,10 @@ class Model extends Database {
     	$db = $this->MedooDb();
 		$db->begin_transaction();
 		
-		try{
-			$db->insert($this->table_name,$sql_param);
-			$lastInsertId = $db->id();
-			$db->commit();
-			return $lastInsertId;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
-		}
+		$db->insert($this->table_name,$sql_param);
+		$lastInsertId = $db->id();
+		$db->commit();
+		return $lastInsertId;
     	
 	}
 	
@@ -80,21 +74,14 @@ class Model extends Database {
     	$db = $this->MedooDb();
 		$db->begin_transaction();		
 		
-		try{
-			
-			$arr_ids = array();
-			foreach($sql_params as $key => $sql_param){
-				$db->insert($this->table_name,$sql_param);
-				$lastInsertId = $db->id();
-				$arr_ids[] = $lastInsertId;
-			}
-			$db->commit();
-			return $arr_ids;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
+		$arr_ids = array();
+		foreach($sql_params as $key => $sql_param){
+			$db->insert($this->table_name,$sql_param);
+			$lastInsertId = $db->id();
+			$arr_ids[] = $lastInsertId;
 		}
+		$db->commit();
+		return $arr_ids;
     	
 	}
 	
@@ -103,19 +90,13 @@ class Model extends Database {
     	$db = $this->MedooDb();
 		$db->begin_transaction();
 		
-		try{
-			$db->update($this->table_name,$sql_param,
-				[
-					$this->pk_id => $id
-				]
-			);
-			$db->commit();
-			return TRUE;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
-		}
+		$db->update($this->table_name,$sql_param,
+			[
+				$this->pk_id => $id
+			]
+		);
+		$db->commit();
+		return TRUE;
     	
 	}
 	
@@ -124,15 +105,9 @@ class Model extends Database {
     	$db = $this->MedooDb();
 		$db->begin_transaction();
 		
-		try{
-			$db->update($this->table_name,$sql_param,$where_param);
-			$db->commit();
-			return TRUE;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
-		}
+		$db->update($this->table_name,$sql_param,$where_param);
+		$db->commit();
+		return TRUE;
     	
 	}
 	
@@ -141,19 +116,13 @@ class Model extends Database {
 		$db = $this->MedooDb();
 		$db->begin_transaction();
 		
-		try{
-			$db->delete($this->table_name,
-				[
-					$this->pk_id => $id
-				]
-			);
-			$db->commit();
-			return TRUE;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
-		}
+		$db->delete($this->table_name,
+			[
+				$this->pk_id => $id
+			]
+		);
+		$db->commit();
+		return TRUE;
 		
 	}
 	
@@ -162,14 +131,54 @@ class Model extends Database {
 		$db = $this->MedooDb();
 		$db->begin_transaction();
 		
-		try{
-			$db->delete($this->table_name,$param);
-			$db->commit();
-			return TRUE;
-			
-		} catch (Exception $ex) {
-			$db->rollback();
-			return FALSE;
+		$db->delete($this->table_name,$param);
+		$db->commit();
+		return TRUE;
+		
+	}
+	
+	public function generateSortNo($tablename){
+		
+		$pkey = $tablename . '_id';
+		$sql_upd = "
+			UPDATE $tablename org
+			SET sort_no = tmp.rnum
+			FROM (
+				SELECT ROW_NUMBER () OVER (ORDER BY COALESCE(sort_no,0)) as rnum,* 
+				FROM $tablename
+				ORDER BY COALESCE(sort_no,0), $pkey
+			) AS tmp
+			WHERE org.$pkey = tmp.$pkey
+		";
+		$this->execute($sql_upd);
+		
+		return TRUE;
+		
+	}
+	
+	public function updateSortNo($tablename, $arr_sort_list){
+		
+		if($arr_sort_list != NULL && count($arr_sort_list) > 0){
+			$pkey = $tablename . '_id';
+			$str_data = "";
+			$arr_data = array();
+			foreach($arr_sort_list as $key => $value){
+				$arr_data[] = "(" . $value['sort_id'] . ',' . $value['sort_no'] . ")";
+			}
+			if($arr_data != NULL && count($arr_data) > 0){
+				$str_data = implode(',',$arr_data);
+				$sql_upd = "
+					UPDATE $tablename AS t 
+					SET
+					    sort_no = c.sort_no
+					FROM (
+						VALUES
+						    $str_data  
+					) AS c($pkey, sort_no) 
+					WHERE c.$pkey = t.$pkey;
+				";
+				$this->execute($sql_upd);
+			}
 		}
 		
 	}

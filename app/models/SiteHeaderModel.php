@@ -11,7 +11,7 @@ class SiteHeaderModel extends Model {
     public function selectAllRows_JoinPage(){
 		return $this->query(
 			"
-				SELECT * FROM m_site_header sh
+				SELECT sh.*, sp.page_link FROM m_site_header sh
 				INNER JOIN m_site_page sp 
 					ON sp.m_site_page_id = sh.m_site_page_id
 				WHERE sp.page_type != ".SYSTEM_META_PAGE_DETAIL."

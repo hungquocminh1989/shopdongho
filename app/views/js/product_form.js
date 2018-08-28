@@ -1,5 +1,14 @@
 $(function() {
 	
+	$("#frm_list_product table tbody").sortable( {
+		stop: function(event, ui){
+			selected_row_sort = ui;
+			ajax_sort.connect("POST","main/product/dragsort",
+				$('#frm_list_product').serializeArray()
+			);
+		}
+	});
+	
 	$(document).on('submit', '#frm_setting_product,#frm_setting_product_dialog', function(e) {
 		//ajax call here
 		var frm_id = this.id;

@@ -1,5 +1,14 @@
 $(function() {
 	
+    $("#frm_list_category table tbody").sortable( {
+		stop: function(event, ui){
+			selected_row_sort = ui;
+			ajax_sort.connect("POST","main/category/dragsort",
+				$('#frm_list_category').serializeArray()
+			);
+		}
+	});
+	
 	$(document).on('submit', '#frm_setting_category,#frm_setting_category_dialog', function(e) {
 		//ajax call here
 		var frm_id = this.id;
@@ -13,12 +22,7 @@ $(function() {
 		    			System.reload();
 		    		});
 		    	};
-		    	if(frm_id == 'frm_setting_category'){
-					ajax.connect("POST","main/category/add",formData);
-				}
-				else{
-					ajax.connect("POST","main/category/update",formData);
-				}
+		    	ajax.connect("POST","main/category/update",formData);
 		    	
 			}
     	);

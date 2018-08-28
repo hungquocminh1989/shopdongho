@@ -25,35 +25,35 @@
     			overflow-y: auto;
 			}
             .thumbnail {
-            height: 50px;
-            margin-bottom:auto;
+	            height: 50px;
+	            margin-bottom:auto;
             }
             .thumbnail_grid {
-            height: 100px !important;
-            width: 100px !important;
+	            height: 100px !important;
+	            width: 100px !important;
             }
             /*.thumbnail_combobox {
             height: 50px !important;
             width: 50px !important;
             }*/
             .thumbnail_item{
-            float: left;
-            height:100%;
-            margin-right: 5px;
-            margin-bottom: 5px;
+	            float: left;
+	            height:100%;
+	            margin-right: 5px;
+	            margin-bottom: 5px;
             }
             #img_review{
-            float: left;
+            	float: left;
             }
             .thumbnail_item:focus {
-            outline: 2px solid blue;
+            	outline: 2px solid blue;
             }
             
             .table > tbody > tr > td {
-			  vertical-align: middle !important;
+				vertical-align: middle !important;
 			}
 			.table > thead > tr > th {
-			  vertical-align: middle !important;
+				vertical-align: middle !important;
 			}
 			
 			/*Panel header*/
@@ -214,31 +214,37 @@
             					<input type="text" class="form-control txt_fulltextsearch" placeholder="Tìm Kiếm">
             				</div>
             			</div>
-	                    <table class="table table-bordered table_drag_sort table_fulltextsearch">
-	                        <thead>
-	                            <tr>
-	                                <th></th>
-	                                <th>#</th>
-	                                <th>Tên Menu</th>
-	                                <th>Link Truy Cập</th>
-	                                <th>Thao Tác</th>
-	                            </tr>
-	                        </thead>
-	                        <tbody>
-	                            {%foreach $listHeader as $value%}
-	                            <tr>
-	                            	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
-	                                <td class="col_sort_exclude col_order_no" scope="row">{%$value@iteration%}</td>
-	                                <td>{%$value['header_name']%}</td>
-	                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
-	                                <td class="col_sort_exclude">
-	                                    <button class="btn btn-primary btn_edit_header" value="{%$value['m_site_header_id']%}">Sửa</button>
-	                                    <button class="btn btn-danger btn_delete_header" value="{%$value['m_site_header_id']%}">Xóa</button>
-	                                </td>
-	                            </tr>
-	                            {%/foreach%}
-	                        </tbody>
-	                    </table>
+            			<form id="frm_list_header">
+            				<table class="table table-bordered table_drag_sort table_fulltextsearch">
+		                        <thead>
+		                            <tr>
+		                                <th></th>
+		                                <th>#</th>
+		                                <th>Tên Menu</th>
+		                                <th>Link Truy Cập</th>
+		                                <th>Thao Tác</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                            {%foreach $listHeader as $value%}
+		                            <tr>
+		                            	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
+		                                <td class="col_sort_exclude col_order_no" scope="row">
+		                                	<span>{%$value['sort_no']%}</span>
+	                                    	<input type="hidden" name="arr_sort_id[]" value="{%$value['m_site_header_id']%}" />
+	                                    	<input type="hidden" name="arr_sort_no[]" value="{%$value['sort_no']%}" />
+		                                </td>
+		                                <td>{%$value['header_name']%}</td>
+		                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
+		                                <td class="col_sort_exclude">
+		                                    <button class="btn btn-primary btn_edit_header" value="{%$value['m_site_header_id']%}">Sửa</button>
+		                                    <button class="btn btn-danger btn_delete_header" value="{%$value['m_site_header_id']%}">Xóa</button>
+		                                </td>
+		                            </tr>
+		                            {%/foreach%}
+		                        </tbody>
+		                    </table>
+            			</form>
 	                </div>
             	</div>
             </div>
@@ -275,29 +281,35 @@
             					<input type="text" class="form-control txt_fulltextsearch" placeholder="Tìm Kiếm">
             				</div>
             			</div>
-	                    <table class="table table-bordered table_drag_sort table_fulltextsearch">
-	                        <thead>
-	                            <tr>
-	                                <th></th>
-	                                <th>#</th>
-	                                <th>Tên HTML</th>
-	                                <th>Thao Tác</th>
-	                            </tr>
-	                        </thead>
-	                        <tbody>
-	                            {%foreach $listHtml as $value%}
-	                            <tr>
-	                            	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
-	                                <td class="col_sort_exclude" scope="row">{%$value@iteration%}</td>
-	                                <td>{%$value['html_name']%}</td>
-	                                <td class="col_sort_exclude">
-	                                    <button class="btn btn-primary btn_edit_html" value="{%$value['m_html_data_id']%}">Sửa</button>
-	                                    <button class="btn btn-danger btn_delete_html" value="{%$value['m_html_data_id']%}">Xóa</button>
-	                                </td>
-	                            </tr>
-	                            {%/foreach%}
-	                        </tbody>
-	                    </table>
+            			<form id="frm_list_html">
+            				<table class="table table-bordered table_drag_sort table_fulltextsearch">
+		                        <thead>
+		                            <tr>
+		                                <th></th>
+		                                <th>#</th>
+		                                <th>Tên HTML</th>
+		                                <th>Thao Tác</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                            {%foreach $listHtml as $value%}
+		                            <tr>
+		                            	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
+		                                <td class="col_sort_exclude col_order_no" scope="row">
+		                                	<span>{%$value['sort_no']%}</span>
+	                                    	<input type="hidden" name="arr_sort_id[]" value="{%$value['m_html_data_id']%}" />
+	                                    	<input type="hidden" name="arr_sort_no[]" value="{%$value['sort_no']%}" />
+		                                </td>
+		                                <td>{%$value['html_name']%}</td>
+		                                <td class="col_sort_exclude">
+		                                    <button class="btn btn-primary btn_edit_html" value="{%$value['m_html_data_id']%}">Sửa</button>
+		                                    <button class="btn btn-danger btn_delete_html" value="{%$value['m_html_data_id']%}">Xóa</button>
+		                                </td>
+		                            </tr>
+		                            {%/foreach%}
+		                        </tbody>
+		                    </table>
+            			</form>
 	                </div>
             	</div>
             </div>
@@ -371,31 +383,37 @@
             					<input type="text" class="form-control txt_fulltextsearch" placeholder="Tìm Kiếm">
             				</div>
             			</div>
-	                    <table class="table table-bordered table_drag_sort table_fulltextsearch">
-	                        <thead>
-	                            <tr>
-	                                <th></th>
-	                                <th>#</th>
-	                                <th>Tên Trang</th>
-	                                <th>Link Truy Cập</th>
-	                                <th>Thao Tác</th>
-	                            </tr>
-	                        </thead>
-	                        <tbody>
-	                            {%foreach $listPage as $value%}
-	                            <tr {%if $value.page_type == $smarty.const.SYSTEM_META_PAGE_DETAIL%} class="warning" {%/if%}>
-	                            	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
-	                                <td class="col_sort_exclude" scope="row">{%$value@iteration%}</td>
-	                                <td>{%$value['page_name']%}</td>
-	                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
-	                                <td class="col_sort_exclude">
-	                                    <button class="btn btn-primary btn_edit_page" value="{%$value['m_site_page_id']%}">Sửa</button>
-	                                    <button class="btn btn-danger btn_delete_page" value="{%$value['m_site_page_id']%}">Xóa</button>
-	                                </td>
-	                            </tr>
-	                            {%/foreach%}
-	                        </tbody>
-	                    </table>
+            			<form id="frm_list_page">
+            				<table class="table table-bordered table_drag_sort table_fulltextsearch">
+		                        <thead>
+		                            <tr>
+		                                <th></th>
+		                                <th>#</th>
+		                                <th>Tên Trang</th>
+		                                <th>Link Truy Cập</th>
+		                                <th>Thao Tác</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                            {%foreach $listPage as $value%}
+		                            <tr {%if $value.page_type == $smarty.const.SYSTEM_META_PAGE_DETAIL%} class="warning" {%/if%}>
+		                            	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
+		                                <td class="col_sort_exclude col_order_no" scope="row">
+		                                	<span>{%$value['sort_no']%}</span>
+	                                    	<input type="hidden" name="arr_sort_id[]" value="{%$value['m_site_page_id']%}" />
+	                                    	<input type="hidden" name="arr_sort_no[]" value="{%$value['sort_no']%}" />
+		                                </td>
+		                                <td>{%$value['page_name']%}</td>
+		                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
+		                                <td class="col_sort_exclude">
+		                                    <button class="btn btn-primary btn_edit_page" value="{%$value['m_site_page_id']%}">Sửa</button>
+		                                    <button class="btn btn-danger btn_delete_page" value="{%$value['m_site_page_id']%}">Xóa</button>
+		                                </td>
+		                            </tr>
+		                            {%/foreach%}
+		                        </tbody>
+		                    </table>
+            			</form>
 	                </div>
             	</div>
             </div>
@@ -426,29 +444,35 @@
             					<input type="text" class="form-control txt_fulltextsearch" placeholder="Tìm Kiếm">
             				</div>
             			</div>
-	                    <table class="table table-bordered table_drag_sort table_fulltextsearch">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>#</th>
-                                    <th>Danh Mục</th>
-                                    <th>Thao Tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {%foreach $listCategory as $value%}
-                                <tr>
-                                	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
-                                    <td class="col_sort_exclude" scope="row">{%$value@iteration%}</td>
-                                    <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
-                                    <td class="col_sort_exclude">
-                                        <button class="btn btn-primary btn_edit_ctg" value="{%$value['m_category_id']%}">Sửa</button>
-                                        <button value="{%$value['m_category_id']%}" class="btn btn-danger btn_delete_ctg">Xóa</button>
-                                    </td>
-                                </tr>
-                                {%/foreach%}
-                            </tbody>
-                        </table>
+            			<form id="frm_list_category">
+            				<table class="table table-bordered table_drag_sort table_fulltextsearch">
+	                            <thead>
+	                                <tr>
+	                                    <th></th>
+	                                    <th>#</th>
+	                                    <th>Danh Mục</th>
+	                                    <th>Thao Tác</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                                {%foreach $listCategory as $value%}
+	                                <tr>
+	                                	<td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
+	                                    <td class="col_sort_exclude col_order_no" scope="row">
+	                                    	<span>{%$value['sort_no']%}</span>
+	                                    	<input type="hidden" name="arr_sort_id[]" value="{%$value['m_category_id']%}" />
+	                                    	<input type="hidden" name="arr_sort_no[]" value="{%$value['sort_no']%}" />
+	                                    </td>
+	                                    <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
+	                                    <td class="col_sort_exclude">
+	                                        <button class="btn btn-primary btn_edit_ctg" value="{%$value['m_category_id']%}">Sửa</button>
+	                                        <button value="{%$value['m_category_id']%}" class="btn btn-danger btn_delete_ctg">Xóa</button>
+	                                    </td>
+	                                </tr>
+	                                {%/foreach%}
+	                            </tbody>
+	                        </table>
+            			</form>
                     </div>
                 </div>
             </div>
@@ -540,62 +564,75 @@
                             </div>
                         </div>
                     </form>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                        	<colgroup width="2%"/>
-                        	<colgroup width="15%"/>
-                        	<colgroup width="20%"/>
-                        	<colgroup width="10%"/>
-                        	<colgroup width="10%"/>
-                        	<colgroup width="10%"/>
-                        	<colgroup width="3%"/>
-                        	<!--<colgroup width=""/>-->
-                        	<colgroup width="10%"/>
-                        	<!--<colgroup width="5%"/>-->
-                        	<colgroup width="20%"/>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Danh Mục</th>
-                                    <th>Tên Sản Phẩm</th>
-                                    <th>Mã Sản Phẩm</th>
-                                    <th>Giá</th>
-                                    <th>Giá Sale</th>
-                                    <th>Nhãn Thông Tin</th>
-                                    <!--<th>Thông Tin</th>-->
-                                    <th>Hình Ảnh</th>
-                                    <!--<th>Link Hiển Thị</th>-->
-                                    <th>Thao Tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {%foreach $listProduct as $value%}
-                                <tr style="vertical-align:middle !important;">
-                                    <td scope="row">{%$value@iteration%}</td>
-                                    <td>{%$value['category_name']%}</td>
-                                    <input id="grid_category_id_{%$value['m_product_id']%}" type="hidden" value="{%$value['m_category_id']%}"/>
-                                    <td>{%$value['product_name']%}</td>
-                                    <td>{%$value['product_no']%}</td>
-                                    <td>{%$value['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
-                                    <input type="hidden" value="{%$value['product_price']%}"/>
-                                    <td>{%$value['product_price_sale']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
-                                    <input type="hidden" value="{%$value['product_price_sale']%}"/>
-                                    <td>
-	                                    <input class="checkbox" type="checkbox" disabled="disabled" value="1" {%if $value['flg_notify'] == 1%}checked="checked"{%/if%} />
-	                                    <span>{%$value['msg_notify']%}</span>
-                                    </td>
-                                    <!--<td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']|nl2br nofilter%}</td>-->
-                                    <td>{%if isset($value['image_path']) == true%}<img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}">{%/if%}</td>
-                                    <!--<td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>-->
-                                    <td>
-                                        <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['base_link']%}/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
-                                        <button class="btn btn-primary btn_edit_product" value="{%$value['m_product_id']%}">Sửa</button>
-                                        <button value="{%$value['m_product_id']%}" class="btn btn-danger btn_delete_product">Xóa</button>
-                                    </td>
-                                </tr>
-                                {%/foreach%}
-                            </tbody>
-                        </table>
+                    <div class="table-responsive grid_table_result">
+                    	<div class="form-group row">
+            				<div class="col-sm-3">
+            					<input type="text" class="form-control txt_fulltextsearch" placeholder="Tìm Kiếm">
+            				</div>
+            			</div>
+            			<form id="frm_list_product">
+            				<table id="tbl_list_product" class="table table-bordered table-striped table_drag_sort table_fulltextsearch">
+	                        	<colgroup width="2%"/>
+	                        	<colgroup width="15%"/>
+	                        	<colgroup width="20%"/>
+	                        	<colgroup width="10%"/>
+	                        	<colgroup width="10%"/>
+	                        	<colgroup width="10%"/>
+	                        	<colgroup width="3%"/>
+	                        	<!--<colgroup width=""/>-->
+	                        	<colgroup width="10%"/>
+	                        	<!--<colgroup width="5%"/>-->
+	                        	<colgroup width="20%"/>
+	                            <thead>
+	                                <tr>
+	                                    <th></th>
+	                                    <th>#</th>
+	                                    <th>Danh Mục</th>
+	                                    <th>Tên Sản Phẩm</th>
+	                                    <th>Mã Sản Phẩm</th>
+	                                    <th>Giá</th>
+	                                    <th>Giá Sale</th>
+	                                    <th>Nhãn Thông Tin</th>
+	                                    <!--<th>Thông Tin</th>-->
+	                                    <th>Hình Ảnh</th>
+	                                    <!--<th>Link Hiển Thị</th>-->
+	                                    <th>Thao Tác</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                                {%foreach $listProduct as $value%}
+	                                <tr style="vertical-align:middle !important;">
+	                                    <td class="col_drag_sort col_sort_exclude"><i class="fa fa-reorder"></i></td>
+	                                    <td class="col_sort_exclude col_order_no" scope="row">
+	                                    	<span>{%$value['sort_no']%}</span>
+	                                    	<input type="hidden" name="arr_sort_id[]" value="{%$value['m_product_id']%}" />
+	                                    	<input type="hidden" name="arr_sort_no[]" value="{%$value['sort_no']%}" />
+	                                    </td>
+	                                    <td>{%$value['category_name']%}</td>
+	                                    <input id="grid_category_id_{%$value['m_product_id']%}" type="hidden" value="{%$value['m_category_id']%}"/>
+	                                    <td>{%$value['product_name']%}</td>
+	                                    <td>{%$value['product_no']%}</td>
+	                                    <td>{%$value['product_price']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
+	                                    <input type="hidden" value="{%$value['product_price']%}"/>
+	                                    <td>{%$value['product_price_sale']|number_format:0:".":","%} {%$smarty.const.SYSTEM_CURRENCY%}</td>
+	                                    <input type="hidden" value="{%$value['product_price_sale']%}"/>
+	                                    <td>
+		                                    <input class="checkbox" type="checkbox" disabled="disabled" value="1" {%if $value['flg_notify'] == 1%}checked="checked"{%/if%} />
+		                                    <span>{%$value['msg_notify']%}</span>
+	                                    </td>
+	                                    <!--<td id="grid_product_info_{%$value['m_product_id']%}" >{%$value['product_info']|nl2br nofilter%}</td>-->
+	                                    <td class="col_sort_exclude">{%if isset($value['image_path']) == true%}<img class="thumbnail thumbnail_grid" src="{%$value['image_path']%}">{%/if%}</td>
+	                                    <!--<td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>-->
+	                                    <td class="col_sort_exclude">
+	                                        <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['base_link']%}/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
+	                                        <button class="btn btn-primary btn_edit_product" value="{%$value['m_product_id']%}">Sửa</button>
+	                                        <button value="{%$value['m_product_id']%}" class="btn btn-danger btn_delete_product">Xóa</button>
+	                                    </td>
+	                                </tr>
+	                                {%/foreach%}
+	                            </tbody>
+	                        </table>
+            			</form>
                     </div>
                 </div>
             </div>

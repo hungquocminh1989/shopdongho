@@ -160,7 +160,8 @@ class SitePageModel extends Model {
 		$arr_page['page_type'] = $postData['page_type'];
 		
 		//Update m_site_page
-		$rowSitePage = $this->upsertRow($arr_page,$m_site_page_id,'m_site_page');			
+		$rowSitePage = $this->upsertRow($arr_page,$m_site_page_id,'m_site_page');	
+		$this->generateSortNo('m_site_page');		
 		
 		if($rowSitePage != FALSE){
 			
@@ -185,6 +186,7 @@ class SitePageModel extends Model {
 						
 						//Insert m_site_page_section
 						$rowSitePageSection = $this->upsertRow($arr_section,NULL,'m_site_page_section');
+						$this->generateSortNo('m_site_page_section');
 						
 						if($rowSitePageSection != NULL && count($rowSitePageSection) == 1){
 							

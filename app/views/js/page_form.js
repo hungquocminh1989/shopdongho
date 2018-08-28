@@ -1,5 +1,14 @@
 $(function() {
 	
+	$("#frm_list_page table tbody").sortable( {
+		stop: function(event, ui){
+			selected_row_sort = ui;
+			ajax_sort.connect("POST","main/page/dragsort",
+				$('#frm_list_page').serializeArray()
+			);
+		}
+	});
+	
 	$(document).on('submit', '#frm_setting_page', function(e) {
 		//ajax call here
 		var formData = System.get_form_data(this.id, true);

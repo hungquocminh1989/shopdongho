@@ -12,9 +12,24 @@ class Controller {
 	public function checklogin(){
 		if(isset($_SESSION["login_token"]) == TRUE && $_SESSION["login_token"] == md5(SYSTEM_PASSCODE)){
 			return TRUE;
-	}
+		}
 		else{
 			return FALSE;
+		}
+	}
+	
+	public function update_sort_no($tablename){
+		$model = new Model();
+		$post = Flight::request()->data;
+		$arr_data = array();
+		if($post != NULL && isset($post['arr_sort_id']) == TRUE && isset($post['arr_sort_no']) == TRUE){
+			foreach($post['arr_sort_id'] as $key => $value){
+				$arr_data[] = [
+					'sort_id' => $post['arr_sort_id'][$key], 
+					'sort_no' => $post['arr_sort_no'][$key]
+				];
+			}
+			$model->updateSortNo($tablename, $arr_data);
 		}
 	}
 	

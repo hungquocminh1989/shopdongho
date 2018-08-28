@@ -39,12 +39,13 @@ $(function() {
 			//placeholder: "ui-state-highlight",
 			axis: 'y',
 			stop: function(event, ui){
-				alert('ajax update sort...');
+				alert('Override to call ajax update sort...');
 				ui.item.children('td').effect('highlight', {}, 1000);
 			},
 			update: function( event, ui ) {
 				$(this).children().each(function(index) {
-						$(this).find('.col_order_no').html(index + 1)
+						$(this).find('.col_order_no span').html(index + 1);
+						$(this).find('.col_order_no input[name="arr_sort_no[]"]').val(index + 1);
 				});
 			}
 		});

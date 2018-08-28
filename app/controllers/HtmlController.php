@@ -29,6 +29,7 @@ class HtmlController extends Controller {
 			$model->insertRow($arr_return);
 		}*/
 		$model->upsertRow($arr_return,$postData['m_html_data_id']);
+		$model->generateSortNo('m_html_data');
 		
 		
 		Flight::redirect('/main');
@@ -40,6 +41,14 @@ class HtmlController extends Controller {
 		$model = new HtmlDataModel();
 		$model->deleteRowById($_POST['m_html_data_id']);
 		Flight::json(array('status' => 'OK'));
+	}
+	
+	public static function action_dragsort(){
+		
+		self::update_sort_no('m_html_data');
+		Flight::json(array('status' => 'OK'));
+		return FALSE;#Stop Route
+		
 	}
 	
 }

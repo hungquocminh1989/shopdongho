@@ -45,9 +45,18 @@ class ProductController extends Controller {
 		}
 		
 		$model->update_product($arr_product, $m_product_id);
+		$model->generateSortNo('m_product');
 		
 		Flight::redirect('/main');
 		return FALSE;#Stop Route
+	}
+	
+	public static function action_dragsort(){
+		
+		self::update_sort_no('m_product');
+		Flight::json(array('status' => 'OK'));
+		return FALSE;#Stop Route
+		
 	}
     
 }

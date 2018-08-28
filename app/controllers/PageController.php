@@ -119,5 +119,13 @@ class PageController extends Controller {
 		Flight::redirect('/main');
 		return FALSE;#Stop Route
 	}
+	
+	public static function action_dragsort(){
+		
+		self::update_sort_no('m_site_page');
+		Flight::json(array('status' => 'OK'));
+		return FALSE;#Stop Route
+		
+	}
     
 }

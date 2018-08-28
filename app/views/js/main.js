@@ -1,3 +1,17 @@
+
+//Setting request table drag sort
+var selected_row_sort = null;
+var ajax_sort = new System();
+ajax_sort.done_func = function(data) {
+	if(data.status == 'OK'){
+		selected_row_sort.item.children('td').effect('highlight', {}, 1000);
+	}
+	else{
+		System.message_error('Đã có lỗi xảy ra.');
+		System.Reload();
+	}
+};
+
 $(function() {
 	
 	$('#txt_product_info,#txt_content_html').summernote({

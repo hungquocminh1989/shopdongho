@@ -45,7 +45,6 @@ class ProductController extends Controller {
 		}
 		
 		$model->update_product($arr_product, $m_product_id);
-		$model->generateSortNo('m_product');
 		
 		Flight::redirect('/main');
 		return FALSE;#Stop Route

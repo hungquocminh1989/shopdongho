@@ -92,27 +92,25 @@ class SitePageModel extends Model {
 	public function delete_page($m_site_page_id){
 		
 		$sql_del = "
-			DELETE FROM m_site_page
-			WHERE m_site_page_id = $m_site_page_id ;
+			WITH d1 AS (
+				DELETE FROM m_site_page
+				WHERE m_site_page_id = $m_site_page_id
+			)
+			,d2 AS (
+				DELETE FROM m_site_page_section
+				WHERE m_site_page_id = $m_site_page_id
+			)
+			,d3 AS (
+				DELETE FROM t_category_section
+				WHERE m_site_page_id = $m_site_page_id
+			)
+			,d4 AS (
+				DELETE FROM t_product_section
+				WHERE m_site_page_id = $m_site_page_id
+			)
+			SELECT 1
 		";
-		$this->execute($sql_del);
 		
-		$sql_del = "
-			DELETE FROM m_site_page_section
-			WHERE m_site_page_id = $m_site_page_id ;
-		";
-		$this->execute($sql_del);
-		
-		$sql_del = "
-			DELETE FROM t_category_section
-			WHERE m_site_page_id = $m_site_page_id ;
-		";
-		$this->execute($sql_del);
-		
-		$sql_del = "
-			DELETE FROM t_product_section
-			WHERE m_site_page_id = $m_site_page_id ;
-		";
 		$this->execute($sql_del);
 		
 	}
@@ -131,7 +129,8 @@ class SitePageModel extends Model {
 			,d3 AS (
 				DELETE FROM t_product_section
 				WHERE m_site_page_id = $m_site_page_id
-			) ;
+			)
+			SELECT 1
 		";
 		$this->execute($sql_del);
 		

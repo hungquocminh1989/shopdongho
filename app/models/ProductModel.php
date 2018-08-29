@@ -55,7 +55,7 @@ class ProductModel extends Model {
 			
 			if(count($arr_images) > 0){
 				
-				//Xóa Hình Cũ
+				//List Hình Cũ Cần Xóa
 				$listImageDelete = $this->delete_before_update($m_product_id);
 				
 				foreach($arr_images as $k => $image){
@@ -89,18 +89,25 @@ class ProductModel extends Model {
 				
 			}
 			
+			$this->generateSortNo('m_product');
+			
 			$this->commit();
-				
-			if($listImageDelete != NULL && count($listImageDelete)>0){
-				
-				foreach($listImageDelete as $imagePathDelete){
-					Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$imagePathDelete);
-				}
-				
-			}
+			
+			$this->deleteImagesProduct($listImageDelete);
 			
 		}
 		
+		
+	}
+	
+	public function deleteImagesProduct($listImageDelete){
+		if($listImageDelete != NULL && count($listImageDelete)>0){
+			
+			foreach($listImageDelete as $imagePathDelete){
+				Support_File::DeleteFile(SYSTEM_ROOT_DIR.'/'.$imagePathDelete);
+			}
+			
+		}
 	}
     
     public function listProduct(){
@@ -204,19 +211,40 @@ class ProductModel extends Model {
 	}
 	
 	public function deleteProduct($m_product_id){
-		$arr_sql = array();
-		$arr_sql['m_product_id'] = $m_product_id;
 		
-		$status = $this->deleteRowById($m_product_id);
-		if($status == TRUE){
-			$modelImage = new ImageModel();
-			$modelImage->deleteRowsByConditions(
-				[
-					'image_type' => SYSTEM_META_SECTION_PRODUCT,
-					'm_product_id' => $m_product_id
-				]
-			);
+		$sql_del = "
+			WITH d1 AS (
+				DELETE FROM m_product
+				WHERE m_product_id = $m_product_id
+				RETURNING m_product_id
+			)
+			,d2 AS (
+				DELETE FROM t_image_manager
+				WHERE m_product_id IN (SELECT * FROM d1)
+				RETURNING m_image_id
+			)
+			DELETE FROM m_image
+			WHERE m_image_id IN (SELECT * FROM d2)
+			RETURNING image_path
+		";
+		
+		$result = $this->query($sql_del);
+		
+		if($result != NULL && count($result) > 0){
+			$arr_img_delete = array();
+			
+			foreach($result as $key => $value){
+				$arr_img_delete[] = $value['image_path'];
+			}
+			
+			$this->deleteImagesProduct($arr_img_delete);
+			
+			return TRUE;
+		
 		}
+		
+		return NULL;
+		
 	} 
     
 }

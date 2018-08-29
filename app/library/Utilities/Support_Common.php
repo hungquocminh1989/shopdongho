@@ -2751,9 +2751,9 @@ class Support_Common
 					Support_File::CopyFile($file_src,$file_dest);
 					
 					//Nén hình
-					if($compress == TRUE){
+					/*if($compress == TRUE){
 						Support_Image::imageCompress($file_dest,$file_dest);
-					}
+					}*/
 					
 					$arr_images[] = 'public/upload/'.$folderRoot.'/'.$filename;
 				}

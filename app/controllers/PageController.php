@@ -35,7 +35,7 @@ class PageController extends Controller {
 		//$arr_return['listImageSection'] = $model->get_list_image_section($_POST['m_site_page_id']);
 		$arr_return['listCategory'] = $CategoryModel->listCategory();
 		$arr_return['listProduct'] = $ProductModel->listProductImage();
-		$arr_return['listHtml'] = $HtmlModel->selectAllRows();
+		$arr_return['listHtml'] = $HtmlModel->selectAllRows(['sort_no' => 'ASC']);
 		
 		//Support_Common::RequestError($arr_return['listProductSelected']);
 		
@@ -66,7 +66,7 @@ class PageController extends Controller {
 				Flight::renderSmarty('admin/section/slider_section.html',$arr_return);
 			}
 			else if($section_type == SYSTEM_META_SECTION_FREE){
-				$arr_return['listHtml'] = $HtmlModel->selectAllRows();
+				$arr_return['listHtml'] = $HtmlModel->selectAllRows(['sort_no' => 'ASC']);
 				Flight::renderSmarty('admin/section/free_section.html',$arr_return);
 			}
 			else if($section_type == SYSTEM_META_SECTION_PRODUCT){
@@ -122,7 +122,7 @@ class PageController extends Controller {
 	
 	public static function action_dragsort(){
 		
-		self::update_sort_no('m_site_page');
+		parent::update_sort_no('m_site_page');
 		Flight::json(array('status' => 'OK'));
 		return FALSE;#Stop Route
 		

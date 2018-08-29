@@ -53,7 +53,7 @@ class ProductController extends Controller {
 	
 	public static function action_dragsort(){
 		
-		self::update_sort_no('m_product');
+		parent::update_sort_no('m_product');
 		Flight::json(array('status' => 'OK'));
 		return FALSE;#Stop Route
 		

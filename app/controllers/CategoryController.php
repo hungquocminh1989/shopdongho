@@ -32,7 +32,7 @@ class CategoryController extends Controller {
 	
 	public static function action_dragsort(){
 		
-		self::update_sort_no('m_category');
+		parent::update_sort_no('m_category');
 		Flight::json(array('status' => 'OK'));
 		return FALSE;#Stop Route
 		

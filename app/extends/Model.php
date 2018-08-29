@@ -25,15 +25,24 @@ class Model extends Database {
 		
 	}
 	
-	public function selectAllRows(){
+	public function selectAllRows($arrOrderBy = array()){
 		
     	$db = $this->MedooDb();
     	
-    	$data = $db->select($this->table_name,'*',
-    			[
-	    			"ORDER" => [$this->pk_id => "ASC"]
-	    		]
-    	);
+    	if($arrOrderBy != NULL && count($arrOrderBy) > 0){
+			$data = $db->select($this->table_name,'*',
+	    			[
+		    			"ORDER" => $arrOrderBy
+		    		]
+	    	);
+		}
+		else{
+			$data = $db->select($this->table_name,'*',
+	    			[
+		    			"ORDER" => [$this->pk_id => 'ASC']
+		    		]
+	    	);
+		}
 		
 		if($data != NULL && count($data) > 0 ){
 			return $data;

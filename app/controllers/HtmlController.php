@@ -45,7 +45,7 @@ class HtmlController extends Controller {
 	
 	public static function action_dragsort(){
 		
-		self::update_sort_no('m_html_data');
+		parent::update_sort_no('m_html_data');
 		Flight::json(array('status' => 'OK'));
 		return FALSE;#Stop Route
 		

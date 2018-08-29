@@ -237,8 +237,8 @@
 		                                <td>{%$value['header_name']%}</td>
 		                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
 		                                <td class="col_sort_exclude">
-		                                    <button class="btn btn-primary btn_edit_header" value="{%$value['m_site_header_id']%}">Sửa</button>
-		                                    <button class="btn btn-danger btn_delete_header" value="{%$value['m_site_header_id']%}">Xóa</button>
+		                                    <button type="button" class="btn btn-primary btn_edit_header" value="{%$value['m_site_header_id']%}">Sửa</button>
+		                                    <button type="button" class="btn btn-danger btn_delete_header" value="{%$value['m_site_header_id']%}">Xóa</button>
 		                                </td>
 		                            </tr>
 		                            {%/foreach%}
@@ -302,8 +302,8 @@
 		                                </td>
 		                                <td>{%$value['html_name']%}</td>
 		                                <td class="col_sort_exclude">
-		                                    <button class="btn btn-primary btn_edit_html" value="{%$value['m_html_data_id']%}">Sửa</button>
-		                                    <button class="btn btn-danger btn_delete_html" value="{%$value['m_html_data_id']%}">Xóa</button>
+		                                    <button type="button" class="btn btn-primary btn_edit_html" value="{%$value['m_html_data_id']%}">Sửa</button>
+		                                    <button type="button" class="btn btn-danger btn_delete_html" value="{%$value['m_html_data_id']%}">Xóa</button>
 		                                </td>
 		                            </tr>
 		                            {%/foreach%}
@@ -406,8 +406,8 @@
 		                                <td>{%$value['page_name']%}</td>
 		                                <td><a target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}</a></td>
 		                                <td class="col_sort_exclude">
-		                                    <button class="btn btn-primary btn_edit_page" value="{%$value['m_site_page_id']%}">Sửa</button>
-		                                    <button class="btn btn-danger btn_delete_page" value="{%$value['m_site_page_id']%}">Xóa</button>
+		                                    <button type="button" class="btn btn-primary btn_edit_page" value="{%$value['m_site_page_id']%}">Sửa</button>
+		                                    <button type="button" class="btn btn-danger btn_delete_page" value="{%$value['m_site_page_id']%}">Xóa</button>
 		                                </td>
 		                            </tr>
 		                            {%/foreach%}
@@ -465,8 +465,8 @@
 	                                    </td>
 	                                    <td id="grid_category_name_{%$value['m_category_id']%}">{%$value['category_name']%}</td>
 	                                    <td class="col_sort_exclude">
-	                                        <button class="btn btn-primary btn_edit_ctg" value="{%$value['m_category_id']%}">Sửa</button>
-	                                        <button value="{%$value['m_category_id']%}" class="btn btn-danger btn_delete_ctg">Xóa</button>
+	                                        <button type="button" class="btn btn-primary btn_edit_ctg" value="{%$value['m_category_id']%}">Sửa</button>
+	                                        <button type="button" class="btn btn-danger btn_delete_ctg" value="{%$value['m_category_id']%}">Xóa</button>
 	                                    </td>
 	                                </tr>
 	                                {%/foreach%}
@@ -625,8 +625,8 @@
 	                                    <!--<td id="grid_product_link_{%$value['m_product_id']%}" >{%$value['product_link']%}</td>-->
 	                                    <td class="col_sort_exclude">
 	                                        <a class="btn btn-success" target="_blank" href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['base_link']%}/{%$value['m_product_id']%}/{%$value['product_link']%}">Xem</a>
-	                                        <button class="btn btn-primary btn_edit_product" value="{%$value['m_product_id']%}">Sửa</button>
-	                                        <button value="{%$value['m_product_id']%}" class="btn btn-danger btn_delete_product">Xóa</button>
+	                                        <button type="button" class="btn btn-primary btn_edit_product" value="{%$value['m_product_id']%}">Sửa</button>
+	                                        <button type="button" class="btn btn-danger btn_delete_product" value="{%$value['m_product_id']%}">Xóa</button>
 	                                    </td>
 	                                </tr>
 	                                {%/foreach%}

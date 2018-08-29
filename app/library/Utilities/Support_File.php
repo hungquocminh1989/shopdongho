@@ -5,11 +5,11 @@ class Support_File
 	public static function CopyFile($source, $destination)
 	{
 		try{
-			$source = Support_File::RepairPath($source);
-			$destination = Support_File::RepairPath($destination);
+			$source = self::RepairPath($source);
+			$destination = self::RepairPath($destination);
 			
 			if(self::FileExists($source) == TRUE){
-				Support_File::CreateFolder($destination);
+				self::CreateFolder($destination);
 				copy($source,$destination);
 				
 				return TRUE;
@@ -26,7 +26,7 @@ class Support_File
 	{
 		try{
 			
-			$source = Support_File::RepairPath($source);
+			$source = self::RepairPath($source);
 			if(self::FileExists($source) == TRUE){
 				unlink($source);
 				return TRUE;
@@ -42,8 +42,8 @@ class Support_File
 	{
 		try{
 			
-			if(Support_File::CopyFile($source, $destination) == TRUE){
-				if(Support_File::DeleteFile($source) == TRUE){
+			if(self::CopyFile($source, $destination) == TRUE){
+				if(self::DeleteFile($source) == TRUE){
 					return TRUE;
 				}
 			}
@@ -58,7 +58,7 @@ class Support_File
 	{
 		try{
 			
-			$source = Support_File::RepairPath($source);
+			$source = self::RepairPath($source);
 			
 			if(file_exists($source) == TRUE){
 				return TRUE;
@@ -74,40 +74,54 @@ class Support_File
 	
 	public static function FileList($source)
 	{
-		$source = Support_File::RepairPath($source);
+		$source = self::RepairPath($source);
 	}
 	
 	public static function CopyFolder($source, $destination)
 	{
-		$source = Support_File::RepairPath($source);
-		$destination = Support_File::RepairPath($destination);
+		try{
+			$source = self::RepairPath($source);
+			$destination = self::RepairPath($destination);
+			Support_Directory::copy($source,$destination);
+			return TRUE;
+		} catch (Exception $ex) {
+			return FALSE;
+		}
 	}
 	
 	public static function DeleteFolder($source)
 	{
-		$source = Support_File::RepairPath($source);
+		$source = self::RepairPath($source);
 	}
 	
 	public static function MoveFolder($source, $destination)
 	{
-		$source = Support_File::RepairPath($source);
-		$destination = Support_File::RepairPath($destination);
+		try{
+			$source = self::RepairPath($source);
+			$destination = self::RepairPath($destination);
+			$status = Support_Directory::copy($source,$destination);
+			if($status != NULL && $status == TRUE){
+				//self::DeleteFolder($source);
+			}
+		} catch (Exception $ex) {
+			return FALSE;
+		}
 	}
 	
 	public static function FolderExists($source)
 	{
-		$source = Support_File::RepairPath($source);
+		$source = self::RepairPath($source);
 	}
 	
 	public static function FolderList($source)
 	{
-		$source = Support_File::RepairPath($source);
+		$source = self::RepairPath($source);
 	}
 	
 	public static function CreateFolder($source)
 	{
 		try{
-			$source = Support_File::RepairPath($source);
+			$source = self::RepairPath($source);
 			$info = pathinfo($source);
 			if(isset($info["extension"]) == TRUE && $info["extension"] != ""){
 				$source = $info['dirname'];

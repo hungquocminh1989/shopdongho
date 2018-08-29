@@ -19,6 +19,7 @@ Flight::map('postgresSqlBackup', function(){
 	$dump_date = date("YmdHis");
 	$file_name = $data_dir . "/".$dbname."_" . $dump_date . ".backup";
 	system("\"$pg_dump_dir/pg_dump\" -U postgres --format=c -h localhost -p $dbport $dbname >> \"$file_name\"");
+	return $path_file_name;
 });
 
 //Create smartyVars method (get smarty variable)

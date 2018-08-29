@@ -2,11 +2,6 @@
 
 class CommonController extends Controller {
 	
-	public static function action_createbackup(){
-		Flight::postgresSqlBackup();
-		echo 'Backup Database Successfull.';
-	}
-	
 	public static function action_admin()
 	{
 		if(parent::checklogin() == TRUE){
@@ -53,12 +48,12 @@ class CommonController extends Controller {
 			$arr_return['listDefine'] = $SiteSettingModel->get_define();
 			$arr_return['listSectionType'] = $DefineModel->selectSectionType();
 			$arr_return['listPageType'] = $DefineModel->selectPageType();
-			$arr_return['listPage'] = $SitePageModel->selectAllRows();
+			$arr_return['listPage'] = $SitePageModel->selectAllRows(['sort_no' => 'ASC']);
 			$arr_return['listPageCombo'] = $SitePageModel->selectRowsByConditions(['page_type[!]'=>SYSTEM_META_PAGE_DETAIL]);
 			$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
-			$arr_return['listHtml'] = $HtmlModel->selectAllRows();
+			$arr_return['listHtml'] = $HtmlModel->selectAllRows(['sort_no' => 'ASC']);
 			
-			$arr_return['javascript_src'] = Flight::javascript_obfuscator('js/main.js');
+			$arr_return['javascript_src']  = Flight::javascript_obfuscator('js/main.js');
 			$arr_return['javascript_src'] .= Flight::javascript_obfuscator('js/table_fulltextsearch.js');
 			$arr_return['javascript_src'] .= Flight::javascript_obfuscator('js/category_form.js');
 			$arr_return['javascript_src'] .= Flight::javascript_obfuscator('js/header_form.js');

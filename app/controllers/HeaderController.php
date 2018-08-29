@@ -14,7 +14,7 @@ class HeaderController extends Controller {
 		$model = new SiteHeaderModel();
 		$SitePageModel = new SitePageModel();
 		$arr_return = $model->selectRowById($_POST['m_site_header_id'])[0];
-		$arr_return['listPage'] = $SitePageModel->selectAllRows();
+		$arr_return['listPage'] = $SitePageModel->selectAllRows(['sort_no' => 'ASC']);
 		//Support_Common::var_dump($arr_return);
 		Flight::renderSmarty('admin/dialog/header_edit.html',$arr_return);
 		return FALSE;//Stop Route
@@ -34,7 +34,7 @@ class HeaderController extends Controller {
 	
 	public static function action_dragsort(){
 		
-		self::update_sort_no('m_site_header');
+		parent::update_sort_no('m_site_header');
 		Flight::json(array('status' => 'OK'));
 		return FALSE;#Stop Route
 		

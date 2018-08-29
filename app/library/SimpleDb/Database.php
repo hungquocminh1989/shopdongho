@@ -246,8 +246,8 @@ class Database
 		$primary_key = "";
 		
 		if($table_name == NULL ){
-		$table_name = $this->table_name;
-		$primary_key = $this->pk_id;
+			$table_name = $this->table_name;
+			$primary_key = $this->pk_id;
 		}
 		else{
 			$primary_key = $table_name . "_id";
@@ -307,9 +307,9 @@ class Database
 		
 		if($result != NULL && count($result) > 0){
 			
-		return $result;
-		
-	}
+			return $result;
+			
+		}
 		
 		return FALSE;
 		

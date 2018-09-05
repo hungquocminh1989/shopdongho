@@ -10,8 +10,10 @@ class Support_Log
 		
 		Support_File::CreateFolder(SYSTEM_TMP_DIR."/log");
 		$filename = SYSTEM_TMP_DIR."/log/".Date('Y-m-d').'_('.$ip.')_'.$refix.'.log';
-		
-		$contents = "【".Date('Y-m-d H:i:s')."】 Access from $ip - $url"."\r\n".var_export($contents,TRUE)."\r\n";
+		if(is_string($contents) == FALSE){
+			$contents = var_export($contents,TRUE);
+		}
+		$contents = "【".Date('Y-m-d H:i:s')."】 Access from $ip - $url"."\r\n".$contents."\r\n\r\n";
 		file_put_contents($filename, $contents, FILE_APPEND);
 		return;
 	}

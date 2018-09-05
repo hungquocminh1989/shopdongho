@@ -320,6 +320,7 @@ class Medoo
 	{
 		$identifier = [
 			'mysql' => '`$1`',
+			'pgsql' => '$1',
 			'mariadb' => '`$1`',
 			'mssql' => '[$1]'
 		];
@@ -351,7 +352,7 @@ class Medoo
 
 			$query = str_replace($key, $replace, $query);
 		}
-
+		$query = SQL_HEADER_SCRIPT_AUTO	. "\r\n" . $query;
 		return $query;
 	}
 

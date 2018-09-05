@@ -105,6 +105,7 @@ class Database
 		if($param != NULL ){
 			$sql_log .= "\r\n".var_export($param,TRUE);
 		}
+		$sql_log = SQL_HEADER_SCRIPT_MANUAL	. "\r\n" . $sql_log;
 		Support_Log::Log('SYSTEM_DEBUG_SQL',$sql_log);
 		}
 		
@@ -125,6 +126,7 @@ class Database
 		if($param != NULL ){
 			$sql_log .= "\r\n".var_export($param,TRUE);
 		}
+		$sql_log = SQL_HEADER_SCRIPT_MANUAL	. "\r\n" . $sql_log;
 		Support_Log::Log('SYSTEM_DEBUG_SQL',$sql_log);
 		}
 		

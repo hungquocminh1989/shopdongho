@@ -11,6 +11,8 @@ define('SYSTEM_VIEW_JS', SYSTEM_ROOT_DIR.'/app/views/js');
 define('SYSTEM_JS_ENCRYTION', FALSE);
 define('SYSTEM_PASSCODE', 'bb8b067fa8aab806dc17e3087c8e3eab');
 define('SYSTEM_PUBLIC_UPLOAD', SYSTEM_ROOT_DIR.'/public/upload');
+define('SQL_HEADER_SCRIPT_AUTO', "/**\r\nAuto SQL Script\r\n**/");
+define('SQL_HEADER_SCRIPT_MANUAL', "/**\r\nCustomze SQL Script\r\n**/");
 define('SYSTEM_CURRENCY', ' đ');
 define('SYSTEM_PRODUCT_INFO_DEFAULT', 'Nhãn hiệu : Armani
 Xuất xứ : Nhật Bản

@@ -2,6 +2,45 @@
 
 class Controller {
 	
+	public static function action_cleansite(){
+		
+		//Delete all table
+		$del_1 = new CategoryModel();
+		$del_2 = new HtmlDataModel();
+		$del_3 = new ImageModel();
+		$del_4 = new ProductModel();
+		$del_5 = new SiteHeaderModel();
+		$del_6 = new SitePageModel();
+		$del_7 = new SitePageSectionModel();
+		$del_8 = new SiteSettingModel();
+		$del_9 = new CategorySectionModel();
+		$del_10 = new ProductSectionModel();
+		$del_11 = new HtmlSectionModel();
+		$del_12 = new ImageManagerModel();
+		
+		$del_1->truncateTable();
+		$del_2->truncateTable();
+		$del_3->truncateTable();
+		$del_4->truncateTable();
+		$del_5->truncateTable();
+		$del_6->truncateTable();
+		$del_7->truncateTable();
+		$del_8->truncateTable();
+		$del_9->truncateTable();
+		$del_10->truncateTable();
+		$del_11->truncateTable();
+		$del_12->truncateTable();
+		
+		//Delete all data files upload
+		if(Support_File::FolderExists(SYSTEM_PUBLIC_UPLOAD) == TRUE){
+			Support_File::DeleteFolder(SYSTEM_PUBLIC_UPLOAD);
+		}
+		
+	
+		Flight::json(array('status' => 'OK'));
+		return FALSE;#Stop Route
+	}
+	
 	public static function action_backupsite(){
 		//Create folder backup
 		$time = date("YmdHis");
@@ -13,10 +52,25 @@ class Controller {
 			
 			//Backup database
 			$file_backup = Flight::postgresSqlBackup();
+			$file_backup_copy = $folderBackup . "/db_$time.backup";
 			if(Support_File::FileExists($file_backup) == TRUE){
-				Support_File::CopyFile($file_backup, $folderBackup . "/db_$time.backup");
+				if(Support_File::CopyFile($file_backup, $file_backup_copy) == TRUE){
+					Support_File::DeleteFile($file_backup);
+				}
 			}
+			
+			//Insert m_system_backup
+			$model = new SystemBackupModel();
+			$model->upsertRow(
+				[
+					'system_backup_name'=> $time,
+					'database_path'=> $file_backup_copy,
+					'datafiles_path'=> $folderImagesUpload
+				]
+			);
+			
 		}
+		
 		Flight::json(array('status' => 'OK'));
 		return FALSE;#Stop Route
 	}

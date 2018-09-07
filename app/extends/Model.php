@@ -146,6 +146,17 @@ class Model extends Database {
 		
 	}
 	
+	public function truncateTable(){
+		
+		$tablename = $this->table_name;
+		$sql = "
+			TRUNCATE $tablename RESTART IDENTITY;
+		";
+		$this->execute($sql);
+		return TRUE;
+		
+	}
+	
 	public function generateSortNo($tablename){
 		
 		$pkey = $tablename . '_id';

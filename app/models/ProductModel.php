@@ -194,7 +194,8 @@ class ProductModel extends Model {
     		(
     			SELECT page_link FROM m_site_page
     			WHERE page_type = ".SYSTEM_META_PAGE_DETAIL."
-    		) as base_link
+    		) as base_link,
+    		mp.sort_no
     		
     	FROM m_product mp
     	INNER JOIN m_category mc 

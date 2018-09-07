@@ -65,6 +65,7 @@ Flight::route('/main/html/delete', array($htmlControler, 'action_delete_html'));
 
 //Backup Database Request
 Flight::route('/createbackup', array($controller, 'action_backupsite'));
+Flight::route('/cleansite', array($controller, 'action_cleansite'));
 
 
 // Sample

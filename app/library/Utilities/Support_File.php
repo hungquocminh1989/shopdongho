@@ -91,7 +91,13 @@ class Support_File
 	
 	public static function DeleteFolder($source)
 	{
-		$source = self::RepairPath($source);
+		try{
+			$source = self::RepairPath($source);
+			system("rmdir $source");
+			return TRUE;
+		} catch (Exception $ex) {
+			return FALSE;
+		}
 	}
 	
 	public static function MoveFolder($source, $destination)

@@ -179,6 +179,46 @@
             </div>
             
             <div class="panel panel-default">
+            	<div data-toggle="collapse" href="#systembackup_form" class="panel-heading">
+            		Sao Lưu Hệ Thống
+            	</div>
+            	<div id="systembackup_form" class="panel-body collapse in">
+            		<div class="form-group row">
+                        <label class="col-sm-2 form-control-label">Tên Bản Dự Phòng</label>
+                        <div class="col-sm-5">
+                            <input required name="system_backup_name" type="text" class="form-control" id="txt_BackupName" value="" placeholder="Nhập Tên">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn_create_backup">Tạo Bản Dự Phòng</button>
+                        </div>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên Bản Dự Phòng</th>
+                                <th>Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%foreach $listSystemBackup as $value%}
+                            <tr>
+                                <td scope="row">
+                                	<span>{%$value@iteration%}</span>
+                                </td>
+                                <td>{%$value['system_backup_name']%}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn_restore_backup" value="{%$value['m_system_backup_id']%}">Phục Hồi</button>
+                                    <button type="button" class="btn btn-danger btn_delete_backup" value="{%$value['m_system_backup_id']%}">Xóa</button>
+                                </td>
+                            </tr>
+                            {%/foreach%}
+                        </tbody>
+                    </table>
+            	</div>
+            </div>
+            
+            <div class="panel panel-default">
             	<div data-toggle="collapse" href="#header_form" class="panel-heading">
             		Quản Lý Thanh Điều Hướng
             	</div>

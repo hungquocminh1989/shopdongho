@@ -18,8 +18,8 @@ class IndexController extends Controller {
 			]
 		);
 		
-		$arr_return['listDefine'] = $SiteSettingModel->get_define();
-		$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
+		$arr_return['smarty_SiteSetting'] = $SiteSettingModel->get_define();
+		$arr_return['smarty_NavigationMenu'] = $SiteHeader->selectAllRows_JoinPage();
 		
 		//Get link detail
 		$row_detail = $SitePageModel->selectRowsByConditions(
@@ -50,7 +50,7 @@ class IndexController extends Controller {
 			if($row[0]['page_type'] == SYSTEM_META_PAGE_LIST){
 				
 				$oData->getPageData($page_link, SYSTEM_META_PAGE_LIST);
-				$arr_return['listData'] = $oData->exportPageData();
+				$arr_return['smarty_PageContents'] = $oData->exportPageData();
 				//Support_Common::var_dump($arr_return['listData']);
 			    Flight::renderSmarty('index.html',$arr_return);
 			    return FALSE;//Stop Route
@@ -61,7 +61,7 @@ class IndexController extends Controller {
 				$arr_return['productInfo'] = $ProductModel->listProductDetailById($id, $product_link);
 				$arr_return['productInfoImage'] = $ProductModel->listProductImageDetailById($id);
 				$oData->getPageData($page_link, SYSTEM_META_PAGE_DETAIL);
-				$arr_return['listData'] = $oData->exportPageData();
+				$arr_return['smarty_PageContents'] = $oData->exportPageData();
 				
 				if($arr_return['productInfo'] == NULL){
 					Flight::redirect('/');

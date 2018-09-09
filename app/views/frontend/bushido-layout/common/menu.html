@@ -79,12 +79,12 @@
         <!--Main Menu-->
         <nav class="menu">
             <ul class="main">
-            	{%foreach $listHeader as $value%}
+            	{%foreach $smarty_NavigationMenu as $value%}
             		<li class="hide-sm"><a href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$value['header_name']%}</a></li>
             	{%/foreach%}
             </ul>
             <ul class="catalog">
-                {%foreach $listHeader as $value%}
+                {%foreach $smarty_NavigationMenu as $value%}
             		<li class="hide-sm"><a href="{%$smarty.const.SYSTEM_BASE_URL%}{%$value['page_link']%}">{%$value['header_name']%}</a></li>
             	{%/foreach%}
             </ul>

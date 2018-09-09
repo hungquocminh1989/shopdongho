@@ -10,7 +10,7 @@
             {%include 'app/views/frontend/bushido-layout/modules/category/category_menu.html'%}
             
             
-            {%foreach $listData as $section%}
+            {%foreach $smarty_PageContents as $section%}
             	
             	{%if $section.type == $smarty.const.SYSTEM_META_SECTION_CATEGORY || $section.type == $smarty.const.SYSTEM_META_SECTION_PRODUCT %}
             	

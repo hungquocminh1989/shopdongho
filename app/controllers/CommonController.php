@@ -41,6 +41,7 @@ class CommonController extends Controller {
 			$SitePageModel = new SitePageModel();
 			$SiteHeader = new SiteHeaderModel();
 			$HtmlModel = new HtmlDataModel();
+			$SystemBackupModel = new SystemBackupModel();
 			
 			$arr_return = array();
 			$arr_return['listCategory'] = $CategoryModel->listCategory();			
@@ -52,6 +53,7 @@ class CommonController extends Controller {
 			$arr_return['listPageCombo'] = $SitePageModel->selectRowsByConditions(['page_type[!]'=>SYSTEM_META_PAGE_DETAIL]);
 			$arr_return['listHeader'] = $SiteHeader->selectAllRows_JoinPage();
 			$arr_return['listHtml'] = $HtmlModel->selectAllRows(['sort_no' => 'ASC']);
+			$arr_return['listSystemBackup'] = $SystemBackupModel->selectAllRows();
 			
 			$arr_return['javascript_src']  = Flight::javascript_obfuscator('js/main.js');
 			$arr_return['javascript_src'] .= Flight::javascript_obfuscator('js/table_fulltextsearch.js');
@@ -61,6 +63,7 @@ class CommonController extends Controller {
 			$arr_return['javascript_src'] .= Flight::javascript_obfuscator('js/infomation_form.js');
 			$arr_return['javascript_src'] .= Flight::javascript_obfuscator('js/page_form.js');
 			$arr_return['javascript_src'] .= Flight::javascript_obfuscator('js/product_form.js');
+			$arr_return['javascript_src'] .= Flight::javascript_obfuscator('js/systembackup_form.js');
 			
 		    Flight::renderSmarty('admin/main.html',$arr_return);
 		}

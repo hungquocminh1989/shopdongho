@@ -16,6 +16,7 @@ $productControler = new ProductController();
 $pageControler = new PageController();
 $headerControler = new HeaderController();
 $htmlControler = new HtmlController();
+$systemBackup = new SystemBackupController();
 
 //Index & Detail
 Flight::route('/(@page_link)(/@id/@product_link)', array($indexController, 'action_index'));
@@ -64,7 +65,8 @@ Flight::route('/main/html/edit', array($htmlControler, 'action_edit_html'));
 Flight::route('/main/html/delete', array($htmlControler, 'action_delete_html'));
 
 //Backup Database Request
-Flight::route('/createbackup', array($controller, 'action_backupsite'));
+Flight::route('/main/systembackup/createbackup', array($systemBackup, 'action_backupsite'));
+Flight::route('/main/systembackup/deletebackup', array($systemBackup, 'action_deletebackup'));
 Flight::route('/cleansite', array($controller, 'action_cleansite'));
 
 

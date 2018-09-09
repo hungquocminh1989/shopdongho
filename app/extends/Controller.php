@@ -41,40 +41,6 @@ class Controller {
 		return FALSE;#Stop Route
 	}
 	
-	public static function action_backupsite(){
-		//Create folder backup
-		$time = date("YmdHis");
-		$folderBackup = SYSTEM_TMP_DIR."/site_backup_$time";
-		$folderImagesUpload = "$folderBackup/public/upload";
-		if(Support_File::CreateFolder($folderImagesUpload) == TRUE){
-			//Copy data file uploaded
-			Support_File::CopyFolder(SYSTEM_PUBLIC_UPLOAD, $folderImagesUpload);
-			
-			//Backup database
-			$file_backup = Flight::postgresSqlBackup();
-			$file_backup_copy = $folderBackup . "/db_$time.backup";
-			if(Support_File::FileExists($file_backup) == TRUE){
-				if(Support_File::CopyFile($file_backup, $file_backup_copy) == TRUE){
-					Support_File::DeleteFile($file_backup);
-				}
-			}
-			
-			//Insert m_system_backup
-			$model = new SystemBackupModel();
-			$model->upsertRow(
-				[
-					'system_backup_name'=> $time,
-					'database_path'=> $file_backup_copy,
-					'datafiles_path'=> $folderImagesUpload
-				]
-			);
-			
-		}
-		
-		Flight::json(array('status' => 'OK'));
-		return FALSE;#Stop Route
-	}
-	
 	public static function action_obfuscator()
 	{
 		$arr_return = array();

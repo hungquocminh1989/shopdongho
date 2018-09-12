@@ -9,10 +9,8 @@ class DefineModel extends Model {
     }
     
     public function selectSectionType(){
-		
-    	$db = $this->MedooDb();
     	
-    	$data = $db->select("m_define",'*',
+    	$data = $this->select("m_define",'*',
     		[
     			'define_key' => [1,4,6,9,10]
     		]
@@ -27,10 +25,8 @@ class DefineModel extends Model {
 	}
 	
 	public function selectPageType(){
-		
-    	$db = $this->MedooDb();
     	
-    	$data = $db->select("m_define",'*',
+    	$data = $this->select("m_define",'*',
     		[
     			'define_key' => [7,8]
     		]

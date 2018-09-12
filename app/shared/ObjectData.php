@@ -1,6 +1,6 @@
 <?php 
 
-class ObjectData {
+class ObjectData extends Model{
     protected $arr_data;
     
     public function __construct() {

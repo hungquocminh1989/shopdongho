@@ -5,7 +5,7 @@ class MasterRaw {
 }
 class MasterDB
 {
-	public $pdo;
+	protected $pdo;
 
 	protected $type;
 
@@ -1650,17 +1650,17 @@ class MasterDB
 		
 	}
 	
-	protected function prepare($sql) {
+	private function prepare($sql) {
 		
 		return $this->_internal_prepare($sql);
 		
 	}
-	protected function prepared_execute($stmt, $param=null) {
+	private function prepared_execute($stmt, $param=null) {
 		
 		$this->_internal_execute($stmt, $param);
 		
 	}
-	protected function prepared_query($stmt, $param=null) {
+	private function prepared_query($stmt, $param=null) {
 		
 		$this->_internal_execute($stmt, $param);
 		// FETCH

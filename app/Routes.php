@@ -18,9 +18,6 @@ $headerControler = new HeaderController();
 $htmlControler = new HtmlController();
 $systemBackup = new SystemBackupController();
 
-//Index & Detail
-Flight::route('/(@page_link)(/@id/@product_link)', array($indexController, 'action_index'));
-
 //Common
 Flight::route('/main', array($controller, 'action_main'));
 Flight::route('/admin', array($controller, 'action_admin'));
@@ -84,6 +81,9 @@ Flight::route('POST /sign-up', array($membership, 'registerAttempt'));*/
 //Register Crontabs Request
 $cron = new CommonCrontab();
 Flight::route('/cron', array($cron, 'cron'));
+
+//Index & Detail
+Flight::route('/(@page_link)(/@id/@product_link)', array($indexController, 'action_index'));
 
 // Route mặc định khi không match toàn bộ
 Flight::route('/*', array($controller, 'index'));

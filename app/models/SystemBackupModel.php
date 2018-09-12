@@ -24,5 +24,11 @@ class SystemBackupModel extends Model {
 		}
 		$this->commit();
 	}
+	
+	public function create_system_backup($arr_row){
+		$this->begin_transaction();
+		$this->upsertRow($arr_row);
+		$this->commit();
+	}
     
 }

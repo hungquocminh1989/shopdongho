@@ -33,7 +33,7 @@ class SystemBackupController extends Controller {
 				$system_backup_name = $_POST['system_backup_name'] . '_' . $time;
 			}
 			$model = new SystemBackupModel();
-			$model->upsertRow(
+			$model->create_system_backup(
 				[
 					'system_backup_name'=> $system_backup_name,
 					'database_path'=> $file_backup_copy,

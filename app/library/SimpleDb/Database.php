@@ -6,7 +6,6 @@ class Database
 	private $in_transaction;
 	private $_last_param;
 	private $_last_sql;
-	private $db_medoo;
 	protected $table_name;
 	protected $pk_id;
 	
@@ -24,23 +23,6 @@ class Database
 			$this->dbh = new PDO(DATABASE_DNS, DATABASE_USER, DATABASE_PASS, $driver_options);
 			$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			
-			//Connect Medoo
-			$this->db_medoo = new Medoo(
-				[
-				    'database_type' => DATABASE_TYPE,
-				    'database_name' => DATABASE_NAME,
-				    'server' 		=> DATABASE_HOST,
-				    'username' 		=> DATABASE_USER,
-				    'password' 		=> DATABASE_PASS,
-				    'port' 			=> DATABASE_PORT
-				]
-			);
-			
-			//Active debug sql log
-			if(SYSTEM_DEVELOPMENT_MODE == TRUE){
-				$this->db_medoo->debug();
-			}
-			
 			$this->table_name = $tablename;
         	$this->pk_id = $tablename.'_id';
 			
@@ -52,12 +34,6 @@ class Database
 		}
 		
 		$this->in_transaction = false;
-	}
-	
-	public function MedooDb() {
-		
-		return $this->db_medoo;
-		
 	}
 	
 	protected function begin_transaction() {

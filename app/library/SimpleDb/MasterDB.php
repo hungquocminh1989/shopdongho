@@ -1,11 +1,15 @@
 <?php
-class MasterRaw {
+/**
+* Version 1.5.7
+*/
+class Raw {
 	public $map;
 	public $value;
 }
+
 class MasterDB
 {
-	protected $pdo;
+	public $pdo;
 
 	protected $type;
 
@@ -242,7 +246,6 @@ class MasterDB
 				isset($options[ 'password' ]) ? $options[ 'password' ] : null,
 				$this->option
 			);
-			$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 			foreach ($commands as $value)
 			{
@@ -266,10 +269,18 @@ class MasterDB
 		}
 	}
 
+	/*protected function query($query, $map = [])
+	{
+		$raw = $this->raw($query, $map);
+
+		$query = $this->buildRaw($raw, $map);
+
+		return $this->exec($query, $map);
+	}*/
+
 	protected function exec($query, $map = [])
 	{
 		try{
-			
 			if ($this->debug_mode)
 			{
 				$sql_log = $this->generate($query, $map);
@@ -298,9 +309,9 @@ class MasterDB
 				{
 					$statement->bindValue($key, $value[ 0 ], $value[ 1 ]);
 				}
-				
+
 				$statement->execute();
-				
+
 				$this->statement = $statement;
 				
 				if($this->error() != NULL && $this->error()[2] != ''){
@@ -315,7 +326,8 @@ class MasterDB
 
 				return $statement;
 			}
-			
+
+			return false;
 		} catch (PDOException $e) {
 			
 			$error_info = $e->getMessage();
@@ -326,7 +338,6 @@ class MasterDB
 			Support_Common::RequestError($e);
 			
 		}
-		
 	}
 
 	protected function generate($query, $map)
@@ -410,10 +421,8 @@ class MasterDB
 		{
 			foreach ($raw_map as $key => $value)
 			{
-				$raw_map[ $key ] = $this->typeMap($value, gettype($value));
+				$map[ $key ] = $this->typeMap($value, gettype($value));
 			}
-
-			$map = $raw_map;
 		}
 
 		return $query;
@@ -569,7 +578,7 @@ class MasterDB
 
 			if (
 				is_int($key) &&
-				preg_match('/([a-zA-Z0-9_\.]+)\[(?<operator>\>\=?|\<\=?|\!|\=)\]([a-zA-Z0-9_\.]+)/i', $value, $match)
+				preg_match('/([a-zA-Z0-9_\.]+)\[(?<operator>\>\=?|\<\=?|\!?\=)\]([a-zA-Z0-9_\.]+)/i', $value, $match)
 			)
 			{
 				$stack[] = $this->columnQuote($match[ 1 ]) . ' ' . $match[ 'operator' ] . ' ' . $this->columnQuote($match[ 3 ]);
@@ -1031,7 +1040,7 @@ class MasterDB
 			}
 			else
 			{
-				if (empty($columns))
+				if (empty($columns) || $this->isRaw($columns))
 				{
 					$columns = '*';
 					$where = $join;
@@ -1110,6 +1119,8 @@ class MasterDB
 
 				$column_key = $map[ 0 ];
 
+				$result = $data[ $column_key ];
+
 				if (isset($map[ 1 ]))
 				{
 					if ($isRaw && in_array($map[ 1 ], ['Object', 'JSON']))
@@ -1117,36 +1128,42 @@ class MasterDB
 						continue;
 					}
 
+					if (is_null($result))
+					{
+						$stack[ $column_key ] = null;
+						continue;
+					}
+
 					switch ($map[ 1 ])
 					{
 						case 'Number':
-							$stack[ $column_key ] = (double) $data[ $column_key ];
+							$stack[ $column_key ] = (double) $result;
 							break;
 
 						case 'Int':
-							$stack[ $column_key ] = (int) $data[ $column_key ];
+							$stack[ $column_key ] = (int) $result;
 							break;
 
 						case 'Bool':
-							$stack[ $column_key ] = (bool) $data[ $column_key ];
+							$stack[ $column_key ] = (bool) $result;
 							break;
 
 						case 'Object':
-							$stack[ $column_key ] = unserialize($data[ $column_key ]);
+							$stack[ $column_key ] = unserialize($result);
 							break;
 
 						case 'JSON':
-							$stack[ $column_key ] = json_decode($data[ $column_key ], true);
+							$stack[ $column_key ] = json_decode($result, true);
 							break;
 
 						case 'String':
-							$stack[ $column_key ] = $data[ $column_key ];
+							$stack[ $column_key ] = $result;
 							break;
 					}
 				}
 				else
 				{
-					$stack[ $column_key ] = $data[ $column_key ];
+					$stack[ $column_key ] = $result;
 				}
 			}
 			else
@@ -1829,5 +1846,5 @@ class MasterDB
 		return FALSE;
 		
 	}
-	
 }
+?>

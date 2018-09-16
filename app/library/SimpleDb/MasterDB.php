@@ -38,7 +38,7 @@ class MasterDB
 	
 	protected $pk_id;
 
-	protected function __construct($tablename = NULL, $options = null)
+	public function __construct($tablename = NULL, $options = null)
 	{
 		$this->table_name = $tablename;
         $this->pk_id = $tablename.'_id';

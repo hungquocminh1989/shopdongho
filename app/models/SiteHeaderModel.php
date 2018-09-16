@@ -59,6 +59,7 @@ class SiteHeaderModel extends Model {
 				],
 				$postData['m_site_header_id']
 	    	);
+	    	$this->generateSortNo('m_site_header');
     	
 			$this->commit();
 			

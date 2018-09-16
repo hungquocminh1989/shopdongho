@@ -23,8 +23,7 @@ class CategoryController extends Controller {
 		$model = new CategoryModel();
 		$m_category_id = $_POST['m_category_id'];
 		$category_name = $_POST['category_name'];
-		$model->upsertRow(['category_name'=>$category_name], $m_category_id);
-		$model->generateSortNo('m_category');
+		$model->update_ctg($m_category_id, $category_name);
 		
 		Flight::redirect('/main');
 		return FALSE;#Stop Route

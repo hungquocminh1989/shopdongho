@@ -21,15 +21,14 @@ class HtmlController extends Controller {
 		$arr_return['html_name'] = $postData['html_name'];
 		$arr_return['html_data'] = $postData['html_data'];
 		
-		
+		$model->update_html($arr_return, $postData['m_html_data_id']);
 		/*if(isset($postData['m_html_data_id']) == TRUE && $postData['m_html_data_id'] != ''){
 			$model->updateRowById($arr_return,$postData['m_html_data_id']);
 		}
 		else{
 			$model->insertRow($arr_return);
 		}*/
-		$model->upsertRow($arr_return,$postData['m_html_data_id']);
-		$model->generateSortNo('m_html_data');
+		
 		
 		
 		Flight::redirect('/main');

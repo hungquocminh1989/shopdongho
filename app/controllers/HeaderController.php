@@ -26,7 +26,6 @@ class HeaderController extends Controller {
 		$postData = Flight::request()->data->getData();
 		$model = new SiteHeaderModel();
 		$model->update_header($postData);
-		$model->generateSortNo('m_site_header');
 		
 		//Flight::redirect('/main');
 		return FALSE;#Stop Route

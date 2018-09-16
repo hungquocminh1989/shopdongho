@@ -18,5 +18,12 @@ class CategoryModel extends Model {
     	);
 		return $result;
 	}
+	
+	public function update_ctg($m_category_id = NULL, $category_name){
+		$this->begin_transaction();
+		$this->upsertRow(['category_name'=>$category_name], $m_category_id);
+		$this->generateSortNo('m_category');
+		$this->commit();
+	}
     
 }
